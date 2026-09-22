@@ -1,0 +1,9 @@
+{
+  "name": "wordandmusicart-github-io",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node tests/verify-site.mjs",
+    "serve": "python3 -m http.server 4173"
+  }
+}
