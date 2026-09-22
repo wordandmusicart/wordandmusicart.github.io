@@ -39,7 +39,7 @@ assert.match(html, /media="\(max-width: 700px\)"[^>]+concert-mobile\.png/s);
 assert.match(html, /concert-desktop\.png/);
 assert.match(html, /word-and-music-logo-black\.svg/);
 assert.match(html, /rel="canonical" href="https:\/\/wordandmusic\.art\/"/);
-assert.match(html, /property="og:image" content="https:\/\/wordandmusic\.art\/assets\/word-and-music-preview\.png"/);
+assert.match(html, /property="og:image" content="https:\/\/raw\.githubusercontent\.com\/wordandmusicart\/wordandmusicart\.github\.io\/main\/assets\/word-and-music-preview\.png"/);
 assert.match(html, /rel="icon"[^>]+favicon-32\.png/);
 assert.match(html, /rel="apple-touch-icon"[^>]+apple-touch-icon\.png/);
 assert.match(css, /@font-face/);
