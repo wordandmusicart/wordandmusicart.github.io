@@ -40,7 +40,7 @@ body {
   margin-inline: auto;
   padding: clamp(24px, 4.2vh, 48px) 0 max(clamp(24px, 4.2vh, 48px), env(safe-area-inset-bottom));
   display: grid;
-  grid-template-rows: auto auto minmax(0, 1fr);
+  grid-template-rows: auto auto auto auto;
   justify-items: center;
   align-items: start;
 }
@@ -60,7 +60,7 @@ body {
 
 .poster-link {
   display: block;
-  width: min(100%, calc((100dvh - clamp(150px, 20vh, 214px)) * 16 / 9));
+  width: min(100%, calc((100dvh - clamp(210px, 26vh, 280px)) * 16 / 9));
   max-height: 100%;
   border-radius: clamp(12px, 1.25vw, 18px);
   outline: 0;
@@ -99,6 +99,27 @@ body {
   outline-offset: 6px;
 }
 
+.contact-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px clamp(14px, 2vw, 26px);
+  margin-top: clamp(12px, 1.8vh, 20px);
+  font-size: clamp(12px, 1.05vw, 14px);
+  line-height: 1.3;
+  text-align: center;
+}
+
+.contact-links a {
+  color: inherit;
+  text-underline-offset: 3px;
+}
+
+.contact-links a:focus-visible {
+  outline: 2px solid #111;
+  outline-offset: 4px;
+}
+
 .reveal {
   opacity: 0;
   transform: translateY(10px);
@@ -115,6 +136,10 @@ body {
 
 .reveal--poster {
   animation-delay: 430ms;
+}
+
+.reveal--links {
+  animation-delay: 600ms;
 }
 
 @keyframes reveal {
@@ -141,7 +166,7 @@ body {
   }
 
   .poster-link {
-    width: min(100%, calc((100dvh - clamp(130px, 18vh, 180px)) * 4 / 5));
+    width: min(100%, calc((100dvh - clamp(180px, 24vh, 230px)) * 4 / 5));
     border-radius: clamp(11px, 3vw, 16px);
   }
 }
