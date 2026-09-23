@@ -42,6 +42,7 @@ body {
   display: grid;
   grid-template-rows: auto auto auto auto;
   justify-items: center;
+  align-content: start;
   align-items: start;
 }
 
@@ -59,16 +60,31 @@ body {
 }
 
 .poster-link {
+  position: relative;
   display: block;
   width: min(100%, calc((100dvh - clamp(210px, 26vh, 280px)) * 16 / 9));
   max-height: 100%;
-  border-radius: clamp(12px, 1.25vw, 18px);
+  border-radius: clamp(24px, 2.6vw, 34px);
   outline: 0;
-  transition: transform 360ms cubic-bezier(.2, .75, .25, 1), box-shadow 360ms ease;
+  transition: transform 480ms cubic-bezier(.2, .75, .25, 1), box-shadow 480ms ease;
+}
+
+.poster-link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  border: 1px solid rgb(255 255 255 / 75%);
+  border-radius: inherit;
+  background: linear-gradient(115deg, transparent 22%, rgb(255 255 255 / 28%) 48%, transparent 72%) -100% 0 / 200% 100% no-repeat;
+  box-shadow: inset 0 1px 1px rgb(255 255 255 / 75%), inset 0 -1px 1px rgb(35 55 110 / 8%);
+  transition: background-position 850ms ease, background-color 480ms ease;
 }
 
 .poster-link picture {
   display: block;
+  border-radius: inherit;
 }
 
 .poster {
@@ -84,7 +100,13 @@ body {
 }
 
 .poster-link:hover {
-  transform: translateY(-3px);
+  transform: translateY(-4px);
+  box-shadow: 0 18px 56px rgb(86 95 214 / 18%), 0 0 28px rgb(125 153 255 / 15%);
+}
+
+.poster-link:hover::after {
+  background-position: 100% 0;
+  background-color: rgb(255 255 255 / 3%);
 }
 
 .poster-link:hover .poster {
@@ -105,6 +127,12 @@ body {
   justify-content: center;
   gap: 8px clamp(14px, 2vw, 26px);
   margin-top: clamp(12px, 1.8vh, 20px);
+  padding: 10px clamp(15px, 2.5vw, 22px);
+  border: 1px solid rgb(255 255 255 / 85%);
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgb(255 255 255 / 86%), rgb(223 232 255 / 48%) 55%, rgb(255 255 255 / 76%));
+  box-shadow: 0 8px 30px rgb(71 92 148 / 10%), inset 0 1px 1px rgb(255 255 255 / 95%);
+  backdrop-filter: blur(18px) saturate(140%);
   font-size: clamp(12px, 1.05vw, 14px);
   line-height: 1.3;
   text-align: center;
@@ -167,7 +195,7 @@ body {
 
   .poster-link {
     width: min(100%, calc((100dvh - clamp(180px, 24vh, 230px)) * 4 / 5));
-    border-radius: clamp(11px, 3vw, 16px);
+    border-radius: clamp(22px, 5vw, 28px);
   }
 }
 
@@ -194,6 +222,10 @@ body {
   }
 
   .poster-link {
+    transition: none;
+  }
+
+  .poster-link::after {
     transition: none;
   }
 }
