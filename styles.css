@@ -140,11 +140,30 @@ body {
 }
 
 .contact-links a {
+  position: relative;
   display: inline-flex;
   align-items: center;
   min-height: 32px;
   color: inherit;
-  text-underline-offset: 3px;
+  text-decoration: none;
+}
+
+.contact-links a::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 3px;
+  left: 0;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 650ms cubic-bezier(.22, .78, .24, 1);
+}
+
+.contact-links a:hover::after,
+.contact-links a:focus-visible::after {
+  transform: scaleX(1);
 }
 
 .contact-links a:focus-visible {
@@ -243,6 +262,10 @@ body {
   }
 
   .poster-link::after {
+    transition: none;
+  }
+
+  .contact-links a::after {
     transition: none;
   }
 }
