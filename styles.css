@@ -49,6 +49,7 @@ body {
 .brand {
   display: block;
   width: clamp(190px, 18vw, 286px);
+  max-width: 100%;
   height: auto;
 }
 
@@ -62,7 +63,7 @@ body {
 .poster-link {
   position: relative;
   display: block;
-  width: min(100%, calc((100dvh - clamp(210px, 26vh, 280px)) * 16 / 9));
+  width: min(100%, calc((100dvh - clamp(230px, 28vh, 300px)) * 16 / 9));
   max-height: 100%;
   border-radius: clamp(24px, 2.6vw, 34px);
   outline: 0;
@@ -139,6 +140,9 @@ body {
 }
 
 .contact-links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
   color: inherit;
   text-underline-offset: 3px;
 }
@@ -211,6 +215,19 @@ body {
   .eyebrow {
     margin-block: 10px;
     font-size: 14px;
+  }
+}
+
+@media (max-height: 620px), (max-width: 360px) {
+  html,
+  body {
+    height: auto;
+    overflow: auto;
+  }
+
+  .page {
+    height: auto;
+    min-height: 100dvh;
   }
 }
 
