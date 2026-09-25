@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" version="1.1" width="840" height="340" viewBox="0 0 840 340" role="img">
+  <title>word&amp;music — universal symbol / reverse</title>
+  <desc>Manually reconstructed vector artwork from the selected raster concept. Editable Bezier paths, native gradients and transparency. Transparent background. No raster images or font dependencies. Reverse version is intended for a dark background.</desc>
+  <defs>
+    <linearGradient id="wm_rear" gradientUnits="userSpaceOnUse" x1="632" y1="147" x2="730" y2="357">
+      <stop offset="0" stop-color="#eadad2" stop-opacity="0.74"/>
+      <stop offset="0.48" stop-color="#e6cfc8" stop-opacity="0.5"/>
+      <stop offset="1" stop-color="#e7d8d5" stop-opacity="0.23"/>
+    </linearGradient>
+    <linearGradient id="wm_middle" gradientUnits="userSpaceOnUse" x1="698" y1="154" x2="793" y2="363">
+      <stop offset="0" stop-color="#caaeb5" stop-opacity="0.65"/>
+      <stop offset="0.52" stop-color="#bb98a6" stop-opacity="0.46"/>
+      <stop offset="1" stop-color="#d9c0c7" stop-opacity="0.14"/>
+    </linearGradient>
+    <linearGradient id="wm_inner" gradientUnits="userSpaceOnUse" x1="815" y1="150" x2="810" y2="372">
+      <stop offset="0" stop-color="#aba8d4" stop-opacity="0.86"/>
+      <stop offset="0.5" stop-color="#8075aa" stop-opacity="0.65"/>
+      <stop offset="1" stop-color="#a9add7" stop-opacity="0.28"/>
+    </linearGradient>
+    <linearGradient id="wm_front" gradientUnits="userSpaceOnUse" x1="984" y1="88" x2="878" y2="381">
+      <stop offset="0" stop-color="#b0b5e6" stop-opacity="0.96"/>
+      <stop offset="0.18" stop-color="#7380d7" stop-opacity="0.98"/>
+      <stop offset="0.4" stop-color="#3549ad" stop-opacity="0.99"/>
+      <stop offset="0.66" stop-color="#243584" stop-opacity="1"/>
+      <stop offset="0.85" stop-color="#314792" stop-opacity="1"/>
+      <stop offset="1" stop-color="#647cb7" stop-opacity="0.94"/>
+    </linearGradient>
+    <linearGradient id="wm_echo_grad" gradientUnits="userSpaceOnUse" x1="1000" y1="155" x2="960" y2="364">
+      <stop offset="0" stop-color="#aaacd9" stop-opacity="0.02"/>
+      <stop offset="0.5" stop-color="#aaacd9" stop-opacity="0.13"/>
+      <stop offset="1" stop-color="#aaacd9" stop-opacity="0.015"/>
+    </linearGradient>
+    <clipPath id="wm_front_clip" clipPathUnits="userSpaceOnUse">
+      <path d="M 1070,92 C 1117,108 1102,178 1045,244 C 988,311 892,368 832,371 C 759,376 754,332 795,270 C 838,204 915,139 987,106 C 1026,87 1053,85 1070,92 Z" fill="#ffffff"/>
+    </clipPath>
+    <linearGradient id="wm_lens_grad" gradientUnits="userSpaceOnUse" x1="815" y1="165" x2="863" y2="372">
+      <stop offset="0" stop-color="#162551" stop-opacity="0.03"/>
+      <stop offset="0.4" stop-color="#162551" stop-opacity="0.35"/>
+      <stop offset="0.77" stop-color="#162551" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#162551" stop-opacity="0.02"/>
+    </linearGradient>
+    <radialGradient id="wm_bottom_light" gradientUnits="userSpaceOnUse" cx="0" cy="0" r="1" gradientTransform="matrix(152 0 0 59 835 375)">
+      <stop offset="0" stop-color="#d8dbea" stop-opacity="0.09"/>
+      <stop offset="1" stop-color="#d8dbea" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="wm_line_grad" gradientUnits="userSpaceOnUse" x1="403" y1="230" x2="1171" y2="177">
+      <stop offset="0" stop-color="#f7f7f0" stop-opacity="0.67"/>
+      <stop offset="0.15" stop-color="#f7f7f0" stop-opacity="0.96"/>
+      <stop offset="0.58" stop-color="#f7f7f0" stop-opacity="1"/>
+      <stop offset="0.85" stop-color="#f7f7f0" stop-opacity="0.87"/>
+      <stop offset="1" stop-color="#f7f7f0" stop-opacity="0.2"/>
+    </linearGradient>
+  </defs>
+  <g id="wm_universal">
+    <g transform="translate(-380 -65)">
+      <g id="wm_surfaces" inkscape:groupmode="layer" inkscape:label="01 — Translucent planes">
+        <path d="M 962.2769,188.1003 C 973.5001,233.1142 869.6501,297.7663 730.3214,332.5048 C 590.9928,367.2434 468.9463,358.9136 457.7231,313.8997 C 446.4999,268.8858 550.3499,204.2337 689.6786,169.4952 C 829.0072,134.7566 951.0537,143.0864 962.2769,188.1003 Z" fill="url(#wm_rear)" id="wm_plane_01"/>
+        <path d="M 954.5832,178.6097 C 971.6045,222.9515 900.9713,291.3078 796.8196,331.2879 C 692.6680,371.2680 594.4380,367.7321 577.4168,323.3903 C 560.3955,279.0485 631.0287,210.6922 735.1804,170.7121 C 839.3320,130.7320 937.5620,134.2679 954.5832,178.6097 Z" fill="url(#wm_middle)" id="wm_plane_02"/>
+        <path d="M 945.4330,190.9934 C 967.7481,234.7894 925.2027,301.1883 850.4052,339.2996 C 775.6076,377.4108 696.8822,372.8025 674.5670,329.0066 C 652.2519,285.2106 694.7973,218.8117 769.5948,180.7004 C 844.3924,142.5892 923.1178,147.1975 945.4330,190.9934 Z" fill="url(#wm_inner)" id="wm_plane_03"/>
+        <path d="M 1070,92 C 1117,108 1102,178 1045,244 C 988,311 892,368 832,371 C 759,376 754,332 795,270 C 838,204 915,139 987,106 C 1026,87 1053,85 1070,92 Z" fill="url(#wm_echo_grad)" transform="translate(13 10)" id="wm_afterimage"/>
+      </g>
+      <g id="wm_foreground" inkscape:groupmode="layer" inkscape:label="02 — Foreground plane and overlap">
+        <path d="M 1070,92 C 1117,108 1102,178 1045,244 C 988,311 892,368 832,371 C 759,376 754,332 795,270 C 838,204 915,139 987,106 C 1026,87 1053,85 1070,92 Z" fill="url(#wm_front)" id="wm_plane_04"/>
+        <path d="M 945.4330,190.9934 C 967.7481,234.7894 925.2027,301.1883 850.4052,339.2996 C 775.6076,377.4108 696.8822,372.8025 674.5670,329.0066 C 652.2519,285.2106 694.7973,218.8117 769.5948,180.7004 C 844.3924,142.5892 923.1178,147.1975 945.4330,190.9934 Z" fill="url(#wm_lens_grad)" clip-path="url(#wm_front_clip)" id="wm_overlap_lens"/>
+        <path d="M 1070,92 C 1117,108 1102,178 1045,244 C 988,311 892,368 832,371 C 759,376 754,332 795,270 C 838,204 915,139 987,106 C 1026,87 1053,85 1070,92 Z" fill="url(#wm_bottom_light)" id="wm_subtle_edge_light"/>
+      </g>
+      <g id="wm_line" inkscape:groupmode="layer" inkscape:label="03 — Musical gesture">
+        <path d="M 403,260 C 447,296 572,277 649,247 C 754,207 818,146 934,134 C 1032,121 1099,142 1171,169" fill="none" stroke="url(#wm_line_grad)" stroke-width="1.12" stroke-linecap="round" id="wm_gesture"/>
+      </g>
+    </g>
+  </g>
+</svg>
