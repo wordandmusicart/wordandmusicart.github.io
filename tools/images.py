@@ -3,8 +3,10 @@
 
 Rule: every raster <img>/<source> on the site is served through srcset.
 The master file assets/img/<name>.jpg is kept at its original resolution;
-this script writes <name>-480/-960/-1440/-2400.webp next to it (only the
-widths smaller than the master) and rewrites srcset in every page.
+this script writes <name>-480/-720/-960/-1440/-2400.webp next to it (only
+the widths smaller than the master) and rewrites srcset in every page.
+Concert photos (assets/photo/<slug>/<name>.webp, the top step) get the
+same smaller steps, made from the top step, and their srcset is rewritten.
 Each <img> must carry a hand-written `sizes` that matches its layout.
 Variants keep the master's colour profile, EXIF and XMP; only GPS is removed.
 
@@ -16,7 +18,7 @@ from PIL import Image
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 IMG = os.path.join(ROOT, 'assets', 'img')
-WIDTHS = (480, 960, 1440, 2400)  # same ladder as rusanivsky.com
+WIDTHS = (480, 720, 960, 1440, 2400)  # rusanivsky.com ladder + 720
 SKIP = ('og-',)  # social previews: fixed 1200x630, not shown on pages
 
 def masters():
@@ -70,11 +72,47 @@ def build():
             im = im or src.convert('RGB')
             im.resize((x, round(h * x / w)), Image.LANCZOS).save(out, 'WEBP', quality=80, method=6, **m)
 
+PHOTO = os.path.join(ROOT, 'assets', 'photo')
+
+def photos():
+    """Concert photos: top step <name>.webp; yields (url base, path, width, smaller steps)."""
+    for f in sorted(glob.glob(os.path.join(PHOTO, '*', '*.webp'))):
+        if re.search(r'-\d+\.webp$', f):
+            continue
+        w = Image.open(f).size[0]
+        yield '/' + os.path.relpath(f, ROOT)[:-5].replace(os.sep, '/'), f, w, [x for x in WIDTHS if x < w]
+
+def build_photos():
+    for url, f, w, ws in photos():
+        src = None
+        for x in ws:
+            out = f[:-5] + f'-{x}.webp'
+            if os.path.exists(out):
+                continue
+            src = src or Image.open(f)
+            m = meta(src)
+            h = src.size[1]
+            src.convert('RGB').resize((x, round(h * x / w)), Image.LANCZOS).save(out, 'WEBP', quality=80, method=6, **m)
+
 def srcset(name, f):
     w, _, ws = variants(name, f)
     return ', '.join([f'/assets/img/{name}-{x}.webp {x}w' for x in ws] + [f'/assets/img/{name}.jpg {w}w'])
 
 TAG = re.compile(r'<(img|source)\b[^>]*>')
+PHOTO_TAG = re.compile(r'<img\b[^>]*\ssrc="/assets/photo/[^"]*"[^>]*>')
+
+def photo_srcsets():
+    return {url: ', '.join([f'{url}-{x}.webp {x}w' for x in ws] + [f'{url}.webp {w}w'])
+            for url, f, w, ws in photos()}
+
+def fix_photo(m, _cache={}):
+    t = m.group(0)
+    if not _cache:
+        _cache.update(photo_srcsets())
+    u = re.search(r' src="(/assets/photo/[^"]*?)(?:-\d+)?\.webp"', t)
+    if not u or u.group(1) not in _cache or ' srcset="' not in t:
+        return t
+    return re.sub(r' srcset="[^"]*"', f' srcset="{_cache[u.group(1)]}"', t)
 def pages():
     return sorted(glob.glob(os.path.join(ROOT, '*.html')) + glob.glob(os.path.join(ROOT, '*', '*.html')) + glob.glob(os.path.join(ROOT, 'en', '*', '*.html')))
 
@@ -100,12 +138,20 @@ def rewrite(check):
                 problems.append(f'{os.path.relpath(p, ROOT)}: {name} has no sizes')
             return t
         new = TAG.sub(fix, s)
+        new = PHOTO_TAG.sub(fix_photo, new)
         if new != s:
             if check:
                 problems.append(f'{os.path.relpath(p, ROOT)}: srcset out of date')
             else:
                 open(p, 'w', encoding='utf-8').write(new)
     if check:
+        for url, f, w, ws in photos():
+            for x in ws:
+                v = f[:-5] + f'-{x}.webp'
+                if not os.path.exists(v):
+                    problems.append(f'missing {os.path.relpath(v, ROOT)}')
+                elif not has_meta(v, meta(Image.open(f))):
+                    problems.append(f'{os.path.relpath(v, ROOT)} lost metadata')
         for name, f in masters():
             for x in variants(name, f)[2]:
                 v = os.path.join(IMG, f'{name}-{x}.webp')
@@ -119,6 +165,7 @@ if __name__ == '__main__':
     check = '--check' in sys.argv
     if not check:
         build()
+        build_photos()
     probs = rewrite(check)
     print('\n'.join(probs) or 'images ok')
     sys.exit(1 if probs else 0)
