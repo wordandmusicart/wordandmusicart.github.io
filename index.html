@@ -47,10 +47,18 @@
         aria-describedby="concert-details"
       >
         <picture>
-          <source media="(max-width: 700px)" srcset="assets/concert-mobile.png?v=tauvers-20260923">
+          <source
+            media="(max-width: 700px)"
+            srcset="assets/concert-mobile-480.png 480w, assets/concert-mobile-720.png 720w, assets/concert-mobile.png?v=tauvers-20260923 1080w"
+            sizes="(max-width: 500px) 88vw, 440px"
+            width="1080"
+            height="1350"
+          >
           <img
             class="poster"
             src="assets/concert-desktop.png?v=tauvers-20260923"
+            srcset="assets/concert-desktop-640.png 640w, assets/concert-desktop-960.png 960w, assets/concert-desktop-1280.png 1280w, assets/concert-desktop.png?v=tauvers-20260923 1920w"
+            sizes="(max-width: 1218px) 92vw, 1120px"
             width="1920"
             height="1080"
             alt="Афіша концерту «Vivre, Aimer, rêver…», 3 жовтня 2026 року о 16:00"

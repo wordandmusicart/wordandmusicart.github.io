@@ -23,7 +23,12 @@ assert.deepEqual(files.sort(), [
   "assets/TembravaDisplay-Regular.woff2",
   "assets/apple-touch-icon.png",
   "assets/concert-desktop.png",
+  "assets/concert-desktop-640.png",
+  "assets/concert-desktop-960.png",
+  "assets/concert-desktop-1280.png",
   "assets/concert-mobile.png",
+  "assets/concert-mobile-480.png",
+  "assets/concert-mobile-720.png",
   "assets/favicon-192.png",
   "assets/favicon-32.png",
   "assets/favicon-512.png",
@@ -34,6 +39,6 @@ assert.deepEqual(files.sort(), [
   "robots.txt",
   "sitemap.xml",
   "styles.css",
-]);
+].sort());
 
 console.log("Public file allowlist: PASS");
