@@ -9,4 +9,4 @@ npm test
 npm run serve
 ```
 
-Then open <http://localhost:4173>.
+`npm test` also builds the exact public files in `dist/`. Then open <http://localhost:4173>.

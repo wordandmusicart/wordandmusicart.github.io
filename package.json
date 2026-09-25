@@ -3,7 +3,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "node tests/verify-site.mjs",
-    "serve": "python3 -m http.server 4173"
+    "build": "node scripts/build.mjs",
+    "test": "node tests/verify-site.mjs && npm run build && node tests/verify-build.mjs",
+    "serve": "python3 -m http.server 4173 --directory dist"
   }
 }
