@@ -15,27 +15,29 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  verify:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22
-      - run: npm test
-
   deploy:
-    needs: verify
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check responsive images
+        run: pip install -q pillow && python3 tools/images.py --check
+      - name: Check page metadata
+        run: python3 tools/check_seo.py
+      - name: Prepare public site
+        run: |
+          mkdir _site
+          cp -- *.html *.png *.ico *.svg CNAME robots.txt sitemap.xml site.webmanifest .nojekyll _site/
+          cp -R -- assets concerts en photo _site/
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: .
+          path: _site
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
