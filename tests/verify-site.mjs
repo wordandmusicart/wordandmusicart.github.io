@@ -40,6 +40,9 @@ assert.match(html, /concert-desktop\.png/);
 assert.match(html, /word-and-music-logo-black\.svg/);
 assert.match(html, /rel="canonical" href="https:\/\/wordandmusic\.art\/"/);
 assert.match(html, /property="og:image" content="https:\/\/raw\.githubusercontent\.com\/wordandmusicart\/wordandmusicart\.github\.io\/main\/assets\/word-and-music-preview\.png"/);
+assert.match(html, /aria-describedby="concert-details"/);
+assert.match(html, /id="concert-details"[^>]*>[^<]*3 жовтня 2026 року о 16:00/);
+assert.match(html, /Геннадій Таранок/);
 assert.match(html, /rel="icon"[^>]+favicon-32\.png/);
 assert.match(html, /rel="apple-touch-icon"[^>]+apple-touch-icon\.png/);
 assert.match(css, /@font-face/);
@@ -48,6 +51,7 @@ assert.match(css, /100(?:dvh|svh)/);
 assert.match(css, /overflow:\s*hidden/);
 assert.match(css, /prefers-reduced-motion:\s*reduce/);
 assert.match(css, /:focus-visible/);
+assert.match(css, /\.sr-only\s*\{/);
 
 assert.deepEqual(await pngDimensions("assets/concert-desktop.png"), [1920, 1080]);
 assert.deepEqual(await pngDimensions("assets/concert-mobile.png"), [1080, 1350]);
