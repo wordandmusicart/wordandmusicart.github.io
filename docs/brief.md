@@ -18,7 +18,6 @@ Give visitors one clear, elegant destination while the full word&music website i
 
 - Correct supplied assets and exact Eventmate URL.
 - No crop or content substitution.
-- Serve resolution steps for each poster according to rendered width and device pixel ratio, keeping the supplied full-resolution PNGs unchanged.
 - No overflow at representative desktop and phone sizes.
 - Keyboard-visible link focus and meaningful alternative text.
 - Live through GitHub Pages at `https://wordandmusic.art/` (with `wordandmusicart.github.io` redirecting to it).
