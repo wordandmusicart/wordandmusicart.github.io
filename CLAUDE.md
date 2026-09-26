@@ -71,3 +71,9 @@
   <year>»), gallery «<Назва> — фото з концерту word&music, <рік>».
   og:title always equals the title. Concert photo alt: «<Назва> — фото N ·
   ДД.ММ.РРРР, <локація>, Київ».
+- Photos by Kyrylo Rusanivsky (EXIF Artist) carry the rusanivsky.com
+  credit: Description «Photo by Kyrylo Rusanivsky», Copyright «(c) Kyrylo
+  Rusanivsky - rusanivsky.com», XMP Rights «© Kyrylo Rusanivsky ·
+  rusanivsky.com», Credit, CreatorWorkURL/WebStatement https://rusanivsky.com.
+  Write it with `exiftool -P` (no re-encode). Posters, video stills and
+  banners are not his photos: no credit there.
