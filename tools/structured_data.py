@@ -3,6 +3,7 @@
 
 Nothing is typed by hand: every value is read from the page itself.
 - Home pages (/ and /en/): Organization + WebSite, from the contacts block.
+- Gallery pages (photo/*.html): ImageGallery with the photographer.
 - Concert pages (concert.html, concerts/*.html and EN twins): MusicEvent,
   from the H1, the date line, the facts block (date, start, end, price,
   location, address), the performers, the ticket link, og:image and the description.
@@ -23,6 +24,14 @@ LABELS = {'Дата': 'date', 'Початок': 'start', 'Завершення':
           'Date': 'date', 'Start': 'start', 'End': 'end', 'Price': 'price', 'Location': 'venue', 'Address': 'address'}
 CITY = {'uk': 'Київ', 'en': 'Kyiv'}
 ON_SALE = ('Продаж триває', 'On sale')
+# Other spellings people search for (from the people themselves), keyed by
+# the name as the site shows it. Only these go into alternateName/sameAs.
+PEOPLE = [
+    {'names': ('Геннадій Таранюк', 'Hennadii Taraniuk', 'Gennadiy Taraniuk',
+               'Gennadiy Taranyuk', 'Hennadii Taranyuk')},
+    {'names': ('Кирило Русанівський', 'Kyrylo Rusanivsky', 'Kyrylo Rusanivskyi'),
+     'sameAs': ['https://rusanivsky.com/']},
+]
 
 
 def text(s):
@@ -32,6 +41,16 @@ def text(s):
 def meta(s, attr, name):
     m = re.search(rf'<meta {attr}="{re.escape(name)}" content="([^"]*)"', s)
     return html.unescape(m.group(1)) if m else ''
+
+
+def person(name):
+    p = {'@type': 'Person', 'name': name}
+    for known in PEOPLE:
+        if name in known['names']:
+            p['alternateName'] = [n for n in known['names'] if n != name]
+            if known.get('sameAs'):
+                p['sameAs'] = known['sameAs']
+    return p
 
 
 def home_url(page_url, lang):
@@ -103,7 +122,7 @@ def event(s, lang, url):
     if people:
         names = [text(n) for n in re.findall(r'<h3[^>]*>(.*?)</h3>', people.group(1), re.S)]
         if names:
-            ev['performer'] = [{'@type': 'Person', 'name': n} for n in names]
+            ev['performer'] = [person(n) for n in names]
     ev['organizer'] = {'@type': 'Organization', 'name': 'word&music', 'url': home_url(url, 'uk')}
     tickets = re.search(r'<div class="c-cta"[^>]*><a class="btn" href="([^"]+)"', hero)
     if tickets:
@@ -121,6 +140,20 @@ def event(s, lang, url):
     return [ev]
 
 
+def gallery(s, lang, url):
+    head = re.search(r'<div class="list-head".*?<div class="meta muted">([^<]*)</div><h1[^>]*>(.*?)</h1>', s, re.S)
+    if not head:
+        return None
+    g = {'@type': 'ImageGallery', 'name': meta(s, 'property', 'og:title'), 'url': url, 'inLanguage': lang}
+    desc = meta(s, 'name', 'description')
+    if desc:
+        g['description'] = desc
+    by = re.search(r'(?:фотограф|by) (.+)$', html.unescape(head.group(1)))
+    if by:
+        g['author'] = person(by.group(1).strip())
+    return [g]
+
+
 def data(path, s):
     lang = re.search(r'<html lang="(\w+)"', s).group(1)
     url = meta(s, 'property', 'og:url')
@@ -129,6 +162,8 @@ def data(path, s):
         return home(s, lang, url)
     if re.fullmatch(r'(en/)?(concert\.html|concerts/[\w-]+\.html)', rel):
         return event(s, lang, url)
+    if re.fullmatch(r'(en/)?photo/[\w-]+\.html', rel):
+        return gallery(s, lang, url)
     return None
 
 
@@ -143,7 +178,9 @@ def main(check):
     problems = []
     pages = sorted(glob.glob(os.path.join(ROOT, '*.html')) + glob.glob(os.path.join(ROOT, 'en', '*.html'))
                    + glob.glob(os.path.join(ROOT, 'concerts', '*.html'))
-                   + glob.glob(os.path.join(ROOT, 'en', 'concerts', '*.html')))
+                   + glob.glob(os.path.join(ROOT, 'en', 'concerts', '*.html'))
+                   + glob.glob(os.path.join(ROOT, 'photo', '*.html'))
+                   + glob.glob(os.path.join(ROOT, 'en', 'photo', '*.html')))
     for p in pages:
         s = open(p, encoding='utf-8').read()
         items = data(p, s)
