@@ -3,7 +3,7 @@
 
 Rule: every raster <img>/<source> on the site is served through srcset.
 The master file assets/img/<name>.jpg is kept at its original resolution;
-this script writes <name>-480/-720/-960/-1440/-2400.webp next to it (only
+this script writes <name>-320/-480/-720/-960/-1440/-2400.webp next to it (only
 the widths smaller than the master) and rewrites srcset in every page.
 Concert photos (assets/photo/<slug>/<name>.webp, the top step) get the
 same smaller steps, made from the top step, and their srcset is rewritten.
@@ -18,7 +18,7 @@ from PIL import Image
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 IMG = os.path.join(ROOT, 'assets', 'img')
-WIDTHS = (480, 720, 960, 1440, 2400)  # rusanivsky.com ladder + 720
+WIDTHS = (320, 480, 720, 960, 1440, 2400)  # rusanivsky.com ladder + 320, 720
 SKIP = ('og-',)  # social previews: fixed 1200x630, not shown on pages
 
 def masters():

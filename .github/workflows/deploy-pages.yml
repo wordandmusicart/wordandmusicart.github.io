@@ -27,8 +27,12 @@ jobs:
           python-version: '3.12'
       - name: Check responsive images
         run: pip install -q pillow && python3 tools/images.py --check
+      - name: Check font subsets
+        run: pip install -q fonttools brotli && python3 tools/fonts.py --check
       - name: Check page metadata
         run: python3 tools/check_seo.py
+      - name: Check structured data
+        run: python3 tools/structured_data.py --check
       - name: Prepare public site
         run: |
           mkdir _site
