@@ -42,7 +42,8 @@ h1,h2,h3,p{margin:0}
 
 /* header */
 .hdr{height:80px;display:flex;align-items:center;justify-content:space-between;gap:24px;position:sticky;top:0;background:transparent;z-index:20;isolation:isolate;--header-progress:0}
-.hdr::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:var(--header-progress);background:color-mix(in srgb,var(--paper) 90%,transparent);border-bottom:1px solid var(--rule);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px)}
+.hdr::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:var(--header-progress);background:color-mix(in srgb,var(--paper) 90%,transparent);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px)}
+.hdr::after{content:"";position:absolute;inset:auto 0 0;border-bottom:1px solid var(--rule);pointer-events:none}
 @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.hdr::before,.sticky-buy{background:var(--paper)}}
 .hdr .logo img{height:24px;width:auto}
 .hdr nav{display:flex;gap:36px;font-size:15px}
@@ -52,7 +53,7 @@ h1,h2,h3,p{margin:0}
 .hdr .btn{min-height:40px;padding:0 18px;font-size:14px}
 .menu-btn{display:none;width:44px;height:44px;border:0;background:none;color:var(--ink);cursor:pointer}
 @media (max-width:1100px){.hdr nav{gap:22px}}
-@media (max-width:1000px){.hdr{height:68px;margin-bottom:16px}.hdr .logo{display:flex;align-items:center}.hdr::after{content:"";position:absolute;inset:auto 0 0;border-bottom:1px solid var(--rule);pointer-events:none}.hdr::before{border-bottom:0}.hdr .logo img{height:19px}.hdr nav,.hdr .lang{display:none}.menu-btn{display:flex;align-items:center;justify-content:center}.hdr .right{gap:4px}
+@media (max-width:1000px){.hdr{height:68px;margin-bottom:16px}.hdr .logo{display:flex;align-items:center}.hdr .logo img{height:19px}.hdr nav,.hdr .lang{display:none}.menu-btn{display:flex;align-items:center;justify-content:center}.hdr .right{gap:4px}
  .hdr nav.open{display:flex;position:fixed;top:68px;left:0;right:0;bottom:0;overflow-y:auto;overscroll-behavior:contain;flex-direction:column;gap:0;background:var(--paper);padding:8px var(--pad) calc(24px + env(safe-area-inset-bottom))}
  .hdr:has(#nav.open)::before{opacity:1}body:has(#nav.open) .sticky-buy{display:none}
  .hdr nav.open a{padding:14px 0;font-size:20px;font-family:"Tembrava Display",Georgia,serif;border-bottom:1px solid var(--rule)}}
