@@ -234,6 +234,20 @@ def check_page(path: Path, language: str, failures: list[str]) -> None:
     )
 
 
+def check_no_figcaption(path: Path, failures: list[str]) -> None:
+    relative = path.relative_to(ROOT)
+    check(path.is_file(), f"missing concert detail page: {relative}", failures)
+    if not path.is_file():
+        return
+    doc = parse(path)
+    figcaptions = [attrs for tag, attrs in doc.elements if tag == "figcaption"]
+    check(
+        not figcaptions,
+        f"{relative} must not contain poster figcaption (found {len(figcaptions)})",
+        failures,
+    )
+
+
 def object_position(style: str) -> tuple[float, float] | None:
     match = re.search(
         r"(?:^|;)\s*object-position\s*:\s*([-+]?\d+(?:\.\d+)?)%\s+"
@@ -316,6 +330,9 @@ def main() -> int:
         check_page(path, "UA", failures)
     for path in expected_en:
         check_page(path, "EN", failures)
+
+    for path in [ROOT / "concert.html", ROOT / "en/concert.html", *expected_ua, *expected_en]:
+        check_no_figcaption(path, failures)
 
     check_listing(ROOT / "concerts.html", "UA", failures)
     check_listing(ROOT / "en/concerts.html", "EN", failures)
