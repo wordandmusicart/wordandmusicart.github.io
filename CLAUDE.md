@@ -77,5 +77,6 @@
   rusanivsky.com», Credit, CreatorWorkURL/WebStatement https://rusanivsky.com.
   Write it with `exiftool -P` (no re-encode). Posters, banners and the
   concert og image are his design («Poster design by Kyrylo Rusanivsky»);
+  og-image.jpg «Design by Kyrylo Rusanivsky»;
   video stills (yt-*, *-16x9) are his video («Video by Kyrylo Rusanivsky»);
   other fields as above.
