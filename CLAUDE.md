@@ -66,3 +66,8 @@
 - Concert-page descriptions are written as about the concert, not the
   recording: «Концерт … відбувся <дата> в <місце>», past tense, no
   «Запис концерту…».
+- Page titles name what and where: past concert «<Назва> — концерт
+  word&music у Києві, <рік>» (EN «<Name> — word&music concert in Kyiv,
+  <year>»), gallery «<Назва> — фото з концерту word&music, <рік>».
+  og:title always equals the title. Concert photo alt: «<Назва> — фото N ·
+  ДД.ММ.РРРР, <локація>, Київ».
