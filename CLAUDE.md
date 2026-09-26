@@ -75,5 +75,7 @@
   credit: Description «Photo by Kyrylo Rusanivsky», Copyright «(c) Kyrylo
   Rusanivsky - rusanivsky.com», XMP Rights «© Kyrylo Rusanivsky ·
   rusanivsky.com», Credit, CreatorWorkURL/WebStatement https://rusanivsky.com.
-  Write it with `exiftool -P` (no re-encode). Posters, video stills and
-  banners are not his photos: no credit there.
+  Write it with `exiftool -P` (no re-encode). Posters, banners and the
+  concert og image are his design («Poster design by Kyrylo Rusanivsky»);
+  video stills (yt-*, *-16x9) are his video («Video by Kyrylo Rusanivsky»);
+  other fields as above.
