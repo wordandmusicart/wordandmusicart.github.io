@@ -112,9 +112,11 @@ def event(s, lang, url):
         if price:
             offer['price'] = price.group(1) or price.group(2)
             offer['priceCurrency'] = 'UAH'
-        status = re.search(r'class="status meta"><i></i>([^<]+)<', s)
-        if status and status.group(1).strip() in ON_SALE:
+        status = re.search(r'class="status meta"(?: data-sales-start="([\d-]+)")?><i></i>([^<]+)<', s)
+        if status and status.group(2).strip() in ON_SALE:
             offer['availability'] = 'https://schema.org/InStock'
+        if status and status.group(1):
+            offer['validFrom'] = datetime.fromisoformat(status.group(1)).replace(tzinfo=KYIV).isoformat()
         ev['offers'] = offer
     return [ev]
 
