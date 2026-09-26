@@ -283,6 +283,13 @@ def check_listing(path: Path, language: str, failures: list[str]) -> None:
         f"{relative} three poster thumbnails must have distinct object-position values",
         failures,
     )
+    stabat_y = positions["stabat-mater"][1]
+    check(
+        stabat_y == 44,
+        f"{relative} stabat-mater Y must be 44% so the full title remains visible "
+        f"(found {stabat_y:g}%)",
+        failures,
+    )
     melodies_y = positions["melodies-eternelles"][1]
     for slug in ("soul-wanderings", "stabat-mater"):
         check(
