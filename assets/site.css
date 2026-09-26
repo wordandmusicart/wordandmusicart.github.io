@@ -189,7 +189,7 @@ section{scroll-margin-top:90px}
 .sticky-buy{display:none}
 @media (max-width:900px){
  .c-hero .main,.c-hero figure{grid-column:1/-1}.c-hero figure{order:-1;margin-bottom:28px}.c-hero{display:flex;flex-direction:column;padding-block:8px 48px}
- .facts div{grid-column:1/-1;padding-left:0;border-left:0}.facts .half{grid-column:span 2}.facts .half+.half{padding-left:24px;border-left:1px solid var(--rule)}.facts .big{font-size:24px}
+ .facts div{grid-column:1/-1;padding-left:0;border-left:0}.facts .half{grid-column:span 2}.facts .half+.half{padding-left:24px;border-left:1px solid var(--rule)}.facts .half:nth-child(odd){padding-left:0;border-left:0}.facts .big{font-size:24px}
  .c-hero .c-cta .btn{flex:1 1 100%}.c-hero .c-cta .btn-o{flex:1}
  .subnav{top:68px;overflow-x:auto}.subnav .r{display:none}.subnav .links{gap:22px;white-space:nowrap}
  .split .lab,.split .body,.split .wide,.venue .map,.venue .info{grid-column:1/-1}.split .body,.split .wide,.venue .info{margin-top:16px}.venue .map{margin-top:18px;height:180px}
@@ -324,5 +324,6 @@ html.no-scroll,html.no-scroll body{overflow:hidden}
 .vgrid>.vmain:only-child{grid-column:1/-1}
 .c-hero figure.pfig{width:69%;justify-self:end;align-self:start}
 @media (max-width:900px){.c-hero figure.pfig{width:100%}}
+@media (min-width:1800px){.c-hero figure:not(.pfig){width:80%;justify-self:end;align-self:start}}
 @media (max-width:1100px){.vgrid{grid-template-columns:minmax(0,1fr)}.vmain{position:static}.vgrid>div:last-child{margin-top:20px}}
 .plc{text-decoration:underline;text-decoration-thickness:1px;text-decoration-color:var(--rule);text-underline-offset:.2em}.plc:hover{color:var(--accent);text-decoration-color:currentColor}

@@ -4,8 +4,8 @@
 Nothing is typed by hand: every value is read from the page itself.
 - Home pages (/ and /en/): Organization + WebSite, from the contacts block.
 - Concert pages (concert.html, concerts/*.html and EN twins): MusicEvent,
-  from the H1, the date line, the facts block (date, start, end, venue,
-  address), the performers, the ticket link, og:image and the description.
+  from the H1, the date line, the facts block (date, start, end, price,
+  location, address), the performers, the ticket link, og:image and the description.
 A fact missing on the page is left out of the JSON-LD.
 
     python3 tools/structured_data.py          # write JSON-LD into pages
@@ -19,8 +19,8 @@ from zoneinfo import ZoneInfo
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 KYIV = ZoneInfo('Europe/Kyiv')
 BLOCK = re.compile(r'\n?<script type="application/ld\+json">.*?</script>', re.S)
-LABELS = {'Дата': 'date', 'Початок': 'start', 'Завершення': 'end', 'Місце': 'venue', 'Адреса': 'address',
-          'Date': 'date', 'Start': 'start', 'End': 'end', 'Venue': 'venue', 'Address': 'address'}
+LABELS = {'Дата': 'date', 'Початок': 'start', 'Завершення': 'end', 'Ціна': 'price', 'Локація': 'venue', 'Адреса': 'address',
+          'Date': 'date', 'Start': 'start', 'End': 'end', 'Price': 'price', 'Location': 'venue', 'Address': 'address'}
 CITY = {'uk': 'Київ', 'en': 'Kyiv'}
 ON_SALE = ('Продаж триває', 'On sale')
 
@@ -108,6 +108,10 @@ def event(s, lang, url):
     tickets = re.search(r'<div class="c-cta"[^>]*><a class="btn" href="([^"]+)"', hero)
     if tickets:
         offer = {'@type': 'Offer', 'url': html.unescape(tickets.group(1))}
+        price = re.fullmatch(r'(\d+) (?:грн|UAH)', facts.get('price', ''))
+        if price:
+            offer['price'] = price.group(1)
+            offer['priceCurrency'] = 'UAH'
         status = re.search(r'class="status meta"><i></i>([^<]+)<', s)
         if status and status.group(1).strip() in ON_SALE:
             offer['availability'] = 'https://schema.org/InStock'
