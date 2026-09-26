@@ -98,6 +98,8 @@ def main():
             if not (ROOT / expected.lstrip("/") / "index.html" if expected.endswith("/")
                     else ROOT / expected.lstrip("/")).is_file():
                 errors.append(f"{label}: missing {lang} page")
+        if page.alternates.get("x-default") != page.alternates.get("en"):
+            errors.append(f"{label}: x-default alternate must point to the en page")
         og_url = urlparse(page.og.get("og:url", ""))
         expected_self = page_url(path)
         if path.name == "index.html" and og_url.path in ("/", "/en/"):
