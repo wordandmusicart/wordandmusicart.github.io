@@ -59,6 +59,10 @@
 - Posters are never cropped on concert pages: the hero shows the full
   poster at 69% of the column width, top-right, (`assets/img/<slug>-poster.jpg`, ≤2400 px, metadata kept except
   GPS). Without a poster the hero uses the video preview.
+  The upcoming concert (`concert.html`) shows its poster at the full
+  column width, 80% on screens ≥1800px.
+- Concert facts label the venue «Локація» / «Location». The upcoming
+  concert's first facts row has four columns: date, start, end, price.
 - Concert-page descriptions are written as about the concert, not the
   recording: «Концерт … відбувся <дата> в <місце>», past tense, no
   «Запис концерту…».
