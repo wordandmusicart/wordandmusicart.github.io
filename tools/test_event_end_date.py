@@ -14,6 +14,17 @@ from zoneinfo import ZoneInfo
 ROOT = Path(os.environ.get("SITE_ROOT", Path(__file__).resolve().parents[1]))
 KYIV = ZoneInfo("Europe/Kyiv")
 LABELS = {"uk": ("Початок", "Дата", "Завершення"), "en": ("Start", "Date", "End")}
+KNOWN_ARCHIVE_STARTS = {
+    "autumn-rendezvous": "17:00",
+    "melodies-eternelles": "16:00",
+    "melodies-of-enchanting-june": "15:00",
+    "music-of-soul-and-heart": "15:00",
+    "roads-of-love": "16:00",
+    "soul-wanderings": "16:00",
+    "stabat-mater": "18:00",
+    "winter-extravaganza": "14:00",
+}
+UNKNOWN_ARCHIVE_STARTS = {"amore-eterno", "christmas-kaleidoscope", "heartstrings"}
 
 
 def fact(hero, label):
@@ -31,8 +42,8 @@ def music_events(value):
         types = value.get("@type", [])
         if "MusicEvent" in (types if isinstance(types, list) else [types]):
             yield value
-        if "@graph" in value:
-            yield from music_events(value["@graph"])
+        for nested in value.values():
+            yield from music_events(nested)
 
 
 def events(page):
@@ -94,6 +105,9 @@ class EventSchemaTest(unittest.TestCase):
         en = sorted((ROOT / "en/concerts").glob("*.html"))
         self.assertTrue(ua)
         self.assertEqual([path.name for path in ua], [path.name for path in en])
+        self.assertEqual(
+            {path.stem for path in ua}, set(KNOWN_ARCHIVE_STARTS) | UNKNOWN_ARCHIVE_STARTS
+        )
         return ua + en
 
     def test_historical_concerts_have_no_music_event(self):
@@ -115,10 +129,12 @@ class EventSchemaTest(unittest.TestCase):
                 start_label, _, end_label = LABELS[lang]
                 visible_start = fact(hero.group(0), start_label)
                 visible_end = fact(hero.group(0), end_label)
-                if visible_start is None:
+                expected_start = KNOWN_ARCHIVE_STARTS.get(path.stem)
+                self.assertEqual(visible_start, expected_start)
+                if expected_start is None:
                     self.assertIsNone(visible_end, "Unknown start must have no invented end")
                 else:
-                    hour, minute = map(int, visible_start.split(":"))
+                    hour, minute = map(int, expected_start.split(":"))
                     expected_end = (
                         datetime(2000, 1, 1, hour, minute) + timedelta(hours=1)
                     ).strftime("%H:%M")
