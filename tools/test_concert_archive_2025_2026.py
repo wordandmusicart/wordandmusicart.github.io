@@ -195,16 +195,6 @@ def music_events(value: object):
             yield from music_events(value["@graph"])
 
 
-def has_value(value: object) -> bool:
-    if isinstance(value, str):
-        return bool(value.strip())
-    if isinstance(value, dict):
-        return any(has_value(item) for item in value.values())
-    if isinstance(value, list):
-        return any(has_value(item) for item in value)
-    return value is not None
-
-
 def check_listing(
     path: Path,
     language: str,
@@ -305,15 +295,7 @@ def check_detail(
             events.extend(music_events(json.loads(source)))
         except json.JSONDecodeError as error:
             failures.append(f"{relative} has invalid JSON-LD: {error}")
-    check(bool(events), f"{relative} has no JSON-LD MusicEvent", failures)
-    if events:
-        event = events[0]
-        location = event.get("location")
-        check(isinstance(location, dict), f"{relative} MusicEvent has no location object", failures)
-        if isinstance(location, dict):
-            check(has_value(location.get("name")), f"{relative} MusicEvent location has no venue name", failures)
-            check(has_value(location.get("address")), f"{relative} MusicEvent location has no address", failures)
-        check("offers" not in event, f"{relative} historical MusicEvent must not contain offers", failures)
+    check(not events, f"{relative} historical page must not contain MusicEvent", failures)
 
     forbidden_classes = {"c-cta", "sticky-buy"}
     found_forbidden = sorted(

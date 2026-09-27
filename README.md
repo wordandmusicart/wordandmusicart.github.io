@@ -29,12 +29,15 @@ rusanivsky.com does:
 
 ### Structured data
 
-Home pages carry schema.org `Organization` + `WebSite`; every concert page
-carries a `MusicEvent`. `python3 tools/structured_data.py` builds the
+Home pages carry schema.org `Organization` + `WebSite`; the current concert
+pages carry a `MusicEvent`. Past concerts have no Event markup because their
+tickets are no longer available. `python3 tools/structured_data.py` builds the
 JSON-LD from what the page already shows (H1, date, start/end, venue,
-address, performers, ticket link, og:image, description) — run it after
-editing any concert page or the contacts block. `--check` runs in the
-deploy and fails if a page's JSON-LD is out of date.
+address, performers, ticket link, og:image, description). The organiser
+confirmed that each concert lasts one hour; show the end time in the facts
+block whenever the start time is known. Run the generator after editing any
+concert page or the contacts block. `--check` runs in the deploy and fails if
+a page's JSON-LD is out of date.
 
 ### Fonts
 

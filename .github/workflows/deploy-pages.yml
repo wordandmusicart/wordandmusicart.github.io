@@ -33,6 +33,8 @@ jobs:
         run: python3 tools/check_seo.py
       - name: Check structured data
         run: python3 tools/structured_data.py --check
+      - name: Check concert end dates
+        run: python3 tools/test_event_end_date.py
       - name: Prepare public site
         run: |
           mkdir _site

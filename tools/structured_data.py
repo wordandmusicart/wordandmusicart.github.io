@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
 """Structured data (schema.org JSON-LD) for word&music.
 
-Nothing is typed by hand: every value is read from the page itself.
+JSON-LD values are read from the page itself.
 - Home pages (/ and /en/): Organization + WebSite, from the contacts block.
 - Gallery pages (photo/*.html): ImageGallery with the photographer.
-- Concert pages (concert.html, concerts/*.html and EN twins): MusicEvent,
+- Current concert pages (concert.html and its EN twin): MusicEvent,
   from the H1, the date line, the facts block (date, start, end, price,
   location, address), the performers, the ticket link, og:image and the description.
+- Past concert pages have no Event markup because they have no current ticket
+  offers; their visible facts are kept on the pages.
 A fact missing on the page is left out of the JSON-LD.
 
     python3 tools/structured_data.py          # write JSON-LD into pages
@@ -160,7 +162,7 @@ def data(path, s):
     rel = os.path.relpath(path, ROOT).replace(os.sep, '/')
     if rel in ('index.html', 'en/index.html'):
         return home(s, lang, url)
-    if re.fullmatch(r'(en/)?(concert\.html|concerts/[\w-]+\.html)', rel):
+    if rel in ('concert.html', 'en/concert.html'):
         return event(s, lang, url)
     if re.fullmatch(r'(en/)?photo/[\w-]+\.html', rel):
         return gallery(s, lang, url)
