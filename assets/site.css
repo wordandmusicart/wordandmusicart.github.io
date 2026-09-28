@@ -295,6 +295,13 @@ html.no-scroll,html.no-scroll body{overflow:hidden}
 .lb-nav{display:flex;gap:4px}
 .lb-close{position:absolute;top:12px;right:calc(var(--pad) - 8px);z-index:2}
 #lb-count{font-variant-numeric:tabular-nums}
+@media (max-width:600px){
+ .lb-bar{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:12px;row-gap:4px;padding-bottom:calc(16px + env(safe-area-inset-bottom))}
+ #lb-cap{grid-column:1/-1;min-width:0}
+ #lb-count{white-space:nowrap}
+ .lb-nav{grid-column:2;grid-row:2;gap:8px}
+ .lb-nav button{min-height:44px;white-space:nowrap}
+}
 @media (hover:hover) and (pointer:fine){
  .lb-stage{cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='34' height='18' viewBox='0 0 34 18'%3E%3Cpath d='M13.5 2 13.5 16 2.5 9 Z' fill='%23ffffff' stroke='%23111111' stroke-width='1.4' stroke-linejoin='round'/%3E%3Cpath d='M20.5 2 20.5 16 31.5 9 Z' fill='%23ffffff' fill-opacity='0.42'/%3E%3C/svg%3E") 17 9,w-resize}
  .lb[data-side="next"] .lb-stage{cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='34' height='18' viewBox='0 0 34 18'%3E%3Cpath d='M13.5 2 13.5 16 2.5 9 Z' fill='%23ffffff' fill-opacity='0.42'/%3E%3Cpath d='M20.5 2 20.5 16 31.5 9 Z' fill='%23ffffff' stroke='%23111111' stroke-width='1.4' stroke-linejoin='round'/%3E%3C/svg%3E") 17 9,e-resize}
