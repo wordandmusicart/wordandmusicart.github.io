@@ -347,6 +347,7 @@ body{padding-top:112px}
 .hdr::after{display:none}
 .hdr.is-hidden{transition:transform 850ms cubic-bezier(.4,0,.2,1),opacity 700ms cubic-bezier(.4,0,.2,1);transform:translateY(calc(-100% - 32px));opacity:0;pointer-events:none}
 .hdr .logo{flex-shrink:0}
+.hdr > .logo{display:flex;align-items:center;transform:translateY(-2px)}
 .hdr .logo img{height:23px}
 .hdr nav{gap:22px;font-size:14px;align-items:center}
 .hdr nav a{white-space:nowrap}
