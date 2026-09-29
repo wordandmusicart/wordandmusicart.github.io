@@ -77,7 +77,7 @@ PHOTO = os.path.join(ROOT, 'assets', 'photo')
 def photos():
     """Concert photos: top step <name>.webp; yields (url base, path, width, smaller steps)."""
     for f in sorted(glob.glob(os.path.join(PHOTO, '*', '*.webp'))):
-        if re.search(r'-\d+\.webp$', f):
+        if re.search(r'-(?:320|480|720|960|1440|2400)\.webp$', f):
             continue
         w = Image.open(f).size[0]
         yield '/' + os.path.relpath(f, ROOT)[:-5].replace(os.sep, '/'), f, w, [x for x in WIDTHS if x < w]
