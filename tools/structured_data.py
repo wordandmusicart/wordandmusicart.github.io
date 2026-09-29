@@ -129,7 +129,7 @@ def event(s, lang, url):
     tickets = re.search(r'<div class="c-cta"[^>]*><a class="btn" href="([^"]+)"', hero)
     if tickets:
         offer = {'@type': 'Offer', 'url': html.unescape(tickets.group(1))}
-        price = re.fullmatch(r'(\d+) грн|₴\s?(\d+)', facts.get('price', ''))
+        price = re.fullmatch(r'(\d+)\s*(?:грн|₴)|₴\s*(\d+)', facts.get('price', ''))
         if price:
             offer['price'] = price.group(1) or price.group(2)
             offer['priceCurrency'] = 'UAH'
