@@ -24,13 +24,18 @@ def local(source, lang):
 def photograph(a, lang, featured=False):
     p = a['portrait']
     if not p:
-        return ''
+        return '<span class="artist-portrait artist-placeholder" aria-hidden="true"></span>'
     label = p.get('label', {}).get(lang, a['name'][lang])
     alt = a['name'][lang] + (' — ' + label if 'label' in p else '')
     style = ''
     crop_class = ''
     if 'crop' in p:
-        crop = p['crop']
+        crop = dict(p['crop'])
+        # Inset the source's decorative rim without altering the original artwork.
+        inset = crop['size'] * p.get('rim_inset', 0)
+        crop['x'] += inset
+        crop['y'] += inset
+        crop['size'] -= 2 * inset
         style = f'width:{p["width"] / crop["size"] * 100:.5f}%;max-width:none;height:auto;left:{-crop["x"] / crop["size"] * 100:.5f}%;top:{-crop["y"] / crop["size"] * 100:.5f}%'
         crop_class = ' artwork-detail'
     else:
@@ -77,7 +82,7 @@ def render(lang):
     nav_match = re.search(r'(<nav id="nav"[^>]*>)(.*?)(</nav>)', head, re.S)
     mobile = nav_match[2][nav_match[2].index('<div class="mobile-lang'): ] if '<div class="mobile-lang' in nav_match[2] else ''
     head = head[:nav_match.start()] + nav_match[1] + links + mobile + nav_match[3] + head[nav_match.end():]
-    head=head.replace('</head>','<link rel="stylesheet" href="/assets/artists.css?v=1">\n</head>')
+    head=head.replace('</head>','<link rel="stylesheet" href="/assets/artists.css?v=2">\n</head>')
     author=next(a for a in ARTISTS if a['group']=='author')
     body=f'''<main class="artists-page">
 <div class="artists-intro wrap"><div class="meta muted">{copy['label']}</div><h1 class="tem">{copy['heading']}</h1><div class="artists-intro-bottom"><p>{copy['intro']}</p><nav aria-label="{copy['nav_label']}"><a href="#author">{copy['author']}</a><a href="#voices">{copy['vocal']}</a><a href="#musicians">{copy['music']}</a></nav></div></div>

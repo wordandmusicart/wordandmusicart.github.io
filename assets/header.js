@@ -6,6 +6,8 @@
   const button = header.querySelector('.menu-btn');
   const mobile = matchMedia('(max-width:1100px)');
   let lastY = Math.max(0, window.scrollY);
+  let direction = 0;
+  let travel = 0;
   let frame = 0;
   let menuOpen = false;
 
@@ -24,11 +26,18 @@
   }
   function update() {
     frame = 0;
-    const y = Math.max(0, window.scrollY);
+    const y = Math.min(Math.max(0, window.scrollY), Math.max(0, document.documentElement.scrollHeight - innerHeight));
     const delta = y - lastY;
     if (y <= 220 || menuOpen || header.contains(document.activeElement)) showHeader(true);
-    else if (Math.abs(delta) > 6) showHeader(delta < 0);
-    if (Math.abs(delta) > 6 || y === 0) lastY = y;
+    else if (delta) {
+      const nextDirection = Math.sign(delta);
+      if (nextDirection !== direction) { direction = nextDirection; travel = 0; }
+      travel += Math.abs(delta);
+      // Ignore small touch corrections and scroll bounce before reversing visibility.
+      if (travel >= 24) showHeader(direction < 0);
+    }
+    if (y <= 220 || menuOpen) { direction = 0; travel = 0; }
+    lastY = y;
   }
   button?.addEventListener('click', () => setMenu(!menuOpen));
   nav?.addEventListener('click', e => {
