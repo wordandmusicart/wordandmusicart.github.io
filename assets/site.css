@@ -292,6 +292,8 @@ button.lnk{background:none;border:0;border-bottom:1px solid currentColor;color:i
 .btn-acc{background:var(--hot);color:var(--hot-ink)}.btn-acc:hover{background:var(--ink);color:var(--paper)}
 .next-banner{display:block;margin-top:24px;aspect-ratio:1200/628;overflow:hidden}.next-banner img{width:100%;height:100%;object-fit:cover}
 .follow{display:flex;gap:12px;margin-top:28px;flex-wrap:wrap}
+.follow .btn,.follow .btn-o{padding-top:2px}
+.follow .ar{transform:translateY(-1px)}
 .row .c-date .meta{margin-top:12px}
 /* lightbox (same behaviour as rusanivsky.com) */
 html.no-scroll,html.no-scroll body{overflow:hidden}
