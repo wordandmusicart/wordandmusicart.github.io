@@ -49,3 +49,10 @@ Keep static paired HTML and shared CSS/JS. Homepage `.home-scene` elements defin
 - Independent portrait review requested less inset for Ponomarenko; changed only that crop to .015.
 - Local Chromium mobile performance, CPU 4x, three paired animation on/off runs: animation CLS 0, no long tasks, no frames over 50ms; median LCP 104ms vs100ms and frame p95 9.3ms vs9.4ms. Local measurements are regression evidence, not production field scores. Entrance script adds 1.9KB uncompressed.
 - Theme checks pass on all43 footers and cover OS changes, persistence, blocked storage, assets and reduced motion. Browser regressions now run in deployment CI.
+
+## Editorial originality audit
+- Preserve authored mark, display typography, posters, five scenes, rounded controls and existing colour/centred layout.
+- Independent critique identified generic About contrast-slogan and repeated storytelling claims. Replace with concrete musical forms, the named spoken-word author and the archive's actual contents; mirror UA/EN.
+- Artists introduction now identifies vocalists, instrumentalists and the project author rather than repeating the brand premise. Avoid unsupported plural readers.
+- Rename the Media section's video-only destination to All videos / Усі відео.
+- No additional decorative components or animation dependencies introduced.
