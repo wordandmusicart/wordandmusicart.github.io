@@ -1,0 +1,685 @@
+[
+  {
+    "id": "mariia-popovych",
+    "name": {
+      "uk": "Марія Попович",
+      "en": "Mariia Popovych"
+    },
+    "role": {
+      "uk": "мецо-сопрано",
+      "en": "mezzo-soprano"
+    },
+    "group": "vocal",
+    "sources": [
+      "concert.html#artists",
+      "concerts/amore-eterno.html#artists",
+      "concerts/melodies-eternelles.html#artists",
+      "concerts/soul-wanderings.html#artists",
+      "concerts/stabat-mater.html#artists"
+    ],
+    "portrait": {
+      "src": "/assets/img/mariia-popovych.jpg",
+      "source": "concert.html#artists",
+      "position": "50% 20%",
+      "width": 2400,
+      "height": 3600
+    }
+  },
+  {
+    "id": "mykola-chykarenko",
+    "name": {
+      "uk": "Микола Чикаренко",
+      "en": "Mykola Chykarenko"
+    },
+    "role": {
+      "uk": "фортепіано",
+      "en": "piano"
+    },
+    "group": "music",
+    "sources": [
+      "concert.html#artists",
+      "concerts/amore-eterno.html#artists",
+      "concerts/melodies-eternelles.html#artists",
+      "concerts/soul-wanderings.html#artists"
+    ],
+    "portrait": {
+      "src": "/assets/img/mykola-chykarenko.jpg",
+      "source": "concert.html#artists",
+      "position": "50% 0%",
+      "width": 2400,
+      "height": 3600
+    }
+  },
+  {
+    "id": "dmytro-terentiev",
+    "name": {
+      "uk": "Дмитро Терентьєв",
+      "en": "Dmytro Terentiev"
+    },
+    "role": {
+      "uk": "скрипка",
+      "en": "violin"
+    },
+    "group": "music",
+    "sources": [
+      "concert.html#artists"
+    ],
+    "portrait": null
+  },
+  {
+    "id": "hennadii-taraniuk",
+    "name": {
+      "uk": "Геннадій Таранюк",
+      "en": "Hennadii Taraniuk"
+    },
+    "role": {
+      "uk": "автор проєкту · художнє слово",
+      "en": "project author · spoken word"
+    },
+    "group": "author",
+    "sources": [
+      "concert.html#artists",
+      "concerts/amore-eterno.html#artists",
+      "concerts/autumn-rendezvous.html#artists",
+      "concerts/christmas-kaleidoscope.html#artists",
+      "concerts/melodies-eternelles.html#artists",
+      "concerts/melodies-of-enchanting-june.html#artists",
+      "concerts/music-of-soul-and-heart.html#artists",
+      "concerts/soul-wanderings.html#artists",
+      "concerts/stabat-mater.html#artists",
+      "video.html#m-2023"
+    ],
+    "portrait": {
+      "src": "/assets/photo/winter-extravaganza/20231222-182246-A.webp",
+      "source": "concert.html#artists",
+      "position": "50% 20%",
+      "width": 2400,
+      "height": 3600
+    }
+  },
+  {
+    "id": "nataliia-shmelova",
+    "name": {
+      "uk": "Наталія Шмельова",
+      "en": "Nataliia Shmelova"
+    },
+    "role": {
+      "uk": "концертмейстер · співавторка проєкту",
+      "en": "accompanist · project co-author"
+    },
+    "group": "music",
+    "sources": [
+      "concerts/autumn-rendezvous.html#artists",
+      "concerts/christmas-kaleidoscope.html#artists",
+      "concerts/melodies-of-enchanting-june.html#artists",
+      "concerts/roads-of-love.html#artists",
+      "concerts/winter-extravaganza.html#artists",
+      "video.html#m-2023"
+    ],
+    "portrait": null
+  },
+  {
+    "id": "viktoriia-mramornova",
+    "name": {
+      "uk": "Вікторія Мраморнова",
+      "en": "Viktoriia Mramornova"
+    },
+    "role": {
+      "uk": "концертмейстер",
+      "en": "accompanist"
+    },
+    "group": "music",
+    "sources": [
+      "concerts/autumn-rendezvous.html#artists",
+      "concerts/melodies-of-enchanting-june.html#artists"
+    ],
+    "portrait": null
+  },
+  {
+    "id": "anzhelina-shvachka",
+    "name": {
+      "uk": "Анжеліна Швачка",
+      "en": "Anzhelina Shvachka"
+    },
+    "role": {
+      "uk": "народна артистка України",
+      "en": "People’s Artist of Ukraine"
+    },
+    "group": "vocal",
+    "sources": [
+      "concerts/christmas-kaleidoscope.html#artists",
+      "concerts/heartstrings.html#artists",
+      "concerts/melodies-of-enchanting-june.html#artists",
+      "concerts/roads-of-love.html#artists"
+    ],
+    "portrait": {
+      "src": "/assets/img/roads-of-love-poster.jpg",
+      "source": "concerts/roads-of-love.html",
+      "crop": {
+        "x": 612,
+        "y": 573,
+        "size": 611
+      },
+      "width": 2400,
+      "height": 3394,
+      "label": {
+        "uk": "Портрет з афіші концерту",
+        "en": "Portrait from concert poster"
+      }
+    }
+  },
+  {
+    "id": "liliia-hrevtsova",
+    "name": {
+      "uk": "Лілія Гревцова",
+      "en": "Liliia Hrevtsova"
+    },
+    "role": {
+      "uk": "народна артистка України",
+      "en": "People’s Artist of Ukraine"
+    },
+    "group": "vocal",
+    "sources": [
+      "concerts/christmas-kaleidoscope.html#artists",
+      "concerts/roads-of-love.html#artists"
+    ],
+    "portrait": {
+      "src": "/assets/img/roads-of-love-poster.jpg",
+      "source": "concerts/roads-of-love.html",
+      "crop": {
+        "x": 1182,
+        "y": 573,
+        "size": 611
+      },
+      "width": 2400,
+      "height": 3394,
+      "label": {
+        "uk": "Портрет з афіші концерту",
+        "en": "Portrait from concert poster"
+      }
+    }
+  },
+  {
+    "id": "valentyna-frolova",
+    "name": {
+      "uk": "Валентина Фролова",
+      "en": "Valentyna Frolova"
+    },
+    "role": {
+      "uk": "вокал",
+      "en": "vocals"
+    },
+    "group": "vocal",
+    "sources": [
+      "concerts/christmas-kaleidoscope.html#artists",
+      "concerts/heartstrings.html#artists"
+    ],
+    "portrait": null
+  },
+  {
+    "id": "yelyzaveta-bielous",
+    "name": {
+      "uk": "Єлизавета Бєлоус",
+      "en": "Yelyzaveta Bielous"
+    },
+    "role": {
+      "uk": "солістка",
+      "en": "soloist"
+    },
+    "group": "vocal",
+    "sources": [
+      "concerts/christmas-kaleidoscope.html#artists",
+      "concerts/winter-extravaganza.html#artists"
+    ],
+    "portrait": {
+      "src": "/assets/img/yt-GIviKTmN2AQ.jpg",
+      "source": "video.html#m-2023",
+      "crop": {
+        "x": 490,
+        "y": 22,
+        "size": 300
+      },
+      "width": 1280,
+      "height": 720,
+      "label": {
+        "uk": "Портрет з обкладинки відео",
+        "en": "Portrait from video cover"
+      }
+    }
+  },
+  {
+    "id": "oleksandr-ponomarenko",
+    "name": {
+      "uk": "Олександр Пономаренко",
+      "en": "Oleksandr Ponomarenko"
+    },
+    "role": {
+      "uk": "соліст",
+      "en": "soloist"
+    },
+    "group": "vocal",
+    "sources": [
+      "concerts/christmas-kaleidoscope.html#artists",
+      "concerts/winter-extravaganza.html#artists"
+    ],
+    "portrait": {
+      "src": "/assets/img/yt-bZP730JAbg0.jpg",
+      "source": "video.html#m-2023",
+      "crop": {
+        "x": 490,
+        "y": 22,
+        "size": 300
+      },
+      "width": 1280,
+      "height": 720,
+      "label": {
+        "uk": "Портрет з обкладинки відео",
+        "en": "Portrait from video cover"
+      }
+    }
+  },
+  {
+    "id": "oleksandr-vostriakov",
+    "name": {
+      "uk": "Олександр Востряков",
+      "en": "Oleksandr Vostriakov"
+    },
+    "role": {
+      "uk": "соліст",
+      "en": "soloist"
+    },
+    "group": "vocal",
+    "sources": [
+      "concerts/christmas-kaleidoscope.html#artists",
+      "concerts/heartstrings.html#artists",
+      "concerts/winter-extravaganza.html#artists"
+    ],
+    "portrait": {
+      "src": "/assets/img/yt-i8hPivO3sTg.jpg",
+      "source": "video.html#m-2023",
+      "crop": {
+        "x": 490,
+        "y": 22,
+        "size": 300
+      },
+      "width": 1280,
+      "height": 720,
+      "label": {
+        "uk": "Портрет з обкладинки відео",
+        "en": "Portrait from video cover"
+      }
+    }
+  },
+  {
+    "id": "daria-pohorila",
+    "name": {
+      "uk": "Дарʼя Погоріла",
+      "en": "Daria Pohorila"
+    },
+    "role": {
+      "uk": "солістка",
+      "en": "soloist"
+    },
+    "group": "vocal",
+    "sources": [
+      "concerts/christmas-kaleidoscope.html#artists",
+      "concerts/winter-extravaganza.html#artists"
+    ],
+    "portrait": {
+      "src": "/assets/img/yt-pjeWzMqaYJ4.jpg",
+      "source": "video.html#m-2023",
+      "crop": {
+        "x": 490,
+        "y": 22,
+        "size": 300
+      },
+      "width": 1280,
+      "height": 720,
+      "label": {
+        "uk": "Портрет з обкладинки відео",
+        "en": "Portrait from video cover"
+      }
+    }
+  },
+  {
+    "id": "lidiia-hlinska",
+    "name": {
+      "uk": "Лідія Глінська",
+      "en": "Lidiia Hlinska"
+    },
+    "role": {
+      "uk": "вокал",
+      "en": "vocals"
+    },
+    "group": "vocal",
+    "sources": [
+      "concerts/christmas-kaleidoscope.html#artists"
+    ],
+    "portrait": null
+  },
+  {
+    "id": "miao-xinyue",
+    "name": {
+      "uk": "Мяо Сіньює",
+      "en": "Miao Xinyue"
+    },
+    "role": {
+      "uk": "вокал",
+      "en": "vocals"
+    },
+    "group": "vocal",
+    "sources": [
+      "concerts/christmas-kaleidoscope.html#artists"
+    ],
+    "portrait": null
+  },
+  {
+    "id": "anastasiia-dovbius",
+    "name": {
+      "uk": "Анастасія Довбіус",
+      "en": "Anastasiia Dovbius"
+    },
+    "role": {
+      "uk": "вокал",
+      "en": "vocals"
+    },
+    "group": "vocal",
+    "sources": [
+      "concerts/heartstrings.html#artists"
+    ],
+    "portrait": null
+  },
+  {
+    "id": "nykyta-naumov",
+    "name": {
+      "uk": "Никита Наумов",
+      "en": "Nykyta Naumov"
+    },
+    "role": {
+      "uk": "вокал",
+      "en": "vocals"
+    },
+    "group": "vocal",
+    "sources": [
+      "concerts/heartstrings.html#artists"
+    ],
+    "portrait": null
+  },
+  {
+    "id": "hanna-semets",
+    "name": {
+      "uk": "Ганна Семець",
+      "en": "Hanna Semets"
+    },
+    "role": {
+      "uk": "сопрано",
+      "en": "soprano"
+    },
+    "group": "vocal",
+    "sources": [
+      "concerts/heartstrings.html#artists",
+      "concerts/music-of-soul-and-heart.html#artists"
+    ],
+    "portrait": {
+      "src": "/assets/img/music-of-soul-and-heart-poster.jpg",
+      "source": "concerts/music-of-soul-and-heart.html",
+      "crop": {
+        "x": 123,
+        "y": 2045,
+        "size": 468
+      },
+      "width": 2400,
+      "height": 3394,
+      "label": {
+        "uk": "Портрет з афіші концерту",
+        "en": "Portrait from concert poster"
+      }
+    }
+  },
+  {
+    "id": "viktoriia-shvets",
+    "name": {
+      "uk": "Вікторія Швець",
+      "en": "Viktoriia Shvets"
+    },
+    "role": {
+      "uk": "концертмейстер, лауреатка міжнародних конкурсів",
+      "en": "accompanist, laureate of international competitions"
+    },
+    "group": "music",
+    "sources": [
+      "concerts/heartstrings.html#artists"
+    ],
+    "portrait": null
+  },
+  {
+    "id": "serhii-mahera",
+    "name": {
+      "uk": "Сергій Магера",
+      "en": "Serhii Mahera"
+    },
+    "role": {
+      "uk": "соліст Національної опери України, народний артист України",
+      "en": "soloist of the National Opera of Ukraine, People’s Artist of Ukraine"
+    },
+    "group": "vocal",
+    "sources": [
+      "concerts/melodies-of-enchanting-june.html#artists"
+    ],
+    "portrait": null
+  },
+  {
+    "id": "makar-rusanivskyi",
+    "name": {
+      "uk": "Макар Русанівський",
+      "en": "Makar Rusanivskyi"
+    },
+    "role": {
+      "uk": "фортепіано",
+      "en": "piano"
+    },
+    "group": "music",
+    "sources": [
+      "concerts/music-of-soul-and-heart.html#artists"
+    ],
+    "portrait": {
+      "src": "/assets/img/music-of-soul-and-heart-poster.jpg",
+      "source": "concerts/music-of-soul-and-heart.html",
+      "crop": {
+        "x": 669,
+        "y": 2214,
+        "size": 468
+      },
+      "width": 2400,
+      "height": 3394,
+      "label": {
+        "uk": "Портрет з афіші концерту",
+        "en": "Portrait from concert poster"
+      }
+    }
+  },
+  {
+    "id": "taras-kapran",
+    "name": {
+      "uk": "Тарас Капран",
+      "en": "Taras Kapran"
+    },
+    "role": {
+      "uk": "тенор",
+      "en": "tenor"
+    },
+    "group": "vocal",
+    "sources": [
+      "concerts/music-of-soul-and-heart.html#artists"
+    ],
+    "portrait": {
+      "src": "/assets/img/music-of-soul-and-heart-poster.jpg",
+      "source": "concerts/music-of-soul-and-heart.html",
+      "crop": {
+        "x": 1238,
+        "y": 2319,
+        "size": 468
+      },
+      "width": 2400,
+      "height": 3394,
+      "label": {
+        "uk": "Портрет з афіші концерту",
+        "en": "Portrait from concert poster"
+      }
+    }
+  },
+  {
+    "id": "iryna-lytvynenko",
+    "name": {
+      "uk": "Ірина Литвиненко",
+      "en": "Iryna Lytvynenko"
+    },
+    "role": {
+      "uk": "концертмейстер",
+      "en": "accompanist"
+    },
+    "group": "music",
+    "sources": [
+      "concerts/roads-of-love.html#artists"
+    ],
+    "portrait": null
+  },
+  {
+    "id": "nataliia-skrynnyk",
+    "name": {
+      "uk": "Наталія Скринник",
+      "en": "Nataliia Skrynnyk"
+    },
+    "role": {
+      "uk": "партія сопрано",
+      "en": "soprano"
+    },
+    "group": "vocal",
+    "sources": [
+      "concerts/stabat-mater.html#artists"
+    ],
+    "portrait": null
+  },
+  {
+    "id": "polina-burakova",
+    "name": {
+      "uk": "Поліна Буракова",
+      "en": "Polina Burakova"
+    },
+    "role": {
+      "uk": "партія фортепіано",
+      "en": "piano"
+    },
+    "group": "music",
+    "sources": [
+      "concerts/stabat-mater.html#artists"
+    ],
+    "portrait": null
+  },
+  {
+    "id": "anastasiia-povazhna",
+    "name": {
+      "uk": "Анастасія Поважна",
+      "en": "Anastasiia Povazhna"
+    },
+    "role": {
+      "uk": "солістка",
+      "en": "soloist"
+    },
+    "group": "vocal",
+    "sources": [
+      "concerts/winter-extravaganza.html#artists"
+    ],
+    "portrait": {
+      "src": "/assets/img/yt-CIFVGAb3fSI.jpg",
+      "source": "video.html#m-2023",
+      "crop": {
+        "x": 490,
+        "y": 22,
+        "size": 300
+      },
+      "width": 1280,
+      "height": 720,
+      "label": {
+        "uk": "Портрет з обкладинки відео",
+        "en": "Portrait from video cover"
+      }
+    }
+  },
+  {
+    "id": "ihor-povazhnyi",
+    "name": {
+      "uk": "Ігор Поважний",
+      "en": "Ihor Povazhnyi"
+    },
+    "role": {
+      "uk": "соліст",
+      "en": "soloist"
+    },
+    "group": "vocal",
+    "sources": [
+      "concerts/winter-extravaganza.html#artists"
+    ],
+    "portrait": null
+  },
+  {
+    "id": "kateryna-yasenchuk",
+    "name": {
+      "uk": "Катерина Ясенчук",
+      "en": "Kateryna Yasenchuk"
+    },
+    "role": {
+      "uk": "солістка",
+      "en": "soloist"
+    },
+    "group": "vocal",
+    "sources": [
+      "concerts/winter-extravaganza.html#artists"
+    ],
+    "portrait": {
+      "src": "/assets/img/yt-LXxn2VDXN7k.jpg",
+      "source": "video.html#m-2023",
+      "crop": {
+        "x": 490,
+        "y": 22,
+        "size": 300
+      },
+      "width": 1280,
+      "height": 720,
+      "label": {
+        "uk": "Портрет з обкладинки відео",
+        "en": "Portrait from video cover"
+      }
+    }
+  },
+  {
+    "id": "albina-holenach",
+    "name": {
+      "uk": "Альбіна Голенач",
+      "en": "Albina Holenach"
+    },
+    "role": {
+      "uk": "солістка",
+      "en": "soloist"
+    },
+    "group": "vocal",
+    "sources": [
+      "concerts/winter-extravaganza.html#artists"
+    ],
+    "portrait": {
+      "src": "/assets/img/yt-k9K_lGv9oZs.jpg",
+      "source": "video.html#m-2023",
+      "crop": {
+        "x": 490,
+        "y": 22,
+        "size": 300
+      },
+      "width": 1280,
+      "height": 720,
+      "label": {
+        "uk": "Портрет з обкладинки відео",
+        "en": "Portrait from video cover"
+      }
+    }
+  }
+]

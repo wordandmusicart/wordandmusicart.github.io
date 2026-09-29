@@ -61,7 +61,7 @@ def home_url(page_url, lang):
 
 
 def organization(s, lang, url):
-    contacts = re.search(r'<section class="news" id="contacts">(.*?)</section>', s, re.S)
+    contacts = re.search(r'<section\b[^>]*\bid="contacts"[^>]*>(.*?)</section>', s, re.S)
     c = contacts.group(1) if contacts else ''
     org = {'@type': 'Organization', '@id': home_url(url, 'uk') + '#organization',
            'name': 'word&music', 'url': home_url(url, 'uk'),
