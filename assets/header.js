@@ -5,6 +5,7 @@
   const nav = header.querySelector('#nav');
   const button = header.querySelector('.menu-btn');
   const mobile = matchMedia('(max-width:1100px)');
+  const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
   const subnav = document.querySelector('.subnav');
   const sections = subnav ? [...subnav.querySelectorAll('.links a[href^="#"]')]
     .map(link => ({ link, section: document.getElementById(link.hash.slice(1)) }))
@@ -31,8 +32,10 @@
     currentSectionLink = current;
     const linkRect = current.getBoundingClientRect();
     const navRect = subnav.getBoundingClientRect();
-    if (linkRect.left < navRect.left + 12) subnav.scrollLeft -= navRect.left + 12 - linkRect.left;
-    else if (linkRect.right > navRect.right - 12) subnav.scrollLeft += linkRect.right - navRect.right + 12;
+    let scrollDelta = 0;
+    if (linkRect.left < navRect.left + 12) scrollDelta = linkRect.left - navRect.left - 12;
+    else if (linkRect.right > navRect.right - 12) scrollDelta = linkRect.right - navRect.right + 12;
+    if (scrollDelta) subnav.scrollBy({ left: scrollDelta, behavior: reducedMotion.matches ? 'auto' : 'smooth' });
   }
 
   function showHeader(show) {
