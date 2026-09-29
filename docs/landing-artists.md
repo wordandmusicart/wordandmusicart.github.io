@@ -34,3 +34,18 @@ Keep static paired HTML and shared CSS/JS. Homepage `.home-scene` elements defin
 - GREEN: 5 acceptance tests; SEO 43 pages; responsive-image and font checks; structured data; event dates; archive/venue coverage; deterministic artist-page rebuild; git diff whitespace check.
 - Visual review: Chromium UA/EN, light/dark, widths 390/768/1024/1101/1440, short 600px window; desktop/mobile menus and keyboard, existing concert/photo pages. WebKit runtime unavailable, so Safari rendering is not claimed.
 - Independent final review found no remaining blockers in implemented layout; missing 14 portraits remains an explicit content limitation.
+
+## Follow-up polish — 2026-09-29
+- Keep the existing vertical centring; user withdrew the request to move compositions upward.
+- Every absent artist photo gets a neutral grey circle aligned with real portraits. Remove the baked-in source-art rings through presentation crop only; do not change original images.
+- Add the rusanivsky.com-style Auto/Light/Dark icon control beside Privacy on every UA/EN footer. Auto follows the OS; manual choice persists across navigation/reload. Logos, theme pictures, browser theme colour and SVG respond to the selected effective theme.
+- Header hide animation becomes gentler; reduced-motion remains immediate.
+- Verify new theme behaviour with independent failing acceptance tests, then visual checks of portrait edges, scene position, both languages/themes and header movement. Publish after gates pass.
+
+- Added quick sequential entrances: 320ms opacity/transform, 40ms stagger capped at 120ms, once per element, reduced-motion disabled, no layout-dependent animation or persistent hidden styles. Performance verification compares the same local page with animation enabled/disabled under CPU throttling.
+- User withdrew the About colour change; retain the original background. Homepage heading is now Медіа / Media.
+
+- Mobile regression RED: unequal language font sizes and premature visibility after an 8px scroll reversal. GREEN: both labels 14px with 44px touch targets; 24px directional threshold filters touch corrections and clamped scroll bounds filter overscroll. Five browser checks pass in UA/EN including reduced motion.
+- Independent portrait review requested less inset for Ponomarenko; changed only that crop to .015.
+- Local Chromium mobile performance, CPU 4x, three paired animation on/off runs: animation CLS 0, no long tasks, no frames over 50ms; median LCP 104ms vs100ms and frame p95 9.3ms vs9.4ms. Local measurements are regression evidence, not production field scores. Entrance script adds 1.9KB uncompressed.
+- Theme checks pass on all43 footers and cover OS changes, persistence, blocked storage, assets and reduced motion. Browser regressions now run in deployment CI.

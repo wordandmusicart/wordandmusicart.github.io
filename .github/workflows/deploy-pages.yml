@@ -37,6 +37,17 @@ jobs:
         run: python3 tools/test_event_end_date.py
       - name: Check landing and artists acceptance
         run: python3 tools/test_landing_artists.py
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check theme and mobile navigation in Chromium
+        run: |
+          npm install --no-save --package-lock=false playwright@1.62.1
+          npx playwright install --with-deps chromium
+          python3 -m http.server 4175 >/tmp/site-server.log 2>&1 &
+          export PLAYWRIGHT_MODULE=playwright
+          node tools/test_theme_controls.cjs
+          node tools/test_mobile_header.cjs
       - name: Prepare public site
         run: |
           mkdir _site

@@ -94,6 +94,19 @@ def public_pages():
 
 
 class LandingArtistsAcceptance(unittest.TestCase):
+    def test_public_footers_have_three_accessible_theme_choices(self):
+        for path in public_pages():
+            with self.subTest(page=str(path.relative_to(ROOT))):
+                doc = Document(path).root
+                footers = list(doc.find("footer"))
+                self.assertEqual(len(footers), 1)
+                controls = [node for node in footers[0].find("button") if "data-theme-mode" in node.attrs]
+                self.assertEqual([node.attrs.get("data-theme-mode") for node in controls], ["auto", "light", "dark"])
+                for control in controls:
+                    self.assertTrue(control.attrs.get("aria-label") or control.text().strip(), "Theme buttons need accessible names")
+                    self.assertEqual(control.attrs.get("aria-pressed"), str(control.attrs["data-theme-mode"] == "auto").lower())
+                self.assertTrue(any(urlsplit(href).path.endswith("/privacy.html") for href in links(footers[0])), "Theme controls must share the footer with Privacy")
+
     def test_artist_records_are_bilingual_source_backed_and_rendered(self):
         data_path = ROOT / "assets/artists.json"
         self.assertTrue(data_path.is_file(), "The artist evidence register must exist")
