@@ -14,6 +14,7 @@
   const queue = new Set();
   let frame = 0;
   let arrival = () => {};
+  let arrivalStarted = false;
   addEventListener('pagereveal', event => { if (!event.viewTransition) arrival(); });
   const animate = (element, keyframes, delay = 0) => {
     if (reduced.matches) return;
@@ -97,11 +98,15 @@
     .forEach(el => sectionObserver.observe(el));
   // No arrival animation on restored pages; the browser owns history and scroll.
   arrival = () => {
+    if (arrivalStarted) return;
+    arrivalStarted = true;
     if (performance.getEntriesByType('navigation')[0]?.type === 'back_forward') return;
     const main = document.querySelector('main');
     if (main) animate(main, [{opacity: .6}, {opacity: 1}]);
   };
-  if (!('onpagereveal' in window)) requestAnimationFrame(() => arrival());
+  if (typeof window.__motionNativeArrival === 'boolean') {
+    if (!window.__motionNativeArrival) arrival();
+  } else if (!('onpagereveal' in window)) requestAnimationFrame(() => arrival());
   const stop = () => {
     root.classList.remove('motion-enabled');
     prepareObserver.disconnect(); revealObserver.disconnect(); sectionObserver.disconnect();
