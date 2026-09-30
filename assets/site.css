@@ -454,3 +454,22 @@ body{padding-top:112px}
 .theme-modes svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
 @media (pointer:coarse){.theme-modes button{width:44px;height:44px}}
 @media (prefers-reduced-motion:reduce){.theme-modes button{transition:none}}
+
+/* Native page fades: no click interception, routing layer or navigation delay. */
+@view-transition{navigation:auto}
+::view-transition-old(root){animation:wm-page-out 180ms ease-out both}
+::view-transition-new(root){animation:wm-page-in 240ms cubic-bezier(.22,1,.36,1) both}
+::view-transition-group(root){animation-duration:240ms}
+@keyframes wm-page-out{to{opacity:0}}
+@keyframes wm-page-in{from{opacity:0}to{opacity:1}}
+.hdr{view-transition-name:site-header}
+::view-transition-group(site-header){animation-duration:0s}
+::view-transition-old(site-header){display:none}
+::view-transition-new(site-header){animation:none}
+/* Enabled in the head before photos can paint; a watchdog restores visibility. */
+.motion-enabled main img:not([data-motion-ready]):not(.logo img):not(.lb img){opacity:0}
+@media (prefers-reduced-motion:reduce){
+ @view-transition{navigation:none}
+ .motion-enabled main img:not([data-motion-ready]){opacity:1}
+ ::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none}
+}
