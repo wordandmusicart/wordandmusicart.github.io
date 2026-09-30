@@ -48,6 +48,7 @@ jobs:
           export PLAYWRIGHT_MODULE=playwright
           node tools/test_theme_controls.cjs
           node tools/test_mobile_header.cjs
+          node tools/test_page_motion.cjs
       - name: Prepare public site
         run: |
           mkdir _site
