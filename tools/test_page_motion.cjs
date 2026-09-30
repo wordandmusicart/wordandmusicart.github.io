@@ -7,24 +7,32 @@ const BASE = process.env.SITE_URL || 'http://127.0.0.1:4175';
   for (const width of [390, 1440]) {
    const context = await browser.newContext({viewport:{width,height:900},timezoneId:'Europe/Kyiv'});
    await context.addInitScript(()=>{
-    window.__motionTest={arrivals:0,reveals:[]};
+    window.__motionTest={arrivals:0,reveals:[],nativeReveals:[]};
     const original=Element.prototype.animate;
     Element.prototype.animate=function(...args){if(this.tagName==='MAIN') window.__motionTest.arrivals++;return original.apply(this,args);};
-    addEventListener('pagereveal',e=>window.__motionTest.reveals.push(Boolean(e.viewTransition)));
+    addEventListener('pagereveal',e=>{window.__motionTest.reveals.push(Boolean(e.viewTransition));if(e.isTrusted)window.__motionTest.nativeReveals.push(Boolean(e.viewTransition));});
    });
    const page = await context.newPage();
    const errors=[]; page.on('pageerror',e=>errors.push(e.message));
+   // Reproduce browsers delivering pagereveal before the deferred controller.
+   await page.route('**/assets/page-motion.js*',async route=>{
+    const response=await route.fetch();
+    const source=await response.text();
+    await new Promise(resolve=>setTimeout(resolve,250));
+    await route.fulfill({response,body:"{const e=new Event('pagereveal');Object.defineProperty(e,'viewTransition',{value:location.pathname==='/photo.html'?{}:null});dispatchEvent(e);}"+source});
+   });
+
    let release; const gate=new Promise(r=>release=r);
    await page.route('**/assets/photo/**',async route=>{await gate;await route.continue();});
    await page.goto(BASE+'/photo/stabat-mater.html', {waitUntil:'domcontentloaded'});
-   await page.waitForFunction(()=>window.__motionTest.arrivals===1);
-   assert.equal(await page.evaluate(()=>window.__motionTest.arrivals),1,'Direct entry gets one arrival fade');
    const photo=page.locator('main img').first();
    assert.equal(await photo.evaluate(el=>getComputedStyle(el).opacity),'0','An undecoded photo must not flash');
    const before=await photo.boundingBox();
    assert.equal(await page.locator('main img').last().getAttribute('loading'),'lazy','Distant gallery photos remain lazy');
    release();
    await page.waitForFunction(()=>{const el=document.querySelector('main img');return el?.naturalWidth>0&&getComputedStyle(el).opacity==='1';});
+   await page.waitForFunction(()=>window.__motionTest.arrivals===1);
+   assert.equal(await page.evaluate(()=>window.__motionTest.arrivals),1,'Direct entry gets one arrival fade');
    const after=await photo.boundingBox();
    for (const key of ['x','y','width','height']) assert.ok(Math.abs(after[key]-before[key])<=1, 'Decode must not meaningfully shift the photo box: '+key);
    if(width<900) await page.locator('.menu-btn').click();
@@ -32,7 +40,7 @@ const BASE = process.env.SITE_URL || 'http://127.0.0.1:4175';
    await page.waitForURL(BASE+'/photo.html');
    await page.waitForTimeout(350);
    if(process.env.BROWSER!=='webkit') {
-    assert.ok(await page.evaluate(()=>window.__motionTest.reveals.includes(true)),'Chromium navigation uses a native transition');
+    assert.ok(await page.evaluate(()=>window.__motionTest.nativeReveals.includes(true)),'Chromium navigation uses a native transition');
     assert.equal(await page.evaluate(()=>window.__motionTest.arrivals),0,'Native transition must not also run fallback arrival');
    } else {
     const native=await page.evaluate(()=>window.__motionTest.reveals.includes(true));
