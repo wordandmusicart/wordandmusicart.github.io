@@ -80,6 +80,11 @@
   document.addEventListener('click', e => {
     if (menuOpen && !header.contains(e.target)) setMenu(false);
   });
+  document.addEventListener('contextmenu', e => {
+    if (e.target.closest('.artist-portrait, .artist-author-photo, .people .ph')) {
+      e.preventDefault();
+    }
+  });
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape' && menuOpen) { setMenu(false, true); return; }
     if (e.key !== 'Tab') return;
