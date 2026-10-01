@@ -147,7 +147,7 @@ section{scroll-margin-top:90px}
 /* concert page */
 .crumbs{display:flex;justify-content:space-between;align-items:center;padding-block:15px 20px;font-size:14px}
 .status{display:inline-flex;align-items:center;gap:8px;color:var(--hot)}
-.status i{flex:none;width:.5em;height:.5em;border-radius:50%;background:var(--hot);transform:translateY(-.08em);animation:sales-dot-fade 4.8s ease-in-out infinite}
+.status i{flex:none;width:.5em;height:.5em;border-radius:50%;background:var(--hot);box-shadow:0 0 .4em color-mix(in srgb,var(--hot) 65%,transparent),0 0 .85em color-mix(in srgb,var(--hot) 35%,transparent);transform:translateY(-.08em);animation:sales-dot-fade 4.8s ease-in-out infinite}
 @keyframes sales-dot-fade{0%,100%{opacity:1}50%{opacity:0}}
 @media (prefers-reduced-motion:reduce){.status i{animation:none;opacity:1}}
 .c-hero{padding-block:32px 88px}
