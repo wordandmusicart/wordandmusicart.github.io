@@ -189,8 +189,8 @@ body:has(.hdr.is-hidden) .subnav ~ section[id]{scroll-margin-top:92px}
 .prog .n{font-size:13px;color:var(--ink3)}.prog .who{font-size:36px;line-height:1.05}.prog .what{font-size:18px}
 .artists{padding-block:104px 112px;background:var(--paper2)}
 .people{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
-.people .ph{aspect-ratio:4/5}
-.people .ph img{display:block;width:100%;height:100%;object-fit:cover}
+.people .ph{aspect-ratio:4/5;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+.people .ph img{display:block;width:100%;height:100%;object-fit:cover;-webkit-user-drag:none;user-select:none;pointer-events:none}
 .people h3{margin-top:20px;font-size:30px;line-height:1.05;font-weight:400}
 .people p{margin-top:8px;font-size:15px;color:var(--ink2)}
 .venue .map{grid-column:8/span 5;height:300px;background:var(--ph1);position:relative;overflow:hidden}
