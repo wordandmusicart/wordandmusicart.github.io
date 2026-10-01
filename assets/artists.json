@@ -137,9 +137,9 @@
       "width": 2400,
       "height": 3600,
       "crop": {
-        "x": 555,
-        "y": 585,
-        "size": 1320
+        "x": 695,
+        "y": 660,
+        "size": 1040
       }
     }
   },
@@ -187,6 +187,53 @@
     "group": "vocal",
     "sources": [
       "concerts/stabat-mater.html#artists"
+    ],
+    "portrait": null
+  },
+  {
+    "id": "anastasiia-povazhna",
+    "name": {
+      "uk": "Анастасія Поважна",
+      "en": "Anastasiia Povazhna"
+    },
+    "role": {
+      "uk": "солістка",
+      "en": "soloist"
+    },
+    "group": "vocal",
+    "sources": [
+      "concerts/winter-extravaganza.html#artists"
+    ],
+    "portrait": {
+      "src": "/assets/img/yt-CIFVGAb3fSI.jpg",
+      "source": "video.html#m-2023",
+      "crop": {
+        "x": 490,
+        "y": 22,
+        "size": 300
+      },
+      "width": 1280,
+      "height": 720,
+      "label": {
+        "uk": "Портрет з обкладинки відео",
+        "en": "Portrait from video cover"
+      },
+      "rim_inset": 0.035
+    }
+  },
+  {
+    "id": "ihor-povazhnyi",
+    "name": {
+      "uk": "Ігор Поважний",
+      "en": "Ihor Povazhnyi"
+    },
+    "role": {
+      "uk": "соліст",
+      "en": "soloist"
+    },
+    "group": "vocal",
+    "sources": [
+      "concerts/winter-extravaganza.html#artists"
     ],
     "portrait": null
   },
@@ -369,6 +416,37 @@
     }
   },
   {
+    "id": "kateryna-yasenchuk",
+    "name": {
+      "uk": "Катерина Ясенчук",
+      "en": "Kateryna Yasenchuk"
+    },
+    "role": {
+      "uk": "солістка",
+      "en": "soloist"
+    },
+    "group": "vocal",
+    "sources": [
+      "concerts/winter-extravaganza.html#artists"
+    ],
+    "portrait": {
+      "src": "/assets/img/yt-LXxn2VDXN7k.jpg",
+      "source": "video.html#m-2023",
+      "crop": {
+        "x": 490,
+        "y": 22,
+        "size": 300
+      },
+      "width": 1280,
+      "height": 720,
+      "label": {
+        "uk": "Портрет з обкладинки відео",
+        "en": "Portrait from video cover"
+      },
+      "rim_inset": 0.035
+    }
+  },
+  {
     "id": "lidiia-hlinska",
     "name": {
       "uk": "Лідія Глінська",
@@ -431,84 +509,6 @@
       "concerts/heartstrings.html#artists"
     ],
     "portrait": null
-  },
-  {
-    "id": "anastasiia-povazhna",
-    "name": {
-      "uk": "Анастасія Поважна",
-      "en": "Anastasiia Povazhna"
-    },
-    "role": {
-      "uk": "солістка",
-      "en": "soloist"
-    },
-    "group": "vocal",
-    "sources": [
-      "concerts/winter-extravaganza.html#artists"
-    ],
-    "portrait": {
-      "src": "/assets/img/yt-CIFVGAb3fSI.jpg",
-      "source": "video.html#m-2023",
-      "crop": {
-        "x": 490,
-        "y": 22,
-        "size": 300
-      },
-      "width": 1280,
-      "height": 720,
-      "label": {
-        "uk": "Портрет з обкладинки відео",
-        "en": "Portrait from video cover"
-      },
-      "rim_inset": 0.035
-    }
-  },
-  {
-    "id": "ihor-povazhnyi",
-    "name": {
-      "uk": "Ігор Поважний",
-      "en": "Ihor Povazhnyi"
-    },
-    "role": {
-      "uk": "соліст",
-      "en": "soloist"
-    },
-    "group": "vocal",
-    "sources": [
-      "concerts/winter-extravaganza.html#artists"
-    ],
-    "portrait": null
-  },
-  {
-    "id": "kateryna-yasenchuk",
-    "name": {
-      "uk": "Катерина Ясенчук",
-      "en": "Kateryna Yasenchuk"
-    },
-    "role": {
-      "uk": "солістка",
-      "en": "soloist"
-    },
-    "group": "vocal",
-    "sources": [
-      "concerts/winter-extravaganza.html#artists"
-    ],
-    "portrait": {
-      "src": "/assets/img/yt-LXxn2VDXN7k.jpg",
-      "source": "video.html#m-2023",
-      "crop": {
-        "x": 490,
-        "y": 22,
-        "size": 300
-      },
-      "width": 1280,
-      "height": 720,
-      "label": {
-        "uk": "Портрет з обкладинки відео",
-        "en": "Portrait from video cover"
-      },
-      "rim_inset": 0.035
-    }
   },
   {
     "id": "albina-holenach",
