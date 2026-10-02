@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Ticketed current event, announced event without Offer, and historical pages."""
+"""Ticketed upcoming events with source-backed offers, and historical pages."""
 
 import html
 import json
@@ -26,6 +26,7 @@ KNOWN_ARCHIVE_STARTS = {
 }
 UNKNOWN_ARCHIVE_STARTS = {"amore-eterno", "christmas-kaleidoscope", "heartstrings"}
 ANNOUNCED_CONCERTS = {"on-the-wings-of-love"}
+OCTOBER_15_TICKET = "https://eventmate.app/events/share/na-krilah-kohanna-koncert-vokalnoi-muziki"
 
 
 def fact(hero, label):
@@ -112,7 +113,7 @@ class EventSchemaTest(unittest.TestCase):
         )
         return [path for path in ua + en if path.stem not in ANNOUNCED_CONCERTS]
 
-    def test_announced_concert_has_truthful_event_without_offer(self):
+    def test_announced_concert_has_truthful_ticket_offer_without_invented_price(self):
         for prefix, lang in (("", "uk"), ("en/", "en")):
             with self.subTest(language=lang):
                 page = (ROOT / prefix / "concerts/on-the-wings-of-love.html").read_text(encoding="utf-8")
@@ -123,10 +124,16 @@ class EventSchemaTest(unittest.TestCase):
                 self.assertEqual(event["endDate"], "2026-10-15T19:00:00+03:00")
                 self.assertEqual(event["eventStatus"], "https://schema.org/EventScheduled")
                 self.assertEqual(event["inLanguage"], lang)
-                self.assertNotIn("offers", event)
+                offer = event.get("offers")
+                self.assertIsInstance(offer, dict)
+                self.assertEqual(offer.get("@type"), "Offer")
+                self.assertEqual(offer.get("url"), f"{OCTOBER_15_TICKET}?locale={lang}")
+                self.assertEqual(offer.get("availability"), "https://schema.org/InStock")
+                for unsupported_field in ("price", "lowPrice", "highPrice", "priceSpecification", "validFrom"):
+                    self.assertNotIn(unsupported_field, offer, "No price or sales opening date was supplied")
                 self.assertEqual(len(event["performer"]), 13)
                 self.assertEqual(len({p["name"] for p in event["performer"]}), 13)
-                self.assertNotIn("eventmate.app", page)
+                self.assertNotIn("koncert-ziti-kohati-mriati", page)
                 self.assertNotIn("03.10", page)
                 hero = re.search(r'<section class="c-hero.*?</section>', page, re.S).group(0)
                 start_label, date_label, end_label = LABELS[lang]
