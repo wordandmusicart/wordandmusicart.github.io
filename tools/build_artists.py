@@ -43,7 +43,7 @@ def photograph(a, lang, featured=False):
     base = p['src'].rsplit('.', 1)[0]
     variants = [f'{base}-{width}.webp {width}w' for width in (320,480,720,960,1440,2400) if width < p['width'] and (ROOT / f'{base.lstrip(chr(47))}-{width}.webp').exists()]
     srcset = ', '.join(variants + [f'{p["src"]} {p["width"]}w'])
-    rendered = p['width'] / p['crop']['size'] * 112 if 'crop' in p else 112
+    rendered = p['width'] / p['crop']['size'] * 168 if 'crop' in p else 168
     sizes = '(max-width:720px) calc(100vw - 40px), 43vw' if featured else f'{rendered:.0f}px'
     image = f'<img src="{ESC(p["src"])}" srcset="{ESC(srcset)}" sizes="{sizes}" alt="{ESC(alt)}" width="{p["width"]}" height="{p["height"]}" loading="{"eager" if featured else "lazy"}" decoding="async" draggable="false" style="{style}">'
     if featured:
@@ -81,7 +81,7 @@ def render(lang):
     nav_match = re.search(r'(<nav id="nav"[^>]*>)(.*?)(</nav>)', head, re.S)
     mobile = nav_match[2][nav_match[2].index('<div class="mobile-lang'): ] if '<div class="mobile-lang' in nav_match[2] else ''
     head = head[:nav_match.start()] + nav_match[1] + links + mobile + nav_match[3] + head[nav_match.end():]
-    head=head.replace('</head>','<link rel="stylesheet" href="/assets/artists.css?v=3">\n</head>')
+    head=head.replace('</head>','<link rel="stylesheet" href="/assets/artists.css?v=4">\n</head>')
     author=next(a for a in ARTISTS if a['group']=='author')
     body=f'''<main class="artists-page">
 <div class="artists-intro wrap"><div class="meta muted">{copy['label']}</div><h1 class="tem">{copy['heading']}</h1><div class="artists-intro-bottom"><p>{copy['intro']}</p><nav aria-label="{copy['nav_label']}"><a href="#author">{copy['author']}</a><a href="#voices">{copy['vocal']}</a><a href="#musicians">{copy['music']}</a></nav></div></div>
