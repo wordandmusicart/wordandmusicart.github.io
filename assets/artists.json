@@ -235,7 +235,17 @@
     "sources": [
       "concerts/winter-extravaganza.html#artists"
     ],
-    "portrait": null
+    "portrait": {
+      "src": "/assets/photo/winter-extravaganza/20231225-154436-A.webp",
+      "source": "photo/winter-extravaganza.html",
+      "width": 2400,
+      "height": 3600,
+      "crop": {
+        "x": 600,
+        "y": 70,
+        "size": 1250
+      }
+    }
   },
   {
     "id": "hanna-semets",
@@ -492,7 +502,17 @@
     "sources": [
       "concerts/heartstrings.html#artists"
     ],
-    "portrait": null
+    "portrait": {
+      "src": "/assets/photo/autumn-rendezvous/20251115-175512-A.webp",
+      "source": "photo/autumn-rendezvous.html",
+      "width": 2400,
+      "height": 1600,
+      "crop": {
+        "x": 650,
+        "y": 170,
+        "size": 720
+      }
+    }
   },
   {
     "id": "nykyta-naumov",
@@ -606,7 +626,17 @@
       "concerts/winter-extravaganza.html#artists",
       "video.html#m-2023"
     ],
-    "portrait": null
+    "portrait": {
+      "src": "/assets/photo/winter-extravaganza/20231222-190936-A.webp",
+      "source": "photo/winter-extravaganza.html",
+      "width": 2400,
+      "height": 3600,
+      "crop": {
+        "x": 250,
+        "y": 110,
+        "size": 2050
+      }
+    }
   },
   {
     "id": "viktoriia-mramornova",

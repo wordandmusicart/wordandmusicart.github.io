@@ -17,3 +17,9 @@ Poster date alignment revision: replaced both page/list poster themes with the c
 The owner approved an additional PHOTO-DUO-NIGHT portrait poster, shown whole above the programme hero in both languages. Native1080×1350 artwork and both singers’ faces are preserved; the original themed posters remain in the hero and list. The approved social preview is retained.
 
 The owner supplied and identified Oleksii Maliovanyi’s portrait as IMG_20261002_163734_597.jpg (640×640). Its site master is a byte-identical copy; the original is unchanged. The concert’s circular portrait uses only a CSS source view (x185, y40, size280) to show the full head and some shoulders at a similar scale to Ponomarenko. No retouching or identity substitution. There are no existing Maliovanyi entries elsewhere in the artist directory.
+
+## Added performer photographs — 2 October 2026
+
+Daria Pohorila uses her existing attributed directory portrait. The owner identified Anastasiia Dovbius in `assets/photo/autumn-rendezvous/20251115-175512-A.webp`, Ihor Povazhnyi in `assets/photo/winter-extravaganza/20231225-154436-A.webp`, and Nataliia Shmelova in `assets/photo/winter-extravaganza/20231222-190936-A.webp`. Gallery originals remain unchanged; CSS selects close facial crops. Ihor is not in the 15 October cast.
+
+Maksym Hara: verified named Concert.ua profile https://concert.ua/en/talent/maksim-gara ; original observed image https://storage.concert.ua/JIS/6/qX/69ab42f4808f2/08f5.png:v35-banner . The downloaded 1920×1080 PNG is preserved byte-for-byte as `assets/img/maksym-hara.png`; CSS selects the portrait, without retouching.
