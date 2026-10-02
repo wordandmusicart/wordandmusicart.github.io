@@ -171,7 +171,7 @@
         "uk": "Портрет з афіші концерту",
         "en": "Portrait from concert poster"
       },
-      "rim_inset": 0.035
+      "rim_inset": 0.06
     }
   },
   {
@@ -205,20 +205,15 @@
       "concerts/winter-extravaganza.html#artists"
     ],
     "portrait": {
-      "src": "/assets/img/yt-CIFVGAb3fSI.jpg",
-      "source": "video.html#m-2023",
+      "src": "/assets/photo/winter-extravaganza/20231225-154746-A.webp",
+      "source": "photo/winter-extravaganza.html",
+      "width": 2400,
+      "height": 3600,
       "crop": {
-        "x": 490,
-        "y": 22,
-        "size": 300
-      },
-      "width": 1280,
-      "height": 720,
-      "label": {
-        "uk": "Портрет з обкладинки відео",
-        "en": "Portrait from video cover"
-      },
-      "rim_inset": 0.035
+        "x": 650,
+        "y": 680,
+        "size": 1100
+      }
     }
   },
   {
@@ -241,9 +236,9 @@
       "width": 2400,
       "height": 3600,
       "crop": {
-        "x": 657,
-        "y": 103,
-        "size": 1136
+        "x": 530,
+        "y": 140,
+        "size": 1380
       }
     }
   },
@@ -276,7 +271,7 @@
         "uk": "Портрет з афіші концерту",
         "en": "Portrait from concert poster"
       },
-      "rim_inset": 0.035
+      "rim_inset": 0.06
     }
   },
   {
@@ -322,20 +317,15 @@
       "concerts/winter-extravaganza.html#artists"
     ],
     "portrait": {
-      "src": "/assets/img/yt-GIviKTmN2AQ.jpg",
-      "source": "video.html#m-2023",
+      "src": "/assets/photo/winter-extravaganza/20231222-185125-A.webp",
+      "source": "photo/winter-extravaganza.html",
+      "width": 2400,
+      "height": 3599,
       "crop": {
-        "x": 490,
-        "y": 22,
-        "size": 300
-      },
-      "width": 1280,
-      "height": 720,
-      "label": {
-        "uk": "Портрет з обкладинки відео",
-        "en": "Portrait from video cover"
-      },
-      "rim_inset": 0.035
+        "x": 525,
+        "y": 300,
+        "size": 1380
+      }
     }
   },
   {
@@ -354,20 +344,15 @@
       "concerts/winter-extravaganza.html#artists"
     ],
     "portrait": {
-      "src": "/assets/img/yt-bZP730JAbg0.jpg",
-      "source": "video.html#m-2023",
+      "src": "/assets/photo/winter-extravaganza/20231222-184821-A.webp",
+      "source": "photo/winter-extravaganza.html",
+      "width": 2400,
+      "height": 3600,
       "crop": {
-        "x": 490,
-        "y": 22,
-        "size": 300
-      },
-      "width": 1280,
-      "height": 720,
-      "label": {
-        "uk": "Портрет з обкладинки відео",
-        "en": "Portrait from video cover"
-      },
-      "rim_inset": 0.015
+        "x": 470,
+        "y": 520,
+        "size": 1400
+      }
     }
   },
   {
@@ -387,20 +372,15 @@
       "concerts/winter-extravaganza.html#artists"
     ],
     "portrait": {
-      "src": "/assets/img/yt-i8hPivO3sTg.jpg",
-      "source": "video.html#m-2023",
+      "src": "/assets/photo/winter-extravaganza/20231222-190049-A.webp",
+      "source": "photo/winter-extravaganza.html",
+      "width": 2400,
+      "height": 3600,
       "crop": {
-        "x": 490,
-        "y": 12,
-        "size": 300
-      },
-      "width": 1280,
-      "height": 720,
-      "label": {
-        "uk": "Портрет з обкладинки відео",
-        "en": "Portrait from video cover"
-      },
-      "rim_inset": 0.035
+        "x": 460,
+        "y": 320,
+        "size": 1400
+      }
     }
   },
   {
@@ -419,14 +399,14 @@
       "concerts/winter-extravaganza.html#artists"
     ],
     "portrait": {
-      "src": "/assets/img/20231222-185442-A.jpg",
-      "source": "KR/Production/Photography/2023/20231222_Зимова_Феєрія/20231222-185442-A.jpg",
-      "width": 4610,
-      "height": 6916,
+      "src": "/assets/photo/winter-extravaganza/20231222-185442-A.webp",
+      "source": "photo/winter-extravaganza.html",
+      "width": 2400,
+      "height": 3601,
       "crop": {
-        "x": 1498,
-        "y": 922,
-        "size": 1729
+        "x": 490,
+        "y": 420,
+        "size": 1380
       }
     }
   },
@@ -445,20 +425,15 @@
       "concerts/winter-extravaganza.html#artists"
     ],
     "portrait": {
-      "src": "/assets/img/yt-LXxn2VDXN7k.jpg",
-      "source": "video.html#m-2023",
+      "src": "/assets/photo/winter-extravaganza/20231222-182940-A.webp",
+      "source": "photo/winter-extravaganza.html",
+      "width": 2400,
+      "height": 3600,
       "crop": {
-        "x": 490,
-        "y": 22,
-        "size": 300
-      },
-      "width": 1280,
-      "height": 720,
-      "label": {
-        "uk": "Портрет з обкладинки відео",
-        "en": "Portrait from video cover"
-      },
-      "rim_inset": 0.035
+        "x": 150,
+        "y": 200,
+        "size": 2100
+      }
     }
   },
   {
@@ -550,20 +525,15 @@
       "concerts/winter-extravaganza.html#artists"
     ],
     "portrait": {
-      "src": "/assets/img/yt-k9K_lGv9oZs.jpg",
-      "source": "video.html#m-2023",
+      "src": "/assets/photo/winter-extravaganza/20231225-154957-A.webp",
+      "source": "photo/winter-extravaganza.html",
+      "width": 2400,
+      "height": 3600,
       "crop": {
-        "x": 490,
-        "y": 22,
-        "size": 300
-      },
-      "width": 1280,
-      "height": 720,
-      "label": {
-        "uk": "Портрет з обкладинки відео",
-        "en": "Portrait from video cover"
-      },
-      "rim_inset": 0.035
+        "x": 280,
+        "y": 720,
+        "size": 1150
+      }
     }
   },
   {
@@ -637,9 +607,9 @@
       "width": 2400,
       "height": 3600,
       "crop": {
-        "x": 250,
-        "y": 110,
-        "size": 2050
+        "x": 150,
+        "y": 150,
+        "size": 2100
       }
     }
   },
@@ -704,7 +674,7 @@
         "uk": "Портрет з афіші концерту",
         "en": "Portrait from concert poster"
       },
-      "rim_inset": 0.035
+      "rim_inset": 0.06
     }
   },
   {
