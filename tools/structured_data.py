@@ -121,7 +121,7 @@ def event(s, lang, url):
             place['address'] = {'@type': 'PostalAddress', 'streetAddress': street,
                                 'addressLocality': city, 'addressCountry': 'UA'}
         ev['location'] = place
-    people = re.search(r'<div class="people">(.*?)</div></div>', s, re.S)
+    people = re.search(r'<section\b[^>]*class="[^"]*\bartists\b[^"]*"[^>]*>(.*?)</section>', s, re.S)
     if people:
         names = [text(n) for n in re.findall(r'<h3[^>]*>(.*?)</h3>', people.group(1), re.S)]
         if names:
