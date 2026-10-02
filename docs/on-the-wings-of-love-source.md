@@ -15,3 +15,5 @@ The owner requested a higher position for Taraniuk’s close portrait. Its page-
 Poster date alignment revision: replaced both page/list poster themes with the corrected native exports. Illustrator optical-outline measurements confirm identical right edges for the date and year/start-time lines. New asset filenames prevent stale cached artwork; original source exports and previous site masters are preserved.
 
 The owner approved an additional PHOTO-DUO-NIGHT portrait poster, shown whole above the programme hero in both languages. Native1080×1350 artwork and both singers’ faces are preserved; the original themed posters remain in the hero and list. The approved social preview is retained.
+
+The owner supplied and identified Oleksii Maliovanyi’s portrait as IMG_20261002_163734_597.jpg (640×640). Its site master is a byte-identical copy; the original is unchanged. The concert’s circular portrait uses only a CSS source view (x185, y40, size280) to show the full head and some shoulders at a similar scale to Ponomarenko. No retouching or identity substitution. There are no existing Maliovanyi entries elsewhere in the artist directory.
