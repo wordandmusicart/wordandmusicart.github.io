@@ -121,7 +121,7 @@ class EventSchemaTest(unittest.TestCase):
                 self.assertEqual(len(found), 1)
                 event = found[0]
                 self.assertEqual(event["startDate"], "2026-10-15T18:00:00+03:00")
-                self.assertEqual(event["endDate"], "2026-10-15T19:00:00+03:00")
+                self.assertEqual(event["endDate"], "2026-10-15T19:30:00+03:00")
                 self.assertEqual(event["eventStatus"], "https://schema.org/EventScheduled")
                 self.assertEqual(event["inLanguage"], lang)
                 offer = event.get("offers")
@@ -139,7 +139,7 @@ class EventSchemaTest(unittest.TestCase):
                 start_label, date_label, end_label = LABELS[lang]
                 self.assertEqual(fact(hero, date_label), "15.10")
                 self.assertEqual(fact(hero, start_label), "18:00")
-                self.assertEqual(fact(hero, end_label), "19:00")
+                self.assertEqual(fact(hero, end_label), "19:30")
                 self.assertIsNone(fact(hero, "Ціна" if lang == "uk" else "Price"))
 
     def test_historical_concerts_have_no_music_event(self):
