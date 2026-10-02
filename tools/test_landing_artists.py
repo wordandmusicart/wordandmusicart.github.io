@@ -14,6 +14,7 @@ from urllib.parse import urlsplit
 
 ROOT = Path(os.environ.get("SITE_ROOT", Path(__file__).resolve().parents[1]))
 ORIGIN = "https://wordandmusic.art"
+ANNOUNCED_CONCERTS = {"on-the-wings-of-love.html"}
 VOID = set("area base br col embed hr img input link meta param source track wbr".split())
 
 
@@ -118,6 +119,8 @@ class LandingArtistsAcceptance(unittest.TestCase):
         self.assertEqual(len(ids), len(set(ids)), "Artist identities must be unique")
         archive_names = set()
         for path in sorted((ROOT / "concerts").glob("*.html")):
+            if path.name in ANNOUNCED_CONCERTS:
+                continue
             for people in Document(path).root.find(cls="people"):
                 archive_names.update(normalized_name(name.text()) for name in people.find("h3"))
         self.assertTrue(archive_names, "The archive must provide a performer evidence baseline")
@@ -207,7 +210,11 @@ class LandingArtistsAcceptance(unittest.TestCase):
                 self.assertFalse(any(urlsplit(href).fragment == "repertoire" for href in links(header)))
                 self.assertTrue(list(header.find(cls="lang")), "Language choice must remain in header")
                 locale = "en" if prefix else "uk"
-                self.assertTrue(any(urlsplit(href).hostname == "eventmate.app" and f"locale={locale}" in href for href in links(header)), "Header ticket link must retain page language")
+                if path.name in ANNOUNCED_CONCERTS:
+                    self.assertFalse(any(urlsplit(href).hostname == "eventmate.app" for href in links(header)),
+                                     "An announced event must not sell tickets to another concert")
+                else:
+                    self.assertTrue(any(urlsplit(href).hostname == "eventmate.app" and f"locale={locale}" in href for href in links(header)), "Header ticket link must retain page language")
                 route = path.relative_to(ROOT).as_posix()
                 leaf = path.name
                 expected = leaf.removesuffix(".html") if leaf in {"artists.html", "concerts.html", "photo.html", "video.html"} else None

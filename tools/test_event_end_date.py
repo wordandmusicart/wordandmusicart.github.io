@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Current concert has ticketed MusicEvent; historical concerts have none."""
+"""Ticketed current event, announced event without Offer, and historical pages."""
 
 import html
 import json
@@ -25,6 +25,7 @@ KNOWN_ARCHIVE_STARTS = {
     "winter-extravaganza": "14:00",
 }
 UNKNOWN_ARCHIVE_STARTS = {"amore-eterno", "christmas-kaleidoscope", "heartstrings"}
+ANNOUNCED_CONCERTS = {"on-the-wings-of-love"}
 
 
 def fact(hero, label):
@@ -106,9 +107,33 @@ class EventSchemaTest(unittest.TestCase):
         self.assertTrue(ua)
         self.assertEqual([path.name for path in ua], [path.name for path in en])
         self.assertEqual(
-            {path.stem for path in ua}, set(KNOWN_ARCHIVE_STARTS) | UNKNOWN_ARCHIVE_STARTS
+            {path.stem for path in ua},
+            set(KNOWN_ARCHIVE_STARTS) | UNKNOWN_ARCHIVE_STARTS | ANNOUNCED_CONCERTS,
         )
-        return ua + en
+        return [path for path in ua + en if path.stem not in ANNOUNCED_CONCERTS]
+
+    def test_announced_concert_has_truthful_event_without_offer(self):
+        for prefix, lang in (("", "uk"), ("en/", "en")):
+            with self.subTest(language=lang):
+                page = (ROOT / prefix / "concerts/on-the-wings-of-love.html").read_text(encoding="utf-8")
+                found = events(page)
+                self.assertEqual(len(found), 1)
+                event = found[0]
+                self.assertEqual(event["startDate"], "2026-10-15T18:00:00+03:00")
+                self.assertEqual(event["endDate"], "2026-10-15T19:00:00+03:00")
+                self.assertEqual(event["eventStatus"], "https://schema.org/EventScheduled")
+                self.assertEqual(event["inLanguage"], lang)
+                self.assertNotIn("offers", event)
+                self.assertEqual(len(event["performer"]), 13)
+                self.assertEqual(len({p["name"] for p in event["performer"]}), 13)
+                self.assertNotIn("eventmate.app", page)
+                self.assertNotIn("03.10", page)
+                hero = re.search(r'<section class="c-hero.*?</section>', page, re.S).group(0)
+                start_label, date_label, end_label = LABELS[lang]
+                self.assertEqual(fact(hero, date_label), "15.10")
+                self.assertEqual(fact(hero, start_label), "18:00")
+                self.assertEqual(fact(hero, end_label), "19:00")
+                self.assertIsNone(fact(hero, "Ціна" if lang == "uk" else "Price"))
 
     def test_historical_concerts_have_no_music_event(self):
         for path in self.historical_pages():

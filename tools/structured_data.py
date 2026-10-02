@@ -7,6 +7,7 @@ JSON-LD values are read from the page itself.
 - Current concert pages (concert.html and its EN twin): MusicEvent,
   from the H1, the date line, the facts block (date, start, end, price,
   location, address), the performers, the ticket link, og:image and the description.
+- Announced concert pages also carry MusicEvent, without an Offer until a ticket URL is supplied.
 - Past concert pages have no Event markup because they have no current ticket
   offers; their visible facts are kept on the pages.
 A fact missing on the page is left out of the JSON-LD.
@@ -162,7 +163,8 @@ def data(path, s):
     rel = os.path.relpath(path, ROOT).replace(os.sep, '/')
     if rel in ('index.html', 'en/index.html'):
         return home(s, lang, url)
-    if rel in ('concert.html', 'en/concert.html'):
+    if rel in ('concert.html', 'en/concert.html',
+               'concerts/on-the-wings-of-love.html', 'en/concerts/on-the-wings-of-love.html'):
         return event(s, lang, url)
     if re.fullmatch(r'(en/)?photo/[\w-]+\.html', rel):
         return gallery(s, lang, url)
