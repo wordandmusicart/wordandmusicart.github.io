@@ -23,3 +23,9 @@ The owner supplied and identified Oleksii Maliovanyi’s portrait as IMG_2026100
 Daria Pohorila uses her existing attributed directory portrait. The owner identified Anastasiia Dovbius in `assets/photo/autumn-rendezvous/20251115-175512-A.webp`, Ihor Povazhnyi in `assets/photo/winter-extravaganza/20231225-154436-A.webp`, and Nataliia Shmelova in `assets/photo/winter-extravaganza/20231222-190936-A.webp`. Gallery originals remain unchanged; CSS selects close facial crops. Ihor is not in the 15 October cast.
 
 Maksym Hara: verified named Concert.ua profile https://concert.ua/en/talent/maksim-gara ; original observed image https://storage.concert.ua/JIS/6/qX/69ab42f4808f2/08f5.png:v35-banner . The downloaded 1920×1080 PNG is preserved byte-for-byte as `assets/img/maksym-hara.png`; CSS selects the portrait, without retouching.
+
+## Colour portraits and project ticket destination — 2 October 2026
+
+Anzhelina Shvachka: owner-supplied original JPEG (1175×1261), preserved unchanged as `assets/img/anzhelina-shvachka-colour.jpg`. Liliia Hrevtsova: official National Opera profile https://opera.com.ua/persons/operna-trupa-solisti-soprano/grevcova-liliya ; image https://opera.com.ua/sites/default/files/grevts_portr_nov_s.jpg , original300×375 preserved unchanged as `assets/img/liliia-hrevtsova-colour.jpg`. CSS crops preserve colour and use the existing168/132px circles; no retouching or master upscaling.
+
+The owner explicitly specified the exact project ticket URL for every UA/EN header: https://eventmate.app/users/share/wordmusic?locale=en . This overrides the default UA locale rule only for that header destination; all concert-specific ticket links remain unchanged.
