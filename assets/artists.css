@@ -38,3 +38,8 @@
 
 .artist-placeholder{background:var(--ph3)}
 .artist-portrait{border:0;box-shadow:none}
+
+/* Shared programme variants; individual crops stay in the image data. */
+.performer-portrait{overflow:hidden}
+.people .performer-portrait img{position:absolute;object-fit:initial}
+.people-students,.people-host{margin-top:48px}

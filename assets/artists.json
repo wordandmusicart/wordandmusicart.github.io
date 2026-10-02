@@ -162,7 +162,7 @@
       "source": "concerts/music-of-soul-and-heart.html",
       "crop": {
         "x": 1238,
-        "y": 2319,
+        "y": 2301,
         "size": 468
       },
       "width": 2400,
@@ -296,7 +296,7 @@
     ],
     "portrait": {
       "src": "/assets/img/20251115-164532-A.jpg",
-      "source": "/Users/rusanivsky/Library/CloudStorage/GoogleDrive-rusanivsky@gmail.com/My Drive/KR/Production/Photography/2025/20251115-2_Осіннє_побачення/20251115-164532-A.jpg",
+      "source": "KR/Production/Photography/2025/20251115-2_Осіннє_побачення/20251115-164532-A.jpg",
       "width": 7728,
       "height": 5152,
       "crop": {
@@ -391,7 +391,7 @@
       "source": "video.html#m-2023",
       "crop": {
         "x": 490,
-        "y": 22,
+        "y": 12,
         "size": 300
       },
       "width": 1280,
@@ -420,7 +420,7 @@
     ],
     "portrait": {
       "src": "/assets/img/20231222-185442-A.jpg",
-      "source": "/Users/rusanivsky/Library/CloudStorage/GoogleDrive-rusanivsky@gmail.com/My Drive/KR/Production/Photography/2023/20231222_Зимова_Феєрія/20231222-185442-A.jpg",
+      "source": "KR/Production/Photography/2023/20231222_Зимова_Феєрія/20231222-185442-A.jpg",
       "width": 4610,
       "height": 6916,
       "crop": {
@@ -509,7 +509,7 @@
     ],
     "portrait": {
       "src": "/assets/img/20251115-175514-A.jpg",
-      "source": "/Users/rusanivsky/Library/CloudStorage/GoogleDrive-rusanivsky@gmail.com/My Drive/KR/Production/Photography/2025/20251115-2_Осіннє_побачення/20251115-175514-A.jpg",
+      "source": "KR/Production/Photography/2025/20251115-2_Осіннє_побачення/20251115-175514-A.jpg",
       "width": 7728,
       "height": 5152,
       "crop": {
