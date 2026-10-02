@@ -45,3 +45,18 @@ Latest owner decision: only3October and15October use large shared4:5card variant
 ## Owner update — 2 October 2026, white portrait and programme crops
 
 The owner supplied a replacement white-background portrait of Anzhelina Shvachka. `assets/img/anzhelina-shvachka-portrait-20261002.jpg` preserves the original 740×1065 JPEG bytes. Programme rectangles use their own 4:5 crop; the artist catalogue and other concert circles retain separate close-face crops. The full-resolution Hrevtsova and Taraniuk originals remain unchanged; their large programme rectangles show head, shoulders and torso approximately to the waist, following the owner's supplied geometric reference.
+
+## Venue completion and supplied portraits for Yuliia Pavlovska and Iryna Shelest — 2 October 2026
+
+The concert detail page lacked its venue section. Added complete `#venue` block to `concerts/on-the-wings-of-love.html` and `en/concerts/on-the-wings-of-love.html` matching the design and structure of all other concerts:
+- Venue heading linked to official site: `https://www.actorhall.com/` (Будинок актора / Actor’s House).
+- Address: Київ, вул. Ярославів Вал, 7 / 7 Yaroslaviv Val St, Kyiv.
+- Google Maps search links in hero facts and venue block.
+- Responsive Google Maps embed iframe with lazy loading, title and fullscreen enabled.
+- Subnav links updated to include `#venue` (`Локація` / `Location`).
+
+The owner supplied original portraits for students Yuliia Pavlovska (682×1024) and Iryna Shelest (682×1024).
+- Originals are preserved byte-for-byte in `02_Концерти_та_події/20261015_На_крилах_кохання/02_Матеріали/Фото_виконавиць/` and `assets/img/`.
+- Generated responsive WebP variants (320, 480) via `tools/images.py`.
+- CSS crops center on facial features with headroom and shoulder framing (Yuliia: x100, y190, size420; Iryna: x140, y80, size440), replacing previous grey placeholder circles.
+

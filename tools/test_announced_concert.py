@@ -96,6 +96,34 @@ class AnnouncedConcertAcceptance(unittest.TestCase):
                 self.assertEqual(sum(any(word in role for word in vocal_words) for role in roles), 11)
                 self.assertEqual(roles[3], "Концертмейстер" if lang == "uk" else "Accompanist")
                 self.assertEqual(roles[12], "Художнє слово та ведучий" if lang == "uk" else "Spoken word and host")
+                img_sources = [img.attrs.get("src") for img in people.find("img")]
+                self.assertIn("/assets/img/iryna-shelest.jpg", img_sources)
+                self.assertIn("/assets/img/yuliia-pavlovska.jpg", img_sources)
+
+    def test_venue_section_facts_and_subnav_link(self):
+        for prefix, lang in (("", "uk"), ("en/", "en")):
+            with self.subTest(language=lang):
+                doc = Document(ROOT / prefix / SLUG).root
+                subnav = next(doc.find("nav", cls="subnav"))
+                self.assertIn("#venue", links(subnav))
+                hero = next(doc.find("section", cls="c-hero"))
+                plc_links = [a.attrs.get("href") for a in hero.find("a", cls="plc")]
+                self.assertIn("https://www.actorhall.com/", plc_links)
+                self.assertTrue(any("google.com/maps" in href for href in plc_links))
+                venues = [n for n in doc.find("section", cls="venue") if n.attrs.get("id") == "venue"]
+                self.assertEqual(len(venues), 1)
+                venue = venues[0]
+                expected_venue_name = "Будинок актора" if lang == "uk" else "Actor’s House"
+                h3 = next(venue.find("h3"))
+                self.assertEqual(h3.text().strip(), expected_venue_name)
+                h3_a = next(h3.find("a", cls="plc"))
+                self.assertEqual(h3_a.attrs.get("href"), "https://www.actorhall.com/")
+                map_link = next(a for a in venue.find("a", cls="lnk"))
+                self.assertIn("google.com/maps", map_link.attrs.get("href", ""))
+                iframe = next(venue.find("iframe"))
+                self.assertIn("maps.google.com/maps", iframe.attrs.get("src", ""))
+                self.assertEqual(iframe.attrs.get("loading"), "lazy")
+                self.assertIn("allowfullscreen", iframe.attrs)
 
     def test_programme_has_full_composer_names_and_no_invented_work_list(self):
         for prefix in ("", "en/"):
