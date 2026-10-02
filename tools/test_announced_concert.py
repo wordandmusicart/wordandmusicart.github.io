@@ -16,10 +16,10 @@ TICKET = "https://eventmate.app/events/share/na-krilah-kohanna-koncert-vokalnoi-
 NAMES = {
     "uk": ["Анжеліна Швачка", "Лілія Гревцова", "Максим Гара", "Дарія Погоріла",
            "Олександр Пономаренко", "Анастасія Довбіус", "Ірина Шелест", "Юлія Павловська",
-           "Каріна Лисак", "Олексій Мальований", "Лідія Глінська", "Наталія Шмельова", "Геннадій Таранюк"],
+           "Каріна Лисак", "Лідія Глінська", "Олексій Мальований", "Наталія Шмельова", "Геннадій Таранюк"],
     "en": ["Anzhelina Shvachka", "Liliia Hrevtsova", "Maksym Hara", "Dariia Pohorila",
            "Oleksandr Ponomarenko", "Anastasiia Dovbius", "Iryna Shelest", "Yuliia Pavlovska",
-           "Karina Lysak", "Oleksii Maliovanyi", "Lidiia Hlinska", "Nataliia Shmelova", "Hennadii Taraniuk"],
+           "Karina Lysak", "Lidiia Hlinska", "Oleksii Maliovanyi", "Nataliia Shmelova", "Hennadii Taraniuk"],
 }
 COMPOSERS = ["Wolfgang Amadeus Mozart", "Robert Schumann", "Gaetano Donizetti", "Georges Bizet",
              "Jacques Offenbach", "Henri Duparc", "Vincenzo Di Chiara", "Claude Debussy", "Francesco Cilea", "George Gershwin"]
