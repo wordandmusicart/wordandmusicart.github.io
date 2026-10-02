@@ -36,7 +36,9 @@ jobs:
       - name: Check concert end dates
         run: python3 tools/test_event_end_date.py
       - name: Check landing and artists acceptance
-        run: python3 tools/test_landing_artists.py
+        run: |
+          python3 tools/test_landing_artists.py
+          python3 -m tools.test_announced_concert
       - uses: actions/setup-node@v4
         with:
           node-version: '22'

@@ -19,6 +19,7 @@ from urllib.parse import urlparse
 
 
 ROOT = Path(__file__).resolve().parents[1]
+ANNOUNCED_SLUGS = ("on-the-wings-of-love",)
 
 CONCERT_SLUGS = (
     "amore-eterno",
@@ -321,10 +322,14 @@ def main() -> int:
     en_pages = sorted((ROOT / "en/concerts").glob("*.html"))
     expected_ua = [ROOT / "concerts" / f"{slug}.html" for slug in CONCERT_SLUGS]
     expected_en = [ROOT / "en/concerts" / f"{slug}.html" for slug in CONCERT_SLUGS]
-    check(len(ua_pages) == 11, f"concerts/ must contain 11 HTML pages (found {len(ua_pages)})", failures)
-    check(len(en_pages) == 11, f"en/concerts/ must contain 11 HTML pages (found {len(en_pages)})", failures)
-    check(ua_pages == sorted(expected_ua), "concerts/ page set differs from the 11-page contract", failures)
-    check(en_pages == sorted(expected_en), "en/concerts/ page set differs from the 11-page contract", failures)
+    announced_ua = [ROOT / "concerts" / f"{slug}.html" for slug in ANNOUNCED_SLUGS]
+    announced_en = [ROOT / "en/concerts" / f"{slug}.html" for slug in ANNOUNCED_SLUGS]
+    archive_ua = [path for path in ua_pages if path not in announced_ua]
+    archive_en = [path for path in en_pages if path not in announced_en]
+    check(len(archive_ua) == 11, f"concerts/ must contain 11 archive pages (found {len(archive_ua)})", failures)
+    check(len(archive_en) == 11, f"en/concerts/ must contain 11 archive pages (found {len(archive_en)})", failures)
+    check(ua_pages == sorted(expected_ua + announced_ua), "concerts/ page set differs from the 11-page archive plus known announcements", failures)
+    check(en_pages == sorted(expected_en + announced_en), "en/concerts/ page set differs from the 11-page archive plus known announcements", failures)
 
     for path in expected_ua:
         check_page(path, "UA", failures)

@@ -30,7 +30,8 @@ rusanivsky.com does:
 ### Structured data
 
 Home pages carry schema.org `Organization` + `WebSite`; the current concert
-pages carry a `MusicEvent`. Past concerts have no Event markup because their
+pages carry a `MusicEvent`. Announced concert pages also carry a `MusicEvent`, without an offer until
+a ticket link is confirmed. Past concerts have no Event markup because their
 tickets are no longer available. `python3 tools/structured_data.py` builds the
 JSON-LD from what the page already shows (H1, date, start/end, venue,
 address, performers, ticket link, og:image, description). The organiser
