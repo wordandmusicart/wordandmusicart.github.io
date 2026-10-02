@@ -48,14 +48,14 @@
       "concerts/roads-of-love.html#artists"
     ],
     "portrait": {
-      "src": "/assets/img/anzhelina-shvachka-colour.jpg",
-      "source": "Owner-supplied photograph, 2 October 2026",
-      "width": 1175,
-      "height": 1261,
+      "src": "/assets/img/anzhelina-shvachka-portrait-20261002.jpg",
+      "source": "User-supplied portrait, 2026-10-02; original JPEG preserved",
+      "width": 740,
+      "height": 1065,
       "crop": {
-        "x": 130,
-        "y": 200,
-        "size": 900
+        "x": 0,
+        "y": 40,
+        "size": 740
       }
     }
   },
