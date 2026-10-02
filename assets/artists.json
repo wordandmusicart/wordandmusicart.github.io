@@ -48,20 +48,15 @@
       "concerts/roads-of-love.html#artists"
     ],
     "portrait": {
-      "src": "/assets/img/roads-of-love-poster.jpg",
-      "source": "concerts/roads-of-love.html",
+      "src": "/assets/img/anzhelina-shvachka-colour.jpg",
+      "source": "Owner-supplied photograph, 2 October 2026",
+      "width": 1175,
+      "height": 1261,
       "crop": {
-        "x": 612,
-        "y": 573,
-        "size": 611
-      },
-      "width": 2400,
-      "height": 3394,
-      "label": {
-        "uk": "Портрет з афіші концерту",
-        "en": "Portrait from concert poster"
-      },
-      "rim_inset": 0.035
+        "x": 130,
+        "y": 200,
+        "size": 900
+      }
     }
   },
   {
@@ -80,20 +75,15 @@
       "concerts/roads-of-love.html#artists"
     ],
     "portrait": {
-      "src": "/assets/img/roads-of-love-poster.jpg",
-      "source": "concerts/roads-of-love.html",
+      "src": "/assets/img/liliia-hrevtsova-colour.jpg",
+      "source": "https://opera.com.ua/persons/operna-trupa-solisti-soprano/grevcova-liliya",
+      "width": 300,
+      "height": 375,
       "crop": {
-        "x": 1182,
-        "y": 573,
-        "size": 611
-      },
-      "width": 2400,
-      "height": 3394,
-      "label": {
-        "uk": "Портрет з афіші концерту",
-        "en": "Portrait from concert poster"
-      },
-      "rim_inset": 0.035
+        "x": 20,
+        "y": 17,
+        "size": 260
+      }
     }
   },
   {
