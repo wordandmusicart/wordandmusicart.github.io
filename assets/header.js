@@ -43,9 +43,13 @@
     // A translated header must not leave invisible links in the tab sequence.
     header.inert = !show;
   }
+  function updateNavInert() {
+    if (nav) nav.inert = mobile.matches ? !menuOpen : false;
+  }
   function setMenu(open, returnFocus = false) {
     menuOpen = open && mobile.matches;
     nav?.classList.toggle('open', menuOpen);
+    updateNavInert();
     button?.setAttribute('aria-expanded', String(menuOpen));
     document.documentElement.classList.toggle('menu-open', menuOpen);
     if (menuOpen) showHeader(true);
@@ -99,7 +103,8 @@
   window.addEventListener('scroll', () => { if (!frame) frame = requestAnimationFrame(update); }, { passive: true });
   window.addEventListener('pageshow', () => { lastY = Math.max(0, scrollY); showHeader(true); updateSubnav(); });
   window.addEventListener('resize', updateSubnav);
-  mobile.addEventListener('change', () => setMenu(false));
+  mobile.addEventListener('change', () => { setMenu(false); updateNavInert(); });
   showHeader(true);
   updateSubnav();
+  updateNavInert();
 })();
