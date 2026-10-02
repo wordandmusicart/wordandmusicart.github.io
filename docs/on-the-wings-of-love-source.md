@@ -41,3 +41,7 @@ The final Hrevtsova portrait supersedes the small Opera photograph: owner-suppli
 ## Featured programme presentation — 2 October 2026
 
 Latest owner decision: only3October and15October use large shared4:5card variants. On15October the first row is Shvachka, Hrevtsova, Hara and Shmelova, followed by the students in their existing mutual order and a separate Taraniuk card with exactly the same image frame size as Shvachka. On3October the four existing large cards remain, with Terentiev’s unknown photo represented by an empty grey rectangle. Chykarenko’s image starts at the original upper edge to preserve headroom. Personal rectangular crops remain separate from circular crops; no original is edited. Kapran and Vostriakov circular crops have additional hair headroom.
+
+## Owner update — 2 October 2026, white portrait and programme crops
+
+The owner supplied a replacement white-background portrait of Anzhelina Shvachka. `assets/img/anzhelina-shvachka-portrait-20261002.jpg` preserves the original 740×1065 JPEG bytes. Programme rectangles use their own 4:5 crop; the artist catalogue and other concert circles retain separate close-face crops. The full-resolution Hrevtsova and Taraniuk originals remain unchanged; their large programme rectangles show head, shoulders and torso approximately to the waist, following the owner's supplied geometric reference.
