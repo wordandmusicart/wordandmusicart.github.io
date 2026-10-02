@@ -75,14 +75,14 @@
       "concerts/roads-of-love.html#artists"
     ],
     "portrait": {
-      "src": "/assets/img/liliia-hrevtsova-colour.jpg",
-      "source": "https://opera.com.ua/persons/operna-trupa-solisti-soprano/grevcova-liliya",
-      "width": 300,
-      "height": 375,
+      "src": "/assets/img/liliia-hrevtsova-portrait-20261002.jpg",
+      "source": "Owner-supplied portrait, 2 October 2026",
+      "width": 3360,
+      "height": 5040,
       "crop": {
-        "x": 20,
-        "y": 17,
-        "size": 260
+        "x": 1275,
+        "y": 1025,
+        "size": 1000
       }
     }
   },
@@ -100,7 +100,17 @@
     "sources": [
       "concerts/melodies-of-enchanting-june.html#artists"
     ],
-    "portrait": null
+    "portrait": {
+      "src": "/assets/img/serhii-mahera-colour.jpg",
+      "source": "https://www.opera.com.ua/en/persons/operna-trupa-solisti-basso/sergii-magera",
+      "width": 300,
+      "height": 375,
+      "crop": {
+        "x": 45,
+        "y": 20,
+        "size": 210
+      }
+    }
   },
   {
     "id": "mariia-popovych",
@@ -231,9 +241,9 @@
       "width": 2400,
       "height": 3600,
       "crop": {
-        "x": 600,
-        "y": 70,
-        "size": 1250
+        "x": 657,
+        "y": 103,
+        "size": 1136
       }
     }
   },
@@ -284,7 +294,17 @@
       "concerts/christmas-kaleidoscope.html#artists",
       "concerts/heartstrings.html#artists"
     ],
-    "portrait": null
+    "portrait": {
+      "src": "/assets/img/20251115-164532-A.jpg",
+      "source": "/Users/rusanivsky/Library/CloudStorage/GoogleDrive-rusanivsky@gmail.com/My Drive/KR/Production/Photography/2025/20251115-2_Осіннє_побачення/20251115-164532-A.jpg",
+      "width": 7728,
+      "height": 5152,
+      "crop": {
+        "x": 3107,
+        "y": 708,
+        "size": 1449
+      }
+    }
   },
   {
     "id": "yelyzaveta-bielous",
@@ -399,20 +419,15 @@
       "concerts/winter-extravaganza.html#artists"
     ],
     "portrait": {
-      "src": "/assets/img/yt-pjeWzMqaYJ4.jpg",
-      "source": "video.html#m-2023",
+      "src": "/assets/img/20231222-185442-A.jpg",
+      "source": "/Users/rusanivsky/Library/CloudStorage/GoogleDrive-rusanivsky@gmail.com/My Drive/KR/Production/Photography/2023/20231222_Зимова_Феєрія/20231222-185442-A.jpg",
+      "width": 4610,
+      "height": 6916,
       "crop": {
-        "x": 490,
-        "y": 22,
-        "size": 300
-      },
-      "width": 1280,
-      "height": 720,
-      "label": {
-        "uk": "Портрет з обкладинки відео",
-        "en": "Portrait from video cover"
-      },
-      "rim_inset": 0.035
+        "x": 1498,
+        "y": 922,
+        "size": 1729
+      }
     }
   },
   {
@@ -493,14 +508,14 @@
       "concerts/heartstrings.html#artists"
     ],
     "portrait": {
-      "src": "/assets/photo/autumn-rendezvous/20251115-175512-A.webp",
-      "source": "photo/autumn-rendezvous.html",
-      "width": 2400,
-      "height": 1600,
+      "src": "/assets/img/20251115-175514-A.jpg",
+      "source": "/Users/rusanivsky/Library/CloudStorage/GoogleDrive-rusanivsky@gmail.com/My Drive/KR/Production/Photography/2025/20251115-2_Осіннє_побачення/20251115-175514-A.jpg",
+      "width": 7728,
+      "height": 5152,
       "crop": {
-        "x": 650,
-        "y": 170,
-        "size": 720
+        "x": 2093,
+        "y": 741,
+        "size": 2318
       }
     }
   },
