@@ -2,7 +2,7 @@
 
 The owner supplied and corrected the concert information in the 2 October 2026 conversation. The corrected composer list omits Ernesto de Curtis. The published page uses full composer names, all eleven vocalists, Nataliia Shmelova as accompanist and Hennadii Taraniuk as spoken-word performer and host. Venue and start: Actor’s House, Kyiv, 15 October 2026 at 18:00. The address is retained from the existing announcement: 7 Yaroslaviv Val Street. The one-hour duration follows the organiser-confirmed site-wide convention documented in README.md.
 
-No ticket URL, price, individual works or programme order was supplied. The event therefore has no ticket offer or Eventmate link; the 3 October ticketed concert remains the current home-page event.
+The owner subsequently supplied the Eventmate URL https://eventmate.app/events/share/na-krilah-kohanna-koncert-vokalnoi-muziki. Programme and list CTAs use the corresponding uk/en locale. A browser verified that the live Eventmate page matches the concert, performers, date and venue. The site includes an Offer URL and On sale status; prices and sale-start date are outside this scoped update. No individual works or programme order were supplied. The 3 October concert remains the current home-page event.
 
 Full-name checks: the [BnF catalogue](https://catalogue.bnf.fr/rechercher.do?index=AUT3&numNotice=13793434) and [Hal Leonard publisher](https://www.halleonard.com/product/50600667/italian-art-songs) identify Vincenzo Di Chiara. The [BnF authority record](https://catalogue.bnf.fr/ark:/12148/cb13893514m) identifies Henri Duparc. Their names are rendered as Вінченцо ді К’яра and Анрі Дюпарк in Ukrainian.
 
@@ -13,3 +13,5 @@ Final poster release: native POST-LIGHT.png and POST-NIGHT.png (1080 × 1350) ar
 The owner requested a higher position for Taraniuk’s close portrait. Its page-local CSS view moved upward by 12 pixels at the desktop 112-pixel circle, preserving the existing magnification and original photograph. Contest laureate information remains in the concert description rather than repeated under individual artists.
 
 Poster date alignment revision: replaced both page/list poster themes with the corrected native exports. Illustrator optical-outline measurements confirm identical right edges for the date and year/start-time lines. New asset filenames prevent stale cached artwork; original source exports and previous site masters are preserved.
+
+The owner approved an additional PHOTO-DUO-NIGHT portrait poster, shown whole above the programme hero in both languages. Native1080×1350 artwork and both singers’ faces are preserved; the original themed posters remain in the hero and list. The approved social preview is retained.

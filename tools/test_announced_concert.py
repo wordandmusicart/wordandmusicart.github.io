@@ -2,6 +2,7 @@
 """Independent acceptance checks for the 15 October announcement (stdlib only)."""
 import unittest
 import xml.etree.ElementTree as ET
+from urllib.parse import urlsplit
 
 if __package__:
     from .test_event_end_date import events
@@ -11,6 +12,7 @@ else:
     from test_landing_artists import Document, ROOT, ORIGIN, links, public_pages
 
 SLUG = "concerts/on-the-wings-of-love.html"
+TICKET = "https://eventmate.app/events/share/na-krilah-kohanna-koncert-vokalnoi-muziki"
 NAMES = {
     "uk": ["Анжеліна Швачка", "Лілія Гревцова", "Максим Гара", "Дарія Погоріла",
            "Олександр Пономаренко", "Анастасія Довбіус", "Ірина Шелест", "Юлія Павловська",
@@ -26,6 +28,29 @@ COMPOSERS_UK = ["Вольфганга Амадея Моцарта", "Робер�
 
 
 class AnnouncedConcertAcceptance(unittest.TestCase):
+    def test_confirmed_ticket_access_and_sales_status_on_detail_and_listing(self):
+        for prefix, lang in (("", "uk"), ("en/", "en")):
+            with self.subTest(language=lang):
+                expected = f"{TICKET}?locale={lang}"
+                doc = Document(ROOT / prefix / SLUG).root
+                ticket_links = [href for href in links(doc) if urlsplit(href).hostname == "eventmate.app"]
+                self.assertTrue(ticket_links)
+                self.assertEqual(set(ticket_links), {expected})
+                hero = next(doc.find("section", cls="c-hero"))
+                cta = next(hero.find(cls="c-cta"))
+                self.assertIn(expected, links(cta))
+                self.assertIn("#program", links(cta))
+                self.assertIn(expected, links(next(doc.find("nav", cls="subnav"))))
+                status = next(doc.find(cls="status"), None)
+                self.assertIsNotNone(status)
+                self.assertEqual(status.text().strip(), "Продаж триває" if lang == "uk" else "On sale")
+                self.assertFalse(status.attrs.get("data-sales-start"), "No sales opening date was provided")
+                listing = Document(ROOT / prefix / "concerts.html").root
+                card = next(n for n in listing.find("article", cls="upc") if "/" + prefix + SLUG in links(n))
+                self.assertIn(expected, links(card))
+                self.assertEqual(next(card.find(cls="status")).text().strip(), "Продаж триває" if lang == "uk" else "On sale")
+                self.assertIn("/" + prefix + SLUG, links(card))
+
     def test_paired_metadata_assets_and_language_controls(self):
         urls = {n.text for n in ET.parse(ROOT / "sitemap.xml").iter("{http://www.sitemaps.org/schemas/sitemap/0.9}loc")}
         for prefix, lang, twin in (("", "uk", "/en/" + SLUG), ("en/", "en", "/" + SLUG)):
