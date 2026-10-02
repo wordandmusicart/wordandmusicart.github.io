@@ -29,3 +29,11 @@ Maksym Hara: verified named Concert.ua profile https://concert.ua/en/talent/maks
 Anzhelina Shvachka: owner-supplied original JPEG (1175×1261), preserved unchanged as `assets/img/anzhelina-shvachka-colour.jpg`. Liliia Hrevtsova: official National Opera profile https://opera.com.ua/persons/operna-trupa-solisti-soprano/grevcova-liliya ; image https://opera.com.ua/sites/default/files/grevts_portr_nov_s.jpg , original300×375 preserved unchanged as `assets/img/liliia-hrevtsova-colour.jpg`. CSS crops preserve colour and use the existing168/132px circles; no retouching or master upscaling.
 
 The owner explicitly specified the exact project ticket URL for every UA/EN header: https://eventmate.app/users/share/wordmusic?locale=en . This overrides the default UA locale rule only for that header destination; all concert-specific ticket links remain unchanged.
+
+## All programme portrait coverage — 2 October 2026
+
+Every bilingual programme performer card now uses its confirmed attributed portrait or an empty neutral grey circle. Names, roles and order remain unchanged. The current concert’s three existing rectangular photographs remain unchanged. Unknown portraits (including Nataliia Skrynnyk and Nykyta Naumov) remain unassigned.
+
+Owner-selected exact photography originals: Anastasiia Dovbius — `20251115-175514-A.jpg`; Valentyna Frolova — `20251115-164532-A.jpg`; Daria Pohorila — `20231222-185442-A.jpg` (A colour version from22December2023, matching the owner-identified gallery photograph). All three source JPEGs remain byte-identical at original resolution; responsive WebP delivery uses the existing pipeline. Serhii Mahera uses the official colour portrait https://www.opera.com.ua/sites/default/files/_mg_5040_s.jpg from https://www.opera.com.ua/en/persons/operna-trupa-solisti-basso/sergii-magera (original300×375, no master upscaling). Hrevtsova’s crop is relaxed and lifted to preserve her chin.
+
+The final Hrevtsova portrait supersedes the small Opera photograph: owner-supplied3360×5040JPEG, preserved byte-identical as `assets/img/liliia-hrevtsova-portrait-20261002.jpg`, with a CSS close-face crop. Ihor Povazhnyi’s crop is10%closer with additional headroom.
