@@ -27,6 +27,8 @@ jobs:
           python-version: '3.12'
       - name: Check responsive images
         run: pip install -q pillow && python3 tools/test_portrait_orientation.py && python3 tools/images.py --check
+      - name: Check portrait crops
+        run: pip install -q pillow opencv-python-headless && python3 tools/test_portrait_crops.py
       - name: Check font subsets
         run: pip install -q fonttools brotli && python3 tools/fonts.py --check
       - name: Check page metadata
@@ -44,6 +46,7 @@ jobs:
       - name: Check landing and artists acceptance
         run: |
           python3 tools/test_landing_artists.py
+          python3 tools/test_artist_roles.py
           python3 -m tools.test_announced_concert
           python3 tools/sync_programme_portraits.py --check
           python3 tools/tickets.py --check

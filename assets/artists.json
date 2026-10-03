@@ -44,8 +44,8 @@
       "en": "Anzhelina Shvachka"
     },
     "role": {
-      "uk": "народна артистка України",
-      "en": "People’s Artist of Ukraine"
+      "uk": "мецо-сопрано · Солістка Національної опери України, народна артистка України",
+      "en": "mezzo-soprano · Soloist of the National Opera of Ukraine, People’s Artist of Ukraine"
     },
     "group": "vocal",
     "sources": [
@@ -80,8 +80,8 @@
       "en": "Liliia Hrevtsova"
     },
     "role": {
-      "uk": "народна артистка України",
-      "en": "People’s Artist of Ukraine"
+      "uk": "сопрано · Солістка Національної опери України, народна артистка України",
+      "en": "soprano · Soloist of the National Opera of Ukraine, People’s Artist of Ukraine"
     },
     "group": "vocal",
     "sources": [
@@ -108,8 +108,8 @@
       "en": "Serhii Mahera"
     },
     "role": {
-      "uk": "соліст Національної опери України, народний артист України",
-      "en": "soloist of the National Opera of Ukraine, People’s Artist of Ukraine"
+      "uk": "Соліст Національної опери України, народний артист України",
+      "en": "Soloist of the National Opera of Ukraine, People’s Artist of Ukraine"
     },
     "group": "vocal",
     "sources": [
@@ -201,7 +201,7 @@
       "en": "Nataliia Skrynnyk"
     },
     "role": {
-      "uk": "партія сопрано",
+      "uk": "сопрано",
       "en": "soprano"
     },
     "group": "vocal",
@@ -232,8 +232,8 @@
       "en": "Anastasiia Povazhna"
     },
     "role": {
-      "uk": "солістка",
-      "en": "soloist"
+      "uk": "Солістка Національної опери України, заслужена артистка України",
+      "en": "Soloist of the National Opera of Ukraine, Honoured Artist of Ukraine"
     },
     "group": "vocal",
     "sources": [
@@ -245,9 +245,9 @@
       "width": 2400,
       "height": 3600,
       "crop": {
-        "x": 510,
-        "y": 460,
-        "size": 1300
+        "x": 675,
+        "y": 601,
+        "size": 1011
       }
     }
   },
@@ -258,8 +258,8 @@
       "en": "Ihor Povazhnyi"
     },
     "role": {
-      "uk": "соліст",
-      "en": "soloist"
+      "uk": "тенор",
+      "en": "tenor"
     },
     "group": "vocal",
     "sources": [
@@ -311,8 +311,8 @@
       "en": "Valentyna Frolova"
     },
     "role": {
-      "uk": "вокал",
-      "en": "vocals"
+      "uk": "Солістка Національної оперети України",
+      "en": "Soloist of the National Operetta of Ukraine"
     },
     "group": "vocal",
     "sources": [
@@ -340,8 +340,8 @@
       "en": "Yelyzaveta Bielous"
     },
     "role": {
-      "uk": "солістка",
-      "en": "soloist"
+      "uk": "мецо-сопрано",
+      "en": "mezzo-soprano"
     },
     "group": "vocal",
     "sources": [
@@ -368,8 +368,8 @@
       "en": "Oleksandr Ponomarenko"
     },
     "role": {
-      "uk": "соліст",
-      "en": "soloist"
+      "uk": "тенор",
+      "en": "tenor"
     },
     "group": "vocal",
     "sources": [
@@ -398,8 +398,8 @@
       "en": "Oleksandr Vostriakov"
     },
     "role": {
-      "uk": "соліст",
-      "en": "soloist"
+      "uk": "бас",
+      "en": "bass"
     },
     "group": "vocal",
     "sources": [
@@ -427,8 +427,8 @@
       "en": "Daria Pohorila"
     },
     "role": {
-      "uk": "солістка",
-      "en": "soloist"
+      "uk": "сопрано",
+      "en": "soprano"
     },
     "group": "vocal",
     "sources": [
@@ -455,8 +455,8 @@
       "en": "Kateryna Yasenchuk"
     },
     "role": {
-      "uk": "солістка",
-      "en": "soloist"
+      "uk": "Солістка Національної оперети України",
+      "en": "Soloist of the National Operetta of Ukraine"
     },
     "group": "vocal",
     "sources": [
@@ -481,8 +481,8 @@
       "en": "Lidiia Hlinska"
     },
     "role": {
-      "uk": "вокал",
-      "en": "vocals"
+      "uk": "сопрано",
+      "en": "soprano"
     },
     "group": "vocal",
     "sources": [
@@ -495,9 +495,9 @@
       "width": 4284,
       "height": 5712,
       "crop": {
-        "x": 850,
-        "y": 926,
-        "size": 1900
+        "x": 640,
+        "y": 800,
+        "size": 2200
       },
       "source": "Owner-supplied photograph IMG_7982 (iPhone 15 Plus, 2026-06-04), owner-retouched IMG_7982.psd flattened to JPEG with metadata kept except GPS, 2026-10-03. Replaces the AI-enhanced performance crop. Originals: Google Drive 03_Вебсайт/01_Оригінали_медіа/Портрети."
     }
@@ -509,8 +509,8 @@
       "en": "Miao Xinyue"
     },
     "role": {
-      "uk": "вокал",
-      "en": "vocals"
+      "uk": "сопрано",
+      "en": "soprano"
     },
     "group": "vocal",
     "sources": [
@@ -537,8 +537,8 @@
       "en": "Anastasiia Dovbius"
     },
     "role": {
-      "uk": "вокал",
-      "en": "vocals"
+      "uk": "сопрано",
+      "en": "soprano"
     },
     "group": "vocal",
     "sources": [
@@ -591,8 +591,8 @@
       "en": "Albina Holenach"
     },
     "role": {
-      "uk": "солістка",
-      "en": "soloist"
+      "uk": "сопрано",
+      "en": "soprano"
     },
     "group": "vocal",
     "sources": [
@@ -664,8 +664,8 @@
       "en": "Nataliia Shmelova"
     },
     "role": {
-      "uk": "концертмейстер · співавторка проєкту",
-      "en": "accompanist · project co-author"
+      "uk": "Концертмейстер",
+      "en": "Accompanist"
     },
     "group": "music",
     "sources": [
@@ -696,8 +696,8 @@
       "en": "Viktoriia Mramornova"
     },
     "role": {
-      "uk": "концертмейстер",
-      "en": "accompanist"
+      "uk": "Концертмейстер",
+      "en": "Accompanist"
     },
     "group": "music",
     "sources": [
@@ -713,8 +713,8 @@
       "en": "Viktoriia Shvets"
     },
     "role": {
-      "uk": "концертмейстер, лауреатка міжнародних конкурсів",
-      "en": "accompanist, laureate of international competitions"
+      "uk": "Концертмейстер",
+      "en": "Accompanist"
     },
     "group": "music",
     "sources": [
@@ -770,8 +770,8 @@
       "en": "Iryna Lytvynenko"
     },
     "role": {
-      "uk": "концертмейстер",
-      "en": "accompanist"
+      "uk": "Концертмейстер",
+      "en": "Accompanist"
     },
     "group": "music",
     "sources": [
@@ -783,9 +783,9 @@
       "width": 7605,
       "height": 5070,
       "crop": {
-        "x": 1650,
-        "y": 760,
-        "size": 2400
+        "x": 1800,
+        "y": 1080,
+        "size": 2000
       },
       "programme_crop": [
         1120,
@@ -801,7 +801,7 @@
       "en": "Polina Burakova"
     },
     "role": {
-      "uk": "партія фортепіано",
+      "uk": "фортепіано",
       "en": "piano"
     },
     "group": "music",
@@ -814,9 +814,9 @@
       "width": 5147,
       "height": 7720,
       "crop": {
-        "x": 1160,
-        "y": 516,
-        "size": 2800
+        "x": 1425,
+        "y": 829,
+        "size": 2293
       },
       "programme_crop": [
         960,
@@ -832,8 +832,8 @@
       "en": "Maksym Hara"
     },
     "role": {
-      "uk": "баритон",
-      "en": "baritone"
+      "uk": "баритон · Соліст Національної оперети України",
+      "en": "baritone · Soloist of the National Operetta of Ukraine"
     },
     "group": "vocal",
     "sources": [
@@ -845,9 +845,9 @@
       "width": 1920,
       "height": 1080,
       "crop": {
-        "x": 535,
+        "x": 482,
         "y": 0,
-        "size": 900
+        "size": 860
       }
     }
   },
@@ -863,7 +863,6 @@
     },
     "group": "vocal",
     "sources": [
-      "concerts/autumn-rendezvous.html#artists",
       "concerts/on-the-wings-of-love.html#artists"
     ],
     "portrait": {
@@ -898,9 +897,9 @@
       "width": 682,
       "height": 1024,
       "crop": {
-        "x": 100,
-        "y": 190,
-        "size": 420
+        "x": 177,
+        "y": 212,
+        "size": 350
       }
     }
   },
@@ -950,9 +949,9 @@
       "width": 1254,
       "height": 1254,
       "crop": {
-        "x": 0,
-        "y": 0,
-        "size": 1254
+        "x": 107,
+        "y": 68,
+        "size": 1060
       }
     }
   },
@@ -963,8 +962,8 @@
       "en": "Deng Yajuan"
     },
     "role": {
-      "uk": "вокал",
-      "en": "vocals"
+      "uk": "сопрано",
+      "en": "soprano"
     },
     "group": "vocal",
     "sources": [
@@ -989,8 +988,8 @@
       "en": "Anna Bielanova"
     },
     "role": {
-      "uk": "вокал",
-      "en": "vocals"
+      "uk": "мецо-сопрано",
+      "en": "mezzo-soprano"
     },
     "group": "vocal",
     "sources": [

@@ -93,7 +93,12 @@ change pass; if a test encodes an old owner decision, ask.
   «Запис концерту…». Nothing beside the video. The Відео page keeps the
   full description.
 - Performers: see design-system §5 (main performers 4:5 tiles, students
-  circles, host after students). Under a name only the part/role.
+  circles, host after students). Under a name only the role from
+  `assets/artists.json`, identical on every page (artists, programmes,
+  video performer lists), formatted like the 15 October page:
+  «мецо-сопрано · Солістка Національної опери України, народна артистка
+  України», «Концертмейстер». Never «партія …», «лауреат…», «співавторка».
+  `tools/test_artist_roles.py` fails on any drift.
 - Composer names in full on the site (Вольфганг Амадей Моцарт).
 
 ## Posters and images
@@ -111,9 +116,13 @@ change pass; if a test encodes an old owner decision, ask.
   names; skip byte-identical duplicates. Run `python3 tools/images.py`, then
   `--check`.
 - Portraits: crops are data in `assets/artists.json` (`crop` circle,
-  `programme_crop` 4:5 tile). Follow design-system §6 and judge every change
-  on the contact sheet next to all others:
-  `SITE_URL=… node tools/portrait_sheet.cjs sheet.png --highlight <id>`.
+  `programme_crop` 4:5 tile). Follow design-system §6: compute the circle
+  with `python3 tools/portrait_crop.py <id>` (never by eye), judge it on the
+  contact sheet next to all others
+  (`SITE_URL=… node tools/portrait_sheet.cjs sheet.png --highlight <id>`);
+  `tools/test_portrait_crops.py` (CI) fails on a crop outside the photo or a
+  face that is off-centre, too small or too large. Fix the crop, never the
+  bands.
 - Logos (word&music, venues, Eventmate) only in original colours or in the
   system monochrome (`.venue-logo--mono`), never recoloured, no plates.
 - Photo previews (5 frames on Фото and concert pages): bright colour shots
