@@ -157,6 +157,10 @@ section{scroll-margin-top:90px}
 .facts .first{padding-left:0;border-left:0}
 .facts dd{margin:8px 0 0}
 .facts .big{font-size:34px;line-height:1}
+.facts div:has(.price-range){container-type:inline-size}
+.facts .big:has(.price-range){font-size:min(34px,25cqw)}
+.facts .price-range{white-space:nowrap}
+@media(max-width:900px){.facts .big:has(.price-range){font-size:min(24px,25cqw)}}
 .c-hero .c-cta{display:flex;gap:12px;margin-top:32px;align-items:center;flex-wrap:wrap}
 .c-hero .c-cta .btn{min-height:56px;padding:0 32px;font-size:16px}
 .c-hero .c-cta .btn-o{min-height:56px}
