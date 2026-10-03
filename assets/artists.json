@@ -207,7 +207,22 @@
     "sources": [
       "concerts/stabat-mater.html#artists"
     ],
-    "portrait": null
+    "portrait": {
+      "src": "/assets/img/nataliia-skrynnyk-portrait-20261003.jpg",
+      "source": "KR/Production/Photography/2025/20250416-2_Stabat_Mater/20250416-190508-A.jpg; owner confirmed the identification 2026-10-03; original JPEG preserved byte-for-byte, crop only",
+      "width": 5148,
+      "height": 7722,
+      "crop": {
+        "x": 950,
+        "y": 690,
+        "size": 3300
+      },
+      "programme_crop": [
+        800,
+        826,
+        3600
+      ]
+    }
   },
   {
     "id": "anastasiia-povazhna",
@@ -755,7 +770,22 @@
     "sources": [
       "concerts/roads-of-love.html#artists"
     ],
-    "portrait": null
+    "portrait": {
+      "src": "/assets/img/iryna-lytvynenko-portrait-20261003.jpg",
+      "source": "KR/Production/Photography/2024/20240608_Дороги_кохання/20240608-162236-A.jpg; owner confirmed the identification 2026-10-03; original JPEG preserved byte-for-byte, crop only",
+      "width": 7605,
+      "height": 5070,
+      "crop": {
+        "x": 1650,
+        "y": 760,
+        "size": 2400
+      },
+      "programme_crop": [
+        1120,
+        755,
+        3000
+      ]
+    }
   },
   {
     "id": "polina-burakova",
@@ -771,7 +801,22 @@
     "sources": [
       "concerts/stabat-mater.html#artists"
     ],
-    "portrait": null
+    "portrait": {
+      "src": "/assets/img/polina-burakova-portrait-20261003.jpg",
+      "source": "KR/Production/Photography/2025/20250416-2_Stabat_Mater/20250416-190636-A.jpg; owner confirmed the identification 2026-10-03; original JPEG preserved byte-for-byte, crop only",
+      "width": 5147,
+      "height": 7720,
+      "crop": {
+        "x": 1160,
+        "y": 516,
+        "size": 2800
+      },
+      "programme_crop": [
+        960,
+        576,
+        3200
+      ]
+    }
   },
   {
     "id": "maksym-hara",

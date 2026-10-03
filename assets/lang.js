@@ -1,6 +1,7 @@
-/* Site language on arrival: visitors in Ukraine get Ukrainian; visitors
-   abroad get Ukrainian if their device language is Ukrainian, otherwise
-   English. A language picked with the UA/EN switch is remembered. */
+/* Site language on arrival at a Ukrainian (default) address: visitors in
+   Ukraine get Ukrainian; visitors abroad get Ukrainian if their device
+   language is Ukrainian, otherwise English. /en/ addresses stay English.
+   A language picked with the UA/EN switch is remembered. */
 (function () {
   var KEY = 'wm-lang';
   var page = document.documentElement.lang === 'en' ? 'en' : 'uk';
@@ -16,6 +17,9 @@
   if (/bot|crawl|spider|slurp|lighthouse|preview|google-inspectiontool|googleother/i.test(navigator.userAgent)) return;
 
   var want = load();
+  // An /en/ address is an explicit English link (e.g. shared with a guest in
+  // Kyiv): without a remembered choice it is never switched to Ukrainian.
+  if (want !== 'uk' && want !== 'en' && page === 'en') return;
   if (want !== 'uk' && want !== 'en') {
     var tz = '';
     try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (e) {}

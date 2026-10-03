@@ -93,3 +93,11 @@ upper-middle and head-and-shoulders scale matching the neighbouring
 portraits. The original JPEG and his rectangular programme view are
 unchanged. The 404 page's «Контакти» link now points to `/index.html#contacts`
 (the 404 page has no contacts section of its own).
+
+Owner-confirmed portraits — 3 October 2026 (evening): Nataliia Skrynnyk
+(`20250416-190508-A`) and Polina Burakova (`20250416-190636-A`) from the
+Stabat Mater post-concert portrait set, and Iryna Lytvynenko
+(`20240608-162236-A`, at the piano) from Roads of Love. Originals are copied
+byte-for-byte (no GPS present) as `assets/img/<id>-portrait-20261003.jpg`;
+circle and 4:5 programme views are crops only. Directory total: 31 of 36
+with photographs; Mramornova and Terentiev remain neutral placeholders.

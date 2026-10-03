@@ -17,9 +17,15 @@
   the concert programme page (`concert.html`). Everywhere else (header,
   subnav, sticky buy bar, home, concert list) show the start time only.
 - UA pages link Eventmate with `?locale=uk`, EN pages with `?locale=en`.
+- Header «Квитки»/«Tickets» follow the nearest concert on sale
+  (`tools/tickets.py` reads the MusicEvent offers; `assets/header.js`
+  switches after a concert ends, else the organiser profile). Run
+  `python3 tools/tickets.py` after adding or archiving a concert.
 - Language on arrival (`assets/lang.js`, in the head of every page):
-  visitors in Ukraine (time zone) get UA; abroad, UA if the device
-  language is Ukrainian, otherwise EN. A UA/EN choice is remembered.
+  at a UA (default) address, visitors in Ukraine (time zone) get UA;
+  abroad, UA if the device language is Ukrainian, otherwise EN. An /en/
+  address stays EN unless UA was chosen before. A UA/EN choice is
+  remembered.
 - Nothing is invented (same rule as rusanivsky.com): titles, names, dates,
   venues, durations and descriptions come from a real source (YouTube,
   posters, the organisers). If something is unknown, leave it out rather
