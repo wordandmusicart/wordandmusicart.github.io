@@ -18,6 +18,9 @@ NAMES['Дарія Погоріла'] = NAMES['Дарʼя Погоріла']
 NAMES['Dariia Pohorila'] = NAMES['Daria Pohorila']
 HOST = 'hennadii-taraniuk'
 SUPPORTING = {
+    'autumn-rendezvous': {'valentyna-frolova', 'oleksandr-ponomarenko',
+        'oleksandr-vostriakov', 'lidiia-hlinska', 'miao-xinyue',
+        'anastasiia-dovbius', 'iryna-shelest'},
     'christmas-kaleidoscope': {'valentyna-frolova', 'yelyzaveta-bielous',
         'oleksandr-ponomarenko', 'oleksandr-vostriakov', 'daria-pohorila',
         'lidiia-hlinska', 'miao-xinyue'},
