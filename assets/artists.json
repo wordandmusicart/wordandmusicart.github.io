@@ -63,7 +63,12 @@
         "x": 0,
         "y": 56.486486486486484,
         "size": 1045
-      }
+      },
+      "programme_crop": [
+        0,
+        56.486486486486484,
+        1045
+      ]
     }
   },
   {
@@ -109,15 +114,20 @@
       "concerts/melodies-of-enchanting-june.html#artists"
     ],
     "portrait": {
-      "src": "/assets/img/serhii-mahera-colour.jpg",
-      "source": "https://www.opera.com.ua/en/persons/operna-trupa-solisti-basso/sergii-magera",
-      "width": 300,
-      "height": 375,
+      "src": "/assets/img/serhii-mahera-enhanced-20261003.jpg",
+      "source": "https://www.opera.com.ua/en/persons/operna-trupa-solisti-basso/sergii-magera; technical brightness, colour and clarity enhancement with ImageGen, 2026-10-03; original preserved.",
+      "width": 1122,
+      "height": 1402,
       "crop": {
-        "x": 25,
-        "y": 0,
-        "size": 250
-      }
+        "x": 93.5,
+        "y": 0.0,
+        "size": 935.0
+      },
+      "programme_crop": [
+        0,
+        0,
+        1122
+      ]
     }
   },
   {
@@ -266,20 +276,15 @@
       "concerts/music-of-soul-and-heart.html#artists"
     ],
     "portrait": {
-      "src": "/assets/img/music-of-soul-and-heart-poster.jpg",
-      "source": "concerts/music-of-soul-and-heart.html",
+      "src": "/assets/img/hanna-semets-portrait-20261003.jpg",
+      "source": "Owner-identified Google Drive original 2023-08-13 22.19.43-2.jpg; PSD content under JPG filename, decoded to web JPEG without retouching; original preserved.",
+      "width": 4500,
+      "height": 4500,
       "crop": {
-        "x": 123,
-        "y": 2045,
-        "size": 468
-      },
-      "width": 2400,
-      "height": 3394,
-      "label": {
-        "uk": "Портрет з афіші концерту",
-        "en": "Portrait from concert poster"
-      },
-      "rim_inset": 0.035
+        "x": 50,
+        "y": 0,
+        "size": 3700
+      }
     }
   },
   {
@@ -417,7 +422,7 @@
       "width": 2400,
       "height": 3601,
       "crop": {
-        "x": 640,
+        "x": 710,
         "y": 460,
         "size": 1120
       }
@@ -443,9 +448,9 @@
       "width": 2400,
       "height": 3600,
       "crop": {
-        "x": 0,
-        "y": 0,
-        "size": 2400
+        "x": 350,
+        "y": 40,
+        "size": 2050
       }
     }
   },
@@ -465,14 +470,14 @@
       "concerts/on-the-wings-of-love.html#artists"
     ],
     "portrait": {
-      "src": "/assets/img/lidiia-hlinska-portrait-20261003.jpg",
-      "source": "User-attributed performance source; conservative AI crop and technical enhancement, 2026-10-03. See docs/portrait-sources-20261003.md.",
+      "src": "/assets/img/lidiia-hlinska-enhanced-20261003.jpg",
+      "source": "User-attributed performance source; conservative AI crop and technical enhancement, 2026-10-03. See docs/portrait-sources-20261003.md.; technical brightness, colour and clarity enhancement with ImageGen, 2026-10-03; original preserved.",
       "width": 1254,
       "height": 1254,
       "crop": {
-        "x": 200,
-        "y": 30,
-        "size": 780
+        "x": 200.0,
+        "y": 30.0,
+        "size": 780.0
       }
     }
   },
@@ -492,14 +497,14 @@
       "concerts/roads-of-love.html#artists"
     ],
     "portrait": {
-      "src": "/assets/img/miao-xinyue-portrait-20261003.jpg",
-      "source": "User-attributed performance source; conservative AI crop and technical enhancement, 2026-10-03. See docs/portrait-sources-20261003.md.",
+      "src": "/assets/img/miao-xinyue-enhanced-20261003.jpg",
+      "source": "User-attributed performance source; conservative AI crop and technical enhancement, 2026-10-03. See docs/portrait-sources-20261003.md.; technical brightness, colour and clarity enhancement with ImageGen, 2026-10-03; original preserved.",
       "width": 1254,
       "height": 1254,
       "crop": {
-        "x": 160,
-        "y": 70,
-        "size": 800
+        "x": 160.0,
+        "y": 70.0,
+        "size": 800.0
       }
     }
   },
