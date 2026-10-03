@@ -113,7 +113,7 @@ class EventSchemaTest(unittest.TestCase):
         )
         return [path for path in ua + en if path.stem not in ANNOUNCED_CONCERTS]
 
-    def test_announced_concert_has_truthful_ticket_offer_without_invented_price(self):
+    def test_announced_concert_has_source_backed_ticket_range_and_minimum_offer(self):
         for prefix, lang in (("", "uk"), ("en/", "en")):
             with self.subTest(language=lang):
                 page = (ROOT / prefix / "concerts/on-the-wings-of-love.html").read_text(encoding="utf-8")
@@ -129,8 +129,10 @@ class EventSchemaTest(unittest.TestCase):
                 self.assertEqual(offer.get("@type"), "Offer")
                 self.assertEqual(offer.get("url"), f"{OCTOBER_15_TICKET}?locale={lang}")
                 self.assertEqual(offer.get("availability"), "https://schema.org/InStock")
-                for unsupported_field in ("price", "lowPrice", "highPrice", "priceSpecification", "validFrom"):
-                    self.assertNotIn(unsupported_field, offer, "No price or sales opening date was supplied")
+                self.assertEqual(offer.get("price"), "250")
+                self.assertEqual(offer.get("priceCurrency"), "UAH")
+                for unsupported_field in ("lowPrice", "highPrice", "priceSpecification", "validFrom"):
+                    self.assertNotIn(unsupported_field, offer, "Only the minimum price is emitted; no sales opening date was supplied")
                 self.assertEqual(len(event["performer"]), 13)
                 self.assertEqual(len({p["name"] for p in event["performer"]}), 13)
                 self.assertNotIn("koncert-ziti-kohati-mriati", page)
@@ -140,7 +142,10 @@ class EventSchemaTest(unittest.TestCase):
                 self.assertEqual(fact(hero, date_label), "15.10")
                 self.assertEqual(fact(hero, start_label), "18:00")
                 self.assertEqual(fact(hero, end_label), "19:30")
-                self.assertIsNone(fact(hero, "Ціна" if lang == "uk" else "Price"))
+                self.assertEqual(
+                    fact(hero, "Ціна" if lang == "uk" else "Price"),
+                    "250–400 грн" if lang == "uk" else "250–400 UAH",
+                )
 
     def test_historical_concerts_have_no_music_event(self):
         for path in self.historical_pages():
