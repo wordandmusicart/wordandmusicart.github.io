@@ -35,10 +35,12 @@ Home pages carry schema.org `Organization` + `WebSite`; the current concert
 pages carry a `MusicEvent`. Announced concert pages also carry a `MusicEvent`, without an offer until
 a ticket link is confirmed. Past concerts have no Event markup because their
 tickets are no longer available. `python3 tools/structured_data.py` builds the
-JSON-LD from what the page already shows (H1, date, start/end, venue,
+JSON-LD from what the page already shows (H1, date, time range, venue,
 address, performers, ticket link, og:image, description). The organiser
-confirmed that each concert lasts one hour; show the end time in the facts
-block whenever the start time is known. Run the generator after editing any
+confirmed the historical one-hour ranges; the 15 October programme runs
+18:00–19:30. Show each known time as a range throughout the site; leave
+unconfirmed historical times out. The facts row groups date, time and price
+into three columns when a price is supplied. Run the generator after editing any
 concert page or the contacts block. `--check` runs in the deploy and fails if
 a page's JSON-LD is out of date.
 

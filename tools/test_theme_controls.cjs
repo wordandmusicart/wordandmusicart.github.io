@@ -41,15 +41,20 @@ async function rendered(page, mode, {picture = true} = {}) {
     const result = await page.evaluate(() => {
       const style = getComputedStyle(document.documentElement);
       const visibility = selector => [...document.querySelectorAll(selector)].map(node => getComputedStyle(node).display !== 'none');
+      const banner = document.querySelector('.next-banner img');
       return {paper: style.getPropertyValue('--paper').trim().toLowerCase(),
         lightLogos: visibility('.logo-light'), darkLogos: visibility('.logo-dark'),
-        picture: document.querySelector('.next-banner picture img')?.currentSrc};
+        banner: banner?.currentSrc, bannerLoaded: Boolean(banner?.complete && banner.naturalWidth > 0)};
     });
     assert.equal(result.paper, mode === 'dark' ? '#1c1c1c' : '#f5f5f5');
     assert.ok(result.lightLogos.length && result.darkLogos.length, 'Both logo variants must exist');
     assert.ok(result.lightLogos.every(shown => shown === (mode === 'light')), 'Light-mode logos must follow chosen theme');
     assert.ok(result.darkLogos.every(shown => shown === (mode === 'dark')), 'Dark-mode logos must follow chosen theme');
-    if (picture) assert.match(result.picture || '', mode === 'dark' ? /vivre-banner-light[-.]/ : /vivre-banner-dark[-.]/);
+    if (picture) {
+      // The approved October 15 gold banner is shared by both themes.
+      assert.match(result.banner || '', /on-the-wings-of-love-banner-20261003[-.]/);
+      assert.ok(result.bannerLoaded, 'The next-concert artwork must load in the chosen theme');
+    }
   }, `Rendering must resolve to ${mode}`);
 }
 async function choose(page, mode) {
@@ -137,6 +142,36 @@ async function context(browser, colorScheme = 'light') {
         } finally { await ctx.close(); }
       });
     }
+    await test('October 15 programme poster follows Auto and manual themes in both languages', async () => {
+      for (const route of ['/concert.html', '/en/concerts/on-the-wings-of-love.html']) {
+        for (const system of ['light', 'dark']) {
+          const ctx = await context(browser, system);
+          try {
+            const page = await ctx.newPage();
+            await page.goto(BASE + route);
+            async function poster(mode) {
+              await rendered(page, mode, {picture: false});
+              await eventually(async () => {
+                const image = await page.locator('.c-hero .poster img').evaluate(node => ({
+                  source: node.currentSrc, loaded: node.complete && node.naturalWidth > 0,
+                }));
+                assert.match(image.source, mode === 'dark'
+                  ? /on-the-wings-of-love-poster-20261003-final-light[-.]/
+                  : /on-the-wings-of-love-poster-20261003-final-night[-.]/);
+                assert.ok(image.loaded, `${route}: the selected poster must load`);
+              }, `${route}: poster must resolve to ${mode}`);
+            }
+            await selected(page, 'auto');
+            await poster(system);
+            const opposite = system === 'dark' ? 'light' : 'dark';
+            await choose(page, opposite);
+            await poster(opposite);
+            await choose(page, 'auto');
+            await poster(system);
+          } finally { await ctx.close(); }
+        }
+      }
+    });
     await test('localStorage denial keeps controls usable and emits no uncaught errors', async () => {
       const ctx = await context(browser, 'dark');
       try {

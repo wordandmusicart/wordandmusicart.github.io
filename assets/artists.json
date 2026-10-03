@@ -11,7 +11,7 @@
     },
     "group": "author",
     "sources": [
-      "concert.html#artists",
+      "concerts/vivre-aimer-rever.html#artists",
       "concerts/amore-eterno.html#artists",
       "concerts/autumn-rendezvous.html#artists",
       "concerts/christmas-kaleidoscope.html#artists",
@@ -142,7 +142,7 @@
     },
     "group": "vocal",
     "sources": [
-      "concert.html#artists",
+      "concerts/vivre-aimer-rever.html#artists",
       "concerts/amore-eterno.html#artists",
       "concerts/melodies-eternelles.html#artists",
       "concerts/soul-wanderings.html#artists",
@@ -600,14 +600,14 @@
     },
     "group": "music",
     "sources": [
-      "concert.html#artists",
+      "concerts/vivre-aimer-rever.html#artists",
       "concerts/amore-eterno.html#artists",
       "concerts/melodies-eternelles.html#artists",
       "concerts/soul-wanderings.html#artists"
     ],
     "portrait": {
       "src": "/assets/img/mykola-chykarenko.jpg",
-      "source": "concert.html#artists",
+      "source": "concerts/vivre-aimer-rever.html#artists",
       "position": "50% 0%",
       "width": 2400,
       "height": 3600,
@@ -630,7 +630,7 @@
     },
     "group": "music",
     "sources": [
-      "concert.html#artists"
+      "concerts/vivre-aimer-rever.html#artists"
     ],
     "portrait": null
   },
