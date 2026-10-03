@@ -76,7 +76,7 @@ class TicketPriceRangeTest(unittest.TestCase):
 
     def test_missing_or_malformed_prices_have_no_fabricated_price(self):
         examples = (
-            None, "", "Ціну уточнюють", "250– грн", "–400 грн", "250–400", 
+            None, "", "Ціну уточнюють", "250– грн", "–400 грн", "250–400",
             "400–250 грн", "250–400–500 грн", "250–four hundred грн",
             "250–400 EUR", "250–400 грн + комісія", "250–400 грн приблизно",
         )
