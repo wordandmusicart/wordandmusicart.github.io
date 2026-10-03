@@ -724,20 +724,20 @@
       "concerts/music-of-soul-and-heart.html#artists"
     ],
     "portrait": {
-      "src": "/assets/img/music-of-soul-and-heart-poster.jpg",
-      "source": "concerts/music-of-soul-and-heart.html",
+      "src": "/assets/img/makar-rusanivsky-portrait-20261003.jpg",
+      "source": "Owner-identified photograph, 2026-10-03; 2023-08-17 11.26-2.jpg, matching the supplied Photoshop document preview; original JPEG preserved byte-for-byte",
+      "width": 4834,
+      "height": 6042,
       "crop": {
-        "x": 669,
-        "y": 2214,
-        "size": 468
+        "x": 700,
+        "y": 400,
+        "size": 3000
       },
-      "width": 2400,
-      "height": 3394,
-      "label": {
-        "uk": "Портрет з афіші концерту",
-        "en": "Portrait from concert poster"
-      },
-      "rim_inset": 0.035
+      "programme_crop": [
+        0,
+        0,
+        4834
+      ]
     }
   },
   {
