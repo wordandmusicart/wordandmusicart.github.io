@@ -33,8 +33,10 @@ jobs:
         run: python3 tools/check_seo.py
       - name: Check structured data
         run: python3 tools/structured_data.py --check
-      - name: Check concert end dates
-        run: python3 tools/test_event_end_date.py
+      - name: Check concert dates and ticket prices
+        run: |
+          python3 tools/test_event_end_date.py
+          python3 tools/test_ticket_price_range.py
       - name: Check landing and artists acceptance
         run: |
           python3 tools/test_landing_artists.py

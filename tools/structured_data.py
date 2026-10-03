@@ -130,10 +130,15 @@ def event(s, lang, url):
     tickets = re.search(r'<div class="c-cta"[^>]*><a class="btn" href="([^"]+)"', hero)
     if tickets:
         offer = {'@type': 'Offer', 'url': html.unescape(tickets.group(1))}
-        price = re.fullmatch(r'(\d+)\s*(?:грн|₴)|₴\s*(\d+)', facts.get('price', ''))
+        price = re.fullmatch(
+            r'(?:(\d+)(?:\s*[–—-]\s*(\d+))?\s*(?:грн|₴|UAH)|₴\s*(\d+)(?:\s*[–—-]\s*(\d+))?)',
+            facts.get('price', ''))
         if price:
-            offer['price'] = price.group(1) or price.group(2)
-            offer['priceCurrency'] = 'UAH'
+            low = price.group(1) or price.group(3)
+            high = price.group(2) or price.group(4)
+            if high is None or int(low) <= int(high):
+                offer['price'] = low
+                offer['priceCurrency'] = 'UAH'
         status = re.search(r'class="status meta"(?: data-sales-start="([\d-]+)")?><i></i>([^<]+)<', s)
         if status and status.group(2).strip() in ON_SALE:
             offer['availability'] = 'https://schema.org/InStock'
