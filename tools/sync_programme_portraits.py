@@ -29,7 +29,7 @@ SUPPORTING = {
 }
 # Separate 4:5 views; circle refinement never changes approved new-page tiles.
 TILES = {
-    'anzhelina-shvachka': (0, 40, 740),
+    'anzhelina-shvachka': (0, 56.486486486486484, 1045),
     'liliia-hrevtsova': (1080, 900, 1400),
     'serhii-mahera': (0, 0, 300),
     'mariia-popovych': (300, 450, 1800),

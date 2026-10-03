@@ -55,14 +55,14 @@
       "concerts/on-the-wings-of-love.html#artists"
     ],
     "portrait": {
-      "src": "/assets/img/anzhelina-shvachka-portrait-20261002.jpg",
-      "source": "User-supplied portrait, 2026-10-02; original JPEG preserved",
-      "width": 740,
-      "height": 1065,
+      "src": "/assets/img/anzhelina-shvachka-portrait-20261003-restored.jpg",
+      "source": "Owner-supplied portrait, 2026-10-02; conservative AI sharpness and skin-tone restoration requested 2026-10-03; original JPEG preserved",
+      "width": 1045,
+      "height": 1505,
       "crop": {
         "x": 0,
-        "y": 40,
-        "size": 740
+        "y": 56.486486486486484,
+        "size": 1045
       }
     }
   },
@@ -886,14 +886,14 @@
       "concerts/on-the-wings-of-love.html#artists"
     ],
     "portrait": {
-      "src": "/assets/img/oleksii-maliovanyi.jpg",
-      "source": "Owner-supplied identified IMG_20261002_163734_597.jpg; documented in docs/on-the-wings-of-love-source.md",
-      "width": 640,
-      "height": 640,
+      "src": "/assets/img/oleksii-maliovanyi-portrait-20261003-studio.jpg",
+      "source": "Owner-supplied identified portrait; AI studio head-and-shoulders restyle explicitly requested 2026-10-03; original preserved",
+      "width": 1254,
+      "height": 1254,
       "crop": {
-        "x": 175,
-        "y": 50,
-        "size": 300
+        "x": 0,
+        "y": 0,
+        "size": 1254
       }
     }
   },
