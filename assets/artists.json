@@ -912,15 +912,15 @@
       "concerts/roads-of-love.html#artists"
     ],
     "portrait": {
-      "src": "/assets/img/deng-yajuan-portrait-20261003.jpg",
-      "width": 588,
-      "height": 1280,
+      "src": "/assets/img/deng-yajuan-portrait-20261003-confirmed.jpg",
+      "width": 5034,
+      "height": 7551,
       "crop": {
-        "x": 170,
-        "y": 445,
-        "size": 245
+        "x": 1630,
+        "y": 1490,
+        "size": 2400
       },
-      "source": "User directly supplied and identified portrait as Deng Yajuan, 2026-10-03. Existing circular photograph detail, original screen raster preserved."
+      "source": "Original 20240608-162637-A.jpg; user directly identified the supplied photograph, 2026-10-03. Original photo preserved, crop only."
     }
   },
   {
@@ -938,15 +938,15 @@
       "concerts/roads-of-love.html#artists"
     ],
     "portrait": {
-      "src": "/assets/img/anna-bielanova-portrait-20261003.jpg",
-      "width": 7728,
-      "height": 5152,
+      "src": "/assets/img/anna-bielanova-portrait-20261003-confirmed.jpg",
+      "width": 5152,
+      "height": 7728,
       "crop": {
-        "x": 400,
-        "y": 350,
-        "size": 3100
+        "x": 850,
+        "y": 400,
+        "size": 3300
       },
-      "source": "Original 20240608-165113-A.jpg; user identified gallery photo 26, woman on the left, 2026-10-03."
+      "source": "Original 20240608-163700-A.jpg; user directly identified the supplied photograph, 2026-10-03. Original photo preserved, crop only."
     }
   }
 ]
