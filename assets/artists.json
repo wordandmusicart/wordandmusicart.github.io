@@ -295,7 +295,8 @@
     "group": "vocal",
     "sources": [
       "concerts/christmas-kaleidoscope.html#artists",
-      "concerts/heartstrings.html#artists"
+      "concerts/heartstrings.html#artists",
+      "concerts/roads-of-love.html#artists"
     ],
     "portrait": {
       "src": "/assets/img/20251115-164532-A.jpg",
@@ -322,7 +323,8 @@
     "group": "vocal",
     "sources": [
       "concerts/christmas-kaleidoscope.html#artists",
-      "concerts/winter-extravaganza.html#artists"
+      "concerts/winter-extravaganza.html#artists",
+      "concerts/roads-of-love.html#artists"
     ],
     "portrait": {
       "src": "/assets/photo/winter-extravaganza/20231222-185125-A.webp",
@@ -350,7 +352,8 @@
     "sources": [
       "concerts/christmas-kaleidoscope.html#artists",
       "concerts/winter-extravaganza.html#artists",
-      "concerts/on-the-wings-of-love.html#artists"
+      "concerts/on-the-wings-of-love.html#artists",
+      "concerts/roads-of-love.html#artists"
     ],
     "portrait": {
       "src": "/assets/photo/winter-extravaganza/20231222-184821-A.webp",
@@ -461,7 +464,17 @@
       "concerts/christmas-kaleidoscope.html#artists",
       "concerts/on-the-wings-of-love.html#artists"
     ],
-    "portrait": null
+    "portrait": {
+      "src": "/assets/img/lidiia-hlinska-portrait-20261003.jpg",
+      "source": "User-attributed performance source; conservative AI crop and technical enhancement, 2026-10-03. See docs/portrait-sources-20261003.md.",
+      "width": 1254,
+      "height": 1254,
+      "crop": {
+        "x": 200,
+        "y": 30,
+        "size": 780
+      }
+    }
   },
   {
     "id": "miao-xinyue",
@@ -475,9 +488,20 @@
     },
     "group": "vocal",
     "sources": [
-      "concerts/christmas-kaleidoscope.html#artists"
+      "concerts/christmas-kaleidoscope.html#artists",
+      "concerts/roads-of-love.html#artists"
     ],
-    "portrait": null
+    "portrait": {
+      "src": "/assets/img/miao-xinyue-portrait-20261003.jpg",
+      "source": "User-attributed performance source; conservative AI crop and technical enhancement, 2026-10-03. See docs/portrait-sources-20261003.md.",
+      "width": 1254,
+      "height": 1254,
+      "crop": {
+        "x": 160,
+        "y": 70,
+        "size": 800
+      }
+    }
   },
   {
     "id": "anastasiia-dovbius",
@@ -520,7 +544,17 @@
     "sources": [
       "concerts/heartstrings.html#artists"
     ],
-    "portrait": null
+    "portrait": {
+      "src": "/assets/img/nykyta-naumov-portrait-20261003.jpg",
+      "source": "User-attributed performance source; conservative AI crop and technical enhancement, 2026-10-03. See docs/portrait-sources-20261003.md.",
+      "width": 1254,
+      "height": 1254,
+      "crop": {
+        "x": 30,
+        "y": 0,
+        "size": 1000
+      }
+    }
   },
   {
     "id": "albina-holenach",
@@ -534,7 +568,8 @@
     },
     "group": "vocal",
     "sources": [
-      "concerts/winter-extravaganza.html#artists"
+      "concerts/winter-extravaganza.html#artists",
+      "concerts/roads-of-love.html#artists"
     ],
     "portrait": {
       "src": "/assets/photo/winter-extravaganza/20231225-154957-A.webp",
@@ -657,7 +692,17 @@
     "sources": [
       "concerts/heartstrings.html#artists"
     ],
-    "portrait": null
+    "portrait": {
+      "src": "/assets/img/viktoriia-shvets-portrait-20261003.jpg",
+      "source": "User-attributed performance source; conservative AI crop and technical enhancement, 2026-10-03. See docs/portrait-sources-20261003.md.",
+      "width": 1122,
+      "height": 1402,
+      "crop": {
+        "x": 0,
+        "y": 0,
+        "size": 1122
+      }
+    }
   },
   {
     "id": "makar-rusanivskyi",
@@ -850,6 +895,48 @@
         "y": 50,
         "size": 300
       }
+    }
+  },
+  {
+    "id": "den-yatsziuen",
+    "name": {
+      "uk": "День Яцзюень",
+      "en": "День Яцзюень"
+    },
+    "role": {
+      "uk": "вокал",
+      "en": "vocals"
+    },
+    "group": "vocal",
+    "sources": [
+      "concerts/roads-of-love.html#artists"
+    ],
+    "portrait": null
+  },
+  {
+    "id": "anna-bielanova",
+    "name": {
+      "uk": "Анна Бєланова",
+      "en": "Anna Bielanova"
+    },
+    "role": {
+      "uk": "вокал",
+      "en": "vocals"
+    },
+    "group": "vocal",
+    "sources": [
+      "concerts/roads-of-love.html#artists"
+    ],
+    "portrait": {
+      "src": "/assets/img/anna-bielanova-portrait-20261003.jpg",
+      "width": 7728,
+      "height": 5152,
+      "crop": {
+        "x": 400,
+        "y": 350,
+        "size": 3100
+      },
+      "source": "Original 20240608-165113-A.jpg; user identified gallery photo 26, woman on the left, 2026-10-03."
     }
   }
 ]
