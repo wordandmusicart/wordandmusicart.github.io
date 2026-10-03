@@ -28,7 +28,7 @@ jobs:
       - name: Check responsive images
         run: pip install -q pillow && python3 tools/test_portrait_orientation.py && python3 tools/images.py --check
       - name: Check portrait crops
-        run: pip install -q pillow opencv-python-headless && python3 tools/test_portrait_crops.py
+        run: pip install -q pillow "opencv-python-headless<5" && python3 tools/test_portrait_crops.py
       - name: Check font subsets
         run: pip install -q fonttools brotli && python3 tools/fonts.py --check
       - name: Check page metadata
