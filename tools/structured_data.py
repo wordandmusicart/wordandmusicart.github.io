@@ -144,14 +144,14 @@ def event(s, lang, url):
 
 
 def gallery(s, lang, url):
-    head = re.search(r'<div class="list-head".*?<div class="meta muted">([^<]*)</div><h1[^>]*>(.*?)</h1>', s, re.S)
+    head = re.search(r'<div class="list-head".*?<div class="meta muted">(.*?)</div><h1[^>]*>(.*?)</h1>', s, re.S)
     if not head:
         return None
     g = {'@type': 'ImageGallery', 'name': meta(s, 'property', 'og:title'), 'url': url, 'inLanguage': lang}
     desc = meta(s, 'name', 'description')
     if desc:
         g['description'] = desc
-    by = re.search(r'(?:фотограф|by) (.+)$', html.unescape(head.group(1)))
+    by = re.search(r'(?:фотограф|by) (.+)$', text(head.group(1)))
     if by:
         g['author'] = person(by.group(1).strip())
     return [g]

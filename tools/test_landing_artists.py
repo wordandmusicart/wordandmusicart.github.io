@@ -164,17 +164,56 @@ class LandingArtistsAcceptance(unittest.TestCase):
                     self.assertTrue(src.startswith("/"), "Portrait must use a preserved local asset")
                     self.assertTrue((ROOT / src.lstrip("/")).is_file(), f"Missing portrait asset: {src}")
 
-    def test_home_has_five_ordered_scenes_and_footer_in_contacts(self):
+    def test_home_has_six_ordered_scenes_and_footer_in_contacts(self):
         for prefix in ("", "en/"):
             with self.subTest(language=prefix or "uk"):
                 doc = Document(ROOT / prefix / "index.html").root
                 scenes = list(doc.find(cls="home-scene"))
                 self.assertEqual([s.attrs.get("id") for s in scenes],
-                                 ["intro", "about", "past-concerts", "media", "contacts"])
+                                 ["intro", "about", "past-concerts", "media", "locations", "contacts"])
                 self.assertEqual(len(list(scenes[-1].find("footer"))), 1,
                                  "The footer must belong to the last scene")
                 self.assertFalse(any(n.attrs.get("id") == "repertoire" for n in doc.find()))
                 self.assertFalse(any(urlsplit(href).fragment == "repertoire" for href in links(doc)))
+
+    def test_home_locations_have_five_official_venues_and_localized_heading(self):
+        common_links = {"https://library.gov.ua/", "https://www.actorhall.com/",
+                        "https://sofiia-kyivska.ua/"}
+        for prefix, heading, tauvers, manor in (
+            ("", "Локації", "https://www.tauvers-gallery.com/ua",
+             "https://kyivhistorymuseum.org.ua/branch/sadyba-na-kudriavtsi/"),
+            ("en/", "Venues", "https://www.tauvers-gallery.com/en",
+             "https://kyivhistorymuseum.org.ua/en/branch/manor-house-on-kudryavka/"),
+        ):
+            with self.subTest(language=prefix or "uk"):
+                doc = Document(ROOT / prefix / "index.html").root
+                locations = [node for node in doc.find("section") if node.attrs.get("id") == "locations"]
+                self.assertEqual(len(locations), 1)
+                location = locations[0]
+                self.assertEqual([node.text().strip() for node in location.find("h2")], [heading])
+                anchors = list(location.find("a"))
+                self.assertEqual(len(anchors), 5, "Locations must contain only the five venue links")
+                self.assertEqual(set(links(location)), common_links | {tauvers, manor})
+                for anchor in anchors:
+                    self.assertTrue(anchor.text().strip(), "Every venue mark needs an accessible venue name")
+                    marks = list(anchor.find("img"))
+                    self.assertEqual(len(marks), 1, "Every venue link needs one official mark")
+                    src = marks[0].attrs.get("src", "")
+                    self.assertTrue(src.startswith("/assets/venues/"))
+                    self.assertTrue((ROOT / src.lstrip("/")).is_file(), f"Missing venue mark: {src}")
+                self.assertNotIn("Кирило Русанівський", location.text())
+                self.assertNotIn("Kyrylo Rusanivsky", location.text())
+
+    def test_existing_gallery_photographer_names_link_to_his_site(self):
+        galleries = ("autumn-rendezvous", "roads-of-love", "stabat-mater", "winter-extravaganza")
+        for prefix, name in (("", "Кирило Русанівський"), ("en/", "Kyrylo Rusanivsky")):
+            for gallery in galleries:
+                with self.subTest(page=f"{prefix}photo/{gallery}.html"):
+                    doc = Document(ROOT / prefix / "photo" / f"{gallery}.html").root
+                    credits = [anchor for header in doc.find(cls="list-head")
+                               for anchor in header.find("a") if anchor.text().strip() == name]
+                    self.assertEqual(len(credits), 1, "Link the existing credited name exactly once")
+                    self.assertEqual(credits[0].attrs.get("href"), "https://rusanivsky.com/")
 
     def test_home_preserves_ticket_programme_and_combined_media_access(self):
         for prefix, locale in (("", "uk"), ("en/", "en")):

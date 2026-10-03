@@ -1,0 +1,21 @@
+/* Venue artwork is preserved; only monochrome marks adapt to the page theme. */
+.home-locations{display:flex;flex-direction:column;justify-content:center;padding-block:100px}
+.venues{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:32px;list-style:none;margin:0;padding:0}
+.venue-link{display:flex;flex-direction:column;align-items:center;gap:22px;text-align:center;text-decoration:none;color:var(--ink);height:100%}
+.venue-logo{display:flex;align-items:center;justify-content:center;width:100%;height:120px}
+.venue-logo img{display:block;max-width:100%;max-height:112px;width:auto;height:auto;object-fit:contain}
+.venue-logo--tauvers img{width:100%;background:#fff;padding:8px}
+.venue-logo--library img{width:100%}
+.venue-logo--actor img{width:104px}
+.venue-logo--museum img{height:112px}
+.venue-logo--sophia img{width:109px}
+.venue-logo--mono img{filter:brightness(0)}
+.venue-caption{font-size:16px;line-height:1.45;color:var(--ink2)}
+.venue-caption small{display:block;font-size:13px;margin-top:4px}
+.venue-link:hover .venue-caption{text-decoration:underline;text-underline-offset:4px}
+.venue-link:focus-visible{outline:2px solid var(--ink);outline-offset:8px}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .venue-logo--mono img{filter:brightness(0) invert(1)}:root:not([data-theme="light"]) .venue-logo--actor img{filter:invert(1)}}
+:root[data-theme="dark"] .venue-logo--mono img{filter:brightness(0) invert(1)}
+:root[data-theme="dark"] .venue-logo--actor img{filter:invert(1)}
+@media(max-width:1100px){.venues{grid-template-columns:repeat(3,minmax(0,1fr));gap:40px 32px}.home-locations{padding-block:80px}}
+@media(max-width:600px){.venues{grid-template-columns:repeat(2,minmax(0,1fr));gap:36px 24px}.venues li:last-child{grid-column:1/-1;width:calc((100% - 24px)/2);justify-self:center}.home-locations{padding-block:112px 80px}.venue-logo{height:104px}.venue-logo img{max-height:100px}.venue-caption{font-size:14px}.venue-caption small{font-size:12px}.venue-link{gap:16px}}
