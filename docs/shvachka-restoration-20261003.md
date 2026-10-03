@@ -1,0 +1,7 @@
+# Anzhelina Shvachka portrait restoration
+
+Owner request, 3 October 2026: improve sharpness and bring skin tone closer to Liliia Hrevtsova's existing portrait. The original `assets/img/anzhelina-shvachka-portrait-20261002.jpg` remains untouched. New web master: `assets/img/anzhelina-shvachka-portrait-20261003-restored.jpg`, 1045 × 1505; encoded from the full-resolution built-in imagegen output. Responsive derivatives follow the site's normal image pipeline. Original image metadata is carried into the web master.
+
+Built-in imagegen prompt: edit only the first portrait; improve optical clarity in eyes, hair and fabric, without halos or invented facial features; gently reduce pink/magenta skin cast toward the reference's warmer neutral peach balance across face, neck, hands and arms. Preserve identity, age, face geometry, makeup, expression, teeth, curls, pose, fingers, rings, bracelet, clothing, embroidery, full framing and white background. The second image is a colour reference only. No beauty smoothing, rejuvenation, saturation boost, background changes, added objects or text.
+
+Independent visual review passed for expression, pose, face proportions, hands, age characteristics, sharpness and skin-tone balance. Fine skin/hair/teeth textures are AI reconstruction, not verified recovery of original details. The original and generated PNG are retained. Source crop coordinates scale proportionally to the restored master; approved portrait presentation remains consistent across directory and programme pages.
