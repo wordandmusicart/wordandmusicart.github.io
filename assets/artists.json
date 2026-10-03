@@ -486,15 +486,15 @@
       "concerts/on-the-wings-of-love.html#artists"
     ],
     "portrait": {
-      "src": "/assets/img/lidiia-hlinska-enhanced-20261003.jpg",
-      "source": "User-attributed performance source; conservative AI crop and technical enhancement, 2026-10-03. See docs/portrait-sources-20261003.md.; technical brightness, colour and clarity enhancement with ImageGen, 2026-10-03; original preserved.",
-      "width": 1254,
-      "height": 1254,
+      "src": "/assets/img/lidiia-hlinska-portrait-img-7982.jpg",
+      "width": 4284,
+      "height": 5712,
       "crop": {
-        "x": 200.0,
-        "y": 30.0,
-        "size": 780.0
-      }
+        "x": 850,
+        "y": 926,
+        "size": 1900
+      },
+      "source": "Owner-supplied photograph IMG_7982 (iPhone 15 Plus, 2026-06-04), owner-retouched IMG_7982.psd flattened to JPEG with metadata kept except GPS, 2026-10-03. Replaces the AI-enhanced performance crop. Originals: Google Drive 03_Вебсайт/01_Оригінали_медіа/Портрети."
     }
   },
   {
