@@ -43,6 +43,7 @@ jobs:
           python3 tools/test_event_end_date.py
           python3 tools/test_ticket_price_range.py
           python3 tools/test_october_rollover.py
+          python3 tools/test_home_archive_random.py
       - name: Check landing and artists acceptance
         run: |
           python3 tools/test_landing_artists.py
@@ -69,6 +70,7 @@ jobs:
           SITE_URL=http://127.0.0.1:4175 node tools/test_header_tickets.cjs
           SITE_URL=http://127.0.0.1:4175 node tools/test_desktop_header.cjs
           SITE_URL=http://127.0.0.1:4175 node tools/test_hovers.cjs
+          SITE_URL=http://127.0.0.1:4175 node tools/test_home_archive_random.cjs
       - name: Prepare public site
         run: |
           mkdir _site

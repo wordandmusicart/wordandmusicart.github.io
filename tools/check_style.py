@@ -19,7 +19,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 # Hand-written inline styles that existed on 3 Oct 2026. Lower it, never raise it.
-BASELINE = 147
+BASELINE = 145
 GENERATED = [
     re.compile(r'^width:-?[\d.]+%;(?:max-width:none;height:auto|height:auto;max-width:none);left:-?[\d.]+%;top:-?[\d.]+%$'),  # build_artists / sync_programme_portraits crops
     re.compile(r'^object-position:[^;]+$'),        # photo preview framing (heads never cut)
