@@ -19,3 +19,8 @@ and ≥600px tall with a fine pointer. Mobile, touch and all other pages keep
 free scrolling. The taller archive scene can still be scrolled through
 before the next snap. `tools/test_home_snap.cjs` (CI) checks UA/EN desktop
 PageDown/anchor landing and free scrolling on mobile and the artists page.
+
+Desktop home header — 3 October 2026: on the UA/EN home page at desktop
+widths (>1100px) the header no longer steps aside while scrolling (owner
+request). Other pages and the mobile/tablet header keep the direction-aware
+behaviour. `tools/test_desktop_header.cjs` (CI) covers both.

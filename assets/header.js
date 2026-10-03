@@ -9,6 +9,8 @@ const TICKET_PROFILE = "https://eventmate.app/users/share/wordmusic";
   const nav = header.querySelector('#nav');
   const button = header.querySelector('.menu-btn');
   const mobile = matchMedia('(max-width:1100px)');
+  // The desktop home page keeps its header in place (owner request, 3 Oct 2026).
+  const pinned = () => !mobile.matches && document.body.classList.contains('home');
   const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
   const subnav = document.querySelector('.subnav');
   const sections = subnav ? [...subnav.querySelectorAll('.links a[href^="#"]')]
@@ -63,7 +65,7 @@ const TICKET_PROFILE = "https://eventmate.app/users/share/wordmusic";
     frame = 0;
     const y = Math.min(Math.max(0, window.scrollY), Math.max(0, document.documentElement.scrollHeight - innerHeight));
     const delta = y - lastY;
-    if (y <= 220 || menuOpen || header.contains(document.activeElement)) showHeader(true);
+    if (pinned() || y <= 220 || menuOpen || header.contains(document.activeElement)) showHeader(true);
     else if (delta) {
       const nextDirection = Math.sign(delta);
       if (nextDirection !== direction) { direction = nextDirection; travel = 0; }
@@ -83,7 +85,7 @@ const TICKET_PROFILE = "https://eventmate.app/users/share/wordmusic";
     const link = e.target.closest('.links a[href^="#"]');
     if (!link) return;
     const target = document.getElementById(link.hash.slice(1));
-    if (target) showHeader(target.getBoundingClientRect().top <= subnav.getBoundingClientRect().bottom);
+    if (target) showHeader(pinned() || target.getBoundingClientRect().top <= subnav.getBoundingClientRect().bottom);
   });
   document.addEventListener('click', e => {
     if (menuOpen && !header.contains(e.target)) setMenu(false);
@@ -107,7 +109,7 @@ const TICKET_PROFILE = "https://eventmate.app/users/share/wordmusic";
   window.addEventListener('scroll', () => { if (!frame) frame = requestAnimationFrame(update); }, { passive: true });
   window.addEventListener('pageshow', () => { lastY = Math.max(0, scrollY); showHeader(true); updateSubnav(); });
   window.addEventListener('resize', updateSubnav);
-  mobile.addEventListener('change', () => { setMenu(false); updateNavInert(); });
+  mobile.addEventListener('change', () => { setMenu(false); updateNavInert(); if (pinned()) showHeader(true); });
   showHeader(true);
   updateSubnav();
   updateNavInert();
