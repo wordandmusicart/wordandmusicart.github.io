@@ -89,7 +89,7 @@ class EventSchemaTest(unittest.TestCase):
         self.assertIsNotNone(visible_time, "The facts must show a single Time range")
         self.assertEqual(visible_time.replace(" ", ""), "18:00–19:30")
         self.assertEqual(fact(hero, "Ціна" if lang == "uk" else "Price"),
-                         "250–400 грн" if lang == "uk" else "250–400 UAH")
+                         "250–400 ₴")
 
     def historical_pages(self):
         ua = sorted((ROOT / "concerts").glob("*.html"))

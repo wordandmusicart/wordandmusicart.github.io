@@ -160,10 +160,9 @@ section{scroll-margin-top:90px}
 .facts dd{margin:8px 0 0}
 .facts .big{font-size:34px;line-height:1}
 .facts .fact-summary{container-type:inline-size}
-.facts .big:has(.price-range){font-size:min(34px,25cqw)}
+.facts .big:has(.price-range),.facts .big:has(.time-range){font-size:min(34px,18cqw)}
 .facts .price-range,.facts .time-range{white-space:nowrap}
-.facts .big:has(.time-range){font-size:min(34px,18cqw)}
-@media(max-width:900px){.facts .big:has(.price-range){font-size:min(24px,25cqw)}.facts .big:has(.time-range){font-size:min(24px,18cqw)}}
+@media(max-width:900px){.facts .big:has(.price-range),.facts .big:has(.time-range){font-size:min(24px,18cqw)}}
 .c-hero .c-cta{display:flex;gap:12px;margin-top:32px;align-items:center;flex-wrap:wrap}
 .c-hero .c-cta .btn{min-height:56px;padding:0 32px;font-size:16px}
 .c-hero .c-cta .btn-o{min-height:56px}
@@ -194,6 +193,7 @@ body:has(.hdr.is-hidden) .subnav ~ section[id]{scroll-margin-top:92px}
 .artists{padding-block:104px 112px;background:var(--paper2)}
 .people{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
 .people .ph{aspect-ratio:4/5;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+.people .performer-circle-detail .artist-portrait{position:relative;left:auto;bottom:auto}
 .people .ph img{display:block;width:100%;height:100%;object-fit:cover;-webkit-user-drag:none;user-select:none;pointer-events:none}
 .people h3{margin-top:20px;font-size:30px;line-height:1.05;font-weight:400}
 .people p{margin-top:8px;font-size:15px;color:var(--ink2)}

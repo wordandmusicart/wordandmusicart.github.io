@@ -51,8 +51,10 @@ async function rendered(page, mode, {picture = true} = {}) {
     assert.ok(result.lightLogos.every(shown => shown === (mode === 'light')), 'Light-mode logos must follow chosen theme');
     assert.ok(result.darkLogos.every(shown => shown === (mode === 'dark')), 'Dark-mode logos must follow chosen theme');
     if (picture) {
-      // The approved October 15 gold banner is shared by both themes.
-      assert.match(result.banner || '', /on-the-wings-of-love-banner-20261003[-.]/);
+      // Site DARK uses current LIGHT artwork; site LIGHT uses current NIGHT artwork.
+      assert.match(result.banner || '', mode === 'dark'
+        ? /on-the-wings-of-love-banner-20261003-current-light[-.]/
+        : /on-the-wings-of-love-banner-20261003-current-night[-.]/);
       assert.ok(result.bannerLoaded, 'The next-concert artwork must load in the chosen theme');
     }
   }, `Rendering must resolve to ${mode}`);
@@ -156,8 +158,8 @@ async function context(browser, colorScheme = 'light') {
                   source: node.currentSrc, loaded: node.complete && node.naturalWidth > 0,
                 }));
                 assert.match(image.source, mode === 'dark'
-                  ? /on-the-wings-of-love-poster-20261003-final-light[-.]/
-                  : /on-the-wings-of-love-poster-20261003-final-night[-.]/);
+                  ? /on-the-wings-of-love-poster-20261003-current-light[-.]/
+                  : /on-the-wings-of-love-poster-20261003-current-night[-.]/);
                 assert.ok(image.loaded, `${route}: the selected poster must load`);
               }, `${route}: poster must resolve to ${mode}`);
             }

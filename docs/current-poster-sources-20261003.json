@@ -1,0 +1,90 @@
+[
+  {
+    "asset": "on-the-wings-of-love-poster-20261003-current-light.jpg",
+    "source_png": "/Users/rusanivsky/Library/CloudStorage/GoogleDrive-rusanivsky@gmail.com/My Drive/KR/Production/Design/word&music/02_Концерти_та_події/20261015_На_крилах_кохання/03_Експорт/01-POST-LIGHT-4x5.png",
+    "source_sha256": "518ef32fe4bccd6fc4b46205a04a7a0818e6ce7ea8360f8332bd8fb83447e03f",
+    "source_mtime": 1791028280.749623,
+    "dimensions": [
+      1080,
+      1350
+    ],
+    "conversion": "JPEG quality95, original dimensions and available metadata; no crop or upscale"
+  },
+  {
+    "asset": "on-the-wings-of-love-poster-20261003-current-night.jpg",
+    "source_png": "/Users/rusanivsky/Library/CloudStorage/GoogleDrive-rusanivsky@gmail.com/My Drive/KR/Production/Design/word&music/02_Концерти_та_події/20261015_На_крилах_кохання/03_Експорт/02-POST-NIGHT-4x5.png",
+    "source_sha256": "5409627463a0a405292ab65de4c7ea40d2f87f036638dd4506030f51c6404b11",
+    "source_mtime": 1791028281.4288635,
+    "dimensions": [
+      1080,
+      1350
+    ],
+    "conversion": "JPEG quality95, original dimensions and available metadata; no crop or upscale"
+  },
+  {
+    "asset": "on-the-wings-of-love-banner-20261003-current-light.jpg",
+    "source_png": "/Users/rusanivsky/Library/CloudStorage/GoogleDrive-rusanivsky@gmail.com/My Drive/KR/Production/Design/word&music/02_Концерти_та_події/20261015_На_крилах_кохання/03_Експорт/06-EVENTMATE-LIGHT-16x9.png",
+    "source_sha256": "3486df7ddaa41c1b3953df425b8d70fb76e73dc5ee80cc3207fe35518ce202a0",
+    "source_mtime": 1791028283.5920405,
+    "dimensions": [
+      1920,
+      1080
+    ],
+    "conversion": "JPEG quality95, original dimensions and available metadata; no crop or upscale"
+  },
+  {
+    "asset": "on-the-wings-of-love-banner-20261003-current-night.jpg",
+    "source_png": "/Users/rusanivsky/Library/CloudStorage/GoogleDrive-rusanivsky@gmail.com/My Drive/KR/Production/Design/word&music/02_Концерти_та_події/20261015_На_крилах_кохання/03_Експорт/07-EVENTMATE-NIGHT-16x9.png",
+    "source_sha256": "768f9cc969f3d3b8f2ac6f4db35f5520e8895878b53b4abfcf9323bf56052f78",
+    "source_mtime": 1791028284.1839874,
+    "dimensions": [
+      1920,
+      1080
+    ],
+    "conversion": "JPEG quality95, original dimensions and available metadata; no crop or upscale"
+  },
+  {
+    "asset": "vivre-poster-20261003-current-light.jpg",
+    "source_png": "/Users/rusanivsky/Library/CloudStorage/GoogleDrive-rusanivsky@gmail.com/My Drive/KR/Production/Design/word&music/02_Концерти_та_події/20260921_VIVRE_AIMER_REVER/04_Фінальні_рендери/01-POST-LIGHT-4x5.png",
+    "source_sha256": "dfa0d1f4484d34e0ff0aca161a72f9dee57ec984eb84ed0a67a4838883d59368",
+    "source_mtime": 1791029719.3601158,
+    "dimensions": [
+      1080,
+      1350
+    ],
+    "conversion": "JPEG quality95, original dimensions and available metadata; no crop or upscale"
+  },
+  {
+    "asset": "vivre-poster-20261003-current-night.jpg",
+    "source_png": "/Users/rusanivsky/Library/CloudStorage/GoogleDrive-rusanivsky@gmail.com/My Drive/KR/Production/Design/word&music/02_Концерти_та_події/20260921_VIVRE_AIMER_REVER/04_Фінальні_рендери/02-POST-NIGHT-4x5.png",
+    "source_sha256": "e009acb546b35b73af8b59aebc0a710aa08ea0e3045133898b93693d2900bcf1",
+    "source_mtime": 1791031998.0965242,
+    "dimensions": [
+      1080,
+      1350
+    ],
+    "conversion": "JPEG quality95, original dimensions and available metadata; no crop or upscale"
+  },
+  {
+    "asset": "vivre-banner-20261003-current-light.jpg",
+    "source_png": "/Users/rusanivsky/Library/CloudStorage/GoogleDrive-rusanivsky@gmail.com/My Drive/KR/Production/Design/word&music/02_Концерти_та_події/20260921_VIVRE_AIMER_REVER/04_Фінальні_рендери/05-EVENTMATE-LIGHT-16x9.png",
+    "source_sha256": "80dfab737c27bce459e9eedc134c5c79a6b788a1477784b62d0cd8491dbc09f8",
+    "source_mtime": 1791025581.0776868,
+    "dimensions": [
+      1920,
+      1080
+    ],
+    "conversion": "JPEG quality95, original dimensions and available metadata; no crop or upscale"
+  },
+  {
+    "asset": "vivre-banner-20261003-current-night.jpg",
+    "source_png": "/Users/rusanivsky/Library/CloudStorage/GoogleDrive-rusanivsky@gmail.com/My Drive/KR/Production/Design/word&music/02_Концерти_та_події/20260921_VIVRE_AIMER_REVER/04_Фінальні_рендери/06-EVENTMATE-NIGHT-16x9.png",
+    "source_sha256": "59f953d5df4e302d3e2b48afec86a7e58770c9184b3fcff8813d886cc7586fc6",
+    "source_mtime": 1791025582.352347,
+    "dimensions": [
+      1920,
+      1080
+    ],
+    "conversion": "JPEG quality95, original dimensions and available metadata; no crop or upscale"
+  }
+]
