@@ -39,3 +39,11 @@ Local gates passed: portrait/artist/announced-concert/date checks, archive and
 venue checks, responsive images, fonts, structured data, SEO (47 pages),
 deterministic catalogue rebuild and whitespace. Browser inspection covered
 390px mobile and desktop, UA/EN, light/dark, with no horizontal overflow.
+
+Owner correction — 3 October: Albina Holenach was still too distant and offset
+to the right; Oleksii Maliovanyi sat too low with excessive space above his
+head. Their source views are now (375,620,1000) and (175,50,300), respectively.
+The same crops apply to the bilingual directory and their programme circles
+in Winter Extravaganza and On the Wings of Love. Independent screenshot/diff
+review found no blockers: balanced centring, full hair and no glove at Oleksii's
+right edge. Original files, programme text and rectangular images are unchanged.
