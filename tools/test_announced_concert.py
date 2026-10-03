@@ -14,12 +14,12 @@ else:
 SLUG = "concerts/on-the-wings-of-love.html"
 TICKET = "https://eventmate.app/events/share/na-krilah-kohanna-koncert-vokalnoi-muziki"
 NAMES = {
-    "uk": ["Анжеліна Швачка", "Лілія Гревцова", "Максим Гара", "Наталія Шмельова", "Дарія Погоріла",
+    "uk": ["Анжеліна Швачка", "Лілія Гревцова", "Максим Гара", "Наталія Шмельова", "Геннадій Таранюк", "Дарія Погоріла",
            "Олександр Пономаренко", "Анастасія Довбіус", "Ірина Шелест", "Юлія Павловська",
-           "Каріна Лисак", "Лідія Глінська", "Олексій Мальований", "Геннадій Таранюк"],
-    "en": ["Anzhelina Shvachka", "Liliia Hrevtsova", "Maksym Hara", "Nataliia Shmelova", "Dariia Pohorila",
+           "Каріна Лисак", "Лідія Глінська", "Олексій Мальований"],
+    "en": ["Anzhelina Shvachka", "Liliia Hrevtsova", "Maksym Hara", "Nataliia Shmelova", "Hennadii Taraniuk", "Dariia Pohorila",
            "Oleksandr Ponomarenko", "Anastasiia Dovbius", "Iryna Shelest", "Yuliia Pavlovska",
-           "Karina Lysak", "Lidiia Hlinska", "Oleksii Maliovanyi", "Hennadii Taraniuk"],
+           "Karina Lysak", "Lidiia Hlinska", "Oleksii Maliovanyi"],
 }
 COMPOSERS = ["Wolfgang Amadeus Mozart", "Robert Schumann", "Gaetano Donizetti", "Georges Bizet",
              "Jacques Offenbach", "Henri Duparc", "Vincenzo Di Chiara", "Claude Debussy", "Francesco Cilea", "George Gershwin"]
@@ -90,12 +90,19 @@ class AnnouncedConcertAcceptance(unittest.TestCase):
                 doc = Document(path).root
                 people = next(n for n in doc.find("section") if n.attrs.get("id") == "artists")
                 self.assertEqual([n.text().strip() for n in people.find("h3")], NAMES[lang])
+                principals = list(people.find(cls="people-wings"))
+                self.assertEqual(len(principals), 1)
+                self.assertEqual([n.text().strip() for n in principals[0].find("h3")], NAMES[lang][:5])
+                supporting = list(people.find(cls="people-students"))
+                self.assertEqual(len(supporting), 1)
+                self.assertEqual([n.text().strip() for n in supporting[0].find("h3")], NAMES[lang][5:])
+                self.assertFalse(list(people.find(cls="people-host")), "The host now belongs beside the accompanist")
                 self.assertEqual([p["name"] for p in events(path.read_text())[0]["performer"]], NAMES[lang])
                 roles = [n.text().strip() for n in people.find("p")]
                 vocal_words = ("сопрано", "баритон", "тенор") if lang == "uk" else ("soprano", "baritone", "tenor")
                 self.assertEqual(sum(any(word in role for word in vocal_words) for role in roles), 11)
                 self.assertEqual(roles[3], "Концертмейстер" if lang == "uk" else "Accompanist")
-                self.assertEqual(roles[12], "Художнє слово та ведучий" if lang == "uk" else "Spoken word and host")
+                self.assertEqual(roles[4], "Художнє слово та ведучий" if lang == "uk" else "Spoken word and host")
                 img_sources = [img.attrs.get("src") for img in people.find("img")]
                 self.assertIn("/assets/img/iryna-shelest.jpg", img_sources)
                 self.assertIn("/assets/img/yuliia-pavlovska.jpg", img_sources)
