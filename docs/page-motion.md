@@ -9,3 +9,13 @@ Validation: acceptance tests initially failed on undecoded-photo visibility befo
 Final review: actual pagereveal.viewTransition determines ownership, rather than CSS feature detection. Chromium and WebKit passed 390px/1440px photo, error, decode rejection, history, native/fallback, reduced-motion, no-JS and script-failure tests. WebKit keeps finished browser transition objects; tests count active animations. Visual inspection confirmed stable header and unchanged desktop/mobile geometry. SEO (45 pages), structured data, images, fonts, landing/concert dates, existing theme/mobile-navigation checks passed.
 Follow-up: capture pagereveal in the head to handle events arriving before deferred initialization; guard fallback arrival against duplicates. CI first release failed its direct-entry event wait; acceptance now covers delayed controller activation and releases the image gate before awaiting arrival.
 Floating panels: header, concert subnav and ticket bar share the ticket bar's 90% background, 20px backdrop blur, border and shadow. Header glass lives directly on the panel instead of a nested pseudo-element. Ticket text inset is24px (20px at <=360px). Independent review and Chromium/WebKit in both themes at320/390/740/1440px verified matching styles, no overflow, no text/button overlap; screenshots inspected.
+
+Desktop home scenes — 3 October 2026: the owner asked for slide-by-slide
+scrolling on the desktop home page. This supersedes "no scroll hijacking"
+for the home page only, using native CSS scroll snap (no wheel or key
+interception): `scroll-snap-type: y mandatory` on the root and
+`scroll-snap-stop: always` on each `.home-scene`, for viewports ≥901px wide
+and ≥600px tall with a fine pointer. Mobile, touch and all other pages keep
+free scrolling. The taller archive scene can still be scrolled through
+before the next snap. `tools/test_home_snap.cjs` (CI) checks UA/EN desktop
+PageDown/anchor landing and free scrolling on mobile and the artists page.
