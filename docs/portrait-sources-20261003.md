@@ -6,7 +6,7 @@
 - Miao Xinyue: same recording, named chapter 25:11–28:19; solo performance frame 25:59. Native fullscreen capture 3840×2160.
 - Nykyta Naumov and Viktoriia Shvets: user directly identified the supplied 3840×2160 screenshots. Retain existing credited name spellings.
 - Anna Bielanova: user identified gallery photograph 26, woman on the left. Original `20240608-165113-A.jpg`, 7728×5152, found in the original Drive photography folder; no SSD was mounted. Original photo retained without AI reconstruction.
-- Den Yatsziuen: participation verified by original programme; user tentatively suggested gallery photo 3. Do not assign its portrait until confirmed. Display original Ukrainian name in EN until an authoritative Latin spelling is available.
+- Deng Yajuan: participation verified by original programme; user directly supplied a labelled portrait and Latin spelling Deng Yajuan. Use that 588×1280 screenshot with a tight crop of the existing photo. The earlier tentative gallery photo 3 is not assigned or matched. Original screenshot is preserved; no invented AI detail.
 
 Roads of Love participation follows the original organiser programme DOCX from the design archive. Added Oleksandr Ponomarenko, Miao Xinyue, День Яцзюень, Valentyna Frolova, Anna Bielanova, Albina Holenach and Yelyzaveta Bielous in programme order. Preserve existing principal credits; the accompaniment spelling discrepancy in source materials is outside this portrait change.
 
@@ -20,4 +20,4 @@ Requested source crops (x,y,width,height): Lidiia (490,20,700,700), Miao (820,60
 
 ## Verification
 
-Independent source review confirmed programme participation and flagged unsupported Den Latin spelling; the EN display now retains the source spelling. Final artifact review and repository checks are performed before publication. No CSS or unrelated poster changes are included.
+Independent source review confirmed programme participation and flagged unsupported Den Latin spelling; subsequently the owner supplied Deng Yajuan explicitly. Final artifact review and repository checks are performed before publication. No CSS or unrelated poster changes are included.

@@ -901,7 +901,7 @@
     "id": "den-yatsziuen",
     "name": {
       "uk": "День Яцзюень",
-      "en": "День Яцзюень"
+      "en": "Deng Yajuan"
     },
     "role": {
       "uk": "вокал",
@@ -911,7 +911,17 @@
     "sources": [
       "concerts/roads-of-love.html#artists"
     ],
-    "portrait": null
+    "portrait": {
+      "src": "/assets/img/deng-yajuan-portrait-20261003.jpg",
+      "width": 588,
+      "height": 1280,
+      "crop": {
+        "x": 170,
+        "y": 445,
+        "size": 245
+      },
+      "source": "User directly supplied and identified portrait as Deng Yajuan, 2026-10-03. Existing circular photograph detail, original screen raster preserved."
+    }
   },
   {
     "id": "anna-bielanova",
