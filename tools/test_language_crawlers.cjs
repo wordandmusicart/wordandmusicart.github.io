@@ -75,6 +75,22 @@ async function visit(page, requested, expected, language) {
         for (const route of ['/', PROGRAMME]) await visit(page, route, '/en' + route, 'en');
       } finally { await ctx.close(); }
     });
+    await test('Human in Ukraine keeps an explicit EN home and programme link', async () => {
+      const ctx = await browser.newContext({userAgent: HUMAN, locale: 'uk-UA', timezoneId: 'Europe/Kyiv'});
+      ctx.setDefaultTimeout(5000);
+      try {
+        const page = await ctx.newPage();
+        for (const route of ['/', PROGRAMME]) await visit(page, '/en' + route, '/en' + route, 'en');
+      } finally { await ctx.close(); }
+    });
+    await test('Human in Ukraine still gets UA at the default address', async () => {
+      const ctx = await browser.newContext({userAgent: HUMAN, locale: 'en-US', timezoneId: 'Europe/Kyiv'});
+      ctx.setDefaultTimeout(5000);
+      try {
+        const page = await ctx.newPage();
+        for (const route of ['/', PROGRAMME]) await visit(page, route, route, 'uk');
+      } finally { await ctx.close(); }
+    });
     await test('Remembered human Ukrainian choice retains UA home and programme abroad', async () => {
       const ctx = await browser.newContext({userAgent: HUMAN, locale: 'en-US', timezoneId: 'UTC'});
       ctx.setDefaultTimeout(5000);

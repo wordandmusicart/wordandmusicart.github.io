@@ -1,4 +1,8 @@
 /* Shared navigation: floating header, direction-aware visibility, accessible menu. */
+/* tickets:start (tools/tickets.py) */
+const TICKET_EVENTS = [{"end": "2026-10-15T19:30:00+03:00", "url": "https://eventmate.app/events/share/na-krilah-kohanna-koncert-vokalnoi-muziki"}];
+const TICKET_PROFILE = "https://eventmate.app/users/share/wordmusic";
+/* tickets:end */
 (() => {
   const header = document.querySelector('.hdr');
   if (!header) return;
@@ -107,4 +111,14 @@
   showHeader(true);
   updateSubnav();
   updateNavInert();
+})();
+
+/* Header tickets open the nearest concert still on sale; after it ends they
+   move to the next one, or to the organiser profile when nothing is on sale. */
+(() => {
+  const now = Date.now();
+  const next = TICKET_EVENTS.find(event => Date.parse(event.end) > now);
+  const locale = document.documentElement.lang === 'en' ? 'en' : 'uk';
+  const href = `${next ? next.url : TICKET_PROFILE}?locale=${locale}`;
+  for (const link of document.querySelectorAll('.hdr a.btn-acc')) link.href = href;
 })();
