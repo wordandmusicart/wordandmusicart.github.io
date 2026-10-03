@@ -23,8 +23,8 @@ from zoneinfo import ZoneInfo
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 KYIV = ZoneInfo('Europe/Kyiv')
 BLOCK = re.compile(r'\n?<script type="application/ld\+json">.*?</script>', re.S)
-LABELS = {'Дата': 'date', 'Початок': 'start', 'Завершення': 'end', 'Ціна': 'price', 'Локація': 'venue', 'Адреса': 'address',
-          'Date': 'date', 'Start': 'start', 'End': 'end', 'Price': 'price', 'Location': 'venue', 'Address': 'address'}
+LABELS = {'Дата': 'date', 'Час': 'time', 'Початок': 'start', 'Завершення': 'end', 'Ціна': 'price', 'Локація': 'venue', 'Адреса': 'address',
+          'Date': 'date', 'Time': 'time', 'Start': 'start', 'End': 'end', 'Price': 'price', 'Location': 'venue', 'Address': 'address'}
 CITY = {'uk': 'Київ', 'en': 'Kyiv'}
 ON_SALE = ('Продаж триває', 'On sale')
 # Other spellings people search for (from the people themselves), keyed by
@@ -89,6 +89,10 @@ def event(s, lang, url):
     hero = hero.group(0)
     facts = {LABELS[k]: text(v) for k, v in
              re.findall(r'<dt class="meta muted">([^<]+)</dt><dd[^>]*>(.*?)</dd>', hero) if k in LABELS}
+    if 'time' in facts:
+        interval = re.fullmatch(r'(\d{2}:\d{2})\s*[–—-]\s*(\d{2}:\d{2})', facts['time'])
+        if interval:
+            facts['start'], facts['end'] = interval.groups()
     year = re.search(r'<div class="meta muted">[^<]*?(\d{4})</div>', hero)
     if not (year and 'date' in facts):
         return None

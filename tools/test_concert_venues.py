@@ -33,6 +33,7 @@ CONCERT_SLUGS = (
     "soul-wanderings",
     "stabat-mater",
     "winter-extravaganza",
+    "vivre-aimer-rever",
 )
 
 POSTER_SLUGS = (
@@ -326,10 +327,10 @@ def main() -> int:
     announced_en = [ROOT / "en/concerts" / f"{slug}.html" for slug in ANNOUNCED_SLUGS]
     archive_ua = [path for path in ua_pages if path not in announced_ua]
     archive_en = [path for path in en_pages if path not in announced_en]
-    check(len(archive_ua) == 11, f"concerts/ must contain 11 archive pages (found {len(archive_ua)})", failures)
-    check(len(archive_en) == 11, f"en/concerts/ must contain 11 archive pages (found {len(archive_en)})", failures)
-    check(ua_pages == sorted(expected_ua + announced_ua), "concerts/ page set differs from the 11-page archive plus known announcements", failures)
-    check(en_pages == sorted(expected_en + announced_en), "en/concerts/ page set differs from the 11-page archive plus known announcements", failures)
+    check(len(archive_ua) == len(CONCERT_SLUGS), f"concerts/ must contain 12 archive pages (found {len(archive_ua)})", failures)
+    check(len(archive_en) == len(CONCERT_SLUGS), f"en/concerts/ must contain 12 archive pages (found {len(archive_en)})", failures)
+    check(ua_pages == sorted(expected_ua + announced_ua), "concerts/ page set differs from the 12-page archive plus known announcements", failures)
+    check(en_pages == sorted(expected_en + announced_en), "en/concerts/ page set differs from the 12-page archive plus known announcements", failures)
 
     for path in expected_ua:
         check_page(path, "UA", failures)
@@ -347,7 +348,7 @@ def main() -> int:
         for failure in failures:
             print(f" - {failure}", file=sys.stderr)
         return 1
-    print("PASS: all 22 archive pages have complete venue blocks and poster crops")
+    print("PASS: all 24 archive pages have complete venue blocks and poster crops")
     return 0
 
 

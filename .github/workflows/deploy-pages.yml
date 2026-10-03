@@ -37,6 +37,7 @@ jobs:
         run: |
           python3 tools/test_event_end_date.py
           python3 tools/test_ticket_price_range.py
+          python3 tools/test_october_rollover.py
       - name: Check landing and artists acceptance
         run: |
           python3 tools/test_landing_artists.py

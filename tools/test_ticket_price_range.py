@@ -17,9 +17,9 @@ TICKET = "https://eventmate.app/events/share/na-krilah-kohanna-koncert-vokalnoi-
 def fixture(price, lang="uk", on_sale=True):
     """Minimal event page: inputs are public facts, not parser implementation."""
     labels = (
-        ("Дата", "Початок", "Ціна", "Продаж триває")
+        ("Дата", "Час", "Ціна", "Продаж триває")
         if lang == "uk"
-        else ("Date", "Start", "Price", "On sale")
+        else ("Date", "Time", "Price", "On sale")
     )
     date, start, price_label, status = labels
     price_fact = (
@@ -31,7 +31,7 @@ def fixture(price, lang="uk", on_sale=True):
 <section class="c-hero wrap g12"><div class="meta muted">15 October 2026</div>
 <h1>Ticketed concert</h1><dl class="facts">
 <div><dt class="meta muted">{date}</dt><dd>15.10</dd></div>
-<div><dt class="meta muted">{start}</dt><dd>18:00</dd></div>{price_fact}</dl>
+<div><dt class="meta muted">{start}</dt><dd>18:00–19:30</dd></div>{price_fact}</dl>
 <div class="c-cta"><a class="btn" href="{TICKET}?locale={lang}">Tickets</a></div>
 </section></body></html>'''
 
@@ -65,6 +65,14 @@ class TicketPriceRangeTest(unittest.TestCase):
                 self.assertNotIn("validFrom", offer, "No sales opening date was supplied")
                 self.assertNotIn("lowPrice", offer)
                 self.assertNotIn("highPrice", offer)
+
+    def test_visible_time_range_produces_separate_confirmed_schema_datetimes(self):
+        for lang in ("uk", "en"):
+            with self.subTest(language=lang):
+                generated = event(fixture("250–400 грн", lang), lang,
+                                  "https://wordandmusic.art/concert.html")[0]
+                self.assertEqual(generated["startDate"], "2026-10-15T18:00:00+03:00")
+                self.assertEqual(generated.get("endDate"), "2026-10-15T19:30:00+03:00")
 
     def test_existing_single_prices_remain_unchanged(self):
         for lang in ("uk", "en"):
