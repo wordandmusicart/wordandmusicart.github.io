@@ -101,3 +101,11 @@ Stabat Mater post-concert portrait set, and Iryna Lytvynenko
 byte-for-byte (no GPS present) as `assets/img/<id>-portrait-20261003.jpg`;
 circle and 4:5 programme views are crops only. Directory total: 31 of 36
 with photographs; Mramornova and Terentiev remain neutral placeholders.
+
+Owner correction — 3 October 2026 (night): Nataliia Skrynnyk's circle was
+too loose (small face, background frames) and Anastasiia Povazhna's too
+tight (hair cut at the top). Views are now (1250,1040,2700) and
+(510,460,1300), matching the facial scale of Semets, Yasenchuk and Popovych.
+Tauvers Gallery's venue mark uses a transparent copy of the supplied SVG
+(`tauvers-gallery-mono.svg`, white frame/panel fills removed) in the shared
+monochrome logo style; the original SVG is kept unchanged.
