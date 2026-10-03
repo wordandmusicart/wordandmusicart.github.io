@@ -63,6 +63,7 @@ jobs:
           SITE_URL=http://127.0.0.1:4175 node tools/test_mobile_concert_actions.cjs
           SITE_URL=http://127.0.0.1:4175 node tools/test_home_snap.cjs
           SITE_URL=http://127.0.0.1:4175 node tools/test_header_tickets.cjs
+          SITE_URL=http://127.0.0.1:4175 node tools/test_desktop_header.cjs
       - name: Prepare public site
         run: |
           mkdir _site
