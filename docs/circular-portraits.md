@@ -85,3 +85,11 @@ views, all 18 distinct rectangle/poster-card views, and actual chamber/mixed
 programmes at desktop and 396px mobile, UA/EN and dark theme. Existing tests,
 responsive assets, metadata, structured data, crop bounds, exact programme
 text readback, deterministic directory build and synchronization checks pass.
+
+Owner correction — 3 October 2026 (evening): Makar Rusanivsky's circle sat
+too loose, with the head high and the dark suit weighting the lower left.
+His source view is now (1000,540,2150): face centred, eyes near the
+upper-middle and head-and-shoulders scale matching the neighbouring
+portraits. The original JPEG and his rectangular programme view are
+unchanged. The 404 page's «Контакти» link now points to `/index.html#contacts`
+(the 404 page has no contacts section of its own).
