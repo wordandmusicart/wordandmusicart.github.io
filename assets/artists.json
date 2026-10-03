@@ -177,20 +177,20 @@
       "concerts/music-of-soul-and-heart.html#artists"
     ],
     "portrait": {
-      "src": "/assets/img/music-of-soul-and-heart-poster.jpg",
-      "source": "concerts/music-of-soul-and-heart.html",
+      "src": "/assets/img/taras-kapran-portrait-20230818.jpg",
+      "width": 4324,
+      "height": 5120,
       "crop": {
-        "x": 1238,
-        "y": 2301,
-        "size": 468
+        "x": 624,
+        "y": 0,
+        "size": 3700
       },
-      "width": 2400,
-      "height": 3394,
-      "label": {
-        "uk": "Портрет з афіші концерту",
-        "en": "Portrait from concert poster"
-      },
-      "rim_inset": 0.06
+      "programme_crop": [
+        228,
+        0,
+        4096
+      ],
+      "source": "Owner-supplied portrait «2023-08-18 12.09.jpg» (Topaz Gigapixel upscale, exported 2026-10-03), Google Drive word&music/02_Концерти_та_події/20230826_Музика_душі_і_серця/02_Матеріали/Файли_та_фото; copied byte-for-byte. Replaces the detail from the concert poster."
     }
   },
   {
