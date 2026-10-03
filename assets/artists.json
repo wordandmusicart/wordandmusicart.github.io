@@ -49,6 +49,7 @@
     },
     "group": "vocal",
     "sources": [
+      "concerts/autumn-rendezvous.html#artists",
       "concerts/christmas-kaleidoscope.html#artists",
       "concerts/heartstrings.html#artists",
       "concerts/melodies-of-enchanting-june.html#artists",
@@ -315,6 +316,7 @@
     },
     "group": "vocal",
     "sources": [
+      "concerts/autumn-rendezvous.html#artists",
       "concerts/christmas-kaleidoscope.html#artists",
       "concerts/heartstrings.html#artists",
       "concerts/roads-of-love.html#artists"
@@ -371,6 +373,7 @@
     },
     "group": "vocal",
     "sources": [
+      "concerts/autumn-rendezvous.html#artists",
       "concerts/christmas-kaleidoscope.html#artists",
       "concerts/winter-extravaganza.html#artists",
       "concerts/on-the-wings-of-love.html#artists",
@@ -400,6 +403,7 @@
     },
     "group": "vocal",
     "sources": [
+      "concerts/autumn-rendezvous.html#artists",
       "concerts/christmas-kaleidoscope.html#artists",
       "concerts/heartstrings.html#artists",
       "concerts/winter-extravaganza.html#artists"
@@ -482,6 +486,7 @@
     },
     "group": "vocal",
     "sources": [
+      "concerts/autumn-rendezvous.html#artists",
       "concerts/christmas-kaleidoscope.html#artists",
       "concerts/on-the-wings-of-love.html#artists"
     ],
@@ -509,6 +514,7 @@
     },
     "group": "vocal",
     "sources": [
+      "concerts/autumn-rendezvous.html#artists",
       "concerts/christmas-kaleidoscope.html#artists",
       "concerts/roads-of-love.html#artists"
     ],
@@ -536,6 +542,7 @@
     },
     "group": "vocal",
     "sources": [
+      "concerts/autumn-rendezvous.html#artists",
       "concerts/heartstrings.html#artists",
       "concerts/on-the-wings-of-love.html#artists"
     ],
@@ -856,6 +863,7 @@
     },
     "group": "vocal",
     "sources": [
+      "concerts/autumn-rendezvous.html#artists",
       "concerts/on-the-wings-of-love.html#artists"
     ],
     "portrait": {
