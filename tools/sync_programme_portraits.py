@@ -23,6 +23,9 @@ SUPPORTING = {
         'lidiia-hlinska', 'miao-xinyue'},
     'heartstrings': {'anastasiia-dovbius', 'nykyta-naumov',
         'valentyna-frolova', 'hanna-semets'},
+    'roads-of-love': {'oleksandr-ponomarenko', 'miao-xinyue',
+        'den-yatsziuen', 'valentyna-frolova', 'anna-bielanova',
+        'albina-holenach', 'yelyzaveta-bielous'},
 }
 # Separate 4:5 views; circle refinement never changes approved new-page tiles.
 TILES = {
@@ -41,6 +44,7 @@ TILES = {
     'albina-holenach': (150, 510, 1450),
     'yelyzaveta-bielous': (300, 240, 1800),
     'daria-pohorila': (400, 350, 1600),
+    'viktoriia-shvets': (0, 0, 1120),
 }
 
 
