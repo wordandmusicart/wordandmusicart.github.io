@@ -26,7 +26,7 @@ jobs:
         with:
           python-version: '3.12'
       - name: Check responsive images
-        run: pip install -q pillow && python3 tools/images.py --check
+        run: pip install -q pillow && python3 tools/test_portrait_orientation.py && python3 tools/images.py --check
       - name: Check font subsets
         run: pip install -q fonttools brotli && python3 tools/fonts.py --check
       - name: Check page metadata

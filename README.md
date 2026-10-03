@@ -21,6 +21,8 @@ rusanivsky.com does:
   `<name>-320/-480/-720/-960/-1440/-2400.webp`, only for widths smaller than the
   master, and fills `srcset` in every page. Variants keep the master's
   colour profile, EXIF and XMP; only GPS is removed.
+- EXIF rotation is baked into the responsive WebP pixels and width descriptors
+  use displayed dimensions. The original JPEG and its metadata stay unchanged.
 - Every `<img>` (and `<source>`) gets a hand-written `sizes` that matches
   its layout, e.g. `sizes="(max-width:900px) 100vw, 40vw"`.
 - `python3 tools/images.py --check` fails if a variant, `srcset` or `sizes`

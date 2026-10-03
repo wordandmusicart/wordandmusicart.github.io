@@ -9,12 +9,14 @@ Concert photos (assets/photo/<slug>/<name>.webp, the top step) get the
 same smaller steps, made from the top step, and their srcset is rewritten.
 Each <img> must carry a hand-written `sizes` that matches its layout.
 Variants keep the master's colour profile, EXIF and XMP; only GPS is removed.
+EXIF orientation is baked into derivative pixels, with the redundant rotation
+tag removed. The master remains byte-identical; srcsets use displayed widths.
 
     python3 tools/images.py          # build variants + update HTML
     python3 tools/images.py --check  # fail if anything is missing
 """
 import glob, os, re, sys
-from PIL import Image
+from PIL import Image, ImageOps
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 IMG = os.path.join(ROOT, 'assets', 'img')
@@ -28,7 +30,10 @@ def masters():
             yield name, f
 
 def variants(name, f):
-    w, h = Image.open(f).size
+    with Image.open(f) as image:
+        w, h = image.size
+        if image.getexif().get(274) in (5, 6, 7, 8):
+            w, h = h, w
     return w, h, [x for x in WIDTHS if x < w]
 
 GPS_IFD = 34853
@@ -61,7 +66,7 @@ def has_meta(path, want):
 def build():
     for name, f in masters():
         w, h, ws = variants(name, f)
-        src = Image.open(f)
+        src = ImageOps.exif_transpose(Image.open(f))
         m = meta(src)
         im = None
         for x in ws:

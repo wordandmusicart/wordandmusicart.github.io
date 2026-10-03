@@ -29,8 +29,9 @@ def photograph(a, lang, featured=False):
     alt = a['name'][lang] + (' — ' + label if 'label' in p else '')
     style = ''
     crop_class = ''
-    if 'crop' in p:
-        crop = dict(p['crop'])
+    source_crop = p.get('crop') if featured else p.get('circle_crop', p.get('crop'))
+    if source_crop:
+        crop = dict(source_crop)
         # Inset the source's decorative rim without altering the original artwork.
         inset = crop['size'] * p.get('rim_inset', 0)
         crop['x'] += inset
@@ -43,7 +44,7 @@ def photograph(a, lang, featured=False):
     base = p['src'].rsplit('.', 1)[0]
     variants = [f'{base}-{width}.webp {width}w' for width in (320,480,720,960,1440,2400) if width < p['width'] and (ROOT / f'{base.lstrip(chr(47))}-{width}.webp').exists()]
     srcset = ', '.join(variants + [f'{p["src"]} {p["width"]}w'])
-    rendered = p['width'] / p['crop']['size'] * 168 if 'crop' in p else 168
+    rendered = p['width'] / crop['size'] * 168 if source_crop else 168
     sizes = '(max-width:720px) calc(100vw - 40px), 43vw' if featured else f'{rendered:.0f}px'
     image = f'<img src="{ESC(p["src"])}" srcset="{ESC(srcset)}" sizes="{sizes}" alt="{ESC(alt)}" width="{p["width"]}" height="{p["height"]}" loading="{"eager" if featured else "lazy"}" decoding="async" draggable="false" style="{style}">'
     if featured:

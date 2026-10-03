@@ -20,14 +20,20 @@
       "concerts/music-of-soul-and-heart.html#artists",
       "concerts/soul-wanderings.html#artists",
       "concerts/stabat-mater.html#artists",
-      "video.html#m-2023"
+      "video.html#m-2023",
+      "concerts/on-the-wings-of-love.html#artists"
     ],
     "portrait": {
       "src": "/assets/img/hennadii-taraniuk.jpg",
       "source": "KR/Production/Photography/2024/20240608_Дороги_кохання/20240608-160659-A.jpg",
       "position": "50% 20%",
       "width": 4498,
-      "height": 6748
+      "height": 6748,
+      "circle_crop": {
+        "x": 1090,
+        "y": 1330,
+        "size": 2400
+      }
     }
   },
   {
@@ -45,7 +51,8 @@
       "concerts/christmas-kaleidoscope.html#artists",
       "concerts/heartstrings.html#artists",
       "concerts/melodies-of-enchanting-june.html#artists",
-      "concerts/roads-of-love.html#artists"
+      "concerts/roads-of-love.html#artists",
+      "concerts/on-the-wings-of-love.html#artists"
     ],
     "portrait": {
       "src": "/assets/img/anzhelina-shvachka-portrait-20261002.jpg",
@@ -72,7 +79,8 @@
     "group": "vocal",
     "sources": [
       "concerts/christmas-kaleidoscope.html#artists",
-      "concerts/roads-of-love.html#artists"
+      "concerts/roads-of-love.html#artists",
+      "concerts/on-the-wings-of-love.html#artists"
     ],
     "portrait": {
       "src": "/assets/img/liliia-hrevtsova-portrait-20261002.jpg",
@@ -106,9 +114,9 @@
       "width": 300,
       "height": 375,
       "crop": {
-        "x": 45,
-        "y": 20,
-        "size": 210
+        "x": 25,
+        "y": 0,
+        "size": 250
       }
     }
   },
@@ -137,9 +145,9 @@
       "width": 2400,
       "height": 3600,
       "crop": {
-        "x": 695,
-        "y": 660,
-        "size": 1040
+        "x": 515,
+        "y": 535,
+        "size": 1400
       }
     }
   },
@@ -210,9 +218,9 @@
       "width": 2400,
       "height": 3600,
       "crop": {
-        "x": 650,
-        "y": 680,
-        "size": 1100
+        "x": 540,
+        "y": 580,
+        "size": 1300
       }
     }
   },
@@ -236,9 +244,9 @@
       "width": 2400,
       "height": 3600,
       "crop": {
-        "x": 530,
-        "y": 140,
-        "size": 1380
+        "x": 495,
+        "y": 0,
+        "size": 1500
       }
     }
   },
@@ -271,7 +279,7 @@
         "uk": "Портрет з афіші концерту",
         "en": "Portrait from concert poster"
       },
-      "rim_inset": 0.06
+      "rim_inset": 0.035
     }
   },
   {
@@ -295,9 +303,9 @@
       "width": 7728,
       "height": 5152,
       "crop": {
-        "x": 3107,
-        "y": 708,
-        "size": 1449
+        "x": 2865,
+        "y": 675,
+        "size": 1720
       }
     }
   },
@@ -341,7 +349,8 @@
     "group": "vocal",
     "sources": [
       "concerts/christmas-kaleidoscope.html#artists",
-      "concerts/winter-extravaganza.html#artists"
+      "concerts/winter-extravaganza.html#artists",
+      "concerts/on-the-wings-of-love.html#artists"
     ],
     "portrait": {
       "src": "/assets/photo/winter-extravaganza/20231222-184821-A.webp",
@@ -349,9 +358,9 @@
       "width": 2400,
       "height": 3600,
       "crop": {
-        "x": 470,
-        "y": 520,
-        "size": 1400
+        "x": 650,
+        "y": 575,
+        "size": 1200
       }
     }
   },
@@ -378,7 +387,7 @@
       "height": 3600,
       "crop": {
         "x": 460,
-        "y": 320,
+        "y": 240,
         "size": 1400
       }
     }
@@ -396,7 +405,8 @@
     "group": "vocal",
     "sources": [
       "concerts/christmas-kaleidoscope.html#artists",
-      "concerts/winter-extravaganza.html#artists"
+      "concerts/winter-extravaganza.html#artists",
+      "concerts/on-the-wings-of-love.html#artists"
     ],
     "portrait": {
       "src": "/assets/photo/winter-extravaganza/20231222-185442-A.webp",
@@ -430,9 +440,9 @@
       "width": 2400,
       "height": 3600,
       "crop": {
-        "x": 150,
-        "y": 200,
-        "size": 2100
+        "x": 70,
+        "y": 70,
+        "size": 2300
       }
     }
   },
@@ -448,7 +458,8 @@
     },
     "group": "vocal",
     "sources": [
-      "concerts/christmas-kaleidoscope.html#artists"
+      "concerts/christmas-kaleidoscope.html#artists",
+      "concerts/on-the-wings-of-love.html#artists"
     ],
     "portrait": null
   },
@@ -480,7 +491,8 @@
     },
     "group": "vocal",
     "sources": [
-      "concerts/heartstrings.html#artists"
+      "concerts/heartstrings.html#artists",
+      "concerts/on-the-wings-of-love.html#artists"
     ],
     "portrait": {
       "src": "/assets/img/20251115-175514-A.jpg",
@@ -488,9 +500,9 @@
       "width": 7728,
       "height": 5152,
       "crop": {
-        "x": 2274,
-        "y": 861,
-        "size": 1932
+        "x": 2105,
+        "y": 630,
+        "size": 2180
       }
     }
   },
@@ -530,9 +542,9 @@
       "width": 2400,
       "height": 3600,
       "crop": {
-        "x": 280,
-        "y": 720,
-        "size": 1150
+        "x": 125,
+        "y": 525,
+        "size": 1280
       }
     }
   },
@@ -560,9 +572,9 @@
       "width": 2400,
       "height": 3600,
       "crop": {
-        "x": 580,
-        "y": 75,
-        "size": 1260
+        "x": 510,
+        "y": 0,
+        "size": 1480
       }
     }
   },
@@ -599,7 +611,8 @@
       "concerts/melodies-of-enchanting-june.html#artists",
       "concerts/roads-of-love.html#artists",
       "concerts/winter-extravaganza.html#artists",
-      "video.html#m-2023"
+      "video.html#m-2023",
+      "concerts/on-the-wings-of-love.html#artists"
     ],
     "portrait": {
       "src": "/assets/photo/winter-extravaganza/20231222-190936-A.webp",
@@ -607,9 +620,9 @@
       "width": 2400,
       "height": 3600,
       "crop": {
-        "x": 150,
-        "y": 150,
-        "size": 2100
+        "x": 0,
+        "y": 0,
+        "size": 2400
       }
     }
   },
@@ -674,7 +687,7 @@
         "uk": "Портрет з афіші концерту",
         "en": "Portrait from concert poster"
       },
-      "rim_inset": 0.06
+      "rim_inset": 0.035
     }
   },
   {
@@ -708,5 +721,135 @@
       "concerts/stabat-mater.html#artists"
     ],
     "portrait": null
+  },
+  {
+    "id": "maksym-hara",
+    "name": {
+      "uk": "Максим Гара",
+      "en": "Maksym Hara"
+    },
+    "role": {
+      "uk": "баритон",
+      "en": "baritone"
+    },
+    "group": "vocal",
+    "sources": [
+      "concerts/on-the-wings-of-love.html#artists"
+    ],
+    "portrait": {
+      "src": "/assets/img/maksym-hara.png",
+      "source": "Named Concert.ua profile; source and preserved image documented in docs/on-the-wings-of-love-source.md",
+      "width": 1920,
+      "height": 1080,
+      "crop": {
+        "x": 535,
+        "y": 0,
+        "size": 900
+      }
+    }
+  },
+  {
+    "id": "iryna-shelest",
+    "name": {
+      "uk": "Ірина Шелест",
+      "en": "Iryna Shelest"
+    },
+    "role": {
+      "uk": "сопрано",
+      "en": "soprano"
+    },
+    "group": "vocal",
+    "sources": [
+      "concerts/on-the-wings-of-love.html#artists"
+    ],
+    "portrait": {
+      "src": "/assets/img/iryna-shelest.jpg",
+      "source": "Owner-supplied portrait documented in docs/on-the-wings-of-love-source.md",
+      "width": 682,
+      "height": 1024,
+      "crop": {
+        "x": 140,
+        "y": 80,
+        "size": 440
+      }
+    }
+  },
+  {
+    "id": "yuliia-pavlovska",
+    "name": {
+      "uk": "Юлія Павловська",
+      "en": "Yuliia Pavlovska"
+    },
+    "role": {
+      "uk": "сопрано",
+      "en": "soprano"
+    },
+    "group": "vocal",
+    "sources": [
+      "concerts/on-the-wings-of-love.html#artists"
+    ],
+    "portrait": {
+      "src": "/assets/img/yuliia-pavlovska.jpg",
+      "source": "Owner-supplied portrait documented in docs/on-the-wings-of-love-source.md",
+      "width": 682,
+      "height": 1024,
+      "crop": {
+        "x": 100,
+        "y": 190,
+        "size": 420
+      }
+    }
+  },
+  {
+    "id": "karina-lysak",
+    "name": {
+      "uk": "Каріна Лисак",
+      "en": "Karina Lysak"
+    },
+    "role": {
+      "uk": "сопрано",
+      "en": "soprano"
+    },
+    "group": "vocal",
+    "sources": [
+      "concerts/on-the-wings-of-love.html#artists"
+    ],
+    "portrait": {
+      "src": "/assets/img/karina-lysak.jpg",
+      "source": "Owner-supplied 20260520_131322.jpg, identified as Karina Lysak, 3 October 2026; original JPEG bytes and EXIF preserved",
+      "width": 3060,
+      "height": 4080,
+      "crop": {
+        "x": 610,
+        "y": 570,
+        "size": 1420
+      }
+    }
+  },
+  {
+    "id": "oleksii-maliovanyi",
+    "name": {
+      "uk": "Олексій Мальований",
+      "en": "Oleksii Maliovanyi"
+    },
+    "role": {
+      "uk": "баритон",
+      "en": "baritone"
+    },
+    "group": "vocal",
+    "sources": [
+      "concerts/on-the-wings-of-love.html#artists"
+    ],
+    "portrait": {
+      "src": "/assets/img/oleksii-maliovanyi.jpg",
+      "source": "Owner-supplied identified IMG_20261002_163734_597.jpg; documented in docs/on-the-wings-of-love-source.md",
+      "width": 640,
+      "height": 640,
+      "crop": {
+        "x": 145,
+        "y": 0,
+        "size": 330
+      }
+    }
   }
 ]
