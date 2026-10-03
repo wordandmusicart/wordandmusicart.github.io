@@ -32,6 +32,7 @@ TILES = {
     'anzhelina-shvachka': (0, 40, 740),
     'liliia-hrevtsova': (1080, 900, 1400),
     'serhii-mahera': (0, 0, 300),
+    'hanna-semets': (450, 0, 3600),
     'mariia-popovych': (300, 450, 1800),
     'mykola-chykarenko': (270, 0, 1960),
     'hennadii-taraniuk': (750, 1300, 3000),
@@ -59,7 +60,7 @@ def tile(a, lang):
         sizes = f'(max-width:900px) {45*scale:.1f}vw, {23*scale:.1f}vw'
         circle = re.sub(r'sizes="[^"]*"', f'sizes="{sizes}"', circle)
         return '<div class="ph performer-poster-detail">' + circle + '</div>'
-    x, y, width = TILES[a['id']]
+    x, y, width = p.get('programme_crop') or TILES[a['id']]
     image = re.search(r'<img .*?>', photograph(a, lang))[0]
     style = (f'width:{p["width"]/width*100:.5f}%;height:auto;max-width:none;'
              f'left:{-x/width*100:.5f}%;top:{-y/(width*1.25)*100:.5f}%')
@@ -106,7 +107,15 @@ def sync(path):
                 return match[0]
             a = NAMES[html.unescape(alt[1]).split(' — ')[0]]
             return re.sub(r'alt="[^"]*"', f'alt="{alt[1]}"', photograph(a, language))
-        return re.sub(r'<span class="artist-portrait[^\"]*">.*?</span>', refresh, source, flags=re.S)
+        source = re.sub(r'<span class="artist-portrait[^\"]*">.*?</span>', refresh, source, flags=re.S)
+        def refresh_programme_crop(match):
+            alt = re.search(r'alt="([^\"]*)"', match[0])
+            a = NAMES.get(html.unescape(alt[1])) if alt else None
+            if not a or not a['portrait'].get('programme_crop'):
+                return match[0]
+            return tile(a, language)
+        return re.sub(r'<div class="ph performer-portrait"[^>]*>.*?</div>',
+                      refresh_programme_crop, source, flags=re.S)
     match = re.search(r'<section class="artists" id="artists">.*?</section>', source, re.S)
     if not match:
         return source
