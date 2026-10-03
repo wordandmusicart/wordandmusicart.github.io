@@ -1,14 +1,14 @@
 /* On the Wings of Love: three principals; centered accompanist and host after the supporting singers. */
-.people-wings{grid-template-columns:repeat(12,minmax(0,1fr));row-gap:48px}
+.people-wings{grid-template-columns:repeat(12,minmax(0,1fr));row-gap:56px}
 .people-wings>div{grid-column:span 4}
-.people-wings-secondary{grid-template-columns:repeat(12,minmax(0,1fr));margin-top:48px}
+.people-wings-secondary{grid-template-columns:repeat(12,minmax(0,1fr));margin-top:88px}
 .people-wings-secondary>div:first-child{grid-column:4 / span 3}
 .people-wings-secondary>div:last-child{grid-column:7 / span 3}
 @media(max-width:900px){
  .people-wings{grid-template-columns:repeat(4,minmax(0,1fr));row-gap:36px}
  .people-wings>div{grid-column:span 2}
  .people-wings>div:nth-child(3){grid-column:2 / span 2}
- .people-wings-secondary{grid-template-columns:repeat(4,minmax(0,1fr));margin-top:36px}
+ .people-wings-secondary{grid-template-columns:repeat(4,minmax(0,1fr));margin-top:56px}
  .people-wings-secondary>div:first-child{grid-column:1 / span 2}
  .people-wings-secondary>div:last-child{grid-column:3 / span 2}
 }

@@ -42,6 +42,9 @@
 /* Shared programme variants; individual crops stay in the image data. */
 .performer-portrait{overflow:hidden}
 .people .performer-portrait img{position:absolute;object-fit:initial}
-.people-students,.people-supporting,.people-host{margin-top:48px}
+/* Air between performer groups; a lone host (one card) sits centred. */
+.people-students,.people-supporting,.people-host{margin-top:88px}
+.people-host:has(>div:only-child){grid-template-columns:minmax(0,calc((100% - 72px) / 4));justify-content:center}
+@media (max-width:900px){.people-students,.people-supporting,.people-host{margin-top:56px}.people-host:has(>div:only-child){grid-template-columns:minmax(0,calc((100% - 12px) / 2))}}
 .performer-poster-detail{display:grid;place-items:center;background:var(--paper)}
 .performer-poster-detail .artist-portrait{width:100%;height:auto;aspect-ratio:1;flex:none}
