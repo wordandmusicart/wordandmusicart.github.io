@@ -84,7 +84,8 @@ class OctoberRolloverAcceptance(unittest.TestCase):
                 self.assertFalse(events(page))
                 self.assertFalse(list(doc.find(cls="status")))
                 self.assertFalse(list(doc.find(cls="sticky-buy")))
-                self.assertFalse([href for href in links(doc) if urlsplit(href).hostname == "eventmate.app"
+                # The shared header may sell the next concert; the archive content must not.
+                self.assertFalse([href for href in links(next(doc.find("main"))) if urlsplit(href).hostname == "eventmate.app"
                                   and urlsplit(href).path.startswith("/events/")])
 
     def test_upcoming_and_archive_listing_are_separated(self):

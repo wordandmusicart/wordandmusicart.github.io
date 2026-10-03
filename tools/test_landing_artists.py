@@ -250,8 +250,8 @@ class LandingArtistsAcceptance(unittest.TestCase):
                 self.assertTrue(list(header.find(cls="lang")), "Language choice must remain in header")
                 ticket_links = [href for href in links(header) if urlsplit(href).hostname == "eventmate.app"]
                 self.assertEqual(len(ticket_links), 2, "Keep desktop and mobile header ticket controls")
-                self.assertEqual(set(ticket_links), {"https://eventmate.app/users/share/wordmusic?locale=en"},
-                                 "Owner explicitly requires this profile URL and English locale in every header")
+                self.assertEqual(set(ticket_links), {"https://eventmate.app/events/share/na-krilah-kohanna-koncert-vokalnoi-muziki?locale=en"},
+                                 "Owner requires the 15 October event URL with English locale in every header (3 Oct 2026)")
                 route = path.relative_to(ROOT).as_posix()
                 leaf = path.name
                 expected = leaf.removesuffix(".html") if leaf in {"artists.html", "concerts.html", "photo.html", "video.html"} else None

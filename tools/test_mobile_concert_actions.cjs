@@ -119,7 +119,7 @@ async function sticky(page, lang, where) {
       await test(`${prefix + VIVRE} archive has no ticket bar and no empty mobile programme CTA`, 390, async page => {
         await open(page, '/' + prefix + VIVRE);
         assert.equal(await page.locator('.sticky-buy').count(), 0);
-        assert.equal(await page.locator('a[href*="eventmate.app/events/"]').count(), 0);
+        assert.equal(await page.locator('main a[href*="eventmate.app/events/"]').count(), 0);
         const cta = page.locator('.c-hero .c-cta');
         assert.equal(await cta.count(), 1);
         const state = await cta.evaluate(node => ({display: getComputedStyle(node).display, height: node.getBoundingClientRect().height}));
