@@ -137,11 +137,12 @@ class OctoberRolloverAcceptance(unittest.TestCase):
                     self.assertTrue(path.is_file())
                     doc = Document(path).root
                     canonical = [n.attrs.get("href") for n in doc.find("link") if n.attrs.get("rel") == "canonical"]
-                    self.assertEqual(canonical, [ORIGIN + "/" + prefix + relative])
+                    canonical_relative = WINGS if relative == "concert.html" else relative
+                    self.assertEqual(canonical, [ORIGIN + "/" + prefix + canonical_relative])
                     self.assertIn(canonical[0], urls)
                     alternates = {n.attrs.get("hreflang"): n.attrs.get("href") for n in doc.find("link") if n.attrs.get("rel") == "alternate"}
                     for code, twin in (("uk", ""), ("en", "en/")):
-                        self.assertEqual(alternates.get(code), ORIGIN + "/" + twin + relative)
+                        self.assertEqual(alternates.get(code), ORIGIN + "/" + twin + canonical_relative)
                     twin = "/" + ("en/" if lang == "uk" else "") + relative
                     self.assertIn(twin, links(next(doc.find(cls="lang"))))
         records = json.loads((ROOT / "assets/artists.json").read_text())

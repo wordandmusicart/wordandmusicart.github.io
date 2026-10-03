@@ -2,11 +2,16 @@
 
 from collections import defaultdict
 from html.parser import HTMLParser
+import os
 from pathlib import Path
 from urllib.parse import urlparse
 
 
-ROOT = Path(__file__).resolve().parent.parent
+ROOT = Path(os.environ.get("SITE_ROOT", Path(__file__).resolve().parent.parent))
+ORIGIN = "https://wordandmusic.art"
+# Current-programme aliases share the stable named concert's SEO identity.
+ALIASES = {"concert.html": "concerts/on-the-wings-of-love.html",
+           "en/concert.html": "en/concerts/on-the-wings-of-love.html"}
 
 
 class PageParser(HTMLParser):
@@ -21,6 +26,8 @@ class PageParser(HTMLParser):
         self.meta = {}
         self.og = {}
         self.alternates = {}
+        self.alternate_entries = []
+        self.canonicals = []
 
     def handle_starttag(self, tag, attrs):
         attrs = dict(attrs)
@@ -39,6 +46,9 @@ class PageParser(HTMLParser):
                 self.og[attrs["property"]] = attrs.get("content", "")
         elif tag == "link" and attrs.get("rel") == "alternate":
             self.alternates[attrs.get("hreflang", "")] = attrs.get("href", "")
+            self.alternate_entries.append(attrs)
+        elif tag == "link" and attrs.get("rel") == "canonical":
+            self.canonicals.append(attrs.get("href", ""))
 
     def handle_endtag(self, tag):
         if tag == "head":
@@ -59,11 +69,24 @@ def page_url(path):
     return "/" + path.relative_to(ROOT).as_posix()
 
 
+def canonical_url(path):
+    relative = path.relative_to(ROOT).as_posix()
+    relative = ALIASES.get(relative, relative)
+    if relative == "index.html":
+        relative = ""
+    elif relative == "en/index.html":
+        relative = "en/"
+    return ORIGIN + "/" + relative
+
+
+def public_pages():
+    return sorted(path for path in ROOT.rglob("*.html")
+                  if not any(part.startswith(".") or part in {"_site", "node_modules", "tools"}
+                             for part in path.relative_to(ROOT).parts))
+
+
 def main():
-    pages = sorted(
-        path for path in ROOT.rglob("*.html")
-        if not any(part.startswith(".") or part == "_site" for part in path.relative_to(ROOT).parts)
-    )
+    pages = public_pages()
     parsed = {}
     errors = []
     for path in pages:
@@ -87,7 +110,8 @@ def main():
             errors.append(f"{label}: missing Open Graph image")
         if path.name == "404.html":
             continue
-        expected_uk = page_url(ROOT / label.removeprefix("en/"))
+        target = ALIASES.get(label, label)
+        expected_uk = page_url(ROOT / target.removeprefix("en/"))
         expected_en = "/en" + expected_uk
         if path.name == "index.html":
             expected_uk, expected_en = "/", "/en/"
@@ -98,14 +122,20 @@ def main():
             if not (ROOT / expected.lstrip("/") / "index.html" if expected.endswith("/")
                     else ROOT / expected.lstrip("/")).is_file():
                 errors.append(f"{label}: missing {lang} page")
+        if len(page.alternate_entries) != 3 or set(page.alternates) != {"uk", "en", "x-default"}:
+            errors.append(f"{label}: expected exactly three language alternates")
         if page.alternates.get("x-default") != page.alternates.get("en"):
             errors.append(f"{label}: x-default alternate must point to the en page")
-        og_url = urlparse(page.og.get("og:url", ""))
-        expected_self = page_url(path)
-        if path.name == "index.html" and og_url.path in ("/", "/en/"):
-            pass
-        elif og_url.path != expected_self or not og_url.netloc:
+        expected = canonical_url(path)
+        if page.canonicals != [expected]:
+            errors.append(f"{label}: canonical must be {expected}")
+        if page.og.get("og:url") != expected:
             errors.append(f"{label}: invalid og:url")
+        for lang, href in page.alternates.items():
+            if not href.startswith(ORIGIN + "/"):
+                errors.append(f"{label}: wrong production host for {lang}")
+        if any("noindex" in page.meta.get(name, "").lower() for name in ("robots", "googlebot", "bingbot")):
+            errors.append(f"{label}: indexable page contains noindex")
     for field, getter in (("title", lambda p: p.title),
                           ("description", lambda p: p.meta.get("description", ""))):
         values = defaultdict(list)

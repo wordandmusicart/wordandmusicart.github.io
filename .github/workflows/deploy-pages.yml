@@ -30,7 +30,10 @@ jobs:
       - name: Check font subsets
         run: pip install -q fonttools brotli && python3 tools/fonts.py --check
       - name: Check page metadata
-        run: python3 tools/check_seo.py
+        run: |
+          python3 tools/check_seo.py
+          python3 tools/sitemap.py --check
+          python3 tools/test_sitemap.py
       - name: Check structured data
         run: python3 tools/structured_data.py --check
       - name: Check concert dates and ticket prices
