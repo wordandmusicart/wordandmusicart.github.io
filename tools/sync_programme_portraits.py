@@ -48,6 +48,19 @@ TILES = {
     'viktoriia-shvets': (0, 0, 1120),
 }
 
+# Owner-selected circular presentation on this programme only.
+CIRCULAR = {'heartstrings': {'oleksandr-vostriakov'}}
+
+
+def circle_tile(a, lang):
+    circle = photograph(a, lang)
+    p = a['portrait']
+    crop = p.get('circle_crop', p['crop'])
+    scale = p['width'] / crop['size']
+    sizes = f'(max-width:900px) {45*scale:.1f}vw, {23*scale:.1f}vw'
+    circle = re.sub(r'sizes="[^"]*"', f'sizes="{sizes}"', circle)
+    return '<div class="ph performer-poster-detail performer-circle-detail">' + circle + '</div>'
+
 
 def tile(a, lang):
     p = a['portrait']
@@ -132,7 +145,9 @@ def sync(path):
                  if a['id'] in SUPPORTING.get(path.stem, set()) else 'featured')
         # Retain the exact existing heading, role and all text after it.
         contents = card[heading.start():-6]
-        photo = photograph(a, language) if group == 'supporting' else tile(a, language)
+        photo = (photograph(a, language) if group == 'supporting' else
+                 circle_tile(a, language) if a['id'] in CIRCULAR.get(path.stem, set()) else
+                 tile(a, language))
         grouped[group].append('<div>' + photo + contents + '</div>')
     old_groups = list(re.finditer(r'<div class="people(?: [^"]*)?">', match[0]))
     prefix = match[0][:old_groups[0].start()]

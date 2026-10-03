@@ -51,6 +51,7 @@ class TicketPriceRangeTest(unittest.TestCase):
             ("uk", "250–400 ₴"),
             ("uk", "₴250–400"),
             ("en", "250–400 UAH"),
+            ("en", "250–400 ₴"),
             ("en", "250-400 UAH"),
             ("en", "250 – 400 UAH"),
         )
@@ -102,8 +103,8 @@ class TicketPriceRangeTest(unittest.TestCase):
 
     def test_published_october_15_facts_and_json_ld_agree_in_both_languages(self):
         for prefix, lang, label, visible in (
-            ("", "uk", "Ціна", "250–400 грн"),
-            ("en/", "en", "Price", "250–400 UAH"),
+            ("", "uk", "Ціна", "250–400 ₴"),
+            ("en/", "en", "Price", "250–400 ₴"),
         ):
             with self.subTest(language=lang):
                 page = (ROOT / prefix / "concerts/on-the-wings-of-love.html").read_text(encoding="utf-8")

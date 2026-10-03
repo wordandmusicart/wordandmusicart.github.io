@@ -5,10 +5,10 @@
     "artists": "Виконавці Марія Попович мецо-сопрано Микола Чикаренко фортепіано Дмитро Терентьєв скрипка Геннадій Таранюк художнє слово",
     "venue": "Локація Tauvers Gallery International Київ, вул. Ольгинська, 6 Відкрити на мапі",
     "hero_images": [
-      "/assets/img/vivre-poster-night-20261003-final.jpg"
+      "/assets/img/vivre-poster-20261003-current-night.jpg"
     ],
     "hero_sources": [
-      "/assets/img/vivre-poster-20261003-final-320.webp 320w, /assets/img/vivre-poster-20261003-final-480.webp 480w, /assets/img/vivre-poster-20261003-final-720.webp 720w, /assets/img/vivre-poster-20261003-final-960.webp 960w, /assets/img/vivre-poster-20261003-final.jpg 1080w"
+      "/assets/img/vivre-poster-20261003-current-light-320.webp 320w, /assets/img/vivre-poster-20261003-current-light-480.webp 480w, /assets/img/vivre-poster-20261003-current-light-720.webp 720w, /assets/img/vivre-poster-20261003-current-light-960.webp 960w, /assets/img/vivre-poster-20261003-current-light.jpg 1080w"
     ]
   },
   "en": {
@@ -16,10 +16,10 @@
     "artists": "Performers Mariia Popovych mezzo-soprano Mykola Chykarenko piano Dmytro Terentiev violin Hennadii Taraniuk spoken word",
     "venue": "Location Tauvers Gallery International 6 Olhynska St, Kyiv Open in Maps",
     "hero_images": [
-      "/assets/img/vivre-poster-night-20261003-final.jpg"
+      "/assets/img/vivre-poster-20261003-current-night.jpg"
     ],
     "hero_sources": [
-      "/assets/img/vivre-poster-20261003-final-320.webp 320w, /assets/img/vivre-poster-20261003-final-480.webp 480w, /assets/img/vivre-poster-20261003-final-720.webp 720w, /assets/img/vivre-poster-20261003-final-960.webp 960w, /assets/img/vivre-poster-20261003-final.jpg 1080w"
+      "/assets/img/vivre-poster-20261003-current-light-320.webp 320w, /assets/img/vivre-poster-20261003-current-light-480.webp 480w, /assets/img/vivre-poster-20261003-current-light-720.webp 720w, /assets/img/vivre-poster-20261003-current-light-960.webp 960w, /assets/img/vivre-poster-20261003-current-light.jpg 1080w"
     ]
   }
 }
