@@ -12,7 +12,6 @@
 .venue-logo--mono img{filter:brightness(0)}
 .venue-caption{font-size:16px;line-height:1.45;color:var(--ink2)}
 .venue-caption small{display:block;font-size:13px;margin-top:4px}
-.venue-link:hover .venue-caption{text-decoration:underline;text-underline-offset:4px}
 .venue-link:focus-visible{outline:2px solid var(--ink);outline-offset:8px}
 @media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .venue-logo--mono img{filter:brightness(0) invert(1)}:root:not([data-theme="light"]) .venue-logo--actor img{filter:invert(1)}}
 :root[data-theme="dark"] .venue-logo--mono img{filter:brightness(0) invert(1)}
