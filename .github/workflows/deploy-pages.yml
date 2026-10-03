@@ -39,6 +39,7 @@ jobs:
         run: |
           python3 tools/test_landing_artists.py
           python3 -m tools.test_announced_concert
+          python3 tools/sync_programme_portraits.py --check
       - uses: actions/setup-node@v4
         with:
           node-version: '22'

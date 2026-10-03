@@ -47,3 +47,41 @@ The same crops apply to the bilingual directory and their programme circles
 in Winter Extravaganza and On the Wings of Love. Independent screenshot/diff
 review found no blockers: balanced centring, full hair and no glove at Oleksii's
 right edge. Original files, programme text and rectangular images are unchanged.
+
+Full optical pass and archive hierarchy — 3 October 2026
+
+Owner identified remaining imbalance in Dariia Pohorila and requested a complete
+pass, plus rectangular principal-performer tiles on old concert pages following
+the new programmes. This supersedes the earlier instruction to preserve all
+existing programme circle shapes. Text, photographs, colours and typography
+remain unchanged; added dependencies and database/API contracts are N/A.
+
+All 25 unique photographic/artwork views and 156 pre-change repeated circles
+were inventoried. Ten additional photographic crops were refined together,
+including Dariia: comparable facial scale, full available hair, eye placement
+and useful headroom, verified beside the retained portraits rather than alone.
+Poster-derived Hanna Semets, Makar Rusanivsky and Taras Kapran remain constrained
+by their original printed circular artwork; no surrounding pixels are invented.
+
+All 12 archive programmes now use equal 4:5 principal cards, in both languages.
+Chamber ensembles of up to four retain a shared row including spoken word.
+Christmas Kaleidoscope and Heartstrings separate existing principal singers
+and accompanists from supporting singers; Heartstrings correctly features
+Vostriakov, who is named among the teachers in its existing description. Winter
+Extravaganza's eight equally credited soloists and accompanist receive equal
+tiles. Unknown photographs retain neutral rectangular spaces and equal billing.
+The three poster-only principals retain authentic circular artwork inside their
+equal-height rectangular cards; full rectangular originals are unavailable.
+
+`tools/sync_programme_portraits.py` records this source-based presentation and
+the separate rectangular views. Its `--check` runs in CI. The new programme's
+existing rectangular views are preserved; repeated circles share the directory
+views. After editing crops, run both `tools/build_artists.py` and this synchronizer.
+Independent circle review covered all 25 views; programme readback confirmed all
+headings, roles and notes preserved. CSS references advance to artists.css?v=6.
+
+Final independent review found no blockers after inspecting all 25 circle
+views, all 18 distinct rectangle/poster-card views, and actual chamber/mixed
+programmes at desktop and 396px mobile, UA/EN and dark theme. Existing tests,
+responsive assets, metadata, structured data, crop bounds, exact programme
+text readback, deterministic directory build and synchronization checks pass.
