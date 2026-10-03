@@ -13,7 +13,7 @@
     if (a) save(a.getAttribute('hreflang') === 'en' ? 'en' : 'uk');
   });
 
-  if (/bot|crawl|spider|slurp|lighthouse|preview/i.test(navigator.userAgent)) return;
+  if (/bot|crawl|spider|slurp|lighthouse|preview|google-inspectiontool|googleother/i.test(navigator.userAgent)) return;
 
   var want = load();
   if (want !== 'uk' && want !== 'en') {

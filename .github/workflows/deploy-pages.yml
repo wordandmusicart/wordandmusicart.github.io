@@ -58,6 +58,7 @@ jobs:
           node tools/test_theme_controls.cjs
           node tools/test_mobile_header.cjs
           node tools/test_page_motion.cjs
+          SITE_URL=http://127.0.0.1:4175 node tools/test_language_crawlers.cjs
       - name: Prepare public site
         run: |
           mkdir _site
