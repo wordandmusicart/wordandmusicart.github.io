@@ -707,13 +707,13 @@
     ],
     "portrait": {
       "src": "/assets/img/viktoriia-mramornova-portrait-20261004.jpg",
-      "source": "Owner-provided concert screenshot enhanced via AI to high-resolution master, 2026-10-04; circular crop (170, 198, 285) centres the head in profile (cx 0.50), sets face scale to 0.47 matching Lytvynenko and Ponomarenko, keeps 13% headroom above hair crown, and eliminates empty right wall; 4:5 programme tile (0, 40, 896) captures wider view with C. Bechstein grand piano matching Shmelova tile",
+      "source": "Owner-provided concert screenshot enhanced via AI to high-resolution master, 2026-10-04; circular crop (175, 238, 250) centres the whole head in profile (cx 0.50) at a larger scale, 14% headroom above the hair, less wall; owner rejected the earlier smaller crop 2026-10-05; 4:5 programme tile (0, 40, 896) captures wider view with C. Bechstein grand piano matching Shmelova tile",
       "width": 896,
       "height": 1200,
       "crop": {
-        "x": 170,
-        "y": 198,
-        "size": 285
+        "x": 175,
+        "y": 238,
+        "size": 250
       },
       "programme_crop": [
         0,
