@@ -495,11 +495,11 @@
       "width": 4284,
       "height": 5712,
       "crop": {
-        "x": 632,
-        "y": 785,
-        "size": 2288
+        "x": 1020,
+        "y": 920,
+        "size": 1900
       },
-      "source": "Owner-supplied photograph IMG_7982 (iPhone 15 Plus, 2026-06-04), owner-retouched IMG_7982.psd flattened to JPEG with metadata kept except GPS, 2026-10-03. Replaces the AI-enhanced performance crop. Originals: Google Drive 03_Вебсайт/01_Оригінали_медіа/Портрети. Owner requested contrast and sharpness correction, 2026-10-04. Photoshop Brightness 0 / Contrast +14 and Unsharp Mask 60%, radius 1.1 px, threshold 3 on a duplicated layer; full 4284x5712 framing and original JPEG preserved (SHA256 db146d9e9ae68219d6338137fb6c40e64142c4e8ed6acdc4d78eae9f74e2d2d8). Layered PSD preserved with originals. ImageGen preview rejected because it reconstructed details. Circle pulled back to preserve curls; face_rotation=20 is analysis-only to detect the tilted head, not the background sculpture.",
+      "source": "Owner-supplied photograph IMG_7982 (iPhone 15 Plus, 2026-06-04), owner-retouched IMG_7982.psd flattened to JPEG with metadata kept except GPS, 2026-10-03. Replaces the AI-enhanced performance crop. Originals: Google Drive 03_Вебсайт/01_Оригінали_медіа/Портрети. Owner requested contrast and sharpness correction, 2026-10-04. Photoshop Brightness 0 / Contrast +14 and Unsharp Mask 60%, radius 1.1 px, threshold 3 on a duplicated layer; full 4284x5712 framing and original JPEG preserved (SHA256 db146d9e9ae68219d6338137fb6c40e64142c4e8ed6acdc4d78eae9f74e2d2d8). Layered PSD preserved with originals. ImageGen preview rejected because it reconstructed details. Owner rejected the wide circle on 2026-10-04. Tighter circle (1020, 920, 1900) optically centres the tilted head, reduces the left wall and preserves curls; face_rotation=20 is analysis-only to detect the tilted head, not the background sculpture.",
       "face_rotation": 20
     }
   },
@@ -780,13 +780,13 @@
     ],
     "portrait": {
       "src": "/assets/img/iryna-lytvynenko-portrait-20261003.jpg",
-      "source": "KR/Production/Photography/2024/20240608_Дороги_кохання/20240608-162236-A.jpg; owner confirmed the identification 2026-10-03; original JPEG preserved byte-for-byte, crop only",
+      "source": "KR/Production/Photography/2024/20240608_Дороги_кохання/20240608-162236-A.jpg; owner confirmed the identification 2026-10-03; original JPEG preserved byte-for-byte, crop only; owner rejected the background-heavy circle 2026-10-04: tighter profile circle (1500,1080,1800) centred on the complete head with less right wall; original and 4:5 programme framing preserved",
       "width": 7605,
       "height": 5070,
       "crop": {
-        "x": 1800,
+        "x": 1500,
         "y": 1080,
-        "size": 2000
+        "size": 1800
       },
       "programme_crop": [
         1120,

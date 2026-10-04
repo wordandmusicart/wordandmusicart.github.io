@@ -122,7 +122,10 @@ change pass; if a test encodes an old owner decision, ask.
   (`SITE_URL=… node tools/portrait_sheet.cjs sheet.png --highlight <id>`);
   `tools/test_portrait_crops.py` (CI) fails on a crop outside the photo or a
   face that is off-centre, too small or too large. Fix the crop, never the
-  bands.
+  bands. A detector PASS is only a safety gate: inspect the visible circle
+  for excess background and optical head placement, especially with a tilt or profile.
+  A rejected crop must be compared before/after at the same size; do not
+  report it fixed solely from measurements.
 - Logos (word&music, venues, Eventmate) only in original colours or in the
   system monochrome (`.venue-logo--mono`), never recoloured, no plates.
 - Photo previews (5 frames on Фото and concert pages): bright colour shots
