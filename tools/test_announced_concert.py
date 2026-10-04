@@ -48,7 +48,8 @@ class AnnouncedConcertAcceptance(unittest.TestCase):
                 status = next(doc.find(cls="status"), None)
                 self.assertIsNotNone(status)
                 self.assertEqual(status.text().strip(), "Продаж триває" if lang == "uk" else "On sale")
-                self.assertFalse(status.attrs.get("data-sales-start"), "No sales opening date was provided")
+                self.assertEqual(status.attrs.get("data-sales-start"), "2026-10-02",
+                                 "The owner confirmed the opening date without a time")
                 listing = Document(ROOT / prefix / "concerts.html").root
                 card = next(n for n in listing.find("article", cls="upc") if "/" + prefix + SLUG in links(n))
                 self.assertIn(expected, links(card))
@@ -105,7 +106,7 @@ class AnnouncedConcertAcceptance(unittest.TestCase):
                 self.assertEqual([p["name"] for p in events(path.read_text())[0]["performer"]], NAMES[lang])
                 roles = [n.text().strip() for n in people.find("p")]
                 vocal_words = ("сопрано", "баритон", "тенор") if lang == "uk" else ("soprano", "baritone", "tenor")
-                self.assertEqual(sum(any(word in role for word in vocal_words) for role in roles), 11)
+                self.assertEqual(sum(any(word in role.lower() for word in vocal_words) for role in roles), 11)
                 self.assertEqual(roles[11], "Концертмейстер" if lang == "uk" else "Accompanist")
                 self.assertEqual(roles[12], "Художнє слово та ведучий" if lang == "uk" else "Spoken word and host")
                 img_sources = [img.attrs.get("src") for img in people.find("img")]

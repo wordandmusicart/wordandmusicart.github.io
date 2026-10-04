@@ -77,8 +77,10 @@ class EventSchemaTest(unittest.TestCase):
         self.assertEqual(offer.get("availability"), "https://schema.org/InStock")
         self.assertEqual(offer.get("price"), "250")
         self.assertEqual(offer.get("priceCurrency"), "UAH")
-        for unsupported_field in ("lowPrice", "highPrice", "priceSpecification", "validFrom"):
-            self.assertNotIn(unsupported_field, offer, "Only the minimum price is emitted; no sales opening date was supplied")
+        self.assertEqual(offer.get("validFrom"), "2026-10-02",
+                         "The owner confirmed the opening date without a time")
+        for unsupported_field in ("lowPrice", "highPrice", "priceSpecification"):
+            self.assertNotIn(unsupported_field, offer, "Only the minimum price is emitted")
         self.assertEqual(len(event["performer"]), 13)
         self.assertEqual(len({p["name"] for p in event["performer"]}), 13)
         self.assertNotIn("koncert-ziti-kohati-mriati", page)

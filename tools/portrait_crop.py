@@ -41,9 +41,40 @@ def largest_face(gray, min_size):
     return max(faces, key=lambda f: f[2]) if len(faces) else None
 
 
+def tilted_face(p):
+    """Detect inside the known portrait, rotating only a temporary analysis copy.
+
+    Coordinates return to the original photo; the displayed portrait never
+    rotates. Restricting detection to the portrait avoids background faces
+    (the sculpture in Hlinska's photograph).
+    """
+    c = p.get('circle_crop', p['crop'])
+    image = photo(p)
+    scale = image.width / p['width']
+    box = [round(v * scale) for v in (c['x'], c['y'], c['x'] + c['size'], c['y'] + c['size'])]
+    gray = np.array(image.crop(box).resize((600, 600)))
+    rotation = cv2.getRotationMatrix2D((300, 300), p['face_rotation'], 1)
+    face = largest_face(cv2.warpAffine(gray, rotation, (600, 600)), 120)
+    if face is None:
+        return None
+    x, y, w, h = face
+    inverse = cv2.invertAffineTransform(rotation)
+    points = np.array([[x + w / 2, y + h / 2, 1],
+                       [x + w / 2, y + 0.4 * h, 1]]) @ inverse.T
+    points = points * c['size'] / 600 + np.array([c['x'], c['y']])
+    return {'width': w * c['size'] / 600, 'cx': points[0, 0], 'eye': points[1, 1]}
+
+
 def measure(p):
     """Face width, centre and eye line as fractions of the circle; None if no frontal face."""
     c = p.get('circle_crop', p['crop'])
+    if p.get('face_rotation'):
+        face = tilted_face(p)
+        return None if face is None else {
+            'width': face['width'] / c['size'],
+            'cx': (face['cx'] - c['x']) / c['size'],
+            'eye': (face['eye'] - c['y']) / c['size'],
+        }
     image = photo(p)
     scale = image.width / p['width']
     box = [round(v * scale) for v in (c['x'], c['y'], c['x'] + c['size'], c['y'] + c['size'])]
@@ -55,6 +86,14 @@ def measure(p):
 
 
 def propose(p):
+    if p.get('face_rotation'):
+        face = tilted_face(p)
+        if face is None:
+            return None
+        size = min(face['width'] / TARGET['width'], p['width'], p['height'])
+        left = min(max(face['cx'] - TARGET['cx'] * size, 0), p['width'] - size)
+        top = min(max(face['eye'] - TARGET['eye'] * size, 0), p['height'] - size)
+        return {'x': round(left), 'y': round(top), 'size': round(size)}
     image = photo(p)
     scale = 1200 / max(image.size)
     face = largest_face(image.resize((round(image.width * scale), round(image.height * scale))), 40)
