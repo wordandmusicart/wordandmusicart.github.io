@@ -749,13 +749,13 @@
     ],
     "portrait": {
       "src": "/assets/img/makar-rusanivsky-portrait-20261003.jpg",
-      "source": "Owner-identified photograph, 2026-10-03; 2023-08-17 11.26-2.jpg, matching the supplied Photoshop document preview; original JPEG preserved byte-for-byte; full circular-portrait review 2026-10-04: tightened and optically centred the head, retained crown and native pose, reduced background and torso; source JPEG unchanged",
+      "source": "Owner-identified photograph, 2026-10-03; 2023-08-17 11.26-2.jpg, matching the supplied Photoshop document preview; original JPEG preserved byte-for-byte; restored approved framing (1000, 540, 2150) preserving head crown, hair margin and optical balance",
       "width": 4834,
       "height": 6042,
       "crop": {
-        "x": 1300,
-        "y": 480,
-        "size": 1950
+        "x": 1000,
+        "y": 540,
+        "size": 2150
       },
       "programme_crop": [
         0,
@@ -811,13 +811,13 @@
     ],
     "portrait": {
       "src": "/assets/img/polina-burakova-portrait-20261003.jpg",
-      "source": "KR/Production/Photography/2025/20250416-2_Stabat_Mater/20250416-190636-A.jpg; owner confirmed the identification 2026-10-03; original JPEG preserved byte-for-byte, crop only; owner rejected the background-heavy circle 2026-10-04: tighter 1620,980,1900 circle reduces overhead wall and picture on the right while retaining the head and hair; source JPEG and programme 4:5 framing unchanged",
+      "source": "KR/Production/Photography/2025/20250416-2_Stabat_Mater/20250416-190636-A.jpg; owner confirmed the identification 2026-10-03; original JPEG preserved byte-for-byte, crop only; owner requested fix 2026-10-04: corrected sunken head and over-tight zoom to balanced circular crop (1400, 750, 2400) with natural headroom, shoulders, and shared face scale; source JPEG and programme 4:5 framing unchanged",
       "width": 5147,
       "height": 7720,
       "crop": {
-        "x": 1620,
-        "y": 980,
-        "size": 1900
+        "x": 1400,
+        "y": 750,
+        "size": 2400
       },
       "programme_crop": [
         960,
@@ -1024,13 +1024,13 @@
     ],
     "portrait": {
       "src": "/assets/photo/autumn-rendezvous/20251115-174422-A.webp",
-      "source": "photo/autumn-rendezvous.html; performance photograph from Autumn Rendezvous concert, 2025-11-15; tight circular crop (1115, 240, 530) centres the face, eye line at 44%, face scale 0.50 matching Ponomarenko and ensemble; original WebP unchanged",
+      "source": "photo/autumn-rendezvous.html; performance photograph from Autumn Rendezvous concert, 2025-11-15; tightened circular crop (1214, 282, 425) centres the face, removes distracting background post and blue wall on the left, places eye line at 45% and face scale at 0.59 matching Ponomarenko and vocal ensemble; original WebP unchanged",
       "width": 2400,
       "height": 1600,
       "crop": {
-        "x": 1115,
-        "y": 240,
-        "size": 530
+        "x": 1214,
+        "y": 282,
+        "size": 425
       }
     }
   }
