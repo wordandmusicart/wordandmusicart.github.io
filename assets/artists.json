@@ -749,13 +749,13 @@
     ],
     "portrait": {
       "src": "/assets/img/makar-rusanivsky-portrait-20261003.jpg",
-      "source": "Owner-identified photograph, 2026-10-03; 2023-08-17 11.26-2.jpg, matching the supplied Photoshop document preview; original JPEG preserved byte-for-byte",
+      "source": "Owner-identified photograph, 2026-10-03; 2023-08-17 11.26-2.jpg, matching the supplied Photoshop document preview; original JPEG preserved byte-for-byte; full circular-portrait review 2026-10-04: tightened and optically centred the head, retained crown and native pose, reduced background and torso; source JPEG unchanged",
       "width": 4834,
       "height": 6042,
       "crop": {
-        "x": 1000,
-        "y": 540,
-        "size": 2150
+        "x": 1300,
+        "y": 480,
+        "size": 1950
       },
       "programme_crop": [
         0,
@@ -811,13 +811,13 @@
     ],
     "portrait": {
       "src": "/assets/img/polina-burakova-portrait-20261003.jpg",
-      "source": "KR/Production/Photography/2025/20250416-2_Stabat_Mater/20250416-190636-A.jpg; owner confirmed the identification 2026-10-03; original JPEG preserved byte-for-byte, crop only",
+      "source": "KR/Production/Photography/2025/20250416-2_Stabat_Mater/20250416-190636-A.jpg; owner confirmed the identification 2026-10-03; original JPEG preserved byte-for-byte, crop only; owner rejected the background-heavy circle 2026-10-04: tighter 1620,980,1900 circle reduces overhead wall and picture on the right while retaining the head and hair; source JPEG and programme 4:5 framing unchanged",
       "width": 5147,
       "height": 7720,
       "crop": {
-        "x": 1425,
-        "y": 829,
-        "size": 2293
+        "x": 1620,
+        "y": 980,
+        "size": 1900
       },
       "programme_crop": [
         960,
@@ -975,11 +975,11 @@
       "width": 5034,
       "height": 7551,
       "crop": {
-        "x": 1630,
-        "y": 1490,
-        "size": 2400
+        "x": 1840,
+        "y": 1620,
+        "size": 1850
       },
-      "source": "Original 20240608-162637-A.jpg; user directly identified the supplied photograph, 2026-10-03. Original photo preserved, crop only."
+      "source": "Original 20240608-162637-A.jpg; user directly identified the supplied photograph, 2026-10-03. Original photo preserved, crop only.; full circular-portrait review 2026-10-04: tightened and optically centred the head, retained crown and native pose, reduced background and torso; source JPEG unchanged"
     }
   },
   {

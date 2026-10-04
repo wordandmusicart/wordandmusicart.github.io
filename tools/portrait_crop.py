@@ -8,7 +8,7 @@ Crops are computed from the detected face, not guessed:
 
 The proposal puts the face in the middle (cx 0.50), the eye line at 0.42 of
 the circle and the face at 0.46 of the diameter — the scale of the circles the
-owner approved (Skrynnyk, Popovych, Burakova, Povazhna). The circle is then
+used as a starting point (Skrynnyk, Popovych, Povazhna). The circle is then
 pulled back inside the photograph; if that moves the face, the photo itself
 has no room and the report says so. Judge the result on the contact sheet
 (`tools/portrait_sheet.cjs`) next to all other portraits before publishing.
