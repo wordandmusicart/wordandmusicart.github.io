@@ -6,8 +6,8 @@
       "en": "Hennadii Taraniuk"
     },
     "role": {
-      "uk": "автор проєкту · художнє слово",
-      "en": "project author · spoken word"
+      "uk": "Автор проєкту · художнє слово",
+      "en": "Project author · spoken word"
     },
     "group": "author",
     "sources": [
@@ -44,8 +44,8 @@
       "en": "Anzhelina Shvachka"
     },
     "role": {
-      "uk": "мецо-сопрано · Солістка Національної опери України, народна артистка України",
-      "en": "mezzo-soprano · Soloist of the National Opera of Ukraine, People’s Artist of Ukraine"
+      "uk": "Мецо-сопрано · Солістка Національної опери України, народна артистка України",
+      "en": "Mezzo-soprano · Soloist of the National Opera of Ukraine, People’s Artist of Ukraine"
     },
     "group": "vocal",
     "sources": [
@@ -80,8 +80,8 @@
       "en": "Liliia Hrevtsova"
     },
     "role": {
-      "uk": "сопрано · Солістка Національної опери України, народна артистка України",
-      "en": "soprano · Soloist of the National Opera of Ukraine, People’s Artist of Ukraine"
+      "uk": "Сопрано · Солістка Національної опери України, народна артистка України",
+      "en": "Soprano · Soloist of the National Opera of Ukraine, People’s Artist of Ukraine"
     },
     "group": "vocal",
     "sources": [
@@ -139,8 +139,8 @@
       "en": "Mariia Popovych"
     },
     "role": {
-      "uk": "мецо-сопрано",
-      "en": "mezzo-soprano"
+      "uk": "Мецо-сопрано",
+      "en": "Mezzo-soprano"
     },
     "group": "vocal",
     "sources": [
@@ -170,8 +170,8 @@
       "en": "Taras Kapran"
     },
     "role": {
-      "uk": "тенор",
-      "en": "tenor"
+      "uk": "Тенор",
+      "en": "Tenor"
     },
     "group": "vocal",
     "sources": [
@@ -201,8 +201,8 @@
       "en": "Nataliia Skrynnyk"
     },
     "role": {
-      "uk": "сопрано",
-      "en": "soprano"
+      "uk": "Сопрано",
+      "en": "Soprano"
     },
     "group": "vocal",
     "sources": [
@@ -258,8 +258,8 @@
       "en": "Ihor Povazhnyi"
     },
     "role": {
-      "uk": "тенор",
-      "en": "tenor"
+      "uk": "Тенор",
+      "en": "Tenor"
     },
     "group": "vocal",
     "sources": [
@@ -284,8 +284,8 @@
       "en": "Hanna Semets"
     },
     "role": {
-      "uk": "сопрано",
-      "en": "soprano"
+      "uk": "Сопрано",
+      "en": "Soprano"
     },
     "group": "vocal",
     "sources": [
@@ -340,8 +340,8 @@
       "en": "Yelyzaveta Bielous"
     },
     "role": {
-      "uk": "мецо-сопрано",
-      "en": "mezzo-soprano"
+      "uk": "Мецо-сопрано",
+      "en": "Mezzo-soprano"
     },
     "group": "vocal",
     "sources": [
@@ -368,8 +368,8 @@
       "en": "Oleksandr Ponomarenko"
     },
     "role": {
-      "uk": "тенор",
-      "en": "tenor"
+      "uk": "Тенор",
+      "en": "Tenor"
     },
     "group": "vocal",
     "sources": [
@@ -398,8 +398,8 @@
       "en": "Oleksandr Vostriakov"
     },
     "role": {
-      "uk": "бас",
-      "en": "bass"
+      "uk": "Бас",
+      "en": "Bass"
     },
     "group": "vocal",
     "sources": [
@@ -427,8 +427,8 @@
       "en": "Daria Pohorila"
     },
     "role": {
-      "uk": "сопрано",
-      "en": "soprano"
+      "uk": "Сопрано",
+      "en": "Soprano"
     },
     "group": "vocal",
     "sources": [
@@ -481,8 +481,8 @@
       "en": "Lidiia Hlinska"
     },
     "role": {
-      "uk": "сопрано",
-      "en": "soprano"
+      "uk": "Сопрано",
+      "en": "Soprano"
     },
     "group": "vocal",
     "sources": [
@@ -491,15 +491,16 @@
       "concerts/on-the-wings-of-love.html#artists"
     ],
     "portrait": {
-      "src": "/assets/img/lidiia-hlinska-portrait-img-7982.jpg",
+      "src": "/assets/img/lidiia-hlinska-portrait-tone-20261004.jpg",
       "width": 4284,
       "height": 5712,
       "crop": {
-        "x": 640,
-        "y": 800,
-        "size": 2200
+        "x": 632,
+        "y": 785,
+        "size": 2288
       },
-      "source": "Owner-supplied photograph IMG_7982 (iPhone 15 Plus, 2026-06-04), owner-retouched IMG_7982.psd flattened to JPEG with metadata kept except GPS, 2026-10-03. Replaces the AI-enhanced performance crop. Originals: Google Drive 03_Вебсайт/01_Оригінали_медіа/Портрети."
+      "source": "Owner-supplied photograph IMG_7982 (iPhone 15 Plus, 2026-06-04), owner-retouched IMG_7982.psd flattened to JPEG with metadata kept except GPS, 2026-10-03. Replaces the AI-enhanced performance crop. Originals: Google Drive 03_Вебсайт/01_Оригінали_медіа/Портрети. Owner requested contrast and sharpness correction, 2026-10-04. Photoshop Brightness 0 / Contrast +14 and Unsharp Mask 60%, radius 1.1 px, threshold 3 on a duplicated layer; full 4284x5712 framing and original JPEG preserved (SHA256 db146d9e9ae68219d6338137fb6c40e64142c4e8ed6acdc4d78eae9f74e2d2d8). Layered PSD preserved with originals. ImageGen preview rejected because it reconstructed details. Circle pulled back to preserve curls; face_rotation=20 is analysis-only to detect the tilted head, not the background sculpture.",
+      "face_rotation": 20
     }
   },
   {
@@ -509,8 +510,8 @@
       "en": "Miao Xinyue"
     },
     "role": {
-      "uk": "сопрано",
-      "en": "soprano"
+      "uk": "Сопрано",
+      "en": "Soprano"
     },
     "group": "vocal",
     "sources": [
@@ -537,8 +538,8 @@
       "en": "Anastasiia Dovbius"
     },
     "role": {
-      "uk": "сопрано",
-      "en": "soprano"
+      "uk": "Сопрано",
+      "en": "Soprano"
     },
     "group": "vocal",
     "sources": [
@@ -565,8 +566,8 @@
       "en": "Nykyta Naumov"
     },
     "role": {
-      "uk": "вокал",
-      "en": "vocals"
+      "uk": "Вокал",
+      "en": "Vocals"
     },
     "group": "vocal",
     "sources": [
@@ -591,8 +592,8 @@
       "en": "Albina Holenach"
     },
     "role": {
-      "uk": "сопрано",
-      "en": "soprano"
+      "uk": "Сопрано",
+      "en": "Soprano"
     },
     "group": "vocal",
     "sources": [
@@ -618,8 +619,8 @@
       "en": "Mykola Chykarenko"
     },
     "role": {
-      "uk": "фортепіано",
-      "en": "piano"
+      "uk": "Фортепіано",
+      "en": "Piano"
     },
     "group": "music",
     "sources": [
@@ -648,8 +649,8 @@
       "en": "Dmytro Terentiev"
     },
     "role": {
-      "uk": "скрипка",
-      "en": "violin"
+      "uk": "Скрипка",
+      "en": "Violin"
     },
     "group": "music",
     "sources": [
@@ -739,8 +740,8 @@
       "en": "Makar Rusanivsky"
     },
     "role": {
-      "uk": "фортепіано",
-      "en": "piano"
+      "uk": "Фортепіано",
+      "en": "Piano"
     },
     "group": "music",
     "sources": [
@@ -801,8 +802,8 @@
       "en": "Polina Burakova"
     },
     "role": {
-      "uk": "фортепіано",
-      "en": "piano"
+      "uk": "Фортепіано",
+      "en": "Piano"
     },
     "group": "music",
     "sources": [
@@ -832,8 +833,8 @@
       "en": "Maksym Hara"
     },
     "role": {
-      "uk": "баритон · Соліст Національної оперети України",
-      "en": "baritone · Soloist of the National Operetta of Ukraine"
+      "uk": "Баритон · Соліст Національної оперети України",
+      "en": "Baritone · Soloist of the National Operetta of Ukraine"
     },
     "group": "vocal",
     "sources": [
@@ -858,8 +859,8 @@
       "en": "Iryna Shelest"
     },
     "role": {
-      "uk": "сопрано",
-      "en": "soprano"
+      "uk": "Сопрано",
+      "en": "Soprano"
     },
     "group": "vocal",
     "sources": [
@@ -884,8 +885,8 @@
       "en": "Yuliia Pavlovska"
     },
     "role": {
-      "uk": "сопрано",
-      "en": "soprano"
+      "uk": "Сопрано",
+      "en": "Soprano"
     },
     "group": "vocal",
     "sources": [
@@ -910,8 +911,8 @@
       "en": "Karina Lysak"
     },
     "role": {
-      "uk": "сопрано",
-      "en": "soprano"
+      "uk": "Сопрано",
+      "en": "Soprano"
     },
     "group": "vocal",
     "sources": [
@@ -936,8 +937,8 @@
       "en": "Oleksii Maliovanyi"
     },
     "role": {
-      "uk": "баритон",
-      "en": "baritone"
+      "uk": "Баритон",
+      "en": "Baritone"
     },
     "group": "vocal",
     "sources": [
@@ -962,8 +963,8 @@
       "en": "Deng Yajuan"
     },
     "role": {
-      "uk": "сопрано",
-      "en": "soprano"
+      "uk": "Сопрано",
+      "en": "Soprano"
     },
     "group": "vocal",
     "sources": [
@@ -988,8 +989,8 @@
       "en": "Anna Bielanova"
     },
     "role": {
-      "uk": "мецо-сопрано",
-      "en": "mezzo-soprano"
+      "uk": "Мецо-сопрано",
+      "en": "Mezzo-soprano"
     },
     "group": "vocal",
     "sources": [

@@ -116,7 +116,7 @@ def sync(path):
     source = path.read_text()
     language = 'en' if path.relative_to(ROOT).parts[0] == 'en' else 'uk'
     # The approved new layout already separates featured, supporting and host.
-    if path.stem == 'on-the-wings-of-love':
+    if path.stem == 'on-the-wings-of-love' or path.name == 'concert.html':
         def refresh(match):
             alt = re.search(r'alt="([^"]*)"', match[0])
             if not alt:
@@ -167,7 +167,8 @@ if __name__ == '__main__':
     args = parser.parse_args()
     stale = []
     for path in sorted([*(ROOT / 'concerts').glob('*.html'),
-                        *(ROOT / 'en/concerts').glob('*.html')]):
+                        *(ROOT / 'en/concerts').glob('*.html'),
+                        ROOT / 'concert.html', ROOT / 'en/concert.html']):
         result = sync(path)
         if result != path.read_text():
             stale.append(str(path.relative_to(ROOT)))

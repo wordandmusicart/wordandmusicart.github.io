@@ -96,8 +96,8 @@ change pass; if a test encodes an old owner decision, ask.
   circles, host after students). Under a name only the role from
   `assets/artists.json`, identical on every page (artists, programmes,
   video performer lists), formatted like the 15 October page:
-  «мецо-сопрано · Солістка Національної опери України, народна артистка
-  України», «Концертмейстер». Never «партія …», «лауреат…», «співавторка».
+  «Мецо-сопрано · Солістка Національної опери України, народна артистка
+  України», «Концертмейстер». Every caption starts with a capital, in UA and EN. Never «партія …», «лауреат…», «співавторка».
   `tools/test_artist_roles.py` fails on any drift.
 - Composer names in full on the site (Вольфганг Амадей Моцарт).
 

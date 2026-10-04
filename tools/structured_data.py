@@ -147,7 +147,8 @@ def event(s, lang, url):
         if status and status.group(2).strip() in ON_SALE:
             offer['availability'] = 'https://schema.org/InStock'
         if status and status.group(1):
-            offer['validFrom'] = datetime.fromisoformat(status.group(1)).replace(tzinfo=KYIV).isoformat()
+            # The owner supplied a date only; do not invent a midnight opening.
+            offer['validFrom'] = datetime.fromisoformat(status.group(1)).date().isoformat()
         ev['offers'] = offer
     return [ev]
 

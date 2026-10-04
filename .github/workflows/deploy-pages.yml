@@ -28,7 +28,7 @@ jobs:
       - name: Check responsive images
         run: pip install -q pillow && python3 tools/test_portrait_orientation.py && python3 tools/images.py --check
       - name: Check portrait crops
-        run: pip install -q pillow "opencv-python-headless<5" && python3 tools/test_portrait_crops.py
+        run: pip install -q pillow "opencv-python-headless<5" && python3 tools/test_portrait_crops.py && python3 tools/test_portrait_rotation.py
       - name: Check font subsets
         run: pip install -q fonttools brotli && python3 tools/fonts.py --check
       - name: Check page metadata
@@ -41,6 +41,7 @@ jobs:
       - name: Check concert dates and ticket prices
         run: |
           python3 tools/test_event_end_date.py
+          python3 tools/test_offer_valid_from.py
           python3 tools/test_ticket_price_range.py
           python3 tools/test_october_rollover.py
           python3 tools/test_home_archive_random.py

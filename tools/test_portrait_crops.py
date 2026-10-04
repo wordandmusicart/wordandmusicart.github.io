@@ -21,7 +21,6 @@ from sync_programme_portraits import TILES
 BANDS = {'width': (0.39, 0.60), 'cx': (0.38, 0.62), 'eye': (0.30, 0.48)}
 NO_FRONTAL_FACE = {
     'iryna-lytvynenko': 'profile at the piano',
-    'lidiia-hlinska': 'head tilted towards the shoulder',
     'viktoriia-shvets': 'profile at the piano',
 }
 ARTISTS = json.loads((ROOT / 'assets/artists.json').read_text())

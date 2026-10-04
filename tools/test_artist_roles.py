@@ -1,12 +1,11 @@
 #!/usr/bin/env python3
-"""One caption per artist, everywhere (owner decision, 3 October 2026).
+"""One capitalised caption per artist, everywhere (owner decision, 4 October 2026).
 
 The line under a performer's name repeats the role in assets/artists.json on
 every page: the artists directory, each concert programme (UA and EN).
-Format follows the 15 October concert page: voice or instrument in lower
-case, then « · » and the title with a capital («мецо-сопрано · Солістка
-Національної опери України, …»); functions such as «Концертмейстер» start
-with a capital. Never «партія …», never «лауреат…» under a name.
+Every UA and EN role and card caption starts with a capital: «Сопрано»,
+«Soprano», «Мецо-сопрано · Солістка Національної опери України, …».
+Never «партія …», never «лауреат…» under a name.
 
 A role that genuinely belongs to one concert is listed in PER_CONCERT.
 """
@@ -25,7 +24,7 @@ NAMES['Dariia Pohorila'] = NAMES['Daria Pohorila']
 PER_CONCERT = {
     'hennadii-taraniuk': {'Художнє слово', 'Ведучий', 'Художнє слово та ведучий',
                           'Spoken word', 'Host', 'Spoken word and host'},
-    'daria-pohorila': {'сопрано · Ведуча', 'soprano · Host'},
+    'daria-pohorila': {'Сопрано · Ведуча', 'Soprano · Host'},
 }
 CAPTION = re.compile(r'<h3[^>]*>([^<]*)</h3>\s*<p[^>]*>([^<]*)</p>')
 
@@ -37,6 +36,25 @@ def pages():
 
 
 class ArtistRoles(unittest.TestCase):
+    def assert_starts_with_capital(self, caption):
+        initial = next((char for char in caption if char.isalpha()), '')
+        self.assertTrue(initial and initial.isupper(),
+                        f'caption must start with a capital: {caption!r}')
+
+    def test_artist_roles_start_with_capitals(self):
+        for artist in ARTISTS:
+            for lang in ('uk', 'en'):
+                with self.subTest(artist=artist['id'], lang=lang):
+                    self.assert_starts_with_capital(artist['role'][lang])
+
+    def test_known_card_captions_start_with_capitals(self):
+        for page in pages():
+            for name, caption in CAPTION.findall(page.read_text()):
+                name, caption = html.unescape(name).strip(), html.unescape(caption).strip()
+                if name in NAMES:
+                    with self.subTest(page=str(page.relative_to(ROOT)), name=name):
+                        self.assert_starts_with_capital(caption)
+
     def test_captions_repeat_the_artist_record(self):
         for page in pages():
             for name, caption in CAPTION.findall(page.read_text()):
