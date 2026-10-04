@@ -109,3 +109,18 @@ tight (hair cut at the top). Views are now (1250,1040,2700) and
 Tauvers Gallery's venue mark uses a transparent copy of the supplied SVG
 (`tauvers-gallery-mono.svg`, white frame/panel fills removed) in the shared
 monochrome logo style; the original SVG is kept unchanged.
+
+Owner corrections and additions — 4 October 2026:
+- Vadym Humennyi added to the artist catalogue and the Autumn Rendezvous
+  concert programme as baritone (`vadym-humennyi`, vocal group). Source photo:
+  `assets/photo/autumn-rendezvous/20251115-174422-A.webp` with close-up circular
+  crop `(1115, 240, 530)`, eye-line at 44%, face scale 0.50 matching Ponomarenko
+  and the ensemble.
+- Yuliia Pavlovska circular crop corrected from wide/loose `(177, 212, 350)` to
+  tightened, optically centred `(175, 218, 300)` on `assets/img/yuliia-pavlovska.jpg`.
+  Eliminated the disproportionate empty wall on the right and top, centered her
+  face and eye line (44%), preserved natural headroom (~11%), and matched the
+  close-up head-and-shoulders scale of neighbouring singers.
+- Directory total: 32 of 37 with photographs; Mramornova and Terentiev remain
+  neutral placeholders. All test gates and contact-sheet verifications pass.
+

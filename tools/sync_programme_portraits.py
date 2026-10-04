@@ -20,7 +20,7 @@ HOST = 'hennadii-taraniuk'
 SUPPORTING = {
     'autumn-rendezvous': {'valentyna-frolova', 'oleksandr-ponomarenko',
         'oleksandr-vostriakov', 'lidiia-hlinska', 'miao-xinyue',
-        'anastasiia-dovbius'},
+        'anastasiia-dovbius', 'vadym-humennyi'},
     'christmas-kaleidoscope': {'valentyna-frolova', 'yelyzaveta-bielous',
         'oleksandr-ponomarenko', 'oleksandr-vostriakov', 'daria-pohorila',
         'lidiia-hlinska', 'miao-xinyue'},
