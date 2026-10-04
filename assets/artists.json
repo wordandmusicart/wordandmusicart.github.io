@@ -705,7 +705,22 @@
       "concerts/autumn-rendezvous.html#artists",
       "concerts/melodies-of-enchanting-june.html#artists"
     ],
-    "portrait": null
+    "portrait": {
+      "src": "/assets/img/viktoriia-mramornova-portrait-20261004.jpg",
+      "source": "Owner-provided concert screenshot enhanced via AI to high-resolution master, 2026-10-04; circular crop (120, 160, 460) captures pianist in profile with breathing headroom, shoulders and hands at keyboard; 4:5 programme tile (0, 40, 896) captures wider view with C. Bechstein grand piano matching Shmelova tile",
+      "width": 896,
+      "height": 1200,
+      "crop": {
+        "x": 120,
+        "y": 160,
+        "size": 460
+      },
+      "programme_crop": [
+        0,
+        40,
+        896
+      ]
+    }
   },
   {
     "id": "viktoriia-shvets",
@@ -811,13 +826,13 @@
     ],
     "portrait": {
       "src": "/assets/img/polina-burakova-portrait-20261003.jpg",
-      "source": "KR/Production/Photography/2025/20250416-2_Stabat_Mater/20250416-190636-A.jpg; owner confirmed the identification 2026-10-03; original JPEG preserved byte-for-byte, crop only; owner requested fix 2026-10-04: corrected sunken head and over-tight zoom to balanced circular crop (1400, 750, 2400) with natural headroom, shoulders, and shared face scale; source JPEG and programme 4:5 framing unchanged",
+      "source": "KR/Production/Photography/2025/20250416-2_Stabat_Mater/20250416-190636-A.jpg; owner confirmed the identification 2026-10-03; original JPEG preserved byte-for-byte, crop only; owner requested fix 2026-10-04: corrected sunken head and over-tight framing to balanced circular crop (1280, 860, 2500) with 11% headroom, natural shoulders, neutral background, and shared 0.41 face scale; source JPEG and programme 4:5 framing unchanged",
       "width": 5147,
       "height": 7720,
       "crop": {
-        "x": 1400,
-        "y": 750,
-        "size": 2400
+        "x": 1280,
+        "y": 860,
+        "size": 2500
       },
       "programme_crop": [
         960,
@@ -894,13 +909,13 @@
     ],
     "portrait": {
       "src": "/assets/img/yuliia-pavlovska.jpg",
-      "source": "Owner-supplied portrait documented in docs/on-the-wings-of-love-source.md; owner rejected the wide/off-centre circle 2026-10-04: tightened circle (175, 218, 300) centres the head and eyes (44% height), eliminates excessive empty background on the right, and keeps her hand naturally framed while matching Ponomarenko's scale; source JPEG unchanged",
+      "source": "Owner-supplied portrait documented in docs/on-the-wings-of-love-source.md; owner requested relaxed framing 2026-10-04: corrected over-tight zoom to balanced circular crop (176, 195, 350) with 11% headroom, dead-center horizontal alignment (cx 0.50), natural hand framing, and shared 0.44 face scale matching reference; source JPEG unchanged",
       "width": 682,
       "height": 1024,
       "crop": {
-        "x": 175,
-        "y": 218,
-        "size": 300
+        "x": 176,
+        "y": 195,
+        "size": 350
       }
     }
   },
@@ -1024,13 +1039,13 @@
     ],
     "portrait": {
       "src": "/assets/photo/autumn-rendezvous/20251115-174422-A.webp",
-      "source": "photo/autumn-rendezvous.html; performance photograph from Autumn Rendezvous concert, 2025-11-15; tightened circular crop (1214, 282, 425) centres the face, removes distracting background post and blue wall on the left, places eye line at 45% and face scale at 0.59 matching Ponomarenko and vocal ensemble; original WebP unchanged",
+      "source": "photo/autumn-rendezvous.html; performance photograph from Autumn Rendezvous concert, 2025-11-15; corrected over-tight and displaced crop to detector-verified standard (1092, 234, 570) centering the face (cx 0.50), restoring 13% headroom above hair crown, showing shoulders and collar, and setting face scale to 0.46 matching Ponomarenko; original WebP unchanged",
       "width": 2400,
       "height": 1600,
       "crop": {
-        "x": 1214,
-        "y": 282,
-        "size": 425
+        "x": 1092,
+        "y": 234,
+        "size": 570
       }
     }
   }
