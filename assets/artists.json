@@ -894,13 +894,13 @@
     ],
     "portrait": {
       "src": "/assets/img/yuliia-pavlovska.jpg",
-      "source": "Owner-supplied portrait documented in docs/on-the-wings-of-love-source.md",
+      "source": "Owner-supplied portrait documented in docs/on-the-wings-of-love-source.md; owner rejected the wide/off-centre circle 2026-10-04: tightened circle (175, 218, 300) centres the head and eyes (44% height), eliminates excessive empty background on the right, and keeps her hand naturally framed while matching Ponomarenko's scale; source JPEG unchanged",
       "width": 682,
       "height": 1024,
       "crop": {
-        "x": 177,
-        "y": 212,
-        "size": 350
+        "x": 175,
+        "y": 218,
+        "size": 300
       }
     }
   },
@@ -1006,6 +1006,32 @@
         "size": 3300
       },
       "source": "Original 20240608-163700-A.jpg; user directly identified the supplied photograph, 2026-10-03. Original photo preserved, crop only."
+    }
+  },
+  {
+    "id": "vadym-humennyi",
+    "name": {
+      "uk": "Вадим Гуменний",
+      "en": "Vadym Humennyi"
+    },
+    "role": {
+      "uk": "Баритон",
+      "en": "Baritone"
+    },
+    "group": "vocal",
+    "sources": [
+      "concerts/autumn-rendezvous.html#artists"
+    ],
+    "portrait": {
+      "src": "/assets/photo/autumn-rendezvous/20251115-174422-A.webp",
+      "source": "photo/autumn-rendezvous.html; performance photograph from Autumn Rendezvous concert, 2025-11-15; tight circular crop (1115, 240, 530) centres the face, eye line at 44%, face scale 0.50 matching Ponomarenko and ensemble; original WebP unchanged",
+      "width": 2400,
+      "height": 1600,
+      "crop": {
+        "x": 1115,
+        "y": 240,
+        "size": 530
+      }
     }
   }
 ]
