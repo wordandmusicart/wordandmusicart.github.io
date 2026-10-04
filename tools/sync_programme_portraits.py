@@ -16,6 +16,8 @@ RECORDS = json.loads((ROOT / 'assets/artists.json').read_text())
 NAMES = {a['name'][lang]: a for a in RECORDS for lang in ('uk', 'en')}
 NAMES['Дарія Погоріла'] = NAMES['Дарʼя Погоріла']
 NAMES['Dariia Pohorila'] = NAMES['Daria Pohorila']
+NAMES['Вікторія Мраморна'] = NAMES['Вікторія Мраморнова']
+NAMES['Viktoriia Mramorna'] = NAMES['Viktoriia Mramornova']
 HOST = 'hennadii-taraniuk'
 SUPPORTING = {
     'autumn-rendezvous': {'valentyna-frolova', 'oleksandr-ponomarenko',
@@ -49,6 +51,7 @@ TILES = {
     'yelyzaveta-bielous': (300, 240, 1800),
     'daria-pohorila': (400, 350, 1600),
     'viktoriia-shvets': (0, 0, 1120),
+    'viktoriia-mramornova': (0, 40, 896),
 }
 
 # Owner-selected circular presentation on this programme only.
