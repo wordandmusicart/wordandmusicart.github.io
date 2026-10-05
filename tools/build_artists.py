@@ -14,8 +14,8 @@ ROOT = Path(__file__).resolve().parents[1]
 ARTISTS = json.loads((ROOT / 'assets/artists.json').read_text())
 ESC = html.escape
 COPY = {
-    'uk': {'title':'Артисти word&music — виконавці та автор проєкту', 'description':'Голоси, музиканти та автор word&music. Учасники концертів проєкту, фотографії та концертні програми.', 'heading':'Артисти', 'intro':'Вокалісти, інструменталісти й автор проєкту word&music.', 'author':'Автор проєкту', 'vocal':'Голоси', 'music':'Музиканти', 'concerts':'Концерти', 'author_text':'Художнє слово в концертних програмах word&music. У концерті «Музика душі і серця» — також переклад арій українською.', 'author_link':'Слово у концертних програмах', 'label':'Люди word&music', 'nav_label':'Розділи сторінки'},
-    'en': {'title':'word&music Artists — Performers and Project Author', 'description':'The voices, musicians and author of word&music. Meet the concert performers through photographs and programmes.', 'heading':'Artists', 'intro':'The vocalists, instrumentalists and project author behind word&music.', 'author':'Project author', 'vocal':'Voices', 'music':'Musicians', 'concerts':'Concerts', 'author_text':'Spoken word in the concert programmes of word&music. For Music of Soul and Heart, he also translated arias into Ukrainian.', 'author_link':'Words in our concert programmes', 'label':'The people of word&music', 'nav_label':'Page sections'},
+    'uk': {'title':'Артисти word&music — виконавці та автор проєкту', 'description':'Голоси, музиканти та автор word&music. Учасники концертів проєкту, фотографії та концертні програми.', 'heading':'Артисти', 'intro':'Вокалісти, інструменталісти й художнє слово в концертах word&music.', 'author':'Художнє слово', 'vocal':'Голоси', 'music':'Музиканти', 'concerts':'Концерти', 'author_text':'Художнє слово в концертних програмах word&music. У концерті «Музика душі і серця» — також переклад арій українською.', 'author_link':'Слово у концертних програмах', 'label':'Люди word&music', 'nav_label':'Розділи сторінки'},
+    'en': {'title':'word&music Artists — Performers and Project Author', 'description':'The voices, musicians and author of word&music. Meet the concert performers through photographs and programmes.', 'heading':'Artists', 'intro':'Vocalists, instrumentalists and spoken word in word&music concerts.', 'author':'Spoken word', 'vocal':'Voices', 'music':'Musicians', 'concerts':'Concerts', 'author_text':'Spoken word in the concert programmes of word&music. For Music of Soul and Heart, he also translated arias into Ukrainian.', 'author_link':'Words in our concert programmes', 'label':'The people of word&music', 'nav_label':'Page sections'},
 }
 
 def local(source, lang):
@@ -82,13 +82,11 @@ def render(lang):
     nav_match = re.search(r'(<nav id="nav"[^>]*>)(.*?)(</nav>)', head, re.S)
     mobile = nav_match[2][nav_match[2].index('<div class="mobile-lang'): ] if '<div class="mobile-lang' in nav_match[2] else ''
     head = head[:nav_match.start()] + nav_match[1] + links + mobile + nav_match[3] + head[nav_match.end():]
-    head=head.replace('</head>','<link rel="stylesheet" href="/assets/artists.css?v=7">\n</head>')
-    author=next(a for a in ARTISTS if a['group']=='author')
+    head=head.replace('</head>','<link rel="stylesheet" href="/assets/artists.css?v=8">\n</head>')
     body=f'''<main class="artists-page">
-<div class="artists-intro wrap"><div class="meta muted">{copy['label']}</div><h1 class="tem">{copy['heading']}</h1><div class="artists-intro-bottom"><p>{copy['intro']}</p><nav aria-label="{copy['nav_label']}"><a href="#author">{copy['author']}</a><a href="#voices">{copy['vocal']}</a><a href="#musicians">{copy['music']}</a></nav></div></div>
-<section class="artist-author wrap" id="author" aria-labelledby="author-title"><div class="artist-author-content"><div class="meta muted">{copy['author']}</div><h2 class="tem" id="author-title">{ESC(author['name'][lang])}</h2><p class="artist-author-role">{ESC(author['role'][lang])}</p><p class="artist-author-description">{copy['author_text']}</p>{concert_links(author,lang)}</div><article data-artist="{author['id']}" id="{author['id']}">{photograph(author,lang,True)}</article></section>
+<div class="list-head artists-intro wrap"><div><div class="meta muted">{copy['label']}</div><h1 class="tem">{copy['heading']}</h1></div><div class="artists-intro-bottom"><p>{copy['intro']}</p><nav aria-label="{copy['nav_label']}"><a href="#voices">{copy['vocal']}</a><a href="#musicians">{copy['music']}</a><a href="#author">{copy['author']}</a></nav></div></div>
 '''
-    for group,anchor in [('vocal','voices'),('music','musicians')]:
+    for group,anchor in [('vocal','voices'),('music','musicians'),('author','author')]:
         people=[a for a in ARTISTS if a['group']==group]
         # Keep the source order: existing featured artists first, followed by
         # the archive roster. No ranking or fabricated biographical ordering.
