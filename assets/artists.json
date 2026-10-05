@@ -44,8 +44,8 @@
       "en": "Anzhelina Shvachka"
     },
     "role": {
-      "uk": "Мецо-сопрано · Солістка Національної опери України, народна артистка України, лауреатка Національної премії України імені Тараса Шевченка",
-      "en": "Mezzo-soprano · Soloist of the National Opera of Ukraine, People’s Artist of Ukraine, laureate of the Taras Shevchenko National Prize of Ukraine"
+      "uk": "Солістка Національної опери України, народна артистка України, лауреатка Національної премії України імені Тараса Шевченка · Мецо-сопрано",
+      "en": "Soloist of the National Opera of Ukraine, People’s Artist of Ukraine, laureate of the Taras Shevchenko National Prize of Ukraine · Mezzo-soprano"
     },
     "group": "vocal",
     "sources": [
@@ -80,8 +80,8 @@
       "en": "Liliia Hrevtsova"
     },
     "role": {
-      "uk": "Сопрано · Солістка Національної опери України, народна артистка України",
-      "en": "Soprano · Soloist of the National Opera of Ukraine, People’s Artist of Ukraine"
+      "uk": "Солістка Національної опери України, народна артистка України · Сопрано",
+      "en": "Soloist of the National Opera of Ukraine, People’s Artist of Ukraine · Soprano"
     },
     "group": "vocal",
     "sources": [
@@ -108,8 +108,8 @@
       "en": "Serhii Mahera"
     },
     "role": {
-      "uk": "Соліст Національної опери України, народний артист України",
-      "en": "Soloist of the National Opera of Ukraine, People’s Artist of Ukraine"
+      "uk": "Соліст Національної опери України, народний артист України · Бас",
+      "en": "Soloist of the National Opera of Ukraine, People’s Artist of Ukraine · Bass"
     },
     "group": "vocal",
     "sources": [
@@ -139,8 +139,8 @@
       "en": "Anastasiia Povazhna"
     },
     "role": {
-      "uk": "Солістка Національної опери України, заслужена артистка України",
-      "en": "Soloist of the National Opera of Ukraine, Honoured Artist of Ukraine"
+      "uk": "Солістка Національної опери України, заслужена артистка України · Сопрано",
+      "en": "Soloist of the National Opera of Ukraine, Honoured Artist of Ukraine · Soprano"
     },
     "group": "vocal",
     "sources": [
@@ -165,8 +165,8 @@
       "en": "Valentyna Frolova"
     },
     "role": {
-      "uk": "Солістка Національної оперети України",
-      "en": "Soloist of the National Operetta of Ukraine"
+      "uk": "Солістка Національної оперети України · Сопрано",
+      "en": "Soloist of the National Operetta of Ukraine · Soprano"
     },
     "group": "vocal",
     "sources": [
@@ -194,8 +194,8 @@
       "en": "Kateryna Yasenchuk"
     },
     "role": {
-      "uk": "Солістка Національної оперети України",
-      "en": "Soloist of the National Operetta of Ukraine"
+      "uk": "Солістка Національної оперети України · Сопрано",
+      "en": "Soloist of the National Operetta of Ukraine · Soprano"
     },
     "group": "vocal",
     "sources": [
@@ -220,8 +220,8 @@
       "en": "Maksym Hara"
     },
     "role": {
-      "uk": "Баритон · Соліст Національної оперети України",
-      "en": "Baritone · Soloist of the National Operetta of Ukraine"
+      "uk": "Соліст Національної оперети України · Баритон",
+      "en": "Soloist of the National Operetta of Ukraine · Baritone"
     },
     "group": "vocal",
     "sources": [
