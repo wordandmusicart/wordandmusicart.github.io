@@ -5,7 +5,8 @@ The line under a performer's name repeats the role in assets/artists.json on
 every page: the artists directory, each concert programme (UA and EN).
 Every UA and EN role and card caption starts with a capital: «Сопрано»,
 «Soprano», «Мецо-сопрано · Солістка Національної опери України, …».
-Never «партія …», never «лауреат…» under a name.
+Never «партія …», never unapproved «лауреат…» under a name.
+The owner's 5 October 2026 exception is Shvachka's exact Shevchenko Prize credit.
 
 A role that genuinely belongs to one concert is listed in PER_CONCERT.
 """
@@ -27,6 +28,16 @@ PER_CONCERT = {
     'daria-pohorila': {'Сопрано · Ведуча', 'Soprano · Host'},
 }
 CAPTION = re.compile(r'<h3[^>]*>([^<]*)</h3>\s*<p[^>]*>([^<]*)</p>')
+SHVACHKA_AWARD_SUFFIXES = {
+    'uk': ', лауреатка Національної премії України імені Тараса Шевченка',
+    'en': ', laureate of the Taras Shevchenko National Prize of Ukraine',
+}
+SHVACHKA_ROLES = {
+    'uk': 'Мецо-сопрано · Солістка Національної опери України, народна артистка України'
+          + SHVACHKA_AWARD_SUFFIXES['uk'],
+    'en': 'Mezzo-soprano · Soloist of the National Opera of Ukraine, People’s Artist of Ukraine'
+          + SHVACHKA_AWARD_SUFFIXES['en'],
+}
 
 
 def pages():
@@ -66,10 +77,19 @@ class ArtistRoles(unittest.TestCase):
                 with self.subTest(page=str(page.relative_to(ROOT)), name=name):
                     self.assertIn(caption, allowed)
 
+    def test_shvachka_has_exact_approved_shevchenko_prize_credit(self):
+        artist = next(a for a in ARTISTS if a['id'] == 'anzhelina-shvachka')
+        for lang in ('uk', 'en'):
+            with self.subTest(lang=lang):
+                self.assertEqual(artist['role'][lang], SHVACHKA_ROLES[lang])
+
     def test_no_part_or_laureate_under_names(self):
         for artist in ARTISTS:
             for lang in ('uk', 'en'):
                 role = artist['role'][lang].lower()
+                if (artist['id'] == 'anzhelina-shvachka'
+                        and artist['role'][lang] == SHVACHKA_ROLES[lang]):
+                    role = role[:-len(SHVACHKA_AWARD_SUFFIXES[lang])]
                 with self.subTest(artist=artist['id'], lang=lang):
                     self.assertNotRegex(role, r'парті[яїю]|лауреат|laureate|співавтор|co-author|меццо')
 
