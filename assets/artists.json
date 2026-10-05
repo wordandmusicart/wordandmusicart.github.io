@@ -912,11 +912,11 @@
     ],
     "portrait": {
       "src": "/assets/img/yuliia-pavlovska.jpg",
-      "source": "Owner-supplied portrait documented in docs/on-the-wings-of-love-source.md; owner rejected oversized framing, 2026-10-05: widened circle (176,200,350), face width 0.41, centre 0.51, eye line 0.46. Independent equal-size review confirmed hair clearance, tilted face, hand and shoulder context beside peer portraits; source JPEG and 4:5 programme framing unchanged.",
+      "source": "Owner-supplied portrait documented in docs/on-the-wings-of-love-source.md; owner requested optical horizontal centring of the tilted head, 2026-10-05: circle (150,200,350) restores the previous horizontal centre after widening had shifted it by 26 source pixels. Circle size and vertical framing remain unchanged; original JPEG preserved. Judged at equal size and on the full portrait sheet.",
       "width": 682,
       "height": 1024,
       "crop": {
-        "x": 176,
+        "x": 150,
         "y": 200,
         "size": 350
       }
