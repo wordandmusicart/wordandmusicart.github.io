@@ -331,7 +331,7 @@ html.no-scroll,html.no-scroll body{overflow:hidden}
 .gal-page{padding-bottom:104px}.gal-page .pgall{margin-top:0}
 /* full gallery: whole frames, collage in columns (four columns = three grid tracks each) */
 .gal-page .pgall{display:block;columns:4;column-gap:8px}
-.gal-page .pgall a{aspect-ratio:auto;margin:0 0 8px;break-inside:avoid;background:none}
+.gal-page .pgall a{display:inline-block;width:100%;vertical-align:top;aspect-ratio:auto;margin:0 0 8px;break-inside:avoid;background:none}
 .gal-page .pgall img{height:auto}
 @media (max-width:900px){.gal-page .pgall{columns:2}}
 /* one reading style for descriptive text across the site */
