@@ -44,8 +44,8 @@
       "en": "Anzhelina Shvachka"
     },
     "role": {
-      "uk": "Мецо-сопрано · Солістка Національної опери України, народна артистка України",
-      "en": "Mezzo-soprano · Soloist of the National Opera of Ukraine, People’s Artist of Ukraine"
+      "uk": "Мецо-сопрано · Солістка Національної опери України, народна артистка України, лауреатка Національної премії України імені Тараса Шевченка",
+      "en": "Mezzo-soprano · Soloist of the National Opera of Ukraine, People’s Artist of Ukraine, laureate of the Taras Shevchenko National Prize of Ukraine"
     },
     "group": "vocal",
     "sources": [
@@ -130,6 +130,113 @@
         0,
         1122
       ]
+    }
+  },
+  {
+    "id": "anastasiia-povazhna",
+    "name": {
+      "uk": "Анастасія Поважна",
+      "en": "Anastasiia Povazhna"
+    },
+    "role": {
+      "uk": "Солістка Національної опери України, заслужена артистка України",
+      "en": "Soloist of the National Opera of Ukraine, Honoured Artist of Ukraine"
+    },
+    "group": "vocal",
+    "sources": [
+      "concerts/winter-extravaganza.html#artists"
+    ],
+    "portrait": {
+      "src": "/assets/photo/winter-extravaganza/20231225-154746-A.webp",
+      "source": "photo/winter-extravaganza.html",
+      "width": 2400,
+      "height": 3600,
+      "crop": {
+        "x": 675,
+        "y": 601,
+        "size": 1011
+      }
+    }
+  },
+  {
+    "id": "valentyna-frolova",
+    "name": {
+      "uk": "Валентина Фролова",
+      "en": "Valentyna Frolova"
+    },
+    "role": {
+      "uk": "Солістка Національної оперети України",
+      "en": "Soloist of the National Operetta of Ukraine"
+    },
+    "group": "vocal",
+    "sources": [
+      "concerts/autumn-rendezvous.html#artists",
+      "concerts/christmas-kaleidoscope.html#artists",
+      "concerts/heartstrings.html#artists",
+      "concerts/roads-of-love.html#artists"
+    ],
+    "portrait": {
+      "src": "/assets/img/20251115-164532-A.jpg",
+      "source": "KR/Production/Photography/2025/20251115-2_Осіннє_побачення/20251115-164532-A.jpg",
+      "width": 7728,
+      "height": 5152,
+      "crop": {
+        "x": 2865,
+        "y": 675,
+        "size": 1720
+      }
+    }
+  },
+  {
+    "id": "kateryna-yasenchuk",
+    "name": {
+      "uk": "Катерина Ясенчук",
+      "en": "Kateryna Yasenchuk"
+    },
+    "role": {
+      "uk": "Солістка Національної оперети України",
+      "en": "Soloist of the National Operetta of Ukraine"
+    },
+    "group": "vocal",
+    "sources": [
+      "concerts/winter-extravaganza.html#artists"
+    ],
+    "portrait": {
+      "src": "/assets/photo/winter-extravaganza/20231222-182940-A.webp",
+      "source": "photo/winter-extravaganza.html",
+      "width": 2400,
+      "height": 3600,
+      "crop": {
+        "x": 350,
+        "y": 40,
+        "size": 2050
+      }
+    }
+  },
+  {
+    "id": "maksym-hara",
+    "name": {
+      "uk": "Максим Гара",
+      "en": "Maksym Hara"
+    },
+    "role": {
+      "uk": "Баритон · Соліст Національної оперети України",
+      "en": "Baritone · Soloist of the National Operetta of Ukraine"
+    },
+    "group": "vocal",
+    "sources": [
+      "concerts/on-the-wings-of-love.html#artists"
+    ],
+    "portrait": {
+      "src": "/assets/img/maksym-hara.png",
+      "source": "Named Concert.ua profile; source and preserved image documented in docs/on-the-wings-of-love-source.md",
+      "width": 1920,
+      "height": 1080,
+      "crop": {
+        "x": 482,
+        "y": 0,
+        "size": 860
+      }
     }
   },
   {
@@ -227,32 +334,6 @@
     }
   },
   {
-    "id": "anastasiia-povazhna",
-    "name": {
-      "uk": "Анастасія Поважна",
-      "en": "Anastasiia Povazhna"
-    },
-    "role": {
-      "uk": "Солістка Національної опери України, заслужена артистка України",
-      "en": "Soloist of the National Opera of Ukraine, Honoured Artist of Ukraine"
-    },
-    "group": "vocal",
-    "sources": [
-      "concerts/winter-extravaganza.html#artists"
-    ],
-    "portrait": {
-      "src": "/assets/photo/winter-extravaganza/20231225-154746-A.webp",
-      "source": "photo/winter-extravaganza.html",
-      "width": 2400,
-      "height": 3600,
-      "crop": {
-        "x": 675,
-        "y": 601,
-        "size": 1011
-      }
-    }
-  },
-  {
     "id": "ihor-povazhnyi",
     "name": {
       "uk": "Ігор Поважний",
@@ -302,35 +383,6 @@
         "x": 50,
         "y": 0,
         "size": 3700
-      }
-    }
-  },
-  {
-    "id": "valentyna-frolova",
-    "name": {
-      "uk": "Валентина Фролова",
-      "en": "Valentyna Frolova"
-    },
-    "role": {
-      "uk": "Солістка Національної оперети України",
-      "en": "Soloist of the National Operetta of Ukraine"
-    },
-    "group": "vocal",
-    "sources": [
-      "concerts/autumn-rendezvous.html#artists",
-      "concerts/christmas-kaleidoscope.html#artists",
-      "concerts/heartstrings.html#artists",
-      "concerts/roads-of-love.html#artists"
-    ],
-    "portrait": {
-      "src": "/assets/img/20251115-164532-A.jpg",
-      "source": "KR/Production/Photography/2025/20251115-2_Осіннє_побачення/20251115-164532-A.jpg",
-      "width": 7728,
-      "height": 5152,
-      "crop": {
-        "x": 2865,
-        "y": 675,
-        "size": 1720
       }
     }
   },
@@ -450,32 +502,6 @@
     }
   },
   {
-    "id": "kateryna-yasenchuk",
-    "name": {
-      "uk": "Катерина Ясенчук",
-      "en": "Kateryna Yasenchuk"
-    },
-    "role": {
-      "uk": "Солістка Національної оперети України",
-      "en": "Soloist of the National Operetta of Ukraine"
-    },
-    "group": "vocal",
-    "sources": [
-      "concerts/winter-extravaganza.html#artists"
-    ],
-    "portrait": {
-      "src": "/assets/photo/winter-extravaganza/20231222-182940-A.webp",
-      "source": "photo/winter-extravaganza.html",
-      "width": 2400,
-      "height": 3600,
-      "crop": {
-        "x": 350,
-        "y": 40,
-        "size": 2050
-      }
-    }
-  },
-  {
     "id": "lidiia-hlinska",
     "name": {
       "uk": "Лідія Глінська",
@@ -585,34 +611,8 @@
         "y": 0,
         "size": 1000
       }
-    }
-  },
-  {
-    "id": "albina-holenach",
-    "name": {
-      "uk": "Альбіна Голенач",
-      "en": "Albina Holenach"
     },
-    "role": {
-      "uk": "Сопрано",
-      "en": "Soprano"
-    },
-    "group": "vocal",
-    "sources": [
-      "concerts/winter-extravaganza.html#artists",
-      "concerts/roads-of-love.html#artists"
-    ],
-    "portrait": {
-      "src": "/assets/photo/winter-extravaganza/20231225-154957-A.webp",
-      "source": "photo/winter-extravaganza.html",
-      "width": 2400,
-      "height": 3600,
-      "crop": {
-        "x": 375,
-        "y": 620,
-        "size": 1000
-      }
-    }
+    "directory_visible": false
   },
   {
     "id": "mykola-chykarenko",
@@ -844,28 +844,29 @@
     }
   },
   {
-    "id": "maksym-hara",
+    "id": "albina-holenach",
     "name": {
-      "uk": "Максим Гара",
-      "en": "Maksym Hara"
+      "uk": "Альбіна Голенач",
+      "en": "Albina Holenach"
     },
     "role": {
-      "uk": "Баритон · Соліст Національної оперети України",
-      "en": "Baritone · Soloist of the National Operetta of Ukraine"
+      "uk": "Сопрано",
+      "en": "Soprano"
     },
     "group": "vocal",
     "sources": [
-      "concerts/on-the-wings-of-love.html#artists"
+      "concerts/winter-extravaganza.html#artists",
+      "concerts/roads-of-love.html#artists"
     ],
     "portrait": {
-      "src": "/assets/img/maksym-hara.png",
-      "source": "Named Concert.ua profile; source and preserved image documented in docs/on-the-wings-of-love-source.md",
-      "width": 1920,
-      "height": 1080,
+      "src": "/assets/photo/winter-extravaganza/20231225-154957-A.webp",
+      "source": "photo/winter-extravaganza.html",
+      "width": 2400,
+      "height": 3600,
       "crop": {
-        "x": 482,
-        "y": 0,
-        "size": 860
+        "x": 375,
+        "y": 620,
+        "size": 1000
       }
     }
   },

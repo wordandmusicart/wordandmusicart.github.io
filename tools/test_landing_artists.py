@@ -15,7 +15,7 @@ from urllib.parse import urlsplit
 ROOT = Path(os.environ.get("SITE_ROOT", Path(__file__).resolve().parents[1]))
 ORIGIN = "https://wordandmusic.art"
 ANNOUNCED_CONCERTS = {"on-the-wings-of-love.html"}
-CONCERT_ONLY_ARTISTS = {"miao-xinyue", "den-yatsziuen", "anna-bielanova", "taras-kapran"}
+CONCERT_ONLY_ARTISTS = {"miao-xinyue", "den-yatsziuen", "anna-bielanova", "taras-kapran", "nykyta-naumov"}
 DIRECTORY_GROUPS = (("vocal", "voices"), ("music", "musicians"), ("author", "author"))
 VOID = set("area base br col embed hr img input link meta param source track wbr".split())
 
@@ -204,9 +204,9 @@ class LandingArtistsAcceptance(unittest.TestCase):
     def test_requested_concert_only_artists_remain_in_manifest_and_bilingual_concert_sources(self):
         records = json.loads((ROOT / "assets/artists.json").read_text(encoding="utf-8"))
         by_id = {record["id"]: record for record in records}
-        self.assertTrue(CONCERT_ONLY_ARTISTS <= by_id.keys(), "Preserve all four artist records")
+        self.assertTrue(CONCERT_ONLY_ARTISTS <= by_id.keys(), "Preserve all five artist records")
         self.assertEqual({record["id"] for record in records if record.get("directory_visible") is False},
-                         CONCERT_ONLY_ARTISTS, "Hide exactly the four identities requested by the owner")
+                         CONCERT_ONLY_ARTISTS, "Hide exactly the five identities requested by the owner")
         for identity in sorted(CONCERT_ONLY_ARTISTS):
             with self.subTest(artist=identity):
                 record = by_id[identity]
