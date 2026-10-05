@@ -26,14 +26,14 @@
     ],
     "portrait": {
       "src": "/assets/img/hennadii-taraniuk.jpg",
-      "source": "KR/Production/Photography/2024/20240608_Дороги_кохання/20240608-160659-A.jpg; owner requested tighter face scale and raised crop 2026-10-05: circular crop (1270, 1430, 1950) scales face to 0.51 matching Ponomarenko and Skrynnyk, lifts head up reducing excessive jacket and background, keeps 11.3% headroom above bald crown",
+      "source": "KR/Production/Photography/2024/20240608_Дороги_кохання/20240608-160659-A.jpg; owner requested shared circle scale, 2026-10-05: face-based proposal (1204,1326,2103) widens the view to face width 0.47 and eye line 0.42, retaining crown clearance and shoulders; source JPEG and 4:5 programme framing unchanged.",
       "position": "50% 20%",
       "width": 4498,
       "height": 6748,
       "circle_crop": {
-        "x": 1270,
-        "y": 1430,
-        "size": 1950
+        "x": 1204,
+        "y": 1326,
+        "size": 2103
       }
     }
   },
@@ -352,13 +352,13 @@
     ],
     "portrait": {
       "src": "/assets/photo/winter-extravaganza/20231222-185125-A.webp",
-      "source": "photo/winter-extravaganza.html",
+      "source": "photo/winter-extravaganza.html; owner requested shared circle scale and height, 2026-10-05: face-based proposal (663,320,1121) brings face width to 0.46 and eye line to 0.42, retaining curls and shoulders; original image and 4:5 programme framing unchanged.",
       "width": 2400,
       "height": 3599,
       "crop": {
-        "x": 570,
-        "y": 330,
-        "size": 1300
+        "x": 663,
+        "y": 320,
+        "size": 1121
       }
     }
   },
@@ -709,13 +709,13 @@
     ],
     "portrait": {
       "src": "/assets/img/viktoriia-mramornova-portrait-20261004.jpg",
-      "source": "Owner-provided concert screenshot enhanced via AI to high-resolution master, 2026-10-04; circular crop (190, 258, 210) centres the head in profile (cx 0.51) at shared scale matching Lytvynenko, lifts head up eliminating sunken placement, keeps 9.5% headroom above hair crown, and shows shoulders/neckline; 4:5 programme tile (0, 40, 896) captures wider view with C. Bechstein grand piano matching Shmelova tile",
+      "source": "Owner-provided concert screenshot enhanced via AI to high-resolution master, 2026-10-04; owner rejected oversized low profile framing, 2026-10-05: widened circle (160,248,270), balanced the complete head silhouette, retained hair clearance, shoulders and space toward the gaze. Profile judged visually beside peers because frontal detection gives false matches; existing source image and programme tile (0,40,896) unchanged.",
       "width": 896,
       "height": 1200,
       "crop": {
-        "x": 190,
-        "y": 258,
-        "size": 210
+        "x": 160,
+        "y": 248,
+        "size": 270
       },
       "programme_crop": [
         0,
@@ -911,13 +911,13 @@
     ],
     "portrait": {
       "src": "/assets/img/yuliia-pavlovska.jpg",
-      "source": "Owner-supplied portrait documented in docs/on-the-wings-of-love-source.md; owner requested relaxed framing 2026-10-04: corrected over-tight zoom to balanced circular crop (176, 195, 350) with 11% headroom, dead-center horizontal alignment (cx 0.50), natural hand framing, and shared 0.44 face scale matching reference; source JPEG unchanged",
+      "source": "Owner-supplied portrait documented in docs/on-the-wings-of-love-source.md; owner rejected oversized framing, 2026-10-05: widened circle (176,200,350), face width 0.41, centre 0.51, eye line 0.46. Independent equal-size review confirmed hair clearance, tilted face, hand and shoulder context beside peer portraits; source JPEG and 4:5 programme framing unchanged.",
       "width": 682,
       "height": 1024,
       "crop": {
-        "x": 175,
-        "y": 218,
-        "size": 300
+        "x": 176,
+        "y": 200,
+        "size": 350
       }
     }
   },
