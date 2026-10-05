@@ -48,7 +48,7 @@ def tilted_face(p):
     rotates. Restricting detection to the portrait avoids background faces
     (the sculpture in Hlinska's photograph).
     """
-    c = p.get('circle_crop', p['crop'])
+    c = p.get('circle_crop') or p['crop']
     image = photo(p)
     scale = image.width / p['width']
     box = [round(v * scale) for v in (c['x'], c['y'], c['x'] + c['size'], c['y'] + c['size'])]
@@ -67,7 +67,7 @@ def tilted_face(p):
 
 def measure(p):
     """Face width, centre and eye line as fractions of the circle; None if no frontal face."""
-    c = p.get('circle_crop', p['crop'])
+    c = p.get('circle_crop') or p['crop']
     if p.get('face_rotation'):
         face = tilted_face(p)
         return None if face is None else {
@@ -112,11 +112,11 @@ if __name__ == '__main__':
     wanted = set(sys.argv[1:])
     for a in artists():
         p = a.get('portrait')
-        if not p or 'crop' not in p or (wanted and a['id'] not in wanted):
+        if not p or not (p.get('circle_crop') or p.get('crop')) or (wanted and a['id'] not in wanted):
             continue
         m = measure(p)
         now = 'no frontal face' if m is None else ' '.join(f'{k}={v:.2f}' for k, v in m.items())
         line = f"{a['id']:24} {now}"
         if wanted:
-            line += f"\n  current  {p.get('circle_crop', p['crop'])}\n  proposed {propose(p)}"
+            line += f"\n  current  {p.get('circle_crop') or p['crop']}\n  proposed {propose(p)}"
         print(line)

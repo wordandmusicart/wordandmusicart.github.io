@@ -49,7 +49,7 @@ class PortraitCrops(unittest.TestCase):
     def test_faces_are_centred_and_at_the_shared_scale(self):
         for a in ARTISTS:
             p = a.get('portrait')
-            if not p or 'crop' not in p or 'label' in p or a['id'] in NO_FRONTAL_FACE:
+            if not p or not ('circle_crop' in p or 'crop' in p) or 'label' in p or a['id'] in NO_FRONTAL_FACE:
                 continue
             m = measure(p)
             with self.subTest(artist=a['id']):
