@@ -87,7 +87,7 @@ def render(lang):
 <div class="list-head artists-intro wrap"><div><div class="meta muted">{copy['label']}</div><h1 class="tem">{copy['heading']}</h1></div><div class="artists-intro-bottom"><p>{copy['intro']}</p><nav aria-label="{copy['nav_label']}"><a href="#voices">{copy['vocal']}</a><a href="#musicians">{copy['music']}</a><a href="#author">{copy['author']}</a></nav></div></div>
 '''
     for group,anchor in [('vocal','voices'),('music','musicians'),('author','author')]:
-        people=[a for a in ARTISTS if a['group']==group]
+        people=[a for a in ARTISTS if a['group']==group and a.get('directory_visible', True)]
         # Keep the source order: existing featured artists first, followed by
         # the archive roster. No ranking or fabricated biographical ordering.
         body+=f'<section class="artist-group wrap" id="{anchor}" aria-labelledby="{anchor}-title"><div class="artist-group-heading"><h2 class="tem" id="{anchor}-title">{copy[group]}</h2><span class="meta muted">{len(people)}</span></div><div class="artist-roster">'

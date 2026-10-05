@@ -15,6 +15,8 @@ from urllib.parse import urlsplit
 ROOT = Path(os.environ.get("SITE_ROOT", Path(__file__).resolve().parents[1]))
 ORIGIN = "https://wordandmusic.art"
 ANNOUNCED_CONCERTS = {"on-the-wings-of-love.html"}
+CONCERT_ONLY_ARTISTS = {"miao-xinyue", "den-yatsziuen", "anna-bielanova", "taras-kapran"}
+DIRECTORY_GROUPS = (("vocal", "voices"), ("music", "musicians"), ("author", "author"))
 VOID = set("area base br col embed hr img input link meta param source track wbr".split())
 
 
@@ -108,7 +110,7 @@ class LandingArtistsAcceptance(unittest.TestCase):
                     self.assertEqual(control.attrs.get("aria-pressed"), str(control.attrs["data-theme-mode"] == "auto").lower())
                 self.assertTrue(any(urlsplit(href).path.endswith("/privacy.html") for href in links(footers[0])), "Theme controls must share the footer with Privacy")
 
-    def test_artist_records_are_bilingual_source_backed_and_rendered(self):
+    def test_artist_records_are_bilingual_source_backed_and_preserved(self):
         data_path = ROOT / "assets/artists.json"
         self.assertTrue(data_path.is_file(), "The artist evidence register must exist")
         records = json.loads(data_path.read_text(encoding="utf-8"))
@@ -124,22 +126,21 @@ class LandingArtistsAcceptance(unittest.TestCase):
             for people in Document(path).root.find(cls="people"):
                 archive_names.update(normalized_name(name.text()) for name in people.find("h3"))
         self.assertTrue(archive_names, "The archive must provide a performer evidence baseline")
-        directory_names = {normalized_name(record.get("name", {}).get("uk", "")) for record in records}
-        self.assertFalse(archive_names - directory_names,
-                         f"Archive performers omitted: {sorted(archive_names - directory_names)}")
+        manifest_names = {normalized_name(record.get("name", {}).get("uk", "")) for record in records}
+        self.assertFalse(archive_names - manifest_names,
+                         f"Archive performers omitted: {sorted(archive_names - manifest_names)}")
         author = [r for r in records if normalized_name(r.get("name", {}).get("uk", "")) == "Геннадій Таранюк"]
         self.assertEqual(len(author), 1, "Include the project author once")
         self.assertEqual(author[0].get("group"), "author")
-        rendered = {language: Document(ROOT / prefix / "artists.html").root.text()
-                    for language, prefix in (("uk", ""), ("en", "en/"))}
         for record in records:
             with self.subTest(artist=record.get("id")):
                 for field in ("name", "role"):
                     for language in ("uk", "en"):
                         value = record.get(field, {}).get(language)
                         self.assertTrue(isinstance(value, str) and value.strip(), f"Missing {field}.{language}")
-                        self.assertIn(value, rendered[language], f"{field}.{language} must appear in the indexable directory")
-                self.assertTrue(record.get("group"))
+                self.assertIn(record.get("group"), {group for group, _ in DIRECTORY_GROUPS})
+                if "directory_visible" in record:
+                    self.assertIsInstance(record["directory_visible"], bool)
                 sources = record.get("sources")
                 self.assertIsInstance(sources, list)
                 self.assertTrue(sources, "Every identity/role requires an archive source")
@@ -163,6 +164,63 @@ class LandingArtistsAcceptance(unittest.TestCase):
                     src = portrait.get("src", "")
                     self.assertTrue(src.startswith("/"), "Portrait must use a preserved local asset")
                     self.assertTrue((ROOT / src.lstrip("/")).is_file(), f"Missing portrait asset: {src}")
+
+    def test_directory_renders_only_visible_records_in_source_order_with_group_counts(self):
+        records = json.loads((ROOT / "assets/artists.json").read_text(encoding="utf-8"))
+        for language, prefix in (("uk", ""), ("en", "en/")):
+            with self.subTest(language=language):
+                path = ROOT / prefix / "artists.html"
+                doc = Document(path).root
+                groups = list(doc.find("section", cls="artist-group"))
+                self.assertEqual([group.attrs.get("id") for group in groups],
+                                 [anchor for _, anchor in DIRECTORY_GROUPS])
+                expected_order = []
+                for section, (group, anchor) in zip(groups, DIRECTORY_GROUPS):
+                    visible = [record for record in records if record["group"] == group
+                               and record.get("directory_visible", True)]
+                    expected_ids = [record["id"] for record in visible]
+                    expected_order.extend(expected_ids)
+                    rows = list(section.find("article", cls="artist-row"))
+                    self.assertEqual([row.attrs.get("id") for row in rows], expected_ids,
+                                     f"{anchor}: render exactly the visible identities in manifest order")
+                    self.assertEqual([row.attrs.get("data-artist") for row in rows], expected_ids)
+                    headings = list(section.find(cls="artist-group-heading"))
+                    self.assertEqual(len(headings), 1)
+                    counts = list(headings[0].find("span", cls="meta"))
+                    self.assertEqual([count.text().strip() for count in counts], [str(len(visible))])
+                    for record, row in zip(visible, rows):
+                        for field in ("name", "role"):
+                            self.assertIn(record[field][language], row.text(),
+                                          f"{record['id']}: {field}.{language} must appear in its directory row")
+                self.assertEqual([row.attrs.get("id") for row in doc.find("article", cls="artist-row")],
+                                 expected_order, "No additional directory rows outside the groups")
+                raw_html = path.read_text(encoding="utf-8")
+                for record in records:
+                    if not record.get("directory_visible", True):
+                        self.assertNotIn(record["id"], raw_html, "Concert-only IDs must be absent from directory HTML")
+                        self.assertNotIn(normalized_name(record["name"][language]), normalized_name(doc.text()),
+                                         "Concert-only names must be absent from the directory")
+
+    def test_requested_concert_only_artists_remain_in_manifest_and_bilingual_concert_sources(self):
+        records = json.loads((ROOT / "assets/artists.json").read_text(encoding="utf-8"))
+        by_id = {record["id"]: record for record in records}
+        self.assertTrue(CONCERT_ONLY_ARTISTS <= by_id.keys(), "Preserve all four artist records")
+        self.assertEqual({record["id"] for record in records if record.get("directory_visible") is False},
+                         CONCERT_ONLY_ARTISTS, "Hide exactly the four identities requested by the owner")
+        for identity in sorted(CONCERT_ONLY_ARTISTS):
+            with self.subTest(artist=identity):
+                record = by_id[identity]
+                self.assertIs(record.get("directory_visible"), False)
+                concert_sources = [urlsplit(source).path.lstrip("/") for source in record["sources"]
+                                   if urlsplit(source).path.lstrip("/").startswith("concerts/")]
+                self.assertTrue(concert_sources, "Concert-only artists must retain their concert evidence")
+                for source in concert_sources:
+                    for language, prefix in (("uk", ""), ("en", "en/")):
+                        source_path = ROOT / prefix / source
+                        self.assertTrue(source_path.is_file(), f"Missing preserved concert source: {source_path}")
+                        self.assertIn(normalized_name(record["name"][language]),
+                                      normalized_name(Document(source_path).root.text()),
+                                      f"{identity} must remain in {prefix}{source}")
 
     def test_home_has_six_ordered_scenes_and_footer_in_contacts(self):
         for prefix in ("", "en/"):
