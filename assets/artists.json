@@ -192,7 +192,8 @@
         4096
       ],
       "source": "Owner-supplied portrait «2023-08-18 12.09.jpg» (Topaz Gigapixel upscale, exported 2026-10-03), Google Drive word&music/02_Концерти_та_події/20230826_Музика_душі_і_серця/02_Матеріали/Файли_та_фото; copied byte-for-byte. Replaces the detail from the concert poster."
-    }
+    },
+    "directory_visible": false
   },
   {
     "id": "nataliia-skrynnyk",
@@ -529,7 +530,8 @@
         "y": 70.0,
         "size": 800.0
       }
-    }
+    },
+    "directory_visible": false
   },
   {
     "id": "anastasiia-dovbius",
@@ -995,7 +997,8 @@
         "size": 1850
       },
       "source": "Original 20240608-162637-A.jpg; user directly identified the supplied photograph, 2026-10-03. Original photo preserved, crop only.; full circular-portrait review 2026-10-04: tightened and optically centred the head, retained crown and native pose, reduced background and torso; source JPEG unchanged"
-    }
+    },
+    "directory_visible": false
   },
   {
     "id": "anna-bielanova",
@@ -1021,7 +1024,8 @@
         "size": 3300
       },
       "source": "Original 20240608-163700-A.jpg; user directly identified the supplied photograph, 2026-10-03. Original photo preserved, crop only."
-    }
+    },
+    "directory_visible": false
   },
   {
     "id": "vadym-humennyi",
