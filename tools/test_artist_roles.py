@@ -4,7 +4,8 @@
 The line under a performer's name repeats the role in assets/artists.json on
 every page: the artists directory, each concert programme (UA and EN).
 Every UA and EN role and card caption starts with a capital: «Сопрано»,
-«Soprano», «Мецо-сопрано · Солістка Національної опери України, …».
+«Soprano», «Солістка Національної опери України, … · Мецо-сопрано».
+The owner's 5 October 2026 order puts existing credits before the voice type.
 Never «партія …», never unapproved «лауреат…» under a name.
 The owner's 5 October 2026 exception is Shvachka's exact Shevchenko Prize credit.
 
@@ -33,10 +34,10 @@ SHVACHKA_AWARD_SUFFIXES = {
     'en': ', laureate of the Taras Shevchenko National Prize of Ukraine',
 }
 SHVACHKA_ROLES = {
-    'uk': 'Мецо-сопрано · Солістка Національної опери України, народна артистка України'
-          + SHVACHKA_AWARD_SUFFIXES['uk'],
-    'en': 'Mezzo-soprano · Soloist of the National Opera of Ukraine, People’s Artist of Ukraine'
-          + SHVACHKA_AWARD_SUFFIXES['en'],
+    'uk': 'Солістка Національної опери України, народна артистка України'
+          + SHVACHKA_AWARD_SUFFIXES['uk'] + ' · Мецо-сопрано',
+    'en': 'Soloist of the National Opera of Ukraine, People’s Artist of Ukraine'
+          + SHVACHKA_AWARD_SUFFIXES['en'] + ' · Mezzo-soprano',
 }
 
 
@@ -89,7 +90,7 @@ class ArtistRoles(unittest.TestCase):
                 role = artist['role'][lang].lower()
                 if (artist['id'] == 'anzhelina-shvachka'
                         and artist['role'][lang] == SHVACHKA_ROLES[lang]):
-                    role = role[:-len(SHVACHKA_AWARD_SUFFIXES[lang])]
+                    role = role.replace(SHVACHKA_AWARD_SUFFIXES[lang].lower(), '', 1)
                 with self.subTest(artist=artist['id'], lang=lang):
                     self.assertNotRegex(role, r'парті[яїю]|лауреат|laureate|співавтор|co-author|меццо')
 
