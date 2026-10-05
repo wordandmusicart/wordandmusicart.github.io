@@ -26,14 +26,14 @@
     ],
     "portrait": {
       "src": "/assets/img/hennadii-taraniuk.jpg",
-      "source": "KR/Production/Photography/2024/20240608_Дороги_кохання/20240608-160659-A.jpg; owner requested shared circle scale, 2026-10-05: face-based proposal (1204,1326,2103) widens the view to face width 0.47 and eye line 0.42, retaining crown clearance and shoulders; source JPEG and 4:5 programme framing unchanged.",
+      "source": "KR/Production/Photography/2024/20240608_Дороги_кохання/20240608-160659-A.jpg; owner rejected background-heavy circle on mobile, 2026-10-05: tightened the detector-based proposal from (1204,1326,2103) to (1355,1453,1800). Equal-size comparison and whole-roster review selected a larger complete head, approximately 11% crown clearance, eye line 0.42, retained ears, chin, collar and shoulders, and less bright window background. Source JPEG and 4:5 programme framing unchanged.",
       "position": "50% 20%",
       "width": 4498,
       "height": 6748,
       "circle_crop": {
-        "x": 1204,
-        "y": 1326,
-        "size": 2103
+        "x": 1355,
+        "y": 1453,
+        "size": 1800
       }
     }
   },
