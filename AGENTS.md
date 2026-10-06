@@ -127,6 +127,8 @@ change pass; if a test encodes an old owner decision, ask.
   A rejected crop must be compared before/after at the same size; do not
   report it fixed solely from measurements. When the owner rejects framing,
   review the entire circle sheet for the same defect before closing the task.
+  Reviewers must judge the same-size visual comparison against §6; a crop
+  inside the detector bands can still fail for a small face or dominant background.
 - Logos (word&music, venues, Eventmate) only in original colours or in the
   system monochrome (`.venue-logo--mono`), never recoloured, no plates.
 - Photo previews (5 frames on Фото and concert pages): bright colour shots
