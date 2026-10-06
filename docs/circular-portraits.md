@@ -124,3 +124,12 @@ Owner corrections and additions — 4 October 2026:
 - Directory total: 32 of 37 with photographs; Mramornova and Terentiev remain
   neutral placeholders. All test gates and contact-sheet verifications pass.
 
+Owner corrections — 6 October 2026:
+- Hennadii Taraniuk circular crop lifted from (1355, 1453, 1800) to (1355, 1530, 1800)
+  following classical portrait framing and composition rules: eye line lifted from 0.42 to
+  0.37 (upper third), headroom tuned to ~7%, eliminating sunken head and aligning with
+  neighbouring artists on the contact sheet.
+- Yelyzaveta Bielous circular crop shifted horizontally from (663, 320, 1121) to
+  (730, 320, 1121) to eliminate rightward offset caused by facial detector bias on her
+  turned head, balancing hair curls on left and right and optically centring the silhouette.
+
