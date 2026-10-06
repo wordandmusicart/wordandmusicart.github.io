@@ -633,15 +633,20 @@
     ],
     "portrait": {
       "src": "/assets/img/mykola-chykarenko.jpg",
-      "source": "concerts/vivre-aimer-rever.html#artists",
+      "source": "20250803-182056-A.jpg, Mélodies éternelles, 2025-08-03. Original found on Extreme SSD and matched to the owner-provided screenshot; owner identified Mykola Chykarenko on 2026-10-06.",
       "position": "50% 0%",
-      "width": 2400,
-      "height": 3600,
+      "width": 5149,
+      "height": 7724,
       "crop": {
-        "x": 510,
-        "y": 45,
-        "size": 1480
-      }
+        "x": 1262,
+        "y": 558,
+        "size": 2407
+      },
+      "programme_crop": [
+        600,
+        100,
+        3600
+      ]
     }
   },
   {
