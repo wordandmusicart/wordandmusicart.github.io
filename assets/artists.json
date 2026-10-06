@@ -577,13 +577,13 @@
     ],
     "portrait": {
       "src": "/assets/img/IMG_2991.jpg",
-      "source": "Owner-supplied IMG_2991.JPG, identified as Anastasiia Dovbius on 2026-10-06. Original preserved byte-for-byte in 03_Вебсайт/01_Оригінали_медіа/Портрети. Circle computed with tools/portrait_crop.py and visually compared with Ponomarenko. Original photograph has limited space above hair; crop is constrained at y=0 without adding background. Independent same-size visual review selected (910,0,3250): the initial detector square (644,0,3516) shifted the head right; source right-edge constraint requires an 8% tighter square to optically centre the head while keeping shoulders and matching Ponomarenko. A 3030px square was rejected as too large a head. Owner correction, 2026-10-06: horizontal facial centre and eye position judged in same-size before/after circles against Ponomarenko. Move face left; original right-edge constraint requires a 3030px square. Original image and 4:5 programme framing preserved.",
+      "source": "Owner-supplied IMG_2991.JPG, identified as Anastasiia Dovbius on 2026-10-06. Original preserved byte-for-byte in 03_Вебсайт/01_Оригінали_медіа/Портрети. Circle computed with tools/portrait_crop.py and visually compared with Ponomarenko. Original photograph has limited space above hair; crop is constrained at y=0 without adding background. Independent same-size visual review selected (910,0,3250): the initial detector square (644,0,3516) shifted the head right; source right-edge constraint requires an 8% tighter square to optically centre the head while keeping shoulders and matching Ponomarenko. A 3030px square was rejected as too large a head. Owner correction, 2026-10-06: horizontal facial centre and eye position judged in same-size before/after circles against Ponomarenko. Move face left; original right-edge constraint requires a 3030px square. Original image and 4:5 programme framing preserved. Owner micro-correction, 2026-10-06 23:14: move face very slightly left; circle (1180,0,2980), 1.7% tighter because previous right edge already matched source boundary. Original and 4:5 view unchanged.",
       "width": 4160,
       "height": 6240,
       "crop": {
-        "x": 1130,
+        "x": 1180,
         "y": 0,
-        "size": 3030
+        "size": 2980
       }
     }
   },
