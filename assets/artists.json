@@ -633,12 +633,12 @@
     ],
     "portrait": {
       "src": "/assets/img/mykola-chykarenko.jpg",
-      "source": "20250803-182056-A.jpg, Mélodies éternelles, 2025-08-03. Original found on Extreme SSD and matched to the owner-provided screenshot; owner identified Mykola Chykarenko on 2026-10-06. Circle corrected after the owner rejected the oversized head and explicitly named Ponomarenko as the reference: match visible whole-head scale, optical placement and shoulder/clothing balance in equal-size circles. Detector-derived crop expanded to 2701 px; eye line 37.4% follows the owner’s explicit reference rather than the generic starting target. Original JPEG and programme crop unchanged.",
+      "source": "20250803-182056-A.jpg, Mélodies éternelles, 2025-08-03. Original found on Extreme SSD and matched to the owner-provided screenshot; owner identified Mykola Chykarenko on 2026-10-06. Circle corrected after the owner rejected the oversized head and explicitly named Ponomarenko as the reference: match visible whole-head scale, optical placement and shoulder/clothing balance in equal-size circles. Detector-derived crop expanded to 2701 px; eye line 37.4% follows the owner’s explicit reference rather than the generic starting target. Original JPEG and programme crop unchanged. Owner requested further leftward optical placement on 2026-10-06: move the visible portrait left by 7% of the circle diameter to align head placement with Ponomarenko; preserve crop size 2701 and y 555.",
       "position": "50% 0%",
       "width": 5149,
       "height": 7724,
       "crop": {
-        "x": 1115,
+        "x": 1304,
         "y": 555,
         "size": 2701
       },
