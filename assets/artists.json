@@ -26,13 +26,13 @@
     ],
     "portrait": {
       "src": "/assets/img/hennadii-taraniuk.jpg",
-      "source": "KR/Production/Photography/2024/20240608_Дороги_кохання/20240608-160659-A.jpg; owner rejected background-heavy circle on mobile, 2026-10-05: tightened the detector-based proposal from (1204,1326,2103) to (1355,1453,1800). Equal-size comparison and whole-roster review selected a larger complete head, approximately 11% crown clearance, eye line 0.42, retained ears, chin, collar and shoulders, and less bright window background. Source JPEG and 4:5 programme framing unchanged.",
+      "source": "KR/Production/Photography/2024/20240608_Дороги_кохання/20240608-160659-A.jpg; owner rejected sunken face / excessive headroom, 2026-10-06: lifted circular crop to (1355,1530,1800) following portrait framing and composition rules (eyes on upper third at 0.37, crown clearance ~7%, optical alignment with neighbouring roster portraits, face not lowered). Source JPEG and 4:5 programme framing unchanged.",
       "position": "50% 20%",
       "width": 4498,
       "height": 6748,
       "circle_crop": {
         "x": 1355,
-        "y": 1453,
+        "y": 1530,
         "size": 1800
       }
     }
@@ -404,11 +404,11 @@
     ],
     "portrait": {
       "src": "/assets/photo/winter-extravaganza/20231222-185125-A.webp",
-      "source": "photo/winter-extravaganza.html; owner requested shared circle scale and height, 2026-10-05: face-based proposal (663,320,1121) brings face width to 0.46 and eye line to 0.42, retaining curls and shoulders; original image and 4:5 programme framing unchanged.",
+      "source": "photo/winter-extravaganza.html; owner requested optical horizontal centring 2026-10-06: shifted crop from (663,320,1121) to (730,320,1121) to balance curls and centre the head silhouette, eliminating rightward offset; original image and 4:5 programme framing unchanged.",
       "width": 2400,
       "height": 3599,
       "crop": {
-        "x": 663,
+        "x": 730,
         "y": 320,
         "size": 1121
       }
