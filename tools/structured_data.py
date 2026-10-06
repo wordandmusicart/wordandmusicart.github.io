@@ -93,13 +93,20 @@ def event(s, lang, url):
         interval = re.fullmatch(r'(\d{2}:\d{2})\s*[–—-]\s*(\d{2}:\d{2})', facts['time'])
         if interval:
             facts['start'], facts['end'] = interval.groups()
-    year = re.search(r'<div class="meta muted">[^<]*?(\d{4})</div>', hero)
-    if not (year and 'date' in facts):
+    if 'date' not in facts:
         return None
-    day, month = facts['date'].split('.')
+    parts = facts['date'].split('.')
+    if len(parts) == 3:
+        day, month, yr = parts
+    else:
+        day, month = parts
+        year = re.search(r'<div class="meta muted">[^<]*?(\d{4})</div>', hero)
+        yr = year.group(1) if year else None
+        if not yr:
+            return None
 
     def when(hm):
-        d = datetime(int(year.group(1)), int(month), int(day))
+        d = datetime(int(yr), int(month), int(day))
         if not hm:
             return d.date().isoformat()
         h, m = hm.split(':')

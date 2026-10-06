@@ -86,7 +86,7 @@ class EventSchemaTest(unittest.TestCase):
         self.assertNotIn("koncert-ziti-kohati-mriati", page)
         hero = re.search(r'<section class="c-hero.*?</section>', page, re.S).group(0)
         time_label, date_label = LABELS[lang]
-        self.assertEqual(fact(hero, date_label), "15.10")
+        self.assertEqual(fact(hero, date_label), "15.10.2026")
         visible_time = fact(hero, time_label)
         self.assertIsNotNone(visible_time, "The facts must show a single Time range")
         self.assertEqual(visible_time.replace(" ", ""), "18:00–19:30")
