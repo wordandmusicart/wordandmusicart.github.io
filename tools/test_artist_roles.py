@@ -20,9 +20,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 ARTISTS = json.loads((ROOT / 'assets/artists.json').read_text())
 NAMES = {a['name'][lang]: (a, lang) for a in ARTISTS for lang in ('uk', 'en')}
-NAMES['Дарія Погоріла'] = NAMES['Дарʼя Погоріла']
-NAMES['Dariia Pohorila'] = NAMES['Daria Pohorila']
-# Hennadii Taraniuk's part differs by concert; Dariia Pohorila also hosted one.
+# Hennadii Taraniuk's part differs by concert; Daria Pohorila also hosted one.
 PER_CONCERT = {
     'hennadii-taraniuk': {'Художнє слово', 'Ведучий', 'Художнє слово та ведучий',
                           'Spoken word', 'Host', 'Spoken word and host'},

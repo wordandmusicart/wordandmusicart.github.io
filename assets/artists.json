@@ -576,14 +576,14 @@
       "concerts/on-the-wings-of-love.html#artists"
     ],
     "portrait": {
-      "src": "/assets/img/20251115-175514-A.jpg",
-      "source": "KR/Production/Photography/2025/20251115-2_Осіннє_побачення/20251115-175514-A.jpg",
-      "width": 7728,
-      "height": 5152,
+      "src": "/assets/img/IMG_2991.jpg",
+      "source": "Owner-supplied IMG_2991.JPG, identified as Anastasiia Dovbius on 2026-10-06. Original preserved byte-for-byte in 03_Вебсайт/01_Оригінали_медіа/Портрети. Circle computed with tools/portrait_crop.py and visually compared with Ponomarenko. Original photograph has limited space above hair; crop is constrained at y=0 without adding background. Independent same-size visual review selected (910,0,3250): the initial detector square (644,0,3516) shifted the head right; source right-edge constraint requires an 8% tighter square to optically centre the head while keeping shoulders and matching Ponomarenko. A 3030px square was rejected as too large a head.",
+      "width": 4160,
+      "height": 6240,
       "crop": {
-        "x": 2105,
-        "y": 760,
-        "size": 2180
+        "x": 910,
+        "y": 0,
+        "size": 3250
       }
     }
   },
