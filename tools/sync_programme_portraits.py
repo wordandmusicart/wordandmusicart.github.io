@@ -14,8 +14,6 @@ from build_artists import ROOT, photograph
 
 RECORDS = json.loads((ROOT / 'assets/artists.json').read_text())
 NAMES = {a['name'][lang]: a for a in RECORDS for lang in ('uk', 'en')}
-NAMES['Дарія Погоріла'] = NAMES['Дарʼя Погоріла']
-NAMES['Dariia Pohorila'] = NAMES['Daria Pohorila']
 NAMES['Вікторія Мраморна'] = NAMES['Вікторія Мраморнова']
 NAMES['Viktoriia Mramorna'] = NAMES['Viktoriia Mramornova']
 HOST = 'hennadii-taraniuk'
@@ -140,7 +138,9 @@ def sync(path):
         return source
     grouped = {'featured': [], 'supporting': [], 'host': []}
     programme_cards = cards(match[0])
-    separate_host = len(programme_cards) > 4 or path.stem in SUPPORTING
+    # Owner places Taraniuk fourth in the first row on Autumn Rendezvous.
+    separate_host = path.stem != 'autumn-rendezvous' and (
+        len(programme_cards) > 4 or path.stem in SUPPORTING)
     for card in programme_cards:
         heading = re.search(r'<h3\b[^>]*>(.*?)</h3>', card, re.S)
         if not heading:

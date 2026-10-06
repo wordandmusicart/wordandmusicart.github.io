@@ -14,10 +14,10 @@ else:
 SLUG = "concerts/on-the-wings-of-love.html"
 TICKET = "https://eventmate.app/events/share/na-krilah-kohanna-koncert-vokalnoi-muziki"
 NAMES = {
-    "uk": ["Анжеліна Швачка", "Лілія Гревцова", "Максим Гара", "Дарія Погоріла",
+    "uk": ["Анжеліна Швачка", "Лілія Гревцова", "Максим Гара", "Дарʼя Погоріла",
            "Олександр Пономаренко", "Анастасія Довбіус", "Ірина Шелест", "Юлія Павловська",
            "Каріна Лисак", "Лідія Глінська", "Олексій Мальований", "Наталія Шмельова", "Геннадій Таранюк"],
-    "en": ["Anzhelina Shvachka", "Liliia Hrevtsova", "Maksym Hara", "Dariia Pohorila",
+    "en": ["Anzhelina Shvachka", "Liliia Hrevtsova", "Maksym Hara", "Daria Pohorila",
            "Oleksandr Ponomarenko", "Anastasiia Dovbius", "Iryna Shelest", "Yuliia Pavlovska",
            "Karina Lysak", "Lidiia Hlinska", "Oleksii Maliovanyi", "Nataliia Shmelova", "Hennadii Taraniuk"],
 }
