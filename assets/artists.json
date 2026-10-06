@@ -117,13 +117,13 @@
     ],
     "portrait": {
       "src": "/assets/img/serhii-mahera-enhanced-20261003.jpg",
-      "source": "https://www.opera.com.ua/en/persons/operna-trupa-solisti-basso/sergii-magera; technical brightness, colour and clarity enhancement with ImageGen, 2026-10-03; original preserved.",
+      "source": "https://www.opera.com.ua/en/persons/operna-trupa-solisti-basso/sergii-magera; technical brightness, colour and clarity enhancement with ImageGen, 2026-10-03; original preserved. Owner correction, 2026-10-06: horizontal facial centre and eye position judged in same-size before/after circles against Ponomarenko. Slightly enlarge complete head and retain shoulders. Original image and 4:5 programme framing preserved.",
       "width": 1122,
       "height": 1402,
       "crop": {
-        "x": 93.5,
-        "y": 0.0,
-        "size": 935.0
+        "x": 130,
+        "y": 32,
+        "size": 860
       },
       "programme_crop": [
         0,
@@ -177,12 +177,12 @@
     ],
     "portrait": {
       "src": "/assets/img/20251115-164532-A.jpg",
-      "source": "KR/Production/Photography/2025/20251115-2_Осіннє_побачення/20251115-164532-A.jpg",
+      "source": "KR/Production/Photography/2025/20251115-2_Осіннє_побачення/20251115-164532-A.jpg Owner correction, 2026-10-06: horizontal facial centre and eye position judged in same-size before/after circles against Ponomarenko. Raise and centre face, preserve head and shoulders. Original image and 4:5 programme framing preserved.",
       "width": 7728,
       "height": 5152,
       "crop": {
-        "x": 2865,
-        "y": 675,
+        "x": 2915,
+        "y": 735,
         "size": 1720
       }
     }
@@ -229,11 +229,11 @@
     ],
     "portrait": {
       "src": "/assets/img/maksym-hara.png",
-      "source": "Named Concert.ua profile; source and preserved image documented in docs/on-the-wings-of-love-source.md",
+      "source": "Named Concert.ua profile; source and preserved image documented in docs/on-the-wings-of-love-source.md Owner correction, 2026-10-06: horizontal facial centre and eye position judged in same-size before/after circles against Ponomarenko. Move facial mass left without changing scale. Original image and 4:5 programme framing preserved.",
       "width": 1920,
       "height": 1080,
       "crop": {
-        "x": 482,
+        "x": 535,
         "y": 0,
         "size": 860
       }
@@ -404,12 +404,12 @@
     ],
     "portrait": {
       "src": "/assets/photo/winter-extravaganza/20231222-185125-A.webp",
-      "source": "photo/winter-extravaganza.html; owner requested optical horizontal centring 2026-10-06: shifted crop from (663,320,1121) to (730,320,1121) to balance curls and centre the head silhouette, eliminating rightward offset; original image and 4:5 programme framing unchanged.",
+      "source": "photo/winter-extravaganza.html; owner requested optical horizontal centring 2026-10-06: shifted crop from (663,320,1121) to (730,320,1121) to balance curls and centre the head silhouette, eliminating rightward offset; original image and 4:5 programme framing unchanged. Owner correction, 2026-10-06: horizontal facial centre and eye position judged in same-size before/after circles against Ponomarenko. Raise head and reduce crown clearance; keep curls. Original image and 4:5 programme framing preserved.",
       "width": 2400,
       "height": 3599,
       "crop": {
-        "x": 730,
-        "y": 320,
+        "x": 700,
+        "y": 380,
         "size": 1121
       }
     }
@@ -577,13 +577,13 @@
     ],
     "portrait": {
       "src": "/assets/img/IMG_2991.jpg",
-      "source": "Owner-supplied IMG_2991.JPG, identified as Anastasiia Dovbius on 2026-10-06. Original preserved byte-for-byte in 03_Вебсайт/01_Оригінали_медіа/Портрети. Circle computed with tools/portrait_crop.py and visually compared with Ponomarenko. Original photograph has limited space above hair; crop is constrained at y=0 without adding background. Independent same-size visual review selected (910,0,3250): the initial detector square (644,0,3516) shifted the head right; source right-edge constraint requires an 8% tighter square to optically centre the head while keeping shoulders and matching Ponomarenko. A 3030px square was rejected as too large a head.",
+      "source": "Owner-supplied IMG_2991.JPG, identified as Anastasiia Dovbius on 2026-10-06. Original preserved byte-for-byte in 03_Вебсайт/01_Оригінали_медіа/Портрети. Circle computed with tools/portrait_crop.py and visually compared with Ponomarenko. Original photograph has limited space above hair; crop is constrained at y=0 without adding background. Independent same-size visual review selected (910,0,3250): the initial detector square (644,0,3516) shifted the head right; source right-edge constraint requires an 8% tighter square to optically centre the head while keeping shoulders and matching Ponomarenko. A 3030px square was rejected as too large a head. Owner correction, 2026-10-06: horizontal facial centre and eye position judged in same-size before/after circles against Ponomarenko. Move face left; original right-edge constraint requires a 3030px square. Original image and 4:5 programme framing preserved.",
       "width": 4160,
       "height": 6240,
       "crop": {
-        "x": 910,
+        "x": 1130,
         "y": 0,
-        "size": 3250
+        "size": 3030
       }
     }
   },
@@ -932,12 +932,12 @@
     ],
     "portrait": {
       "src": "/assets/img/yuliia-pavlovska.jpg",
-      "source": "Owner-supplied portrait documented in docs/on-the-wings-of-love-source.md; owner requested optical horizontal centring of the tilted head, 2026-10-05: circle (150,200,350) restores the previous horizontal centre after widening had shifted it by 26 source pixels. Circle size and vertical framing remain unchanged; original JPEG preserved. Judged at equal size and on the full portrait sheet.",
+      "source": "Owner-supplied portrait documented in docs/on-the-wings-of-love-source.md; owner requested optical horizontal centring of the tilted head, 2026-10-05: circle (150,200,350) restores the previous horizontal centre after widening had shifted it by 26 source pixels. Circle size and vertical framing remain unchanged; original JPEG preserved. Judged at equal size and on the full portrait sheet. Owner correction, 2026-10-06: horizontal facial centre and eye position judged in same-size before/after circles against Ponomarenko. Raise head and centre face, reduce excess crown clearance. Original image and 4:5 programme framing preserved.",
       "width": 682,
       "height": 1024,
       "crop": {
-        "x": 150,
-        "y": 200,
+        "x": 178,
+        "y": 215,
         "size": 350
       }
     }
