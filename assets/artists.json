@@ -932,11 +932,11 @@
     ],
     "portrait": {
       "src": "/assets/img/yuliia-pavlovska.jpg",
-      "source": "Owner-supplied portrait documented in docs/on-the-wings-of-love-source.md; owner requested optical horizontal centring of the tilted head, 2026-10-05: circle (150,200,350) restores the previous horizontal centre after widening had shifted it by 26 source pixels. Circle size and vertical framing remain unchanged; original JPEG preserved. Judged at equal size and on the full portrait sheet. Owner correction, 2026-10-06: horizontal facial centre and eye position judged in same-size before/after circles against Ponomarenko. Raise head and centre face, reduce excess crown clearance. Original image and 4:5 programme framing preserved.",
+      "source": "Owner-supplied portrait documented in docs/on-the-wings-of-love-source.md; owner requested optical horizontal centring of the tilted head, 2026-10-05: circle (150,200,350) restores the previous horizontal centre after widening had shifted it by 26 source pixels. Circle size and vertical framing remain unchanged; original JPEG preserved. Judged at equal size and on the full portrait sheet. Owner correction, 2026-10-06: horizontal facial centre and eye position judged in same-size before/after circles against Ponomarenko. Raise head and centre face, reduce excess crown clearance. Original image and 4:5 programme framing preserved. Owner correction, 2026-10-06 23:05: detector-centred tilted face was visually left of circle; shift image right by 28 source pixels (crop x=150) at unchanged scale and height. Same-size optical comparison, full-circle head and shoulders independently reviewed; x140 rejected as slightly right-weighted.",
       "width": 682,
       "height": 1024,
       "crop": {
-        "x": 178,
+        "x": 150,
         "y": 215,
         "size": 350
       }
