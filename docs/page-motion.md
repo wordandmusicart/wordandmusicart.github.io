@@ -24,3 +24,39 @@ Desktop home header — 3 October 2026: on the UA/EN home page at desktop
 widths (>1100px) the header no longer steps aside while scrolling (owner
 request). Other pages and the mobile/tablet header keep the direction-aware
 behaviour. `tools/test_desktop_header.cjs` (CI) covers both.
+
+## Stable loading — 7 October 2026
+
+Owner correction: remove duplicate animations and jitter, especially during load.
+This supersedes the arrival fallback, photo fade/stagger and section lift above.
+
+Acceptance contract:
+- Native cross-document opacity transition is the sole page entrance effect;
+  direct entry and unsupported browsers show content immediately.
+- No JS opacity/translate animation on main, photos or section headings.
+- Complete cached images stay visible through delayed controller activation;
+  only genuinely pending photos are hidden until decode. Releasing readiness
+  changes visibility, never opacity, so hover CSS cannot add a second fade.
+- Keep reserved geometry, lazy loading outside the near viewport, immediate
+  error/decode-rejection fail-open and a five-second near-viewport deadline.
+- Reduced motion, BFCache restoration, initialization failure and blocked JS
+  leave content visible. Ready images open immediately, including offscreen.
+- Preserve header/menu behaviour, home scroll snap, hover effects, UA/EN
+  content, photograph pixels/crops and design geometry.
+
+Decision: remove the global head hiding class/watchdog and animation ownership
+from the readiness controller; use a per-image pending visibility attribute.
+No framework, API/data contract or Docker integration is applicable. Independent
+contract review approved this with cached/error, cleanup and offscreen-release
+requirements; independent acceptance tests must fail before implementation.
+
+Verification: independently authored regressions reproduced hidden decoded
+first paint and duplicate MAIN/IMG animations before implementation (RED).
+After implementation Chromium and WebKit passed 390/1440px checks for pending
+network and held decode, cached first paint/controller delay, no WAAPI or CSS
+opacity readiness reveal, stable heading/photo geometry, native navigation,
+history/BFCache and error/decode/timeout/reduced-motion/no-JS/script failure.
+A before/after audit of home, artists, photos and current concert in both themes
+at both widths recorded zero JS content reveal animations after the change.
+Independent final code/visual review confirmed all 49 HTML changes are limited
+to bootstrap removal and shared asset versions; settled geometry is unchanged.

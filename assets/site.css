@@ -489,11 +489,11 @@ body{padding-top:112px}
 ::view-transition-group(site-header){animation-duration:0s}
 ::view-transition-old(site-header){display:none}
 ::view-transition-new(site-header){animation:none}
-/* Enabled in the head before photos can paint; a watchdog restores visibility. */
-.motion-enabled main img:not([data-motion-ready]):not(.logo img):not(.lb img){opacity:0}
+/* Only genuinely pending photos are gated; readiness never changes opacity. */
+main img[data-motion-pending]{visibility:hidden}
 @media (prefers-reduced-motion:reduce){
  @view-transition{navigation:none}
- .motion-enabled main img:not([data-motion-ready]){opacity:1}
+ main img[data-motion-pending]{visibility:visible}
  ::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none}
 }
 
