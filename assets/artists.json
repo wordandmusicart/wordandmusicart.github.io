@@ -615,6 +615,38 @@
     "directory_visible": false
   },
   {
+    "id": "nataliia-shmelova",
+    "name": {
+      "uk": "Наталія Шмельова",
+      "en": "Nataliia Shmelova"
+    },
+    "role": {
+      "uk": "Концертмейстер",
+      "en": "Accompanist"
+    },
+    "group": "music",
+    "sources": [
+      "concerts/autumn-rendezvous.html#artists",
+      "concerts/christmas-kaleidoscope.html#artists",
+      "concerts/melodies-of-enchanting-june.html#artists",
+      "concerts/roads-of-love.html#artists",
+      "concerts/winter-extravaganza.html#artists",
+      "video.html#m-2023",
+      "concerts/on-the-wings-of-love.html#artists"
+    ],
+    "portrait": {
+      "src": "/assets/photo/winter-extravaganza/20231222-190936-A.webp",
+      "source": "photo/winter-extravaganza.html",
+      "width": 2400,
+      "height": 3600,
+      "crop": {
+        "x": 0,
+        "y": 0,
+        "size": 2400
+      }
+    }
+  },
+  {
     "id": "mykola-chykarenko",
     "name": {
       "uk": "Микола Чикаренко",
@@ -633,7 +665,7 @@
     ],
     "portrait": {
       "src": "/assets/img/mykola-chykarenko.jpg",
-      "source": "20250803-182056-A.jpg, Mélodies éternelles, 2025-08-03. Original found on Extreme SSD and matched to the owner-provided screenshot; owner identified Mykola Chykarenko on 2026-10-06. Circle corrected after the owner rejected the oversized head and explicitly named Ponomarenko as the reference: match visible whole-head scale, optical placement and shoulder/clothing balance in equal-size circles. Detector-derived crop expanded to 2701 px; eye line 37.4% follows the owner’s explicit reference rather than the generic starting target. Original JPEG and programme crop unchanged. Owner requested further leftward optical placement on 2026-10-06: move the visible portrait left by 7% of the circle diameter to align head placement with Ponomarenko; preserve crop size 2701 and y 555.",
+      "source": "20250803-182056-A.jpg, Mélodies éternelles, 2025-08-03. Original found on Extreme SSD and matched to the owner-provided screenshot; owner identified Mykola Chykarenko on 2026-10-06. Circle corrected after the owner rejected the oversized head and explicitly named Ponomarenko as the reference: match visible whole-head scale, optical placement and shoulder/clothing balance in equal-size circles. Detector-derived crop expanded to 2701 px; eye line 37.4% follows the owner’s explicit reference rather than the generic starting target. Original JPEG and programme crop unchanged. Owner requested further leftward optical placement on 2026-10-06: move the visible portrait left by 7% of the circle diameter to align head placement with Ponomarenko; preserve crop size 2701 and y 555. Owner requested a slightly larger portrait and minimal empty space above the head in the programme tile on 2026-10-07: programme_crop [850,700,3200], 12.5% larger than the previous [600,100,3600], with the entire head retained.",
       "position": "50% 0%",
       "width": 5149,
       "height": 7724,
@@ -643,9 +675,9 @@
         "size": 2701
       },
       "programme_crop": [
-        600,
-        100,
-        3600
+        850,
+        700,
+        3200
       ]
     }
   },
@@ -678,38 +710,6 @@
         250,
         3100
       ]
-    }
-  },
-  {
-    "id": "nataliia-shmelova",
-    "name": {
-      "uk": "Наталія Шмельова",
-      "en": "Nataliia Shmelova"
-    },
-    "role": {
-      "uk": "Концертмейстер",
-      "en": "Accompanist"
-    },
-    "group": "music",
-    "sources": [
-      "concerts/autumn-rendezvous.html#artists",
-      "concerts/christmas-kaleidoscope.html#artists",
-      "concerts/melodies-of-enchanting-june.html#artists",
-      "concerts/roads-of-love.html#artists",
-      "concerts/winter-extravaganza.html#artists",
-      "video.html#m-2023",
-      "concerts/on-the-wings-of-love.html#artists"
-    ],
-    "portrait": {
-      "src": "/assets/photo/winter-extravaganza/20231222-190936-A.webp",
-      "source": "photo/winter-extravaganza.html",
-      "width": 2400,
-      "height": 3600,
-      "crop": {
-        "x": 0,
-        "y": 0,
-        "size": 2400
-      }
     }
   },
   {
