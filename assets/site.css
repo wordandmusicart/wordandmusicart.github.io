@@ -391,7 +391,8 @@ body{padding-top:112px}
 .home .about .lab{grid-column:1/-1}
 .home .about h2{grid-column:1/span 8;max-width:960px;font-size:clamp(44px,5.7vw,82px);line-height:1.08}
 .home .about .txt{grid-column:10/span 3;align-self:end;padding-top:0}
-.home-archive,.home-media{display:flex;flex-direction:column;justify-content:center;padding-block:100px}
+/* One heading plane for homepage sections, independent of their content height. */
+.home-archive,.home-media,.home-locations{display:flex;flex-direction:column;justify-content:flex-start;padding-block:168px 100px}
 .home .sec-head{margin-bottom:56px}
 .home .h2{font-size:clamp(44px,5.7vw,82px);line-height:1.06}
 .home .home-media .tiles{padding-block:0;gap:32px}
@@ -442,7 +443,7 @@ body{padding-top:112px}
  .home .about h2,.home .about .txt{grid-column:1/-1;margin:0}
  .home .about h2{font-size:clamp(42px,7vw,64px);max-width:760px}
  .home .about .txt{max-width:540px;gap:24px}
- .home-archive,.home-media{padding-block:80px}
+ .home-archive,.home-media,.home-locations{padding-block:80px}
  .home .sec-head{align-items:flex-start;flex-direction:column;gap:24px;margin-bottom:36px}
  .home .h2{font-size:clamp(44px,7vw,64px)}
  .home .cards3 .card{flex-basis:84%}
