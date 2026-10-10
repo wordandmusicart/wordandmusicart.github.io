@@ -142,7 +142,7 @@ def event(s, lang, url):
     if tickets:
         offer = {'@type': 'Offer', 'url': html.unescape(tickets.group(1))}
         price = re.fullmatch(
-            r'(?:(\d+)(?:\s*[–—-]\s*(\d+))?\s*(?:грн|₴|UAH)|₴\s*(\d+)(?:\s*[–—-]\s*(\d+))?)',
+            r'(?:(\d+)(?:\s*[–—-]\s*(\d+))?\s*(?:грн|₴|UAH)|(?:₴|UAH)\s*(\d+)(?:\s*[–—-]\s*(\d+))?)',
             facts.get('price', ''))
         if price:
             low = price.group(1) or price.group(3)

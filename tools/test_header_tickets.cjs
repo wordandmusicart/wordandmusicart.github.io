@@ -6,13 +6,18 @@ const assert = require('node:assert/strict');
 const {chromium} = require(process.env.PLAYWRIGHT_MODULE || '/Users/rusanivsky/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
 const BASE = process.env.SITE_URL || 'http://127.0.0.1:4175';
 const EVENT = 'https://eventmate.app/events/share/na-krilah-kohanna-koncert-vokalnoi-muziki';
+const EVENT24 = EVENT + '-v-budinku-vcenih';
 const PROFILE = 'https://eventmate.app/users/share/wordmusic';
 (async () => {
   const browser = await chromium.launch();
   let failed = 0;
   const cases = [
     ['before the concert ends', '2026-10-15T19:00:00+03:00', EVENT],
-    ['after the last concert ends', '2026-10-15T19:31:00+03:00', PROFILE],
+    ['immediately before October 15 ends', '2026-10-15T19:29:59+03:00', EVENT],
+    ['after October 15 ends, choose October 24', '2026-10-15T19:30:01+03:00', EVENT24],
+    ['before October 24 starts', '2026-10-24T17:00:00+03:00', EVENT24],
+    ['immediately before October 24 ends', '2026-10-24T19:29:59+03:00', EVENT24],
+    ['after the last concert ends', '2026-10-24T19:30:01+03:00', PROFILE],
   ];
   for (const [label, time, base] of cases) {
     for (const [route, locale] of [['/', 'uk'], ['/en/', 'en'], ['/concerts/vivre-aimer-rever.html', 'uk'], ['/en/artists.html', 'en']]) {

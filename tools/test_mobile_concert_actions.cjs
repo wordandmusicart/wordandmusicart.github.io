@@ -15,8 +15,11 @@ const redirects = {
 };
 const VIVRE = 'concerts/vivre-aimer-rever.html';
 const TICKET = 'https://eventmate.app/events/share/na-krilah-kohanna-koncert-vokalnoi-muziki';
-const ticketed = ['', 'en/'].flatMap(prefix => ['concert.html', WINGS].map(route => ({
+const WINGS24 = 'concerts/on-the-wings-of-love-24102026.html';
+const TICKET24 = TICKET + '-v-budinku-vcenih';
+const ticketed = ['', 'en/'].flatMap(prefix => ['concert.html', WINGS, WINGS24].map(route => ({
   route: '/' + prefix + route, lang: prefix ? 'en' : 'uk',
+  ticket: route === WINGS24 ? TICKET24 : TICKET, date: route === WINGS24 ? '24.10' : '15.10',
 })));
 const programmeRoutes = ['/concert.html', '/en/concert.html', ...['concerts', 'en/concerts'].flatMap(directory =>
   fs.readdirSync(path.join(ROOT, directory)).filter(file => file.endsWith('.html')).map(file => '/' + directory + '/' + file))];
@@ -37,12 +40,12 @@ async function scroll(page, fraction) {
     await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
   }, fraction);
 }
-async function sticky(page, lang, where) {
+async function sticky(page, lang, where, ticket, date) {
   const bar = page.locator('.sticky-buy');
   assert.equal(await bar.count(), 1, 'A ticketed programme needs one floating purchase bar');
   assert.ok(await bar.isVisible(), `${where}: purchase bar must remain visible`);
-  assert.equal(await bar.locator('a').getAttribute('href'), `${TICKET}?locale=${lang}`);
-  assert.match(await bar.innerText(), /15\.10/);
+  assert.equal(await bar.locator('a').getAttribute('href'), `${ticket}?locale=${lang}`);
+  assert.ok((await bar.innerText()).includes(date), `Floating bar must identify ${date}`);
   assert.match(await bar.innerText(), /18:00\s*[–—-]\s*19:30/);
   const geometry = await bar.evaluate(node => {
     const rect = element => {
@@ -93,13 +96,13 @@ async function sticky(page, lang, where) {
     finally { await ctx.close(); }
   }
   try {
-    for (const {route, lang} of ticketed) {
+    for (const {route, lang, ticket, date} of ticketed) {
       for (const width of [320, 390, 900]) {
         await test(`${route} ${width}px floating ticket stays visible, fits, and clears footer`, width, async page => {
           await open(page, route);
           for (const [where, fraction] of [['initial', 0], ['middle', 0.5], ['end', 1]]) {
             await scroll(page, fraction);
-            await sticky(page, lang, where);
+            await sticky(page, lang, where, ticket, date);
           }
         });
       }
@@ -107,7 +110,7 @@ async function sticky(page, lang, where) {
         await open(page, route);
         const heroBuy = page.locator('.c-hero .c-cta .btn');
         assert.ok(await heroBuy.isVisible(), 'The hero purchase action remains available');
-        assert.equal(await heroBuy.getAttribute('href'), `${TICKET}?locale=${lang}`);
+        assert.equal(await heroBuy.getAttribute('href'), `${ticket}?locale=${lang}`);
         for (const identity of ['program', 'artists']) {
           assert.equal(await page.locator(`.c-hero .c-cta .btn-o[href="#${identity}"]`).isVisible(), false,
             `The duplicated hero ${identity} link should be hidden on mobile`);
