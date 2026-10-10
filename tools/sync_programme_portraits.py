@@ -117,7 +117,7 @@ def sync(path):
     source = path.read_text()
     language = 'en' if path.relative_to(ROOT).parts[0] == 'en' else 'uk'
     # The approved new layout already separates featured, supporting and host.
-    if path.stem == 'on-the-wings-of-love' or path.name == 'concert.html':
+    if path.stem in {'on-the-wings-of-love', 'on-the-wings-of-love-25102026'} or path.name == 'concert.html':
         def refresh(match):
             alt = re.search(r'alt="([^"]*)"', match[0])
             if not alt:

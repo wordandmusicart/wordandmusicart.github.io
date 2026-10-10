@@ -19,7 +19,7 @@ from urllib.parse import urlparse
 
 
 ROOT = Path(__file__).resolve().parents[1]
-ANNOUNCED_SLUGS = ("on-the-wings-of-love",)
+ANNOUNCED_SLUGS = ("on-the-wings-of-love", "on-the-wings-of-love-25102026")
 
 CONCERT_SLUGS = (
     "amore-eterno",
