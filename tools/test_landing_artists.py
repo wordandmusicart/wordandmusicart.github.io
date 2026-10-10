@@ -14,7 +14,8 @@ from urllib.parse import urlsplit
 
 ROOT = Path(os.environ.get("SITE_ROOT", Path(__file__).resolve().parents[1]))
 ORIGIN = "https://wordandmusic.art"
-ANNOUNCED_CONCERTS = {"on-the-wings-of-love.html", "on-the-wings-of-love-25102026.html"}
+ANNOUNCED_CONCERTS = {"on-the-wings-of-love.html", "on-the-wings-of-love-24102026.html"}
+CONCERT_ALIASES = {"on-the-wings-of-love-25102026.html"}
 CONCERT_ONLY_ARTISTS = {"miao-xinyue", "den-yatsziuen", "anna-bielanova", "taras-kapran", "nykyta-naumov"}
 DIRECTORY_GROUPS = (("vocal", "voices"), ("music", "musicians"), ("author", "author"))
 VOID = set("area base br col embed hr img input link meta param source track wbr".split())
@@ -121,7 +122,7 @@ class LandingArtistsAcceptance(unittest.TestCase):
         self.assertEqual(len(ids), len(set(ids)), "Artist identities must be unique")
         archive_names = set()
         for path in sorted((ROOT / "concerts").glob("*.html")):
-            if path.name in ANNOUNCED_CONCERTS:
+            if path.name in ANNOUNCED_CONCERTS | CONCERT_ALIASES:
                 continue
             for people in Document(path).root.find(cls="people"):
                 archive_names.update(normalized_name(name.text()) for name in people.find("h3"))

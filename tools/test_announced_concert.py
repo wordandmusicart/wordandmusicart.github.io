@@ -161,7 +161,7 @@ class AnnouncedConcertAcceptance(unittest.TestCase):
                         prefix = "en/" if path.relative_to(ROOT).parts[0] == "en" else ""
                         # Both October dates now share the owner-confirmed title.
                         # A card's date identifies which detail route it must open.
-                        slug = "concerts/on-the-wings-of-love-25102026.html" if "25.10" in card.text() else SLUG
+                        slug = "concerts/on-the-wings-of-love-24102026.html" if "24.10" in card.text() else SLUG
                         self.assertIn("/" + prefix + slug, links(card))
 
 

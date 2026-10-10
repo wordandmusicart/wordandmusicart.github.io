@@ -13,6 +13,12 @@ const BASE = process.env.SITE_URL || 'http://127.0.0.1:4175';
 const modes = ['auto', 'light', 'dark'];
 const button = (page, mode) => page.locator(`footer button[data-theme-mode="${mode}"]`);
 const routes = [];
+// Existing shared concert URLs immediately redirect to the corrected date.
+// Keep testing their destination footer in the same language after navigation.
+const redirects = {
+  '/concerts/on-the-wings-of-love-25102026.html': '/concerts/on-the-wings-of-love-24102026.html',
+  '/en/concerts/on-the-wings-of-love-25102026.html': '/en/concerts/on-the-wings-of-love-24102026.html',
+};
 function discover(dir, recursive = false) {
   for (const item of fs.readdirSync(path.join(ROOT, dir), {withFileTypes: true})) {
     const relative = path.posix.join(dir, item.name);
@@ -86,6 +92,11 @@ async function context(browser, colorScheme = 'light') {
         const page = await ctx.newPage();
         for (const route of routes) {
           await page.goto(BASE + route);
+          if (redirects[route]) {
+            const destination = BASE + redirects[route];
+            await page.waitForURL(destination, {waitUntil: 'domcontentloaded'});
+            assert.equal(page.url(), destination, `${route}: preserve language on date redirect`);
+          }
           const footer = page.locator('footer');
           assert.equal(await footer.count(), 1, route);
           assert.equal(await footer.locator('button[data-theme-mode]').count(), 3, route);

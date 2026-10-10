@@ -9,6 +9,10 @@ const {chromium} = require(process.env.PLAYWRIGHT_MODULE || '/Users/rusanivsky/.
 const ROOT = process.env.SITE_ROOT || path.resolve(__dirname, '..');
 const BASE = process.env.SITE_URL || 'http://127.0.0.1:4201';
 const WINGS = 'concerts/on-the-wings-of-love.html';
+const redirects = {
+  '/concerts/on-the-wings-of-love-25102026.html': '/concerts/on-the-wings-of-love-24102026.html',
+  '/en/concerts/on-the-wings-of-love-25102026.html': '/en/concerts/on-the-wings-of-love-24102026.html',
+};
 const VIVRE = 'concerts/vivre-aimer-rever.html';
 const TICKET = 'https://eventmate.app/events/share/na-krilah-kohanna-koncert-vokalnoi-muziki';
 const ticketed = ['', 'en/'].flatMap(prefix => ['concert.html', WINGS].map(route => ({
@@ -19,6 +23,11 @@ const programmeRoutes = ['/concert.html', '/en/concert.html', ...['concerts', 'e
 
 async function open(page, route) {
   await page.goto(BASE + route, {waitUntil: 'domcontentloaded'});
+  if (redirects[route]) {
+    const destination = BASE + redirects[route];
+    await page.waitForURL(destination, {waitUntil: 'domcontentloaded'});
+    assert.equal(page.url(), destination, `${route}: preserve language on date redirect`);
+  }
   await page.evaluate(() => document.fonts.ready);
 }
 async function scroll(page, fraction) {

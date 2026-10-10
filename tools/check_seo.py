@@ -10,7 +10,9 @@ from urllib.parse import urlparse
 ROOT = Path(os.environ.get("SITE_ROOT", Path(__file__).resolve().parent.parent))
 ORIGIN = "https://wordandmusic.art"
 # Current-programme aliases share the stable named concert's SEO identity.
-ALIASES = {"concert.html": "concerts/on-the-wings-of-love.html",
+ALIASES = {"concerts/on-the-wings-of-love-25102026.html": "concerts/on-the-wings-of-love-24102026.html",
+           "en/concerts/on-the-wings-of-love-25102026.html": "en/concerts/on-the-wings-of-love-24102026.html",
+           "concert.html": "concerts/on-the-wings-of-love.html",
            "en/concert.html": "en/concerts/on-the-wings-of-love.html"}
 
 
@@ -140,7 +142,7 @@ def main():
                           ("description", lambda p: p.meta.get("description", ""))):
         values = defaultdict(list)
         for path, page in parsed.items():
-            if path.name != "404.html":
+            if path.name != "404.html" and path.relative_to(ROOT).as_posix() not in ALIASES:
                 values[(page.lang, getter(page))].append(path.relative_to(ROOT).as_posix())
         for (lang, value), matches in values.items():
             if value and len(matches) > 1:

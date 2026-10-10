@@ -23,7 +23,8 @@ KNOWN_ARCHIVE_RANGES = {
     "vivre-aimer-rever": "16:00–17:00",
 }
 UNKNOWN_ARCHIVE_STARTS = {"amore-eterno", "christmas-kaleidoscope", "heartstrings"}
-ANNOUNCED_CONCERTS = {"on-the-wings-of-love", "on-the-wings-of-love-25102026"}
+ANNOUNCED_CONCERTS = {"on-the-wings-of-love", "on-the-wings-of-love-24102026"}
+CONCERT_ALIASES = {"on-the-wings-of-love-25102026"}
 OCTOBER_15_TICKET = "https://eventmate.app/events/share/na-krilah-kohanna-koncert-vokalnoi-muziki"
 
 
@@ -100,9 +101,9 @@ class EventSchemaTest(unittest.TestCase):
         self.assertEqual([path.name for path in ua], [path.name for path in en])
         self.assertEqual(
             {path.stem for path in ua},
-            set(KNOWN_ARCHIVE_RANGES) | UNKNOWN_ARCHIVE_STARTS | ANNOUNCED_CONCERTS,
+            set(KNOWN_ARCHIVE_RANGES) | UNKNOWN_ARCHIVE_STARTS | ANNOUNCED_CONCERTS | CONCERT_ALIASES,
         )
-        return [path for path in ua + en if path.stem not in ANNOUNCED_CONCERTS]
+        return [path for path in ua + en if path.stem not in ANNOUNCED_CONCERTS | CONCERT_ALIASES]
 
     def test_named_programme_has_source_backed_range_and_minimum_offer(self):
         for prefix, lang in (("", "uk"), ("en/", "en")):

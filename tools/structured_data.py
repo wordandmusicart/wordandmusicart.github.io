@@ -182,7 +182,7 @@ def data(path, s):
         return home(s, lang, url)
     if rel in ('concert.html', 'en/concert.html',
                'concerts/on-the-wings-of-love.html', 'en/concerts/on-the-wings-of-love.html',
-               'concerts/on-the-wings-of-love-25102026.html', 'en/concerts/on-the-wings-of-love-25102026.html'):
+               'concerts/on-the-wings-of-love-24102026.html', 'en/concerts/on-the-wings-of-love-24102026.html'):
         return event(s, lang, url)
     if re.fullmatch(r'(en/)?photo/[\w-]+\.html', rel):
         return gallery(s, lang, url)
