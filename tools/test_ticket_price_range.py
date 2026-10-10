@@ -51,6 +51,9 @@ class TicketPriceRangeTest(unittest.TestCase):
             ("uk", "250–400 ₴"),
             ("uk", "₴250–400"),
             ("en", "250–400 UAH"),
+            ("en", "UAH250–400"),
+            ("en", "UAH 250–400"),
+            ("en", "UAH 250 – 400"),
             ("en", "250–400 ₴"),
             ("en", "250-400 UAH"),
             ("en", "250 – 400 UAH"),
@@ -66,6 +69,30 @@ class TicketPriceRangeTest(unittest.TestCase):
                 self.assertNotIn("validFrom", offer, "No sales opening date was supplied")
                 self.assertNotIn("lowPrice", offer)
                 self.assertNotIn("highPrice", offer)
+
+    def test_confirmed_english_prefix_single_price_preserves_offer_context(self):
+        for visible in ("UAH 300", "UAH300"):
+            with self.subTest(visible=visible):
+                offer = self.offer(visible, "en")
+                self.assertEqual(offer.get("price"), "300")
+                self.assertEqual(offer.get("priceCurrency"), "UAH")
+                self.assertEqual(offer.get("@type"), "Offer")
+                self.assertEqual(offer.get("url"), f"{TICKET}?locale=en")
+                self.assertEqual(offer.get("availability"), "https://schema.org/InStock")
+                self.assertNotIn("validFrom", offer)
+        unavailable = self.offer("UAH 300", "en", on_sale=False)
+        self.assertEqual(unavailable.get("price"), "300")
+        self.assertNotIn("availability", unavailable)
+
+    def test_english_prefix_malformed_prices_keep_ticket_context_without_fabricated_price(self):
+        for visible in ("UAH", "UAH ", "UAH 400–250", "UAH 300–", "UAH –400", "UAH 250–400–500", "UAH 300 + fee"):
+            with self.subTest(visible=visible):
+                offer = self.offer(visible, "en")
+                for field in ("price", "priceCurrency", "lowPrice", "highPrice", "priceSpecification"):
+                    self.assertNotIn(field, offer)
+                self.assertEqual(offer.get("url"), f"{TICKET}?locale=en")
+                self.assertEqual(offer.get("availability"), "https://schema.org/InStock")
+                self.assertNotIn("validFrom", offer)
 
     def test_visible_time_range_produces_separate_confirmed_schema_datetimes(self):
         for lang in ("uk", "en"):

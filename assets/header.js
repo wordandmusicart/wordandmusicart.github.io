@@ -1,6 +1,6 @@
 /* Shared navigation: floating header, direction-aware visibility, accessible menu. */
 /* tickets:start (tools/tickets.py) */
-const TICKET_EVENTS = [{"end": "2026-10-15T19:30:00+03:00", "url": "https://eventmate.app/events/share/na-krilah-kohanna-koncert-vokalnoi-muziki"}];
+const TICKET_EVENTS = [{"end": "2026-10-15T19:30:00+03:00", "url": "https://eventmate.app/events/share/na-krilah-kohanna-koncert-vokalnoi-muziki"}, {"end": "2026-10-24T19:30:00+03:00", "url": "https://eventmate.app/events/share/na-krilah-kohanna-koncert-vokalnoi-muziki-v-budinku-vcenih"}];
 const TICKET_PROFILE = "https://eventmate.app/users/share/wordmusic";
 /* tickets:end */
 (() => {
