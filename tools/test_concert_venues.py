@@ -19,7 +19,9 @@ from urllib.parse import urlparse
 
 
 ROOT = Path(__file__).resolve().parents[1]
-ANNOUNCED_SLUGS = ("on-the-wings-of-love", "on-the-wings-of-love-25102026")
+ANNOUNCED_SLUGS = ("on-the-wings-of-love", "on-the-wings-of-love-24102026")
+
+CONCERT_ALIASES = ("on-the-wings-of-love-25102026",)
 
 CONCERT_SLUGS = (
     "amore-eterno",
@@ -323,14 +325,14 @@ def main() -> int:
     en_pages = sorted((ROOT / "en/concerts").glob("*.html"))
     expected_ua = [ROOT / "concerts" / f"{slug}.html" for slug in CONCERT_SLUGS]
     expected_en = [ROOT / "en/concerts" / f"{slug}.html" for slug in CONCERT_SLUGS]
-    announced_ua = [ROOT / "concerts" / f"{slug}.html" for slug in ANNOUNCED_SLUGS]
-    announced_en = [ROOT / "en/concerts" / f"{slug}.html" for slug in ANNOUNCED_SLUGS]
+    announced_ua = [ROOT / "concerts" / f"{slug}.html" for slug in ANNOUNCED_SLUGS + CONCERT_ALIASES]
+    announced_en = [ROOT / "en/concerts" / f"{slug}.html" for slug in ANNOUNCED_SLUGS + CONCERT_ALIASES]
     archive_ua = [path for path in ua_pages if path not in announced_ua]
     archive_en = [path for path in en_pages if path not in announced_en]
     check(len(archive_ua) == len(CONCERT_SLUGS), f"concerts/ must contain 12 archive pages (found {len(archive_ua)})", failures)
     check(len(archive_en) == len(CONCERT_SLUGS), f"en/concerts/ must contain 12 archive pages (found {len(archive_en)})", failures)
-    check(ua_pages == sorted(expected_ua + announced_ua), "concerts/ page set differs from the 12-page archive plus known announcements", failures)
-    check(en_pages == sorted(expected_en + announced_en), "en/concerts/ page set differs from the 12-page archive plus known announcements", failures)
+    check(ua_pages == sorted(expected_ua + announced_ua), "concerts/ page set differs from the 12-page archive plus known announcements and aliases", failures)
+    check(en_pages == sorted(expected_en + announced_en), "en/concerts/ page set differs from the 12-page archive plus known announcements and aliases", failures)
 
     for path in expected_ua:
         check_page(path, "UA", failures)

@@ -13,7 +13,7 @@ from test_event_end_date import events, KNOWN_ARCHIVE_RANGES, UNKNOWN_ARCHIVE_ST
 from test_landing_artists import Document, ROOT, ORIGIN, links, public_pages
 
 WINGS = "concerts/on-the-wings-of-love.html"
-WINGS_OCTOBER_25 = "concerts/on-the-wings-of-love-25102026.html"
+WINGS_OCTOBER_24 = "concerts/on-the-wings-of-love-24102026.html"
 VIVRE = "concerts/vivre-aimer-rever.html"
 TICKET = "https://eventmate.app/events/share/na-krilah-kohanna-koncert-vokalnoi-muziki"
 RANGE = re.compile(r"\d{2}:\d{2}\s*[–—-]\s*\d{2}:\d{2}")
@@ -94,7 +94,7 @@ class OctoberRolloverAcceptance(unittest.TestCase):
             doc = Document(ROOT / prefix / "concerts.html").root
             upcoming = list(doc.find("article", "upc"))
             self.assertEqual(len(upcoming), 2)
-            for card, date, slug in zip(upcoming, ("15.10", "25.10"), (WINGS, WINGS_OCTOBER_25)):
+            for card, date, slug in zip(upcoming, ("15.10", "24.10"), (WINGS, WINGS_OCTOBER_24)):
                 self.assertEqual([normalized(n) for n in card.find(cls="d")], [date])
                 self.assertIn("/" + prefix + slug, links(card))
                 self.assertRegex(card.text(), r"18:00\s*[–—-]\s*19:30")
@@ -111,7 +111,7 @@ class OctoberRolloverAcceptance(unittest.TestCase):
                              "Adding a future date must preserve the exact archived concert set")
             self.assertIn("/" + prefix + VIVRE, archive_routes)
             self.assertNotIn("/" + prefix + WINGS, archive_routes)
-            self.assertNotIn("/" + prefix + WINGS_OCTOBER_25, archive_routes)
+            self.assertNotIn("/" + prefix + WINGS_OCTOBER_24, archive_routes)
             self.assertFalse(any("Vivre" in n.text() for n in upcoming))
 
     def test_facts_have_one_time_range_and_no_separate_endpoint_cells(self):

@@ -22,6 +22,8 @@ ORIGIN = "https://wordandmusic.art"
 SM = "{http://www.sitemaps.org/schemas/sitemap/0.9}"
 XHTML = "{http://www.w3.org/1999/xhtml}"
 ALIASES = {
+    "concerts/on-the-wings-of-love-25102026.html": "concerts/on-the-wings-of-love-24102026.html",
+    "en/concerts/on-the-wings-of-love-25102026.html": "en/concerts/on-the-wings-of-love-24102026.html",
     "concert.html": "concerts/on-the-wings-of-love.html",
     "en/concert.html": "en/concerts/on-the-wings-of-love.html",
 }
@@ -181,7 +183,7 @@ class SitemapAcceptance(unittest.TestCase):
             result = subprocess.run(command, cwd=temporary, env=fixture_environment,
                                     capture_output=True, text=True)
             self.assertNotEqual(result.returncode, 0,
-                                "Only the two supplied programme aliases may share another page's canonical")
+                                "Only the supplied programme/date aliases may share another page's canonical")
             self.assertEqual(artist_page.read_text(), bad_canonical, "--check must not repair page metadata")
 
 
