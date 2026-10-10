@@ -159,7 +159,10 @@ class AnnouncedConcertAcceptance(unittest.TestCase):
                     title = "On the Wings of Love" if path.relative_to(ROOT).parts[0] == "en" else "На крилах кохання"
                     if title in card.text():
                         prefix = "en/" if path.relative_to(ROOT).parts[0] == "en" else ""
-                        self.assertIn("/" + prefix + SLUG, links(card))
+                        # Both October dates now share the owner-confirmed title.
+                        # A card's date identifies which detail route it must open.
+                        slug = "concerts/on-the-wings-of-love-25102026.html" if "25.10" in card.text() else SLUG
+                        self.assertIn("/" + prefix + slug, links(card))
 
 
 if __name__ == "__main__":

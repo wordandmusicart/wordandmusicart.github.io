@@ -14,7 +14,7 @@ from urllib.parse import urlsplit
 
 ROOT = Path(os.environ.get("SITE_ROOT", Path(__file__).resolve().parents[1]))
 ORIGIN = "https://wordandmusic.art"
-ANNOUNCED_CONCERTS = {"on-the-wings-of-love.html"}
+ANNOUNCED_CONCERTS = {"on-the-wings-of-love.html", "on-the-wings-of-love-25102026.html"}
 CONCERT_ONLY_ARTISTS = {"miao-xinyue", "den-yatsziuen", "anna-bielanova", "taras-kapran", "nykyta-naumov"}
 DIRECTORY_GROUPS = (("vocal", "voices"), ("music", "musicians"), ("author", "author"))
 VOID = set("area base br col embed hr img input link meta param source track wbr".split())

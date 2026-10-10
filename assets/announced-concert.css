@@ -1,0 +1,8 @@
+/* Existing concert layout, with a neutral placeholder until the poster is supplied. */
+.poster-placeholder{background:var(--ph1)}
+.status-pending{color:var(--ink2)}
+.announcement-note{margin-top:10px}
+.announcement-time{margin-top:12px}
+.announcement-venue-title{font-size:36px;font-weight:400;line-height:1.05}
+.announcement-map-link{align-self:flex-start}
+.announcement-news{margin-top:14px}
