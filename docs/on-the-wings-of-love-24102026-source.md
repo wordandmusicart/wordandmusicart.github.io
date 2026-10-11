@@ -17,3 +17,5 @@ Final owner artwork corrections: use the current A2 background palette throughou
 Owner ticket confirmation, 10 October 2026: https://eventmate.app/events/share/na-krilah-kohanna-koncert-vokalnoi-muziki-v-budinku-vcenih?locale=en. Eventmate was read directly and shows 24 October 2026, 18:00–19:30, House of Scientists, and a 300 UAH ticket with a purchase action. UA links use ?locale=uk, EN links use ?locale=en. Keep the 15 October event as the nearest global header/home ticket until it ends; the shared header then advances to 24 October. No sales opening date/time was supplied, so validFrom is omitted.
 
 Owner correction, 11 October 2026 (supersedes earlier times): 24 October 2026, 16:00–17:10. Start time is 16:00 on every current poster and A2. Update both language pages, listing cards, metadata, JSON-LD and ticket rollover; preserve the 15 October event.
+
+Owner correction, 11 October 2026: global header Tickets controls always open the word&music organiser profile on Eventmate, in the page language. Event-specific purchase actions keep their individual ticket links. Poster URLs carry a content version so returning browsers fetch the corrected 16:00 artwork.

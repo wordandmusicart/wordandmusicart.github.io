@@ -310,8 +310,8 @@ class LandingArtistsAcceptance(unittest.TestCase):
                 ticket_links = [href for href in links(header) if urlsplit(href).hostname == "eventmate.app"]
                 self.assertEqual(len(ticket_links), 2, "Keep desktop and mobile header ticket controls")
                 locale = "en" if prefix else "uk"
-                self.assertEqual(set(ticket_links), {f"https://eventmate.app/events/share/na-krilah-kohanna-koncert-vokalnoi-muziki?locale={locale}"},
-                                 "Header tickets open the nearest concert in the page language (tools/tickets.py)")
+                self.assertEqual(set(ticket_links), {f"https://eventmate.app/users/share/wordmusic?locale={locale}"},
+                                 "Header tickets open the organiser profile in the page language (tools/tickets.py)")
                 route = path.relative_to(ROOT).as_posix()
                 leaf = path.name
                 expected = leaf.removesuffix(".html") if leaf in {"artists.html", "concerts.html", "photo.html", "video.html"} else None

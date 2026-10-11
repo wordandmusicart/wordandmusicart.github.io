@@ -67,8 +67,9 @@ change pass; if a test encodes an old owner decision, ask.
 ## Header, tickets, language
 
 - Header «Квитки»/«Tickets» and all Eventmate links are not edited by hand:
-  `python3 tools/tickets.py` reads the MusicEvent offers; `assets/header.js`
-  switches to the next concert after one ends, else the organiser profile.
+  `python3 tools/tickets.py` keeps header «Квитки»/«Tickets» on the organiser
+  profile (owner request, 11 Oct 2026); concert purchase actions retain their
+  event-specific URLs.
   UA pages link Eventmate with `?locale=uk`, EN pages with `?locale=en`.
 - Header on desktop home stays pinned; elsewhere and on mobile it hides on
   scroll down and returns on scroll up. Home on desktop scrolls by screens.
