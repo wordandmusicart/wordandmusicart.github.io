@@ -46,7 +46,7 @@ async function sticky(page, lang, where, ticket, date) {
   assert.ok(await bar.isVisible(), `${where}: purchase bar must remain visible`);
   assert.equal(await bar.locator('a').getAttribute('href'), `${ticket}?locale=${lang}`);
   assert.ok((await bar.innerText()).includes(date), `Floating bar must identify ${date}`);
-  assert.match(await bar.innerText(), /18:00\s*[–—-]\s*19:30/);
+  assert.match(await bar.innerText(), date === '24.10' ? /16:00\s*[–—-]\s*17:10/ : /18:00\s*[–—-]\s*19:30/);
   const geometry = await bar.evaluate(node => {
     const rect = element => {
       const box = element.getBoundingClientRect();
