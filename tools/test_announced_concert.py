@@ -35,11 +35,11 @@ class AnnouncedConcertAcceptance(unittest.TestCase):
                 doc = Document(ROOT / prefix / SLUG).root
                 ticket_links = [href for href in links(doc) if urlsplit(href).hostname == "eventmate.app"]
                 self.assertTrue(ticket_links)
-                self.assertEqual(set(ticket_links), {expected})
+                self.assertEqual(set(ticket_links), {expected, f"https://eventmate.app/users/share/wordmusic?locale={lang}"})
                 header = next(n for n in doc.find("header") if list(n.find("nav")))
                 header_tickets = [href for href in links(header) if urlsplit(href).hostname == "eventmate.app"]
                 self.assertEqual(len(header_tickets), 2)
-                self.assertEqual(set(header_tickets), {expected})
+                self.assertEqual(set(header_tickets), {f"https://eventmate.app/users/share/wordmusic?locale={lang}"})
                 hero = next(doc.find("section", cls="c-hero"))
                 cta = next(hero.find(cls="c-cta"))
                 self.assertIn(expected, links(cta))

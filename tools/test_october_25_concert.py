@@ -5,6 +5,10 @@ Facts: docs/on-the-wings-of-love-24102026-source.md. Visual theme/responsive acc
 separate browser gate; this suite checks public content and navigation.
 """
 import unittest
+import tempfile
+from pathlib import Path
+from unittest.mock import patch
+from PIL import Image
 import xml.etree.ElementTree as ET
 from datetime import datetime
 from urllib.parse import parse_qs, urlsplit, urljoin
@@ -12,9 +16,11 @@ import re
 from zoneinfo import ZoneInfo
 
 if __package__:
+    from . import images
     from .test_event_end_date import events
     from .test_landing_artists import Document, ROOT, ORIGIN, links
 else:
+    import images
     from test_event_end_date import events
     from test_landing_artists import Document, ROOT, ORIGIN, links
 
@@ -49,6 +55,37 @@ def ticket_links(node):
 
 
 class October24ConcertAcceptance(unittest.TestCase):
+    def test_responsive_generator_preserves_poster_cache_version(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            name = "cache-poster"
+            master = root / (name + ".jpg")
+            Image.new("RGB", (640, 800)).save(master)
+            (root / (name + "-320.webp")).touch()
+            candidates = f"/assets/img/{name}-320.webp?v=abc123 320w, /assets/img/{name}.jpg?v=abc123 640w"
+            markup = f'<picture><source srcset="{candidates}" sizes="100vw"><img src="/assets/img/{name}.jpg?v=abc123" srcset="{candidates}" sizes="100vw"></picture>'
+            page = root / "index.html"
+            page.write_text(markup)
+            with patch.object(images, "ROOT", str(root)), patch.object(images, "IMG", str(root)), \
+                    patch.object(images, "masters", return_value=[(name, str(master))]), \
+                    patch.object(images, "pages", return_value=[str(page)]), patch.object(images, "WIDTHS", (320,)), \
+                    patch.object(images, "photos", return_value=[]), \
+                    patch.object(images, "has_meta", return_value=True):
+                self.assertEqual(images.rewrite(check=True), [], "A current versioned picture must pass without losing srcset")
+                self.assertEqual(page.read_text(), markup, "Check mode must not write")
+                self.assertEqual(images.rewrite(check=False), [])
+                self.assertEqual(page.read_text(), markup, "Regeneration must preserve the cache version in every candidate")
+
+    def assert_poster_version(self, url, theme):
+        parsed = urlsplit(url)
+        version = parse_qs(parsed.query).get("v", [])
+        self.assertEqual(len(version), 1, "Every poster URL needs one nonempty cache version")
+        canonical = Document(ROOT / SLUG).root
+        picture = next(next(canonical.find("section", cls="c-hero")).find("picture"))
+        element = next(picture.find("img" if theme == "night" else "source"))
+        reference = element.attrs["src" if theme == "night" else "srcset"].split(",")[0].split()[0]
+        self.assertEqual(version, parse_qs(urlsplit(reference).query).get("v", []), "One version per poster family across every surface")
+
     def assert_ticket_actions(self, doc, lang):
         expected = f"{NEW_TICKET}?locale={lang}"
         hero = next(doc.find("section", cls="c-hero"))
@@ -74,7 +111,8 @@ class October24ConcertAcceptance(unittest.TestCase):
         images = list(picture.find("img"))
         self.assertEqual(len(images), 1)
         image = images[0]
-        self.assertEqual(image.attrs.get("src"), POSTER_BASE + "-night.jpg")
+        self.assertEqual(urlsplit(image.attrs.get("src")).path, POSTER_BASE + "-night.jpg")
+        self.assert_poster_version(image.attrs["src"], "night")
         self.assertTrue(image.attrs.get("alt"))
         self.assertEqual(int(image.attrs["width"]) / int(image.attrs["height"]), 4 / 5)
         dark = list(picture.find("source"))
@@ -84,9 +122,10 @@ class October24ConcertAcceptance(unittest.TestCase):
             candidates = [part.strip().split()[0] for part in element.attrs.get("srcset", "").split(",") if part.strip()]
             self.assertGreater(len(candidates), 1, "Responsive artwork sizes must be available")
             for source in [image.attrs["src"]] if element is image else []:
-                self.assertTrue((ROOT / source.lstrip("/")).is_file())
+                self.assertTrue((ROOT / urlsplit(source).path.lstrip("/")).is_file())
             for source in candidates:
-                self.assertTrue(source.startswith(POSTER_BASE + "-" + theme))
+                self.assertTrue(urlsplit(source).path.startswith(POSTER_BASE + "-" + theme))
+                self.assert_poster_version(source, theme)
                 self.assertTrue((ROOT / urlsplit(source).path.lstrip("/")).is_file(), source)
 
 
@@ -111,7 +150,8 @@ class October24ConcertAcceptance(unittest.TestCase):
                 self.assertIn(venue, metadata.get("description", ""))
                 self.assertIn(date_text, metadata.get("description", ""))
                 self.assertIn("16:00–17:10", metadata.get("description", ""))
-                self.assertEqual(metadata.get("og:image"), f"{ORIGIN}{POSTER_BASE}-night.jpg")
+                self.assertEqual(urlsplit(metadata.get("og:image"))._replace(query="").geturl(), f"{ORIGIN}{POSTER_BASE}-night.jpg")
+                self.assert_poster_version(metadata["og:image"], "night")
                 canonicals = [n.attrs.get("href") for n in doc.find("link") if n.attrs.get("rel") == "canonical"]
                 self.assertEqual(canonicals, [f"{ORIGIN}/{prefix}{SLUG}"])
                 self.assertIn(canonicals[0], urls)
@@ -136,6 +176,8 @@ class October24ConcertAcceptance(unittest.TestCase):
                 alias = Document(alias_path).root
                 current = Document(ROOT / prefix / SLUG).root
                 head = next(alias.find("head"))
+                alias_image = next(n.attrs["content"] for n in head.find("meta") if n.attrs.get("property") == "og:image")
+                self.assert_poster_version(alias_image, "night")
                 destination = f"{ORIGIN}/{prefix}{SLUG}"
                 self.assertEqual([n.attrs.get("href") for n in head.find("link") if n.attrs.get("rel") == "canonical"], [destination])
                 refresh = [n.attrs.get("content", "") for n in head.find("meta") if n.attrs.get("http-equiv", "").lower() == "refresh"]
@@ -232,9 +274,11 @@ class October24ConcertAcceptance(unittest.TestCase):
                 self.assertEqual(offer["priceCurrency"], "UAH")
                 self.assertEqual(offer["availability"], "https://schema.org/InStock")
                 self.assertNotIn("validFrom", offer, "Owner confirmed sales, but supplied no sales-start date")
-                self.assertEqual(event["image"], [f"{ORIGIN}{POSTER_BASE}-night.jpg"])
+                self.assertEqual(len(event["image"]), 1)
+                self.assertEqual(urlsplit(event["image"][0])._replace(query="").geturl(), f"{ORIGIN}{POSTER_BASE}-night.jpg")
+                self.assert_poster_version(event["image"][0], "night")
 
-    def test_fresh_poster_on_sale_no_old_copy_and_header_keeps_nearest_tickets(self):
+    def test_fresh_poster_on_sale_no_old_copy_and_header_uses_profile(self):
         stale = ("25.10", "25 October", "25 жовтня", "25102026", "15.10", "15 October", "15 жовтня", "Біла вітальна", "Будинок актора", "Actor’s House", "actorhall", "Ярославів", "Yaroslaviv", "on-the-wings-of-love-poster")
         for prefix, lang, _, _, sales in LANGUAGES:
             with self.subTest(language=lang):
@@ -251,7 +295,7 @@ class October24ConcertAcceptance(unittest.TestCase):
                 self.assertTrue(all(text(node) == sales for node in statuses))
                 self.assert_fresh_themed_poster(next(doc.find("section", cls="c-hero")))
                 header = next(n for n in doc.find("header") if list(n.find("nav")))
-                self.assertEqual(ticket_links(header), [f"{TICKET}?locale={lang}"] * 2)
+                self.assertEqual(ticket_links(header), [f"https://eventmate.app/users/share/wordmusic?locale={lang}"] * 2)
 
     def test_listing_has_two_ordered_ticketed_cards_and_nearest_unchanged(self):
         for prefix, lang, title, venue, sales in LANGUAGES:

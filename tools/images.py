@@ -99,9 +99,10 @@ def build_photos():
             h = src.size[1]
             src.convert('RGB').resize((x, round(h * x / w)), Image.LANCZOS).save(out, 'WEBP', quality=80, method=6, **m)
 
-def srcset(name, f):
+def srcset(name, f, query=''):
     w, _, ws = variants(name, f)
-    return ', '.join([f'/assets/img/{name}-{x}.webp {x}w' for x in ws] + [f'/assets/img/{name}.jpg {w}w'])
+    suffix = '?' + query if query else ''
+    return ', '.join([f'/assets/img/{name}-{x}.webp{suffix} {x}w' for x in ws] + [f'/assets/img/{name}.jpg{suffix} {w}w'])
 
 TAG = re.compile(r'<(img|source)\b[^>]*>')
 PHOTO_TAG = re.compile(r'<img\b[^>]*\ssrc="/assets/photo/[^"]*"[^>]*>')
@@ -129,14 +130,16 @@ def rewrite(check):
         def fix(m):
             t = m.group(0)
             attr = 'src' if m.group(1) == 'img' else 'srcset'
-            u = re.search(attr + r'="/assets/img/([\w-]+)\.jpg', t)
-            if not u or u.group(1) not in info:
+            u = re.search(attr + r'="(/assets/img/([\w-]+)\.(jpg|webp)(?:\?([^"\s,]+))?)', t)
+            if not u:
                 return t
-            name = u.group(1)
-            want = srcset(name, info[name])
+            name = re.sub(r'-\d+$', '', u.group(2)) if u.group(3) == 'webp' else u.group(2)
+            if name not in info:
+                return t
+            want = srcset(name, info[name], u.group(4) or '')
             if m.group(1) == 'img':
                 t = re.sub(r' srcset="[^"]*"', '', t)
-                t = t.replace(f'src="/assets/img/{name}.jpg"', f'src="/assets/img/{name}.jpg" srcset="{want}"')
+                t = t.replace(f'src="{u.group(1)}"', f'src="{u.group(1)}" srcset="{want}"')
             else:
                 t = re.sub(r'srcset="[^"]*"', f'srcset="{want}"', t)
             if ' sizes="' not in t:
