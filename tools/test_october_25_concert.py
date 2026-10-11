@@ -58,7 +58,7 @@ class October24ConcertAcceptance(unittest.TestCase):
         for surface in (hero, subnav, sticky[0]):
             self.assertEqual(ticket_links(surface), [expected], "Every concert action must use this concert and language")
         self.assertIn("24.10", text(sticky[0]))
-        self.assertIn("18:00–19:30", text(sticky[0]))
+        self.assertIn("16:00–17:10", text(sticky[0]))
         self.assertIn("24.10", text(subnav))
         for anchor in doc.find("a"):
             if anchor.attrs.get("href") == expected:
@@ -110,7 +110,7 @@ class October24ConcertAcceptance(unittest.TestCase):
                 self.assertEqual(metadata.get("og:description"), metadata.get("description"))
                 self.assertIn(venue, metadata.get("description", ""))
                 self.assertIn(date_text, metadata.get("description", ""))
-                self.assertIn("18:00–19:30", metadata.get("description", ""))
+                self.assertIn("16:00–17:10", metadata.get("description", ""))
                 self.assertEqual(metadata.get("og:image"), f"{ORIGIN}{POSTER_BASE}-night.jpg")
                 canonicals = [n.attrs.get("href") for n in doc.find("link") if n.attrs.get("rel") == "canonical"]
                 self.assertEqual(canonicals, [f"{ORIGIN}/{prefix}{SLUG}"])
@@ -172,7 +172,7 @@ class October24ConcertAcceptance(unittest.TestCase):
                 values = [text(n) for n in facts.find("dd")]
                 expected_labels = ["Дата", "Час", "Ціна", "Локація", "Адреса"] if lang == "uk" else ["Date", "Time", "Price", "Location", "Address"]
                 self.assertEqual(labels, expected_labels)
-                self.assertEqual(values[:4], ["24.10.2026", "18:00–19:30", "300 грн" if lang == "uk" else "UAH 300", venue])
+                self.assertEqual(values[:4], ["24.10.2026", "16:00–17:10", "300 грн" if lang == "uk" else "UAH 300", venue])
                 address = "вул. Володимирська, 45А" if lang == "uk" else "45A Volodymyrska St"
                 self.assertIn(address, values[4])
                 block = section(doc, "venue")
@@ -217,7 +217,7 @@ class October24ConcertAcceptance(unittest.TestCase):
                 self.assertEqual(event["inLanguage"], lang)
                 self.assertEqual(event["eventStatus"], "https://schema.org/EventScheduled")
                 self.assertEqual(event["eventAttendanceMode"], "https://schema.org/OfflineEventAttendanceMode")
-                for key, hour, minute in (("startDate", 18, 0), ("endDate", 19, 30)):
+                for key, hour, minute in (("startDate", 16, 0), ("endDate", 17, 10)):
                     expected = datetime(2026, 10, 24, hour, minute, tzinfo=ZoneInfo("Europe/Kyiv"))
                     self.assertEqual(expected.strftime("%z"), "+0300", "Kyiv is still on summer time on October 24")
                     self.assertEqual(event[key], expected.isoformat())
@@ -267,7 +267,7 @@ class October24ConcertAcceptance(unittest.TestCase):
                 self.assertIn(title, text(new))
                 self.assertIn(venue, text(new))
                 self.assertIn("24.10", text(new))
-                self.assertIn("18:00–19:30", text(new))
+                self.assertIn("16:00–17:10", text(new))
                 self.assertIn("Сб" if lang == "uk" else "Sat", text(new))
                 self.assertIn("2 концерти" if lang == "uk" else "2 concerts", text(upcoming))
                 self.assertFalse(list(new.find(cls="status-pending")))

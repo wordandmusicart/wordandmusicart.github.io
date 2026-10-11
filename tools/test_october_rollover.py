@@ -97,7 +97,7 @@ class OctoberRolloverAcceptance(unittest.TestCase):
             for card, date, slug in zip(upcoming, ("15.10", "24.10"), (WINGS, WINGS_OCTOBER_24)):
                 self.assertEqual([normalized(n) for n in card.find(cls="d")], [date])
                 self.assertIn("/" + prefix + slug, links(card))
-                self.assertRegex(card.text(), r"18:00\s*[–—-]\s*19:30")
+                self.assertRegex(card.text(), r"16:00\s*[–—-]\s*17:10" if slug == WINGS_OCTOBER_24 else r"18:00\s*[–—-]\s*19:30")
                 parent = card.parent
                 while parent is not None and parent.attrs.get("data-sec") != "up":
                     parent = parent.parent

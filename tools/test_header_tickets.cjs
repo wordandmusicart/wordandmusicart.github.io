@@ -15,9 +15,9 @@ const PROFILE = 'https://eventmate.app/users/share/wordmusic';
     ['before the concert ends', '2026-10-15T19:00:00+03:00', EVENT],
     ['immediately before October 15 ends', '2026-10-15T19:29:59+03:00', EVENT],
     ['after October 15 ends, choose October 24', '2026-10-15T19:30:01+03:00', EVENT24],
-    ['before October 24 starts', '2026-10-24T17:00:00+03:00', EVENT24],
-    ['immediately before October 24 ends', '2026-10-24T19:29:59+03:00', EVENT24],
-    ['after the last concert ends', '2026-10-24T19:30:01+03:00', PROFILE],
+    ['before October 24 starts', '2026-10-24T15:59:59+03:00', EVENT24],
+    ['immediately before October 24 ends', '2026-10-24T17:09:59+03:00', EVENT24],
+    ['after the last concert ends', '2026-10-24T17:10:01+03:00', PROFILE],
   ];
   for (const [label, time, base] of cases) {
     for (const [route, locale] of [['/', 'uk'], ['/en/', 'en'], ['/concerts/vivre-aimer-rever.html', 'uk'], ['/en/artists.html', 'en']]) {
