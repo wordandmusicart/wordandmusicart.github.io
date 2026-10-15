@@ -59,8 +59,8 @@ async function rendered(page, mode, {picture = true} = {}) {
     if (picture) {
       // Site DARK uses current LIGHT artwork; site LIGHT uses current NIGHT artwork.
       assert.match(result.banner || '', mode === 'dark'
-        ? /on-the-wings-of-love-banner-20261003-current-light[-.]/
-        : /on-the-wings-of-love-banner-20261003-current-night[-.]/);
+        ? /on-the-wings-of-love-24102026-banner-light[-.]/
+        : /on-the-wings-of-love-24102026-banner-night[-.]/);
       assert.ok(result.bannerLoaded, 'The next-concert artwork must load in the chosen theme');
     }
   }, `Rendering must resolve to ${mode}`);
@@ -155,8 +155,8 @@ async function context(browser, colorScheme = 'light') {
         } finally { await ctx.close(); }
       });
     }
-    await test('October 15 programme poster follows Auto and manual themes in both languages', async () => {
-      for (const route of ['/concert.html', '/en/concerts/on-the-wings-of-love.html']) {
+    await test('Current programme poster follows Auto and manual themes in both languages', async () => {
+      for (const route of ['/concert.html', '/en/concerts/on-the-wings-of-love-24102026.html']) {
         for (const system of ['light', 'dark']) {
           const ctx = await context(browser, system);
           try {
@@ -169,8 +169,8 @@ async function context(browser, colorScheme = 'light') {
                   source: node.currentSrc, loaded: node.complete && node.naturalWidth > 0,
                 }));
                 assert.match(image.source, mode === 'dark'
-                  ? /on-the-wings-of-love-poster-20261003-current-light[-.]/
-                  : /on-the-wings-of-love-poster-20261003-current-night[-.]/);
+                  ? /on-the-wings-of-love-24102026-poster-light[-.]/
+                  : /on-the-wings-of-love-24102026-poster-night[-.]/);
                 assert.ok(image.loaded, `${route}: the selected poster must load`);
               }, `${route}: poster must resolve to ${mode}`);
             }
