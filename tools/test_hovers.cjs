@@ -20,7 +20,7 @@ const CASES = [
   ['/photo/stabat-mater.html', '.pgall a', 'photo'],
   ['/video.html', '.vmain', 'photo'],
   ['/concerts/stabat-mater.html', 'a.lnk', 'text'],
-  ['/concerts/on-the-wings-of-love.html', 'main a.btn:not(.btn-acc)', 'fill'],
+  ['/concerts/on-the-wings-of-love-24102026.html', 'main a.btn:not(.btn-acc)', 'fill'],
 ];
 const snapshot = el => {
   const target = el.matches('.venue-link') ? el.querySelector('.venue-logo img')
