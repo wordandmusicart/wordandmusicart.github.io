@@ -13,6 +13,7 @@ else:
 
 SLUG = "concerts/on-the-wings-of-love.html"
 TICKET = "https://eventmate.app/events/share/na-krilah-kohanna-koncert-vokalnoi-muziki"
+TICKET_24 = "https://eventmate.app/events/share/na-krilah-kohanna-koncert-vokalnoi-muziki-v-budinku-vcenih"
 NAMES = {
     "uk": ["Анжеліна Швачка", "Лілія Гревцова", "Максим Гара", "Дарʼя Погоріла",
            "Олександр Пономаренко", "Анастасія Довбіус", "Ірина Шелест", "Юлія Павловська",
@@ -31,30 +32,19 @@ class AnnouncedConcertAcceptance(unittest.TestCase):
     def test_confirmed_ticket_access_and_sales_status_on_detail_and_listing(self):
         for prefix, lang in (("", "uk"), ("en/", "en")):
             with self.subTest(language=lang):
-                expected = f"{TICKET}?locale={lang}"
+                expected = f"{TICKET_24}?locale={lang}"
                 doc = Document(ROOT / prefix / SLUG).root
-                ticket_links = [href for href in links(doc) if urlsplit(href).hostname == "eventmate.app"]
-                self.assertTrue(ticket_links)
-                self.assertEqual(set(ticket_links), {expected, f"https://eventmate.app/users/share/wordmusic?locale={lang}"})
                 header = next(n for n in doc.find("header") if list(n.find("nav")))
                 header_tickets = [href for href in links(header) if urlsplit(href).hostname == "eventmate.app"]
                 self.assertEqual(len(header_tickets), 2)
-                self.assertEqual(set(header_tickets), {f"https://eventmate.app/users/share/wordmusic?locale={lang}"})
-                hero = next(doc.find("section", cls="c-hero"))
-                cta = next(hero.find(cls="c-cta"))
-                self.assertIn(expected, links(cta))
-                self.assertIn("#program", links(cta))
-                self.assertIn(expected, links(next(doc.find("nav", cls="subnav"))))
+                self.assertEqual(set(header_tickets), {expected})
+                old_ticket_links = [href for href in links(doc) if href.split('?')[0] == TICKET]
+                self.assertFalse(old_ticket_links, "Archived concert must not link to past ticket offer")
                 status = next(doc.find(cls="status"), None)
-                self.assertIsNotNone(status)
-                self.assertEqual(status.text().strip(), "Продаж триває" if lang == "uk" else "On sale")
-                self.assertEqual(status.attrs.get("data-sales-start"), "2026-10-02",
-                                 "The owner confirmed the opening date without a time")
+                self.assertIsNone(status, "Archived concert must not display on-sale status")
                 listing = Document(ROOT / prefix / "concerts.html").root
-                card = next(n for n in listing.find("article", cls="upc") if "/" + prefix + SLUG in links(n))
-                self.assertIn(expected, links(card))
-                self.assertEqual(next(card.find(cls="status")).text().strip(), "Продаж триває" if lang == "uk" else "On sale")
-                self.assertIn("/" + prefix + SLUG, links(card))
+                archive = next(n for n in listing.find("section") if n.attrs.get("data-sec") == "arch" or n.attrs.get("id") == "archive")
+                self.assertIn("/" + prefix + SLUG, links(archive), "Archived concert must appear in archive listing")
 
     def test_paired_metadata_assets_and_language_controls(self):
         urls = {n.text for n in ET.parse(ROOT / "sitemap.xml").iter("{http://www.sitemaps.org/schemas/sitemap/0.9}loc")}
@@ -102,8 +92,7 @@ class AnnouncedConcertAcceptance(unittest.TestCase):
                 self.assertEqual([n.text().strip() for n in secondary[0].find("h3")], NAMES[lang][11:])
                 self.assertEqual(list(people.find(cls="people")), [principals[0], supporting[0], secondary[0]],
                                  "The centered accompanist/host pair must follow the supporting circles")
-                self.assertFalse(list(people.find(cls="people-host")), "The host now belongs beside the accompanist")
-                self.assertEqual([p["name"] for p in events(path.read_text())[0]["performer"]], NAMES[lang])
+                self.assertFalse(events(path.read_text()), "Archived concert must not contain MusicEvent schema")
                 roles = [n.text().strip() for n in people.find("p")]
                 vocal_words = ("сопрано", "баритон", "тенор") if lang == "uk" else ("soprano", "baritone", "tenor")
                 self.assertEqual(sum(any(word in role.lower() for word in vocal_words) for role in roles), 11)

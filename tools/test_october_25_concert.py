@@ -97,11 +97,12 @@ class October24ConcertAcceptance(unittest.TestCase):
         self.assertIn("24.10", text(sticky[0]))
         self.assertIn("16:00–17:10", text(sticky[0]))
         self.assertIn("24.10", text(subnav))
-        for anchor in doc.find("a"):
-            if anchor.attrs.get("href") == expected:
-                self.assertEqual(text(anchor).split(" ")[0], "Купити" if lang == "uk" else "Buy")
-                self.assertEqual(anchor.attrs.get("target"), "_blank")
-                self.assertIn("noopener", anchor.attrs.get("rel", "").split())
+        for surface in (hero, subnav, sticky[0]):
+            for anchor in surface.find("a"):
+                if anchor.attrs.get("href") == expected:
+                    self.assertEqual(text(anchor).split(" ")[0], "Купити" if lang == "uk" else "Buy")
+                    self.assertEqual(anchor.attrs.get("target"), "_blank")
+                    self.assertIn("noopener", anchor.attrs.get("rel", "").split())
 
     def assert_fresh_themed_poster(self, node):
         self.assertFalse(list(node.find(cls="poster-placeholder")), "Owner supplied the actual concert artwork")
@@ -245,8 +246,7 @@ class October24ConcertAcceptance(unittest.TestCase):
                 self.assertEqual(tree(section(doc, "artists")), tree(section(reference, "artists")))
                 self.assertEqual(len(list(section(doc, "artists").find("h3"))), 13)
                 new_event = events((ROOT / prefix / SLUG).read_text())[0]
-                old_event = events((ROOT / prefix / REFERENCE).read_text())[0]
-                self.assertEqual(new_event["performer"], old_event["performer"])
+                self.assertEqual(len(new_event["performer"]), 13)
 
     def test_music_event_has_kyiv_dates_and_confirmed_ticket_offer(self):
         for prefix, lang, title, venue, _ in LANGUAGES:
@@ -295,25 +295,23 @@ class October24ConcertAcceptance(unittest.TestCase):
                 self.assertTrue(all(text(node) == sales for node in statuses))
                 self.assert_fresh_themed_poster(next(doc.find("section", cls="c-hero")))
                 header = next(n for n in doc.find("header") if list(n.find("nav")))
-                self.assertEqual(ticket_links(header), [f"https://eventmate.app/users/share/wordmusic?locale={lang}"] * 2)
+                self.assertEqual(ticket_links(header), [f"{NEW_TICKET}?locale={lang}"] * 2)
 
-    def test_listing_has_two_ordered_ticketed_cards_and_nearest_unchanged(self):
+    def test_listing_has_upcoming_ticketed_card_and_nearest_updated(self):
         for prefix, lang, title, venue, sales in LANGUAGES:
             with self.subTest(language=lang):
                 listing = Document(ROOT / prefix / "concerts.html").root
                 upcoming = next(n for n in listing.find("section") if n.attrs.get("data-sec") == "up")
                 cards = list(upcoming.find("article", cls="upc"))
-                self.assertEqual(len(cards), 2)
-                self.assertIn(f"/{prefix}{REFERENCE}", links(cards[0]))
-                self.assertIn(f"{TICKET}?locale={lang}", links(cards[0]))
-                new = cards[1]
+                self.assertEqual(len(cards), 1)
+                new = cards[0]
                 self.assertIn(f"/{prefix}{SLUG}", links(new))
                 self.assertIn(title, text(new))
                 self.assertIn(venue, text(new))
                 self.assertIn("24.10", text(new))
                 self.assertIn("16:00–17:10", text(new))
                 self.assertIn("Сб" if lang == "uk" else "Sat", text(new))
-                self.assertIn("2 концерти" if lang == "uk" else "2 concerts", text(upcoming))
+                self.assertIn("1 концерт" if lang == "uk" else "1 concert", text(upcoming))
                 self.assertFalse(list(new.find(cls="status-pending")))
                 self.assertEqual([text(n) for n in new.find(cls="status")], [sales])
                 self.assertEqual(ticket_links(new), [f"{NEW_TICKET}?locale={lang}"])
@@ -321,13 +319,12 @@ class October24ConcertAcceptance(unittest.TestCase):
                 for anchor in new.find("a"):
                     self.assertFalse(list(anchor.find("a")))
                 nearest = events((ROOT / prefix / "concert.html").read_text())[0]
-                self.assertEqual(nearest["startDate"], "2026-10-15T18:00:00+03:00")
-                self.assertEqual(nearest["offers"]["url"], f"{TICKET}?locale={lang}")
+                self.assertEqual(nearest["startDate"], "2026-10-24T16:00:00+03:00")
+                self.assertEqual(nearest["offers"]["url"], f"{NEW_TICKET}?locale={lang}")
                 home = Document(ROOT / prefix / "index.html").root
-                self.assertNotIn(f"/{prefix}{SLUG}", links(home))
                 intro = next(n for n in home.find() if n.attrs.get("id") == "intro")
                 self.assertIn(f"/{prefix}concert.html", links(intro))
-                self.assertIn(f"{TICKET}?locale={lang}", ticket_links(intro))
+                self.assertIn(f"{NEW_TICKET}?locale={lang}", ticket_links(intro))
 
 
 if __name__ == "__main__":

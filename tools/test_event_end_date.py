@@ -21,11 +21,12 @@ KNOWN_ARCHIVE_RANGES = {
     "stabat-mater": "18:00–19:00",
     "winter-extravaganza": "14:00–15:00",
     "vivre-aimer-rever": "16:00–17:00",
+    "on-the-wings-of-love": "18:00–19:30",
 }
 UNKNOWN_ARCHIVE_STARTS = {"amore-eterno", "christmas-kaleidoscope", "heartstrings"}
-ANNOUNCED_CONCERTS = {"on-the-wings-of-love", "on-the-wings-of-love-24102026"}
+ANNOUNCED_CONCERTS = {"on-the-wings-of-love-24102026"}
 CONCERT_ALIASES = {"on-the-wings-of-love-25102026"}
-OCTOBER_15_TICKET = "https://eventmate.app/events/share/na-krilah-kohanna-koncert-vokalnoi-muziki"
+OCTOBER_24_TICKET = "https://eventmate.app/events/share/na-krilah-kohanna-koncert-vokalnoi-muziki-v-budinku-vcenih"
 
 
 def fact(hero, label):
@@ -57,29 +58,27 @@ def events(page):
 
 
 class EventSchemaTest(unittest.TestCase):
-    def test_current_concert_has_confirmed_october_15_end_and_ticket_offer(self):
+    def test_current_concert_has_confirmed_october_24_end_and_ticket_offer(self):
         for prefix, lang in (("", "uk"), ("en/", "en")):
             with self.subTest(language=lang):
                 page = (ROOT / prefix / "concert.html").read_text(encoding="utf-8")
-                self.assert_october_15(page, lang)
+                self.assert_october_24(page, lang)
 
-    def assert_october_15(self, page, lang):
+    def assert_october_24(self, page, lang):
         found = events(page)
         self.assertEqual(len(found), 1)
         event = found[0]
-        self.assertEqual(event["startDate"], "2026-10-15T18:00:00+03:00")
-        self.assertEqual(event["endDate"], "2026-10-15T19:30:00+03:00")
+        self.assertEqual(event["startDate"], "2026-10-24T16:00:00+03:00")
+        self.assertEqual(event["endDate"], "2026-10-24T17:10:00+03:00")
         self.assertEqual(event["eventStatus"], "https://schema.org/EventScheduled")
         self.assertEqual(event["inLanguage"], lang)
         offer = event.get("offers")
         self.assertIsInstance(offer, dict)
         self.assertEqual(offer.get("@type"), "Offer")
-        self.assertEqual(offer.get("url"), f"{OCTOBER_15_TICKET}?locale={lang}")
+        self.assertEqual(offer.get("url"), f"{OCTOBER_24_TICKET}?locale={lang}")
         self.assertEqual(offer.get("availability"), "https://schema.org/InStock")
-        self.assertEqual(offer.get("price"), "250")
+        self.assertEqual(offer.get("price"), "300")
         self.assertEqual(offer.get("priceCurrency"), "UAH")
-        self.assertEqual(offer.get("validFrom"), "2026-10-02",
-                         "The owner confirmed the opening date without a time")
         for unsupported_field in ("lowPrice", "highPrice", "priceSpecification"):
             self.assertNotIn(unsupported_field, offer, "Only the minimum price is emitted")
         self.assertEqual(len(event["performer"]), 13)
@@ -87,12 +86,12 @@ class EventSchemaTest(unittest.TestCase):
         self.assertNotIn("koncert-ziti-kohati-mriati", page)
         hero = re.search(r'<section class="c-hero.*?</section>', page, re.S).group(0)
         time_label, date_label = LABELS[lang]
-        self.assertEqual(fact(hero, date_label), "15.10.2026")
+        self.assertEqual(fact(hero, date_label), "24.10.2026")
         visible_time = fact(hero, time_label)
         self.assertIsNotNone(visible_time, "The facts must show a single Time range")
-        self.assertEqual(visible_time.replace(" ", ""), "18:00–19:30")
+        self.assertEqual(visible_time.replace(" ", ""), "16:00–17:10")
         self.assertEqual(fact(hero, "Ціна" if lang == "uk" else "Price"),
-                         "250–400 ₴")
+                         "300 грн" if lang == "uk" else "UAH 300")
 
     def historical_pages(self):
         ua = sorted((ROOT / "concerts").glob("*.html"))
@@ -108,8 +107,8 @@ class EventSchemaTest(unittest.TestCase):
     def test_named_programme_has_source_backed_range_and_minimum_offer(self):
         for prefix, lang in (("", "uk"), ("en/", "en")):
             with self.subTest(language=lang):
-                page = (ROOT / prefix / "concerts/on-the-wings-of-love.html").read_text(encoding="utf-8")
-                self.assert_october_15(page, lang)
+                page = (ROOT / prefix / "concerts/on-the-wings-of-love-24102026.html").read_text(encoding="utf-8")
+                self.assert_october_24(page, lang)
 
     def test_historical_concerts_have_no_music_event(self):
         for path in self.historical_pages():

@@ -13,7 +13,7 @@ from urllib.parse import urlsplit, urlunsplit
 
 ROOT = Path(__file__).resolve().parent.parent
 HEADER_JS = ROOT / 'assets/header.js'
-PROFILE = 'https://eventmate.app/users/share/wordmusic'
+PROFILE = 'https://eventmate.app/events/share/na-krilah-kohanna-koncert-vokalnoi-muziki-v-budinku-vcenih'
 START, END = '/* tickets:start (tools/tickets.py) */', '/* tickets:end */'
 BUTTON = re.compile(r'(<a class="btn btn-acc(?: mobile-ticket)?" href=")([^"]*)(")')
 

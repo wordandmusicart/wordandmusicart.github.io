@@ -1,6 +1,6 @@
 /* Shared navigation: floating header, direction-aware visibility, accessible menu. */
 /* tickets:start (tools/tickets.py) */
-const TICKET_PROFILE = "https://eventmate.app/users/share/wordmusic";
+const TICKET_PROFILE = "https://eventmate.app/events/share/na-krilah-kohanna-koncert-vokalnoi-muziki-v-budinku-vcenih";
 /* tickets:end */
 (() => {
   const header = document.querySelector('.hdr');

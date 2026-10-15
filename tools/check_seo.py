@@ -12,8 +12,8 @@ ORIGIN = "https://wordandmusic.art"
 # Current-programme aliases share the stable named concert's SEO identity.
 ALIASES = {"concerts/on-the-wings-of-love-25102026.html": "concerts/on-the-wings-of-love-24102026.html",
            "en/concerts/on-the-wings-of-love-25102026.html": "en/concerts/on-the-wings-of-love-24102026.html",
-           "concert.html": "concerts/on-the-wings-of-love.html",
-           "en/concert.html": "en/concerts/on-the-wings-of-love.html"}
+           "concert.html": "concerts/on-the-wings-of-love-24102026.html",
+           "en/concert.html": "en/concerts/on-the-wings-of-love-24102026.html"}
 
 
 class PageParser(HTMLParser):

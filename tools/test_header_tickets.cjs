@@ -5,7 +5,7 @@
 const assert = require('node:assert/strict');
 const {chromium} = require(process.env.PLAYWRIGHT_MODULE || '/Users/rusanivsky/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
 const BASE = process.env.SITE_URL || 'http://127.0.0.1:4175';
-const PROFILE = 'https://eventmate.app/users/share/wordmusic';
+const PROFILE = 'https://eventmate.app/events/share/na-krilah-kohanna-koncert-vokalnoi-muziki-v-budinku-vcenih';
 (async () => {
   const browser = await chromium.launch();
   let failed = 0;

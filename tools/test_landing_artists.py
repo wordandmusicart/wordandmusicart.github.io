@@ -14,7 +14,7 @@ from urllib.parse import urlsplit
 
 ROOT = Path(os.environ.get("SITE_ROOT", Path(__file__).resolve().parents[1]))
 ORIGIN = "https://wordandmusic.art"
-ANNOUNCED_CONCERTS = {"on-the-wings-of-love.html", "on-the-wings-of-love-24102026.html"}
+ANNOUNCED_CONCERTS = {"on-the-wings-of-love-24102026.html"}
 CONCERT_ALIASES = {"on-the-wings-of-love-25102026.html"}
 CONCERT_ONLY_ARTISTS = {"miao-xinyue", "den-yatsziuen", "anna-bielanova", "taras-kapran", "nykyta-naumov"}
 DIRECTORY_GROUPS = (("vocal", "voices"), ("music", "musicians"), ("author", "author"))
@@ -310,8 +310,8 @@ class LandingArtistsAcceptance(unittest.TestCase):
                 ticket_links = [href for href in links(header) if urlsplit(href).hostname == "eventmate.app"]
                 self.assertEqual(len(ticket_links), 2, "Keep desktop and mobile header ticket controls")
                 locale = "en" if prefix else "uk"
-                self.assertEqual(set(ticket_links), {f"https://eventmate.app/users/share/wordmusic?locale={locale}"},
-                                 "Header tickets open the organiser profile in the page language (tools/tickets.py)")
+                self.assertEqual(set(ticket_links), {f"https://eventmate.app/events/share/na-krilah-kohanna-koncert-vokalnoi-muziki-v-budinku-vcenih?locale={locale}"},
+                                 "Header tickets open the event link in the page language (tools/tickets.py)")
                 route = path.relative_to(ROOT).as_posix()
                 leaf = path.name
                 expected = leaf.removesuffix(".html") if leaf in {"artists.html", "concerts.html", "photo.html", "video.html"} else None

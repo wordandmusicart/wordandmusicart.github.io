@@ -17,9 +17,9 @@ const VIVRE = 'concerts/vivre-aimer-rever.html';
 const TICKET = 'https://eventmate.app/events/share/na-krilah-kohanna-koncert-vokalnoi-muziki';
 const WINGS24 = 'concerts/on-the-wings-of-love-24102026.html';
 const TICKET24 = TICKET + '-v-budinku-vcenih';
-const ticketed = ['', 'en/'].flatMap(prefix => ['concert.html', WINGS, WINGS24].map(route => ({
+const ticketed = ['', 'en/'].flatMap(prefix => ['concert.html', WINGS24].map(route => ({
   route: '/' + prefix + route, lang: prefix ? 'en' : 'uk',
-  ticket: route === WINGS24 ? TICKET24 : TICKET, date: route === WINGS24 ? '24.10' : '15.10',
+  ticket: TICKET24, date: '24.10',
 })));
 const programmeRoutes = ['/concert.html', '/en/concert.html', ...['concerts', 'en/concerts'].flatMap(directory =>
   fs.readdirSync(path.join(ROOT, directory)).filter(file => file.endsWith('.html')).map(file => '/' + directory + '/' + file))];
