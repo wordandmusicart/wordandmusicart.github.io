@@ -8,6 +8,17 @@
 
   var concerts = [
     {
+      slug: 'on-the-wings-of-love',
+      title: isEn ? 'On the Wings of Love' : 'На крилах кохання',
+      meta: '15.10.2026 · 18:00–19:30',
+      aria: isEn ? 'Open concert “On the Wings of Love”' : 'Відкрити концерт «На крилах кохання»',
+      picture: {
+        light: '/assets/img/on-the-wings-of-love-banner-20261003-current-light-320.webp 320w, /assets/img/on-the-wings-of-love-banner-20261003-current-light-480.webp 480w, /assets/img/on-the-wings-of-love-banner-20261003-current-light-720.webp 720w, /assets/img/on-the-wings-of-love-banner-20261003-current-light-960.webp 960w, /assets/img/on-the-wings-of-love-banner-20261003-current-light-1440.webp 1440w, /assets/img/on-the-wings-of-love-banner-20261003-current-light-2400.webp 2400w, /assets/img/on-the-wings-of-love-banner-20261003-current-light.jpg 8000w',
+        dark: '/assets/img/on-the-wings-of-love-banner-20261003-current-night-320.webp 320w, /assets/img/on-the-wings-of-love-banner-20261003-current-night-480.webp 480w, /assets/img/on-the-wings-of-love-banner-20261003-current-night-720.webp 720w, /assets/img/on-the-wings-of-love-banner-20261003-current-night-960.webp 960w, /assets/img/on-the-wings-of-love-banner-20261003-current-night-1440.webp 1440w, /assets/img/on-the-wings-of-love-banner-20261003-current-night-2400.webp 2400w, /assets/img/on-the-wings-of-love-banner-20261003-current-night.jpg 8000w',
+        src: '/assets/img/on-the-wings-of-love-banner-20261003-current-night.jpg'
+      }
+    },
+    {
       slug: 'vivre-aimer-rever',
       title: 'Vivre, Aimer, Rêver…',
       meta: '03.10.2026 · 16:00–17:00',

@@ -7,19 +7,26 @@ source opening date continues to omit validFrom.
 """
 import unittest
 
-from structured_data import event
-from test_event_end_date import ROOT, events
+if __package__:
+    from .structured_data import event
+    from .test_event_end_date import ROOT, events
+else:
+    import sys
+    from pathlib import Path
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    from structured_data import event
+    from test_event_end_date import ROOT, events
 
 
 class OfferOpeningDate(unittest.TestCase):
-    def test_named_and_alias_pages_have_confirmed_date_without_fabricated_time(self):
-        for prefix, lang in (('', 'uk'), ('en/', 'en')):
-            for name in ('concert.html', 'concerts/on-the-wings-of-love.html'):
+    def test_current_concert_pages_omit_valid_from_when_not_supplied(self):
+        for prefix in ('', 'en/'):
+            for name in ('concert.html', 'concerts/on-the-wings-of-love-24102026.html'):
                 path = ROOT / prefix / name
                 with self.subTest(page=str(path.relative_to(ROOT))):
                     found = events(path.read_text())
                     self.assertEqual(len(found), 1)
-                    self.assertEqual(found[0]['offers'].get('validFrom'), '2026-10-02')
+                    self.assertNotIn('validFrom', found[0]['offers'])
 
     def source(self, lang, opening_date=None):
         date = 'Дата' if lang == 'uk' else 'Date'

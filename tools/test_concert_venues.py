@@ -19,7 +19,7 @@ from urllib.parse import urlparse
 
 
 ROOT = Path(__file__).resolve().parents[1]
-ANNOUNCED_SLUGS = ("on-the-wings-of-love", "on-the-wings-of-love-24102026")
+ANNOUNCED_SLUGS = ("on-the-wings-of-love-24102026",)
 
 CONCERT_ALIASES = ("on-the-wings-of-love-25102026",)
 
@@ -31,6 +31,7 @@ CONCERT_SLUGS = (
     "melodies-eternelles",
     "melodies-of-enchanting-june",
     "music-of-soul-and-heart",
+    "on-the-wings-of-love",
     "roads-of-love",
     "soul-wanderings",
     "stabat-mater",
@@ -329,10 +330,10 @@ def main() -> int:
     announced_en = [ROOT / "en/concerts" / f"{slug}.html" for slug in ANNOUNCED_SLUGS + CONCERT_ALIASES]
     archive_ua = [path for path in ua_pages if path not in announced_ua]
     archive_en = [path for path in en_pages if path not in announced_en]
-    check(len(archive_ua) == len(CONCERT_SLUGS), f"concerts/ must contain 12 archive pages (found {len(archive_ua)})", failures)
-    check(len(archive_en) == len(CONCERT_SLUGS), f"en/concerts/ must contain 12 archive pages (found {len(archive_en)})", failures)
-    check(ua_pages == sorted(expected_ua + announced_ua), "concerts/ page set differs from the 12-page archive plus known announcements and aliases", failures)
-    check(en_pages == sorted(expected_en + announced_en), "en/concerts/ page set differs from the 12-page archive plus known announcements and aliases", failures)
+    check(len(archive_ua) == len(CONCERT_SLUGS), f"concerts/ must contain {len(CONCERT_SLUGS)} archive pages (found {len(archive_ua)})", failures)
+    check(len(archive_en) == len(CONCERT_SLUGS), f"en/concerts/ must contain {len(CONCERT_SLUGS)} archive pages (found {len(archive_en)})", failures)
+    check(ua_pages == sorted(expected_ua + announced_ua), f"concerts/ page set differs from the {len(CONCERT_SLUGS)}-page archive plus known announcements and aliases", failures)
+    check(en_pages == sorted(expected_en + announced_en), f"en/concerts/ page set differs from the {len(CONCERT_SLUGS)}-page archive plus known announcements and aliases", failures)
 
     for path in expected_ua:
         check_page(path, "UA", failures)
@@ -350,7 +351,7 @@ def main() -> int:
         for failure in failures:
             print(f" - {failure}", file=sys.stderr)
         return 1
-    print("PASS: all 24 archive pages have complete venue blocks and poster crops")
+    print(f"PASS: all {len(CONCERT_SLUGS) * 2} archive pages have complete venue blocks and poster crops")
     return 0
 
 

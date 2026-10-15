@@ -9,13 +9,21 @@ import unittest
 import xml.etree.ElementTree as ET
 from urllib.parse import urlsplit
 
-from test_event_end_date import events, KNOWN_ARCHIVE_RANGES, UNKNOWN_ARCHIVE_STARTS
-from test_landing_artists import Document, ROOT, ORIGIN, links, public_pages
+if __package__:
+    from .test_event_end_date import events, KNOWN_ARCHIVE_RANGES, UNKNOWN_ARCHIVE_STARTS
+    from .test_landing_artists import Document, ROOT, ORIGIN, links, public_pages
+else:
+    import sys
+    from pathlib import Path
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    from test_event_end_date import events, KNOWN_ARCHIVE_RANGES, UNKNOWN_ARCHIVE_STARTS
+    from test_landing_artists import Document, ROOT, ORIGIN, links, public_pages
 
 WINGS = "concerts/on-the-wings-of-love.html"
 WINGS_OCTOBER_24 = "concerts/on-the-wings-of-love-24102026.html"
 VIVRE = "concerts/vivre-aimer-rever.html"
 TICKET = "https://eventmate.app/events/share/na-krilah-kohanna-koncert-vokalnoi-muziki"
+TICKET_24 = "https://eventmate.app/events/share/na-krilah-kohanna-koncert-vokalnoi-muziki-v-budinku-vcenih"
 RANGE = re.compile(r"\d{2}:\d{2}\s*[–—-]\s*\d{2}:\d{2}")
 
 
@@ -35,26 +43,26 @@ def facts(doc):
 
 
 class OctoberRolloverAcceptance(unittest.TestCase):
-    def test_home_features_confirmed_october_15_and_retains_vivre_in_archive(self):
+    def test_home_features_confirmed_october_24_and_retains_archive(self):
         for prefix, lang in (("", "uk"), ("en/", "en")):
             with self.subTest(language=lang):
                 doc = Document(ROOT / prefix / "index.html").root
                 next_concert = next(doc.find("aside"))
-                self.assertIn("15.10", next_concert.text())
-                self.assertRegex(next_concert.text(), r"18:00\s*[–—-]\s*19:30")
+                self.assertIn("24.10", next_concert.text())
+                self.assertRegex(next_concert.text(), r"16:00\s*[–—-]\s*17:10")
                 self.assertIn("На крилах кохання" if lang == "uk" else "On the Wings of Love", next_concert.text())
-                self.assertIn("Будинок актора" if lang == "uk" else "Actor", next_concert.text())
-                self.assertIn(f"{TICKET}?locale={lang}", links(next_concert))
-                self.assertTrue(any(href in {"/" + prefix + "concert.html", "/" + prefix + WINGS}
+                self.assertIn("Будинок вчених" if lang == "uk" else "House of Scientists", next_concert.text())
+                self.assertIn(f"{TICKET_24}?locale={lang}", links(next_concert))
+                self.assertTrue(any(href in {"/" + prefix + "concert.html", "/" + prefix + WINGS_OCTOBER_24}
                                     for href in links(next_concert)))
                 self.assertNotIn("Vivre", next_concert.text())
                 archive = section(doc, "past-concerts")
-                self.assertIn("/" + prefix + VIVRE, links(archive))
+                self.assertIn("/" + prefix + WINGS, links(archive))
 
     def test_current_and_named_routes_show_identical_confirmed_programme(self):
         for prefix in ("", "en/"):
             current = Document(ROOT / prefix / "concert.html").root
-            named = Document(ROOT / prefix / WINGS).root
+            named = Document(ROOT / prefix / WINGS_OCTOBER_24).root
             with self.subTest(language=prefix or "uk"):
                 for tag in ("h1",):
                     self.assertEqual([normalized(n) for n in current.find(tag)],
@@ -93,15 +101,15 @@ class OctoberRolloverAcceptance(unittest.TestCase):
         for prefix in ("", "en/"):
             doc = Document(ROOT / prefix / "concerts.html").root
             upcoming = list(doc.find("article", "upc"))
-            self.assertEqual(len(upcoming), 2)
-            for card, date, slug in zip(upcoming, ("15.10", "24.10"), (WINGS, WINGS_OCTOBER_24)):
-                self.assertEqual([normalized(n) for n in card.find(cls="d")], [date])
-                self.assertIn("/" + prefix + slug, links(card))
-                self.assertRegex(card.text(), r"16:00\s*[–—-]\s*17:10" if slug == WINGS_OCTOBER_24 else r"18:00\s*[–—-]\s*19:30")
-                parent = card.parent
-                while parent is not None and parent.attrs.get("data-sec") != "up":
-                    parent = parent.parent
-                self.assertIsNotNone(parent, "Upcoming cards belong to the upcoming section")
+            self.assertEqual(len(upcoming), 1)
+            card = upcoming[0]
+            self.assertEqual([normalized(n) for n in card.find(cls="d")], ["24.10"])
+            self.assertIn("/" + prefix + WINGS_OCTOBER_24, links(card))
+            self.assertRegex(card.text(), r"16:00\s*[–—-]\s*17:10")
+            parent = card.parent
+            while parent is not None and parent.attrs.get("data-sec") != "up":
+                parent = parent.parent
+            self.assertIsNotNone(parent, "Upcoming cards belong to the upcoming section")
             archive = section(doc, "archive")
             archive_routes = {urlsplit(href).path for href in links(archive)
                               if urlsplit(href).path.startswith("/" + prefix + "concerts/")}
@@ -110,19 +118,24 @@ class OctoberRolloverAcceptance(unittest.TestCase):
             self.assertEqual(archive_routes, expected_archive,
                              "Adding a future date must preserve the exact archived concert set")
             self.assertIn("/" + prefix + VIVRE, archive_routes)
-            self.assertNotIn("/" + prefix + WINGS, archive_routes)
+            self.assertIn("/" + prefix + WINGS, archive_routes)
             self.assertNotIn("/" + prefix + WINGS_OCTOBER_24, archive_routes)
             self.assertFalse(any("Vivre" in n.text() for n in upcoming))
 
     def test_facts_have_one_time_range_and_no_separate_endpoint_cells(self):
         for prefix, lang in (("", "uk"), ("en/", "en")):
             labels = ("Дата", "Час", "Ціна") if lang == "uk" else ("Date", "Time", "Price")
-            for relative in ("concert.html", WINGS):
+            for relative in ("concert.html", WINGS_OCTOBER_24):
                 with self.subTest(page=prefix + relative):
                     pairs = facts(Document(ROOT / prefix / relative).root)
                     self.assertEqual([label for label, _ in pairs[:3]], list(labels))
-                    self.assertRegex(pairs[1][1], r"^18:00\s*[–—-]\s*19:30$")
+                    self.assertRegex(pairs[1][1], r"^16:00\s*[–—-]\s*17:10$")
                     self.assertFalse(set(label for label, _ in pairs) & {"Початок", "Завершення", "Start", "End"})
+            with self.subTest(page=prefix + WINGS):
+                pairs = facts(Document(ROOT / prefix / WINGS).root)
+                self.assertEqual([label for label, _ in pairs[:3]], list(labels))
+                self.assertRegex(pairs[1][1], r"^18:00\s*[–—-]\s*19:30$")
+                self.assertFalse(set(label for label, _ in pairs) & {"Початок", "Завершення", "Start", "End"})
             for slug in set(KNOWN_ARCHIVE_RANGES) | UNKNOWN_ARCHIVE_STARTS:
                 with self.subTest(page=prefix + slug):
                     path = ROOT / prefix / "concerts" / (slug + ".html")
@@ -147,14 +160,14 @@ class OctoberRolloverAcceptance(unittest.TestCase):
 
     def test_paired_routes_metadata_sitemap_and_artist_sources_follow_rollover(self):
         urls = {n.text for n in ET.parse(ROOT / "sitemap.xml").iter("{http://www.sitemaps.org/schemas/sitemap/0.9}loc")}
-        for relative in ("concert.html", WINGS, VIVRE):
+        for relative in ("concert.html", WINGS, WINGS_OCTOBER_24, VIVRE):
             for prefix, lang in (("", "uk"), ("en/", "en")):
                 with self.subTest(page=prefix + relative):
                     path = ROOT / prefix / relative
                     self.assertTrue(path.is_file())
                     doc = Document(path).root
                     canonical = [n.attrs.get("href") for n in doc.find("link") if n.attrs.get("rel") == "canonical"]
-                    canonical_relative = WINGS if relative == "concert.html" else relative
+                    canonical_relative = WINGS_OCTOBER_24 if relative == "concert.html" else relative
                     self.assertEqual(canonical, [ORIGIN + "/" + prefix + canonical_relative])
                     self.assertIn(canonical[0], urls)
                     alternates = {n.attrs.get("hreflang"): n.attrs.get("href") for n in doc.find("link") if n.attrs.get("rel") == "alternate"}

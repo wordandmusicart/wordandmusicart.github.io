@@ -7,7 +7,13 @@ import re
 import unittest
 from pathlib import Path
 
-from structured_data import event
+if __package__:
+    from .structured_data import event
+else:
+    import sys
+    from pathlib import Path
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    from structured_data import event
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -128,7 +134,7 @@ class TicketPriceRangeTest(unittest.TestCase):
         self.assertEqual(offer.get("price"), "250")
         self.assertNotIn("availability", offer)
 
-    def test_published_october_15_facts_and_json_ld_agree_in_both_languages(self):
+    def test_published_october_15_facts_preserve_range(self):
         for prefix, lang, label, visible in (
             ("", "uk", "Ціна", "250–400 ₴"),
             ("en/", "en", "Price", "250–400 ₴"),
@@ -140,16 +146,8 @@ class TicketPriceRangeTest(unittest.TestCase):
                 self.assertIsNotNone(fact, "The ticket range must be visible in the event facts")
                 displayed = html.unescape(re.sub(r"<[^>]+>", "", fact.group(1))).strip()
                 self.assertEqual(displayed, visible)
-                generated = event(page, lang, f"https://wordandmusic.art/{prefix}concerts/on-the-wings-of-love.html")
                 scripts = re.findall(r'<script type="application/ld\+json">(.*?)</script>', page, re.S)
-                self.assertEqual(len(scripts), 1)
-                stored = json.loads(scripts[0])
-                self.assertEqual(stored["@type"], "MusicEvent")
-                self.assertEqual(stored["offers"], generated[0]["offers"])
-                self.assertEqual(stored["offers"].get("price"), "250")
-                self.assertEqual(stored["offers"].get("priceCurrency"), "UAH")
-                self.assertEqual(stored["offers"].get("url"), f"{TICKET}?locale={lang}")
-                self.assertEqual(stored["offers"].get("availability"), "https://schema.org/InStock")
+                self.assertEqual(len(scripts), 0, "Archived concert must not contain MusicEvent schema")
 
 
 if __name__ == "__main__":
