@@ -7,7 +7,7 @@ const assert = require('node:assert/strict');
 const {chromium} = require(process.env.PLAYWRIGHT_MODULE || '/Users/rusanivsky/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
 const BASE = process.env.SITE_URL || 'http://127.0.0.1:4201';
 const ORIGIN = 'https://wordandmusic.art';
-const PROGRAMME = '/concerts/on-the-wings-of-love.html';
+const PROGRAMME = '/concerts/on-the-wings-of-love-24102026.html';
 const CRAWLERS = [
   ['Google-InspectionTool desktop', 'Mozilla/5.0 (compatible; Google-InspectionTool/1.0)'],
   ['Google-InspectionTool smartphone', 'Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36 (compatible; Google-InspectionTool/1.0)'],
