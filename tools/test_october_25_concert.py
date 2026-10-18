@@ -237,16 +237,25 @@ class October24ConcertAcceptance(unittest.TestCase):
                 self.assertIn("allowfullscreen", iframe[0].attrs)
                 self.assertIn("#venue", links(next(doc.find("nav", cls="subnav"))))
 
-    def test_programme_performers_roles_and_crops_match_october_15(self):
+    def test_programme_and_performers_for_october_24(self):
         for prefix, lang, *_ in LANGUAGES:
             with self.subTest(language=lang):
                 doc = Document(ROOT / prefix / SLUG).root
                 reference = Document(ROOT / prefix / REFERENCE).root
                 self.assertEqual(tree(section(doc, "program")), tree(section(reference, "program")))
-                self.assertEqual(tree(section(doc, "artists")), tree(section(reference, "artists")))
-                self.assertEqual(len(list(section(doc, "artists").find("h3"))), 13)
+                artists_sec = section(doc, "artists")
+                artist_names = [n.text().strip() for n in artists_sec.find("h3")]
+                self.assertEqual(len(artist_names), 14)
+                if lang == "uk":
+                    self.assertIn("Вікторія Карева", artist_names)
+                    self.assertIn("Марія Лівенко", artist_names)
+                    self.assertNotIn("Максим Гара", artist_names)
+                else:
+                    self.assertIn("Viktoriia Kareva", artist_names)
+                    self.assertIn("Mariia Livenko", artist_names)
+                    self.assertNotIn("Maksym Hara", artist_names)
                 new_event = events((ROOT / prefix / SLUG).read_text())[0]
-                self.assertEqual(len(new_event["performer"]), 13)
+                self.assertEqual(len(new_event["performer"]), 14)
 
     def test_music_event_has_kyiv_dates_and_confirmed_ticket_offer(self):
         for prefix, lang, title, venue, _ in LANGUAGES:

@@ -1073,5 +1073,57 @@
         "size": 560
       }
     }
+  },
+  {
+    "id": "viktoriia-kareva",
+    "name": {
+      "uk": "Вікторія Карева",
+      "en": "Viktoriia Kareva"
+    },
+    "role": {
+      "uk": "Мецо-сопрано",
+      "en": "Mezzo-soprano"
+    },
+    "group": "vocal",
+    "sources": [
+      "concert.html#artists"
+    ],
+    "portrait": {
+      "src": "/assets/img/viktoriia-kareva.jpg",
+      "source": "Owner-supplied portrait on Desktop, 18 October 2026; original JPEG preserved byte-for-byte in Google Drive word&music/03_Вебсайт/01_Оригінали_медіа/Портрети",
+      "width": 4664,
+      "height": 4804,
+      "crop": {
+        "x": 0,
+        "y": 0,
+        "size": 4664
+      }
+    }
+  },
+  {
+    "id": "mariia-livenko",
+    "name": {
+      "uk": "Марія Лівенко",
+      "en": "Mariia Livenko"
+    },
+    "role": {
+      "uk": "Мецо-сопрано",
+      "en": "Mezzo-soprano"
+    },
+    "group": "vocal",
+    "sources": [
+      "concert.html#artists"
+    ],
+    "portrait": {
+      "src": "/assets/img/mariia-livenko.jpg",
+      "source": "Owner-supplied portrait on Desktop, 18 October 2026; original JPEG preserved byte-for-byte in Google Drive word&music/03_Вебсайт/01_Оригінали_медіа/Портрети",
+      "width": 3551,
+      "height": 4438,
+      "crop": {
+        "x": 0,
+        "y": 0,
+        "size": 3551
+      }
+    }
   }
 ]

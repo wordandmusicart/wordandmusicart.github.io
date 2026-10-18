@@ -81,8 +81,8 @@ class EventSchemaTest(unittest.TestCase):
         self.assertEqual(offer.get("priceCurrency"), "UAH")
         for unsupported_field in ("lowPrice", "highPrice", "priceSpecification"):
             self.assertNotIn(unsupported_field, offer, "Only the minimum price is emitted")
-        self.assertEqual(len(event["performer"]), 13)
-        self.assertEqual(len({p["name"] for p in event["performer"]}), 13)
+        self.assertEqual(len(event["performer"]), 14)
+        self.assertEqual(len({p["name"] for p in event["performer"]}), 14)
         self.assertNotIn("koncert-ziti-kohati-mriati", page)
         hero = re.search(r'<section class="c-hero.*?</section>', page, re.S).group(0)
         time_label, date_label = LABELS[lang]
