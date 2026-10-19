@@ -1090,13 +1090,13 @@
     ],
     "portrait": {
       "src": "/assets/img/viktoriia-kareva.jpg",
-      "source": "Owner-supplied portrait on Desktop, 18 October 2026; original JPEG preserved byte-for-byte in Google Drive word&music/03_Вебсайт/01_Оригінали_медіа/Портрети",
-      "width": 4664,
-      "height": 4804,
+      "source": "Owner-supplied portrait photo_2026-10-19_21-42-23 Topaz Gigapixel 4x scale.jpg on Desktop, 19 October 2026; circular crop (632, 202, 2291) computed per design-system §6 (w=0.46, cx=0.50, eye=0.42); original JPEG preserved byte-for-byte in Google Drive word&music/03_Вебсайт/01_Оригінали_медіа/Портрети",
+      "width": 3252,
+      "height": 5120,
       "crop": {
-        "x": 0,
-        "y": 0,
-        "size": 4664
+        "x": 632,
+        "y": 202,
+        "size": 2291
       }
     }
   },
