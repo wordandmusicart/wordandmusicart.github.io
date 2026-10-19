@@ -1116,13 +1116,13 @@
     ],
     "portrait": {
       "src": "/assets/img/mariia-livenko.jpg",
-      "source": "Owner-supplied portrait on Desktop, 18 October 2026; original JPEG preserved byte-for-byte in Google Drive word&music/03_Вебсайт/01_Оригінали_медіа/Портрети",
-      "width": 3551,
-      "height": 4438,
+      "source": "Owner-supplied portrait photo_2026-10-19_15-15-26 Topaz Gigapixel 4x scale.jpg on Desktop, 19 October 2026; circular crop (248, 43, 2495) computed per design-system §6 (w=0.45, cx=0.50, eye=0.42); original JPEG preserved byte-for-byte in Google Drive word&music/03_Вебсайт/01_Оригінали_медіа/Портрети",
+      "width": 3076,
+      "height": 5120,
       "crop": {
-        "x": 0,
-        "y": 0,
-        "size": 3551
+        "x": 248,
+        "y": 43,
+        "size": 2495
       }
     }
   }
