@@ -335,6 +335,25 @@ class October24ConcertAcceptance(unittest.TestCase):
                 self.assertIn(f"/{prefix}concert.html", links(intro))
                 self.assertIn(f"{NEW_TICKET}?locale={lang}", ticket_links(intro))
 
+    def test_performer_layouts_css_keeps_desktop_and_mobile_distinct(self):
+        css_text = (ROOT / "assets" / "performer-layouts.css").read_text(encoding="utf-8")
+        clean_css = css_text.replace(" ", "")
+        self.assertIn("@media(min-width:901px)", clean_css,
+                      "Desktop-only performer layouts (including :has(...) 2-principal centering) must be scoped to min-width: 901px")
+        # Ensure :has() selector is inside the desktop media query block, not unscoped
+        desktop_part = clean_css.split("@media(min-width:901px)")[1].split("@media(max-width:900px)")[0]
+        self.assertIn(":has(>div:nth-child(2):last-child)", desktop_part,
+                      "The :has() rule for 2 principals must be within the desktop media query")
+        # Ensure all pages referencing performer-layouts.css share the exact same version query
+        versions = set()
+        for prefix, _ in (("", "uk"), ("en/", "en")):
+            for rel in (SLUG, "concerts/on-the-wings-of-love-25102026.html", "concerts/on-the-wings-of-love.html", "concert.html"):
+                path = ROOT / prefix / rel
+                m = re.search(r'performer-layouts\.css\?v=(\d+)', path.read_text(encoding="utf-8"))
+                self.assertIsNotNone(m, f"Missing performer-layouts.css version in {path}")
+                versions.add(m.group(1))
+        self.assertEqual(len(versions), 1, f"All pages referencing performer-layouts.css must use the same version, got {versions}")
+
 
 if __name__ == "__main__":
     unittest.main()
