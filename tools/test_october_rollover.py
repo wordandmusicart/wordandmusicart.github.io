@@ -51,7 +51,7 @@ class OctoberRolloverAcceptance(unittest.TestCase):
                 self.assertIn("24.10", latest.text())
                 self.assertIn("На крилах кохання" if lang == "uk" else "On the Wings of Love", latest.text())
                 self.assertIn("Останній концерт" if lang == "uk" else "Latest concert", latest.text())
-                self.assertIn("Нові концерти ще не анонсовано" if lang == "uk" else "New concerts have not been announced yet", latest.text())
+                self.assertIn("Незабаром анонс нових концертів" if lang == "uk" else "New concerts coming soon", latest.text())
                 self.assertFalse([href for href in links(latest) if urlsplit(href).hostname == "eventmate.app"])
                 self.assertTrue(any(href in {"/" + prefix + "concert.html", "/" + prefix + WINGS_OCTOBER_24} for href in links(latest)))
                 archive = section(doc, "past-concerts")
