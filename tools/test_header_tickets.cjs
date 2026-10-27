@@ -1,11 +1,10 @@
 #!/usr/bin/env node
-/* Header ticket buttons always open the organiser profile, with and without JavaScript.
+/* Header ticket buttons are absent while there are no upcoming concerts, with and without JavaScript.
  * SITE_URL=http://127.0.0.1:4175 node tools/test_header_tickets.cjs
  */
 const assert = require('node:assert/strict');
 const {chromium} = require(process.env.PLAYWRIGHT_MODULE || '/Users/rusanivsky/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
 const BASE = process.env.SITE_URL || 'http://127.0.0.1:4175';
-const PROFILE = 'https://eventmate.app/events/share/na-krilah-kohanna-koncert-vokalnoi-muziki-v-budinku-vcenih';
 (async () => {
   const browser = await chromium.launch();
   let failed = 0;
@@ -24,10 +23,10 @@ const PROFILE = 'https://eventmate.app/events/share/na-krilah-kohanna-koncert-vo
       const page = await context.newPage();
       try {
         if (javaScriptEnabled) await page.clock.setFixedTime(new Date(time));
-        await page.goto(BASE + route, {waitUntil: 'load'});
+        await page.goto(BASE + route, {waitUntil: 'domcontentloaded'});
         const hrefs = await page.$$eval('.hdr a.btn-acc', links => links.map(a => a.href));
-        assert.equal(hrefs.length, 2, 'desktop and mobile header ticket buttons');
-        assert.deepEqual([...new Set(hrefs)], [`${PROFILE}?locale=${locale}`]);
+        assert.equal(hrefs.length, 0, 'No desktop or mobile header ticket buttons without an upcoming concert');
+        assert.equal(await page.locator('.hdr a[href*="eventmate.app"]').count(), 0);
         console.log('PASS', route, label, width, javaScriptEnabled ? 'JS' : 'no-JS');
       } catch (e) { failed++; console.log('FAIL', route, label, width, javaScriptEnabled ? 'JS' : 'no-JS', '\n', e.message); }
       await context.close();

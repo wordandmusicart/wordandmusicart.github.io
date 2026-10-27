@@ -1,6 +1,6 @@
 /* Shared navigation: floating header, direction-aware visibility, accessible menu. */
 /* tickets:start (tools/tickets.py) */
-const TICKET_PROFILE = "https://eventmate.app/events/share/na-krilah-kohanna-koncert-vokalnoi-muziki-v-budinku-vcenih";
+const TICKET_PROFILE = null;
 /* tickets:end */
 (() => {
   const header = document.querySelector('.hdr');
@@ -114,9 +114,13 @@ const TICKET_PROFILE = "https://eventmate.app/events/share/na-krilah-kohanna-kon
   updateNavInert();
 })();
 
-/* Header tickets always open the organiser profile (owner request, 11 Oct 2026). */
+/* No ticket controls when no upcoming concert is configured. */
 (() => {
   const locale = document.documentElement.lang === 'en' ? 'en' : 'uk';
+  if (!TICKET_PROFILE) {
+    document.querySelectorAll('.hdr a.btn-acc').forEach(link => link.remove());
+    return;
+  }
   const href = `${TICKET_PROFILE}?locale=${locale}`;
   for (const link of document.querySelectorAll('.hdr a.btn-acc')) link.href = href;
 })();

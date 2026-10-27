@@ -43,21 +43,19 @@ def facts(doc):
 
 
 class OctoberRolloverAcceptance(unittest.TestCase):
-    def test_home_features_confirmed_october_24_and_retains_archive(self):
+    def test_home_shows_latest_archive_without_sales_and_retains_archive(self):
         for prefix, lang in (("", "uk"), ("en/", "en")):
             with self.subTest(language=lang):
                 doc = Document(ROOT / prefix / "index.html").root
-                next_concert = next(doc.find("aside"))
-                self.assertIn("24.10", next_concert.text())
-                self.assertRegex(next_concert.text(), r"16:00\s*[–—-]\s*17:10")
-                self.assertIn("На крилах кохання" if lang == "uk" else "On the Wings of Love", next_concert.text())
-                self.assertIn("Будинок вчених" if lang == "uk" else "House of Scientists", next_concert.text())
-                self.assertIn(f"{TICKET_24}?locale={lang}", links(next_concert))
-                self.assertTrue(any(href in {"/" + prefix + "concert.html", "/" + prefix + WINGS_OCTOBER_24}
-                                    for href in links(next_concert)))
-                self.assertNotIn("Vivre", next_concert.text())
+                latest = next(doc.find("aside"))
+                self.assertIn("24.10", latest.text())
+                self.assertIn("На крилах кохання" if lang == "uk" else "On the Wings of Love", latest.text())
+                self.assertIn("Останній концерт" if lang == "uk" else "Latest concert", latest.text())
+                self.assertIn("Нові концерти ще не анонсовано" if lang == "uk" else "New concerts have not been announced yet", latest.text())
+                self.assertFalse([href for href in links(latest) if urlsplit(href).hostname == "eventmate.app"])
+                self.assertTrue(any(href in {"/" + prefix + "concert.html", "/" + prefix + WINGS_OCTOBER_24} for href in links(latest)))
                 archive = section(doc, "past-concerts")
-                self.assertIn("/" + prefix + WINGS, links(archive))
+                self.assertIn("/" + prefix + WINGS_OCTOBER_24, links(archive))
 
     def test_current_and_named_routes_show_identical_confirmed_programme(self):
         for prefix in ("", "en/"):
@@ -101,25 +99,17 @@ class OctoberRolloverAcceptance(unittest.TestCase):
         for prefix in ("", "en/"):
             doc = Document(ROOT / prefix / "concerts.html").root
             upcoming = list(doc.find("article", "upc"))
-            self.assertEqual(len(upcoming), 1)
-            card = upcoming[0]
-            self.assertEqual([normalized(n) for n in card.find(cls="d")], ["24.10"])
-            self.assertIn("/" + prefix + WINGS_OCTOBER_24, links(card))
-            self.assertRegex(card.text(), r"16:00\s*[–—-]\s*17:10")
-            parent = card.parent
-            while parent is not None and parent.attrs.get("data-sec") != "up":
-                parent = parent.parent
-            self.assertIsNotNone(parent, "Upcoming cards belong to the upcoming section")
+            self.assertEqual(upcoming, [], "No upcoming concert is announced")
             archive = section(doc, "archive")
             archive_routes = {urlsplit(href).path for href in links(archive)
                               if urlsplit(href).path.startswith("/" + prefix + "concerts/")}
             expected_archive = {"/" + prefix + "concerts/" + slug + ".html"
-                                for slug in set(KNOWN_ARCHIVE_RANGES) | UNKNOWN_ARCHIVE_STARTS}
+                                for slug in set(KNOWN_ARCHIVE_RANGES) | UNKNOWN_ARCHIVE_STARTS} | {"/" + prefix + WINGS_OCTOBER_24}
             self.assertEqual(archive_routes, expected_archive,
                              "Adding a future date must preserve the exact archived concert set")
             self.assertIn("/" + prefix + VIVRE, archive_routes)
             self.assertIn("/" + prefix + WINGS, archive_routes)
-            self.assertNotIn("/" + prefix + WINGS_OCTOBER_24, archive_routes)
+            self.assertIn("/" + prefix + WINGS_OCTOBER_24, archive_routes)
             self.assertFalse(any("Vivre" in n.text() for n in upcoming))
 
     def test_facts_have_one_time_range_and_no_separate_endpoint_cells(self):
@@ -128,7 +118,8 @@ class OctoberRolloverAcceptance(unittest.TestCase):
             for relative in ("concert.html", WINGS_OCTOBER_24):
                 with self.subTest(page=prefix + relative):
                     pairs = facts(Document(ROOT / prefix / relative).root)
-                    self.assertEqual([label for label, _ in pairs[:3]], list(labels))
+                    self.assertEqual([label for label, _ in pairs[:2]], list(labels[:2]))
+                    self.assertNotIn(labels[2], [label for label, _ in pairs])
                     self.assertRegex(pairs[1][1], r"^16:00\s*[–—-]\s*17:10$")
                     self.assertFalse(set(label for label, _ in pairs) & {"Початок", "Завершення", "Start", "End"})
             with self.subTest(page=prefix + WINGS):

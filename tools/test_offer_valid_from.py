@@ -25,8 +25,7 @@ class OfferOpeningDate(unittest.TestCase):
                 path = ROOT / prefix / name
                 with self.subTest(page=str(path.relative_to(ROOT))):
                     found = events(path.read_text())
-                    self.assertEqual(len(found), 1)
-                    self.assertNotIn('validFrom', found[0]['offers'])
+                    self.assertEqual(found, [], "Archived concert has no current ticket offer")
 
     def source(self, lang, opening_date=None):
         date = 'Дата' if lang == 'uk' else 'Date'

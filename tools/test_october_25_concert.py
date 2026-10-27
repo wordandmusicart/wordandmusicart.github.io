@@ -10,10 +10,8 @@ from pathlib import Path
 from unittest.mock import patch
 from PIL import Image
 import xml.etree.ElementTree as ET
-from datetime import datetime
 from urllib.parse import parse_qs, urlsplit, urljoin
 import re
-from zoneinfo import ZoneInfo
 
 if __package__:
     from . import images
@@ -86,23 +84,13 @@ class October24ConcertAcceptance(unittest.TestCase):
         reference = element.attrs["src" if theme == "night" else "srcset"].split(",")[0].split()[0]
         self.assertEqual(version, parse_qs(urlsplit(reference).query).get("v", []), "One version per poster family across every surface")
 
-    def assert_ticket_actions(self, doc, lang):
-        expected = f"{NEW_TICKET}?locale={lang}"
-        hero = next(doc.find("section", cls="c-hero"))
+    def assert_archive_actions(self, doc, lang):
+        self.assertFalse(ticket_links(doc), "There are no upcoming concerts or ticket offers")
+        self.assertFalse(list(doc.find(cls="sticky-buy")))
+        self.assertFalse(list(doc.find(cls="status")))
         subnav = next(doc.find("nav", cls="subnav"))
-        sticky = list(doc.find(cls="sticky-buy"))
-        self.assertEqual(len(sticky), 1, "Ticketed concert needs a floating mobile action")
-        for surface in (hero, subnav, sticky[0]):
-            self.assertEqual(ticket_links(surface), [expected], "Every concert action must use this concert and language")
-        self.assertIn("24.10", text(sticky[0]))
-        self.assertIn("16:00–17:10", text(sticky[0]))
-        self.assertIn("24.10", text(subnav))
-        for surface in (hero, subnav, sticky[0]):
-            for anchor in surface.find("a"):
-                if anchor.attrs.get("href") == expected:
-                    self.assertEqual(text(anchor).split(" ")[0], "Купити" if lang == "uk" else "Buy")
-                    self.assertEqual(anchor.attrs.get("target"), "_blank")
-                    self.assertIn("noopener", anchor.attrs.get("rel", "").split())
+        for identity in ("program", "artists", "venue"):
+            self.assertIn("#" + identity, links(subnav))
 
     def assert_fresh_themed_poster(self, node):
         self.assertFalse(list(node.find(cls="poster-placeholder")), "Owner supplied the actual concert artwork")
@@ -143,12 +131,12 @@ class October24ConcertAcceptance(unittest.TestCase):
                 self.assertIn(title, page_title)
                 self.assertIn("2026", page_title)
                 date_text = "24 жовтня" if lang == "uk" else "24 October"
-                self.assertIn(date_text, page_title)
+                self.assertIn("word&music", page_title)
                 metadata = {n.attrs.get("name", n.attrs.get("property")): n.attrs.get("content") for n in doc.find("meta")}
                 self.assertEqual(metadata.get("og:title"), page_title)
                 self.assertEqual(metadata.get("og:url"), f"{ORIGIN}/{prefix}{SLUG}")
                 self.assertEqual(metadata.get("og:description"), metadata.get("description"))
-                self.assertIn(venue, metadata.get("description", ""))
+                self.assertIn("Будинку вчених" if lang == "uk" else "House of Scientists", metadata.get("description", ""))
                 self.assertIn(date_text, metadata.get("description", ""))
                 self.assertIn("16:00–17:10", metadata.get("description", ""))
                 self.assertEqual(urlsplit(metadata.get("og:image"))._replace(query="").geturl(), f"{ORIGIN}{POSTER_BASE}-night.jpg")
@@ -191,13 +179,13 @@ class October24ConcertAcceptance(unittest.TestCase):
                 hero = next(alias.find("section", cls="c-hero"))
                 self.assertEqual([text(n) for n in hero.find("dd")], [text(n) for n in next(current.find("section", cls="c-hero")).find("dd")])
                 self.assertIn("24.10.2026", text(hero))
-                self.assertIn(sales, text(next(alias.find("main"))))
+                self.assertNotIn(sales, text(next(alias.find("main"))))
                 self.assert_fresh_themed_poster(hero)
                 for identity in ("program", "artists", "venue"):
                     self.assertEqual(tree(section(alias, identity)), tree(section(current, identity)), "No-JS fallback keeps the complete approved concert")
                 main = next(alias.find("main"))
-                self.assertEqual(tree(main), tree(next(current.find("main"))), "Alias fallback must mirror the ticketed canonical main")
-                self.assert_ticket_actions(alias, lang)
+                self.assertEqual(tree(main), tree(next(current.find("main"))), "Alias fallback must mirror the archived canonical main")
+                self.assert_archive_actions(alias, lang)
                 for stale_date in ("25.10", "25 October", "25 жовтня"):
                     self.assertNotIn(stale_date, text(main))
                 self.assertFalse(events(alias_path.read_text()), "Aliases must not emit a second MusicEvent")
@@ -205,7 +193,7 @@ class October24ConcertAcceptance(unittest.TestCase):
                 listing = Document(ROOT / prefix / "concerts.html").root
                 self.assertNotIn(f"/{prefix}{old_slug}", links(listing))
 
-    def test_facts_venue_address_and_maps_are_for_the_new_event(self):
+    def test_archived_facts_venue_address_and_maps_are_preserved(self):
         for prefix, lang, _, venue, _ in LANGUAGES:
             with self.subTest(language=lang):
                 doc = Document(ROOT / prefix / SLUG).root
@@ -213,11 +201,11 @@ class October24ConcertAcceptance(unittest.TestCase):
                 facts = next(hero.find("dl", cls="facts"))
                 labels = [text(n) for n in facts.find("dt")]
                 values = [text(n) for n in facts.find("dd")]
-                expected_labels = ["Дата", "Час", "Ціна", "Локація", "Адреса"] if lang == "uk" else ["Date", "Time", "Price", "Location", "Address"]
+                expected_labels = ["Дата", "Час", "Локація", "Адреса"] if lang == "uk" else ["Date", "Time", "Location", "Address"]
                 self.assertEqual(labels, expected_labels)
-                self.assertEqual(values[:4], ["24.10.2026", "16:00–17:10", "300 грн" if lang == "uk" else "UAH 300", venue])
+                self.assertEqual(values[:3], ["24.10.2026", "16:00–17:10", venue])
                 address = "вул. Володимирська, 45А" if lang == "uk" else "45A Volodymyrska St"
-                self.assertIn(address, values[4])
+                self.assertIn(address, values[3])
                 block = section(doc, "venue")
                 self.assertEqual(text(next(block.find("h3"))), venue)
                 self.assertIn(address, text(block))
@@ -242,7 +230,7 @@ class October24ConcertAcceptance(unittest.TestCase):
             with self.subTest(language=lang):
                 doc = Document(ROOT / prefix / SLUG).root
                 reference = Document(ROOT / prefix / REFERENCE).root
-                self.assertEqual(tree(section(doc, "program")), tree(section(reference, "program")))
+                self.assertEqual(text(section(doc, "program")).replace("У програмі — твори", "Звучатимуть твори"), text(section(reference, "program")))
                 artists_sec = section(doc, "artists")
                 artist_names = [n.text().strip() for n in artists_sec.find("h3")]
                 self.assertEqual(len(artist_names), 14)
@@ -254,86 +242,47 @@ class October24ConcertAcceptance(unittest.TestCase):
                     self.assertIn("Viktoriia Kareva", artist_names)
                     self.assertIn("Mariia Livenko", artist_names)
                     self.assertNotIn("Maksym Hara", artist_names)
-                new_event = events((ROOT / prefix / SLUG).read_text())[0]
-                self.assertEqual(len(new_event["performer"]), 14)
+                self.assertFalse(events((ROOT / prefix / SLUG).read_text()))
 
-    def test_music_event_has_kyiv_dates_and_confirmed_ticket_offer(self):
-        for prefix, lang, title, venue, _ in LANGUAGES:
-            with self.subTest(language=lang):
-                found = events((ROOT / prefix / SLUG).read_text())
-                self.assertEqual(len(found), 1)
-                event = found[0]
-                self.assertEqual(event["name"], title)
-                self.assertEqual(event["url"], f"{ORIGIN}/{prefix}{SLUG}")
-                self.assertEqual(event["inLanguage"], lang)
-                self.assertEqual(event["eventStatus"], "https://schema.org/EventScheduled")
-                self.assertEqual(event["eventAttendanceMode"], "https://schema.org/OfflineEventAttendanceMode")
-                for key, hour, minute in (("startDate", 16, 0), ("endDate", 17, 10)):
-                    expected = datetime(2026, 10, 24, hour, minute, tzinfo=ZoneInfo("Europe/Kyiv"))
-                    self.assertEqual(expected.strftime("%z"), "+0300", "Kyiv is still on summer time on October 24")
-                    self.assertEqual(event[key], expected.isoformat())
-                self.assertEqual(event["location"]["name"], venue)
-                self.assertEqual(event["location"]["address"]["streetAddress"], "вул. Володимирська, 45А" if lang == "uk" else "45A Volodymyrska St")
-                self.assertEqual(event["location"]["address"]["addressCountry"], "UA")
-                self.assertIn("offers", event, "Confirmed ticket sales require a public Offer")
-                offer = event["offers"]
-                self.assertEqual(offer["@type"], "Offer")
-                self.assertEqual(offer["url"], f"{NEW_TICKET}?locale={lang}")
-                self.assertEqual(float(offer["price"]), 300)
-                self.assertEqual(offer["priceCurrency"], "UAH")
-                self.assertEqual(offer["availability"], "https://schema.org/InStock")
-                self.assertNotIn("validFrom", offer, "Owner confirmed sales, but supplied no sales-start date")
-                self.assertEqual(len(event["image"]), 1)
-                self.assertEqual(urlsplit(event["image"][0])._replace(query="").geturl(), f"{ORIGIN}{POSTER_BASE}-night.jpg")
-                self.assert_poster_version(event["image"][0], "night")
+    def test_archived_programmes_have_no_current_music_event_or_offer(self):
+        for prefix, lang, *_ in LANGUAGES:
+            for route in (SLUG, "concert.html"):
+                with self.subTest(page=prefix + route):
+                    self.assertFalse(events((ROOT / prefix / route).read_text()))
 
-    def test_fresh_poster_on_sale_no_old_copy_and_header_uses_profile(self):
+    def test_archived_poster_has_no_old_copy_sales_or_header_tickets(self):
         stale = ("25.10", "25 October", "25 жовтня", "25102026", "15.10", "15 October", "15 жовтня", "Біла вітальна", "Будинок актора", "Actor’s House", "actorhall", "Ярославів", "Yaroslaviv", "on-the-wings-of-love-poster")
         for prefix, lang, _, _, sales in LANGUAGES:
             with self.subTest(language=lang):
                 doc = Document(ROOT / prefix / SLUG).root
                 main = next(doc.find("main"))
-                self.assert_ticket_actions(doc, lang)
+                self.assert_archive_actions(doc, lang)
                 for old in stale:
                     self.assertNotIn(old, text(main))
                     for node in main.find():
                         self.assertFalse(any(old in str(value) for value in node.attrs.values()), old)
                 self.assertFalse(list(main.find(cls="status-pending")))
                 statuses = list(main.find(cls="status"))
-                self.assertGreaterEqual(len(statuses), 1)
-                self.assertTrue(all(text(node) == sales for node in statuses))
+                self.assertEqual(statuses, [])
                 self.assert_fresh_themed_poster(next(doc.find("section", cls="c-hero")))
                 header = next(n for n in doc.find("header") if list(n.find("nav")))
-                self.assertEqual(ticket_links(header), [f"{NEW_TICKET}?locale={lang}"] * 2)
+                self.assertEqual(ticket_links(header), [])
 
-    def test_listing_has_upcoming_ticketed_card_and_nearest_updated(self):
-        for prefix, lang, title, venue, sales in LANGUAGES:
+    def test_listing_has_october_24_first_in_archive_and_no_upcoming_sales(self):
+        for prefix, lang, title, venue, _ in LANGUAGES:
             with self.subTest(language=lang):
                 listing = Document(ROOT / prefix / "concerts.html").root
-                upcoming = next(n for n in listing.find("section") if n.attrs.get("data-sec") == "up")
-                cards = list(upcoming.find("article", cls="upc"))
-                self.assertEqual(len(cards), 1)
-                new = cards[0]
-                self.assertIn(f"/{prefix}{SLUG}", links(new))
-                self.assertIn(title, text(new))
-                self.assertIn(venue, text(new))
-                self.assertIn("24.10", text(new))
-                self.assertIn("16:00–17:10", text(new))
-                self.assertIn("Сб" if lang == "uk" else "Sat", text(new))
-                self.assertIn("1 концерт" if lang == "uk" else "1 concert", text(upcoming))
-                self.assertFalse(list(new.find(cls="status-pending")))
-                self.assertEqual([text(n) for n in new.find(cls="status")], [sales])
-                self.assertEqual(ticket_links(new), [f"{NEW_TICKET}?locale={lang}"])
-                self.assert_fresh_themed_poster(new)
-                for anchor in new.find("a"):
-                    self.assertFalse(list(anchor.find("a")))
-                nearest = events((ROOT / prefix / "concert.html").read_text())[0]
-                self.assertEqual(nearest["startDate"], "2026-10-24T16:00:00+03:00")
-                self.assertEqual(nearest["offers"]["url"], f"{NEW_TICKET}?locale={lang}")
+                self.assertFalse(list(listing.find("article", cls="upc")))
+                archive = section(listing, "archive")
+                route = f"/{prefix}{SLUG}"
+                archive_links = [href for href in links(archive) if "/concerts/" in href]
+                self.assertTrue(archive_links)
+                self.assertEqual(archive_links[0], route)
+                self.assertIn(title, text(archive))
+                self.assertIn("24.10", text(archive))
+                self.assertFalse(ticket_links(listing))
                 home = Document(ROOT / prefix / "index.html").root
-                intro = next(n for n in home.find() if n.attrs.get("id") == "intro")
-                self.assertIn(f"/{prefix}concert.html", links(intro))
-                self.assertIn(f"{NEW_TICKET}?locale={lang}", ticket_links(intro))
+                self.assertFalse(ticket_links(home))
 
     def test_performer_layouts_css_keeps_desktop_and_mobile_distinct(self):
         css_text = (ROOT / "assets" / "performer-layouts.css").read_text(encoding="utf-8")
