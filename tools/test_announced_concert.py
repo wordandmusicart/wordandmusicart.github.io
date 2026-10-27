@@ -36,8 +36,7 @@ class AnnouncedConcertAcceptance(unittest.TestCase):
                 doc = Document(ROOT / prefix / SLUG).root
                 header = next(n for n in doc.find("header") if list(n.find("nav")))
                 header_tickets = [href for href in links(header) if urlsplit(href).hostname == "eventmate.app"]
-                self.assertEqual(len(header_tickets), 2)
-                self.assertEqual(set(header_tickets), {expected})
+                self.assertEqual(header_tickets, [], "No header ticket control without upcoming concerts")
                 old_ticket_links = [href for href in links(doc) if href.split('?')[0] == TICKET]
                 self.assertFalse(old_ticket_links, "Archived concert must not link to past ticket offer")
                 status = next(doc.find(cls="status"), None)

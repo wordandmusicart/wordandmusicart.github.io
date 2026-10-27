@@ -7,6 +7,7 @@
   var prefix = isEn ? '/en' : '';
 
   var concerts = [
+    { slug: 'on-the-wings-of-love-24102026', title: isEn ? 'On the Wings of Love' : 'На крилах кохання', meta: '24.10.2026 · 16:00–17:10', aria: isEn ? 'Open concert “On the Wings of Love”' : 'Відкрити концерт «На крилах кохання»', picture: {"light": "/assets/img/on-the-wings-of-love-24102026-banner-light-320.webp 320w, /assets/img/on-the-wings-of-love-24102026-banner-light-480.webp 480w, /assets/img/on-the-wings-of-love-24102026-banner-light-720.webp 720w, /assets/img/on-the-wings-of-love-24102026-banner-light-960.webp 960w, /assets/img/on-the-wings-of-love-24102026-banner-light-1440.webp 1440w, /assets/img/on-the-wings-of-love-24102026-banner-light.jpg 1920w", "dark": "/assets/img/on-the-wings-of-love-24102026-banner-night-320.webp 320w, /assets/img/on-the-wings-of-love-24102026-banner-night-480.webp 480w, /assets/img/on-the-wings-of-love-24102026-banner-night-720.webp 720w, /assets/img/on-the-wings-of-love-24102026-banner-night-960.webp 960w, /assets/img/on-the-wings-of-love-24102026-banner-night-1440.webp 1440w, /assets/img/on-the-wings-of-love-24102026-banner-night.jpg 1920w", "src": "/assets/img/on-the-wings-of-love-24102026-banner-night.jpg"} },
     {
       slug: 'on-the-wings-of-love',
       title: isEn ? 'On the Wings of Love' : 'На крилах кохання',

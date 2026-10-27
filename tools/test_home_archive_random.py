@@ -27,13 +27,14 @@ class HomeArchiveRandomTest(unittest.TestCase):
     def test_home_archive_script_included_on_both_homepages(self):
         for prefix in ("", "en/"):
             html = (ROOT / prefix / "index.html").read_text(encoding="utf-8")
-            self.assertIn('<script src="/assets/home-archive.js?v=1" defer></script>', html)
+            self.assertRegex(html, r'<script src="/assets/home-archive\.js\?v=\d+" defer></script>')
 
     def test_archive_pool_slugs_exist_on_disk(self):
         js = (ROOT / "assets/home-archive.js").read_text(encoding="utf-8")
         slugs = re.findall(r"slug:\s*'([^']+)'", js)
         self.assertGreaterEqual(len(slugs), 10, "Expected at least 10 concerts in the archive pool")
         self.assertEqual(len(slugs), len(set(slugs)), "Slugs must be unique")
+        self.assertIn("on-the-wings-of-love-24102026", slugs, "The completed October 24 concert belongs in the random archive pool")
         for slug in slugs:
             ua_file = ROOT / "concerts" / f"{slug}.html"
             en_file = ROOT / "en/concerts" / f"{slug}.html"

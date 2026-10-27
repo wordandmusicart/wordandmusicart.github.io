@@ -58,31 +58,14 @@ def events(page):
 
 
 class EventSchemaTest(unittest.TestCase):
-    def test_current_concert_has_confirmed_october_24_end_and_ticket_offer(self):
+    def test_current_alias_preserves_october_24_facts_without_event_offer(self):
         for prefix, lang in (("", "uk"), ("en/", "en")):
             with self.subTest(language=lang):
                 page = (ROOT / prefix / "concert.html").read_text(encoding="utf-8")
                 self.assert_october_24(page, lang)
 
     def assert_october_24(self, page, lang):
-        found = events(page)
-        self.assertEqual(len(found), 1)
-        event = found[0]
-        self.assertEqual(event["startDate"], "2026-10-24T16:00:00+03:00")
-        self.assertEqual(event["endDate"], "2026-10-24T17:10:00+03:00")
-        self.assertEqual(event["eventStatus"], "https://schema.org/EventScheduled")
-        self.assertEqual(event["inLanguage"], lang)
-        offer = event.get("offers")
-        self.assertIsInstance(offer, dict)
-        self.assertEqual(offer.get("@type"), "Offer")
-        self.assertEqual(offer.get("url"), f"{OCTOBER_24_TICKET}?locale={lang}")
-        self.assertEqual(offer.get("availability"), "https://schema.org/InStock")
-        self.assertEqual(offer.get("price"), "300")
-        self.assertEqual(offer.get("priceCurrency"), "UAH")
-        for unsupported_field in ("lowPrice", "highPrice", "priceSpecification"):
-            self.assertNotIn(unsupported_field, offer, "Only the minimum price is emitted")
-        self.assertEqual(len(event["performer"]), 14)
-        self.assertEqual(len({p["name"] for p in event["performer"]}), 14)
+        self.assertFalse(events(page), "Completed concert must not advertise a current event or offer")
         self.assertNotIn("koncert-ziti-kohati-mriati", page)
         hero = re.search(r'<section class="c-hero.*?</section>', page, re.S).group(0)
         time_label, date_label = LABELS[lang]
@@ -90,8 +73,7 @@ class EventSchemaTest(unittest.TestCase):
         visible_time = fact(hero, time_label)
         self.assertIsNotNone(visible_time, "The facts must show a single Time range")
         self.assertEqual(visible_time.replace(" ", ""), "16:00–17:10")
-        self.assertEqual(fact(hero, "Ціна" if lang == "uk" else "Price"),
-                         "300 грн" if lang == "uk" else "UAH 300")
+        self.assertIsNone(fact(hero, "Ціна" if lang == "uk" else "Price"))
 
     def historical_pages(self):
         ua = sorted((ROOT / "concerts").glob("*.html"))
@@ -104,7 +86,7 @@ class EventSchemaTest(unittest.TestCase):
         )
         return [path for path in ua + en if path.stem not in ANNOUNCED_CONCERTS | CONCERT_ALIASES]
 
-    def test_named_programme_has_source_backed_range_and_minimum_offer(self):
+    def test_archived_programme_preserves_source_backed_range_without_offer(self):
         for prefix, lang in (("", "uk"), ("en/", "en")):
             with self.subTest(language=lang):
                 page = (ROOT / prefix / "concerts/on-the-wings-of-love-24102026.html").read_text(encoding="utf-8")

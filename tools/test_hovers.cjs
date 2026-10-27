@@ -8,7 +8,6 @@ const {chromium} = require(process.env.PLAYWRIGHT_MODULE || '/Users/rusanivsky/.
 const BASE = process.env.SITE_URL || 'http://127.0.0.1:4175';
 const CASES = [
   ['/', '.hdr nav a:not([aria-current])', 'text'],
-  ['/', '.hdr a.btn-acc:not(.mobile-ticket)', 'fill'],
   ['/', '.hero .btn-o, .btn-o', 'fill'],
   ['/', '.about a', 'text'],
   ['/', '.venue-link', 'logo'],
@@ -20,7 +19,7 @@ const CASES = [
   ['/photo/stabat-mater.html', '.pgall a', 'photo'],
   ['/video.html', '.vmain', 'photo'],
   ['/concerts/stabat-mater.html', 'a.lnk', 'text'],
-  ['/concerts/on-the-wings-of-love-24102026.html', 'main a.btn:not(.btn-acc)', 'fill'],
+  ['/concerts/on-the-wings-of-love-24102026.html', 'main a.btn-o', 'fill'],
 ];
 const snapshot = el => {
   const target = el.matches('.venue-link') ? el.querySelector('.venue-logo img')
@@ -37,7 +36,7 @@ const snapshot = el => {
     const page = await context.newPage();
     for (const [route, selector, kind] of CASES) {
       try {
-        if (page.url() !== BASE + route) await page.goto(BASE + route, {waitUntil: 'load'});
+        if (page.url() !== BASE + route) await page.goto(BASE + route, {waitUntil: 'domcontentloaded'});
         const el = page.locator(selector).first();
         await el.scrollIntoViewIfNeeded();
         await page.mouse.move(2, 2); await page.waitForTimeout(900);

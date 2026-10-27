@@ -37,9 +37,13 @@ async function visit(page, requested, expected, language) {
   assert.equal(rendered.language, language, `${expected}: visible language`);
   const schemaType = expected.endsWith('.html') ? 'MusicEvent' : 'WebSite';
   const relevant = rendered.schemas.filter(schema => schema['@type'] === schemaType);
-  assert.equal(relevant.length, 1, `${expected}: one ${schemaType}`);
-  assert.equal(relevant[0].inLanguage, language, `${expected}: JSON-LD language`);
-  assert.equal(relevant[0].url, ORIGIN + expected, `${expected}: JSON-LD URL`);
+  if (schemaType === 'MusicEvent') {
+    assert.equal(relevant.length, 0, `${expected}: archived concert has no current MusicEvent`);
+  } else {
+    assert.equal(relevant.length, 1, `${expected}: one ${schemaType}`);
+    assert.equal(relevant[0].inLanguage, language, `${expected}: JSON-LD language`);
+    assert.equal(relevant[0].url, ORIGIN + expected, `${expected}: JSON-LD URL`);
+  }
 }
 
 (async () => {

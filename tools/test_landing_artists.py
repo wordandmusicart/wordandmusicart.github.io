@@ -281,11 +281,20 @@ class LandingArtistsAcceptance(unittest.TestCase):
                 scenes = {n.attrs.get("id"): n for n in doc.find(cls="home-scene")}
                 self.assertIn("intro", scenes)
                 intro_links = links(scenes["intro"])
-                self.assertIn(f"/{prefix}concert.html", intro_links)
-                self.assertTrue(any(urlsplit(href).hostname == "eventmate.app" and f"locale={locale}" in href for href in intro_links))
+                self.assertTrue(any(href in {f"/{prefix}concert.html", f"/{prefix}concerts/on-the-wings-of-love-24102026.html"} for href in intro_links))
+                self.assertFalse(any(urlsplit(href).hostname == "eventmate.app" for href in intro_links))
                 self.assertIn("media", scenes)
                 self.assertIn(f"/{prefix}photo.html", links(scenes["media"]))
                 self.assertIn(f"/{prefix}video.html", links(scenes["media"]))
+
+    def test_no_public_page_advertises_tickets_without_upcoming_concerts(self):
+        for path in public_pages():
+            with self.subTest(page=str(path.relative_to(ROOT))):
+                doc = Document(path).root
+                self.assertFalse([href for href in links(doc) if urlsplit(href).hostname == "eventmate.app"],
+                                 "No ticket links may remain in a header, alias fallback, or concert body")
+                self.assertFalse(list(doc.find(cls="sticky-buy")))
+                self.assertFalse(list(doc.find(cls="status")))
 
     def test_every_public_header_has_ordered_navigation_and_controls(self):
         self.assertGreater(len(public_pages()), 2)
@@ -308,10 +317,7 @@ class LandingArtistsAcceptance(unittest.TestCase):
                 self.assertFalse(any(urlsplit(href).fragment == "repertoire" for href in links(header)))
                 self.assertTrue(list(header.find(cls="lang")), "Language choice must remain in header")
                 ticket_links = [href for href in links(header) if urlsplit(href).hostname == "eventmate.app"]
-                self.assertEqual(len(ticket_links), 2, "Keep desktop and mobile header ticket controls")
-                locale = "en" if prefix else "uk"
-                self.assertEqual(set(ticket_links), {f"https://eventmate.app/events/share/na-krilah-kohanna-koncert-vokalnoi-muziki-v-budinku-vcenih?locale={locale}"},
-                                 "Header tickets open the event link in the page language (tools/tickets.py)")
+                self.assertEqual(ticket_links, [], "No ticket controls without upcoming concerts")
                 route = path.relative_to(ROOT).as_posix()
                 leaf = path.name
                 expected = leaf.removesuffix(".html") if leaf in {"artists.html", "concerts.html", "photo.html", "video.html"} else None
