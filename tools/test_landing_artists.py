@@ -14,7 +14,7 @@ from urllib.parse import urlsplit
 
 ROOT = Path(os.environ.get("SITE_ROOT", Path(__file__).resolve().parents[1]))
 ORIGIN = "https://wordandmusic.art"
-ANNOUNCED_CONCERTS = {"on-the-wings-of-love-24102026.html"}
+ANNOUNCED_CONCERTS = {"on-the-wings-of-love-24102026.html", "vivre-aimer-rever-22112026.html"}
 CONCERT_ALIASES = {"on-the-wings-of-love-25102026.html"}
 CONCERT_ONLY_ARTISTS = {"miao-xinyue", "den-yatsziuen", "anna-bielanova", "taras-kapran", "nykyta-naumov"}
 DIRECTORY_GROUPS = (("vocal", "voices"), ("music", "musicians"), ("author", "author"))
@@ -281,7 +281,7 @@ class LandingArtistsAcceptance(unittest.TestCase):
                 scenes = {n.attrs.get("id"): n for n in doc.find(cls="home-scene")}
                 self.assertIn("intro", scenes)
                 intro_links = links(scenes["intro"])
-                self.assertTrue(any(href in {f"/{prefix}concert.html", f"/{prefix}concerts/on-the-wings-of-love-24102026.html"} for href in intro_links))
+                self.assertTrue(any(href in {f"/{prefix}concert.html", f"/{prefix}concerts/vivre-aimer-rever-22112026.html"} for href in intro_links))
                 self.assertFalse(any(urlsplit(href).hostname == "eventmate.app" for href in intro_links))
                 self.assertIn("media", scenes)
                 self.assertIn(f"/{prefix}photo.html", links(scenes["media"]))
@@ -294,7 +294,9 @@ class LandingArtistsAcceptance(unittest.TestCase):
                 self.assertFalse([href for href in links(doc) if urlsplit(href).hostname == "eventmate.app"],
                                  "No ticket links may remain in a header, alias fallback, or concert body")
                 self.assertFalse(list(doc.find(cls="sticky-buy")))
-                self.assertFalse(list(doc.find(cls="status")))
+                for status in doc.find(cls="status"):
+                    self.assertIn('status-pending', status.attrs.get('class', '').split(),
+                                  'Only an announced, not-yet-on-sale status is permitted')
 
     def test_every_public_header_has_ordered_navigation_and_controls(self):
         self.assertGreater(len(public_pages()), 2)

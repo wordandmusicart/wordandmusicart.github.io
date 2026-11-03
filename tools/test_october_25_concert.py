@@ -246,7 +246,7 @@ class October24ConcertAcceptance(unittest.TestCase):
 
     def test_archived_programmes_have_no_current_music_event_or_offer(self):
         for prefix, lang, *_ in LANGUAGES:
-            for route in (SLUG, "concert.html"):
+            for route in (SLUG,):
                 with self.subTest(page=prefix + route):
                     self.assertFalse(events((ROOT / prefix / route).read_text()))
 
@@ -272,7 +272,9 @@ class October24ConcertAcceptance(unittest.TestCase):
         for prefix, lang, title, venue, _ in LANGUAGES:
             with self.subTest(language=lang):
                 listing = Document(ROOT / prefix / "concerts.html").root
-                self.assertFalse(list(listing.find("article", cls="upc")))
+                upcoming = list(listing.find('article', cls='upc'))
+                self.assertEqual(len(upcoming), 1)
+                self.assertIn('/' + prefix + 'concerts/vivre-aimer-rever-22112026.html', links(upcoming[0]))
                 archive = section(listing, "archive")
                 route = f"/{prefix}{SLUG}"
                 archive_links = [href for href in links(archive) if "/concerts/" in href]
@@ -296,7 +298,7 @@ class October24ConcertAcceptance(unittest.TestCase):
         # Ensure all pages referencing performer-layouts.css share the exact same version query
         versions = set()
         for prefix, _ in (("", "uk"), ("en/", "en")):
-            for rel in (SLUG, "concerts/on-the-wings-of-love-25102026.html", "concerts/on-the-wings-of-love.html", "concert.html"):
+            for rel in (SLUG, "concerts/on-the-wings-of-love-25102026.html", "concerts/on-the-wings-of-love.html"):
                 path = ROOT / prefix / rel
                 m = re.search(r'performer-layouts\.css\?v=(\d+)', path.read_text(encoding="utf-8"))
                 self.assertIsNotNone(m, f"Missing performer-layouts.css version in {path}")

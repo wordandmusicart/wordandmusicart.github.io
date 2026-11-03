@@ -24,7 +24,7 @@ KNOWN_ARCHIVE_RANGES = {
     "on-the-wings-of-love": "18:00–19:30",
 }
 UNKNOWN_ARCHIVE_STARTS = {"amore-eterno", "christmas-kaleidoscope", "heartstrings"}
-ANNOUNCED_CONCERTS = {"on-the-wings-of-love-24102026"}
+ANNOUNCED_CONCERTS = {"on-the-wings-of-love-24102026", "vivre-aimer-rever-22112026"}
 CONCERT_ALIASES = {"on-the-wings-of-love-25102026"}
 OCTOBER_24_TICKET = "https://eventmate.app/events/share/na-krilah-kohanna-koncert-vokalnoi-muziki-v-budinku-vcenih"
 
@@ -58,11 +58,17 @@ def events(page):
 
 
 class EventSchemaTest(unittest.TestCase):
-    def test_current_alias_preserves_october_24_facts_without_event_offer(self):
+    def test_current_alias_preserves_confirmed_november_22_start_without_offer_or_end(self):
         for prefix, lang in (("", "uk"), ("en/", "en")):
-            with self.subTest(language=lang):
-                page = (ROOT / prefix / "concert.html").read_text(encoding="utf-8")
-                self.assert_october_24(page, lang)
+            page = (ROOT / prefix / "concert.html").read_text(encoding="utf-8")
+            event, = events(page)
+            self.assertEqual(event['startDate'], '2026-11-22T16:00:00+02:00')
+            self.assertNotIn('endDate', event)
+            self.assertNotIn('offers', event)
+            hero = re.search(r'<section class="c-hero.*?</section>', page, re.S).group(0)
+            self.assertEqual(fact(hero, LABELS[lang][1]), '22.11.2026')
+            self.assertEqual(fact(hero, LABELS[lang][0]), '16:00')
+            self.assertEqual(fact(hero, 'Ціна' if lang == 'uk' else 'Price'), '250 ₴')
 
     def assert_october_24(self, page, lang):
         self.assertFalse(events(page), "Completed concert must not advertise a current event or offer")

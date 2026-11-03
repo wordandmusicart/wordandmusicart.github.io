@@ -93,6 +93,8 @@ def event(s, lang, url):
         interval = re.fullmatch(r'(\d{2}:\d{2})\s*[–—-]\s*(\d{2}:\d{2})', facts['time'])
         if interval:
             facts['start'], facts['end'] = interval.groups()
+        elif re.fullmatch(r'\d{2}:\d{2}', facts['time']):
+            facts['start'] = facts['time']
     if 'date' not in facts:
         return None
     parts = facts['date'].split('.')
@@ -181,6 +183,7 @@ def data(path, s):
     if rel in ('index.html', 'en/index.html'):
         return home(s, lang, url)
     if rel in ('concert.html', 'en/concert.html',
+               'concerts/vivre-aimer-rever-22112026.html', 'en/concerts/vivre-aimer-rever-22112026.html',
                'concerts/on-the-wings-of-love-24102026.html', 'en/concerts/on-the-wings-of-love-24102026.html'):
         return event(s, lang, url) if 'Архівний концерт' not in s and 'Past concert' not in s else None
     if re.fullmatch(r'(en/)?photo/[\w-]+\.html', rel):

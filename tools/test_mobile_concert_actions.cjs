@@ -48,7 +48,7 @@ async function scroll(page, fraction) {
     finally { await ctx.close(); }
   }
   try {
-    for (const prefix of ['', 'en/']) for (const route of ['concert.html', WINGS24]) {
+    for (const prefix of ['', 'en/']) for (const route of [WINGS24]) {
       for (const width of [320, 390, 900, 1440]) {
         await test(`${prefix + route} archived concert retains usable navigation without sale actions at ${width}px`, width, async page => {
           await open(page, '/' + prefix + route);
@@ -65,6 +65,28 @@ async function scroll(page, fraction) {
           for (const fraction of [0, 0.5, 1]) {
             await scroll(page, fraction);
             assert.equal(await page.locator('.sticky-buy').count(), 0);
+          }
+        });
+      }
+    }
+    for (const prefix of ['', 'en/']) for (const route of ['concert.html', 'concerts/vivre-aimer-rever-22112026.html']) {
+      for (const width of [320, 390, 1440]) {
+        await test(`${prefix + route} November announcement has usable content without ticket offer at ${width}px`, width, async page => {
+          await open(page, '/' + prefix + route);
+          assert.equal(await page.locator('.sticky-buy,a[href*="eventmate.app"]').count(), 0);
+          assert.equal(await page.locator('.status-pending').count(), 1);
+          assert.equal(await page.locator('.c-hero .poster-placeholder').count(), 0);
+          assert.equal(await page.locator('.c-hero .poster img').count(), 1);
+          const poster = await page.locator('.c-hero .poster img').boundingBox();
+          assert.ok(poster.width > 0 && poster.height > 0, 'Supplied November poster must be visible');
+          assert.ok(Math.abs(poster.width / poster.height - 4 / 5) < 0.01, 'Full poster retains 4:5 geometry');
+          assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), 'No horizontal scrolling');
+          for (const identity of ['program', 'artists', 'venue']) {
+            const link = page.locator(`.subnav .links a[href="#${identity}"]`);
+            assert.equal(await link.count(), 1);
+            await link.click();
+            assert.equal(new URL(page.url()).hash, '#' + identity);
+            assert.ok(await page.locator('#' + identity).isVisible());
           }
         });
       }
