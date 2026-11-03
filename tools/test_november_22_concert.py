@@ -1,6 +1,6 @@
 """Independent acceptance for owner-confirmed 22 November announcement.
 
-22.11.2026, 16:00, Tauvers Gallery International, 250 UAH. No end,
+22.11.2026, 16:00, Будинок вчених / House of Scientists, 250 UAH. No end,
 ticket URL supplied; owner-approved November artwork was subsequently supplied. Source Word programme adds Ravel's Rigaudon.
 """
 import unittest
@@ -25,8 +25,8 @@ class November22Acceptance(unittest.TestCase):
                     hero = next(doc.find('section', 'c-hero'))
                     self.assertEqual(normalized(next(doc.find('h1'))), 'Vivre, Aimer, Rêver…')
                     self.assertEqual([v for _, v in facts(doc)][:3], ['22.11.2026', '16:00', '250 ₴'])
-                    self.assertIn('Tauvers Gallery International', hero.text())
-                    self.assertIn('Ольгинська' if lang == 'uk' else 'Olhynska', hero.text())
+                    self.assertIn('Будинок вчених' if lang == 'uk' else 'House of Scientists', hero.text())
+                    self.assertIn('Володимирська' if lang == 'uk' else 'Volodymyrska', hero.text())
                     self.assertFalse(list(hero.find(cls='poster-placeholder')))
                     poster, = hero.find('img')
                     self.assertIn('/assets/img/vivre-aimer-rever-22112026-poster-night.jpg', poster.attrs.get('src', ''))
