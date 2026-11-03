@@ -50,18 +50,20 @@ async function rendered(page, mode, {picture = true} = {}) {
       const banner = document.querySelector('.next-banner img');
       return {paper: style.getPropertyValue('--paper').trim().toLowerCase(),
         lightLogos: visibility('.logo-light'), darkLogos: visibility('.logo-dark'),
-        banner: banner?.currentSrc, bannerLoaded: Boolean(banner?.complete && banner.naturalWidth > 0)};
+        banner: banner?.currentSrc, bannerLoaded: Boolean(banner?.complete && banner.naturalWidth > 0),
+        placeholder: Boolean(document.querySelector('.next-banner.poster-placeholder')),
+        placeholderLabel: document.querySelector('.next-banner.poster-placeholder')?.getAttribute('aria-label')};
     });
     assert.equal(result.paper, mode === 'dark' ? '#1c1c1c' : '#f5f5f5');
     assert.ok(result.lightLogos.length && result.darkLogos.length, 'Both logo variants must exist');
     assert.ok(result.lightLogos.every(shown => shown === (mode === 'light')), 'Light-mode logos must follow chosen theme');
     assert.ok(result.darkLogos.every(shown => shown === (mode === 'dark')), 'Dark-mode logos must follow chosen theme');
     if (picture) {
-      // Site DARK uses current LIGHT artwork; site LIGHT uses current NIGHT artwork.
+      assert.ok(!result.placeholder, 'Owner supplied actual November artwork');
       assert.match(result.banner || '', mode === 'dark'
-        ? /on-the-wings-of-love-24102026-banner-light[-.]/
-        : /on-the-wings-of-love-24102026-banner-night[-.]/);
-      assert.ok(result.bannerLoaded, 'The next-concert artwork must load in the chosen theme');
+        ? /vivre-aimer-rever-22112026-banner-light[-.]/
+        : /vivre-aimer-rever-22112026-banner-night[-.]/);
+      assert.ok(result.bannerLoaded, 'The November banner must load in the chosen theme');
     }
   }, `Rendering must resolve to ${mode}`);
 }
@@ -156,7 +158,7 @@ async function context(browser, colorScheme = 'light') {
       });
     }
     await test('Current programme poster follows Auto and manual themes in both languages', async () => {
-      for (const route of ['/concert.html', '/en/concerts/on-the-wings-of-love-24102026.html']) {
+      for (const route of ['/concert.html', '/en/concerts/vivre-aimer-rever-22112026.html', '/concerts/on-the-wings-of-love-24102026.html', '/en/concerts/on-the-wings-of-love-24102026.html']) {
         for (const system of ['light', 'dark']) {
           const ctx = await context(browser, system);
           try {
@@ -168,9 +170,9 @@ async function context(browser, colorScheme = 'light') {
                 const image = await page.locator('.c-hero .poster img').evaluate(node => ({
                   source: node.currentSrc, loaded: node.complete && node.naturalWidth > 0,
                 }));
-                assert.match(image.source, mode === 'dark'
-                  ? /on-the-wings-of-love-24102026-poster-light[-.]/
-                  : /on-the-wings-of-love-24102026-poster-night[-.]/);
+                const family = route.includes('on-the-wings-of-love')
+                  ? 'on-the-wings-of-love-24102026' : 'vivre-aimer-rever-22112026';
+                assert.match(image.source, new RegExp(family + '-poster-' + (mode === 'dark' ? 'light' : 'night') + '[-.]'));
                 assert.ok(image.loaded, `${route}: the selected poster must load`);
               }, `${route}: poster must resolve to ${mode}`);
             }
