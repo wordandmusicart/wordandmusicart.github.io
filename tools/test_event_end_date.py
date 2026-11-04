@@ -62,12 +62,12 @@ class EventSchemaTest(unittest.TestCase):
         for prefix, lang in (("", "uk"), ("en/", "en")):
             page = (ROOT / prefix / "concert.html").read_text(encoding="utf-8")
             event, = events(page)
-            self.assertEqual(event['startDate'], '2026-11-22T16:00:00+02:00')
+            self.assertEqual(event['startDate'], '2026-11-22T14:00:00+02:00')
             self.assertNotIn('endDate', event)
             self.assertNotIn('offers', event)
             hero = re.search(r'<section class="c-hero.*?</section>', page, re.S).group(0)
             self.assertEqual(fact(hero, LABELS[lang][1]), '22.11.2026')
-            self.assertEqual(fact(hero, LABELS[lang][0]), '16:00')
+            self.assertEqual(fact(hero, LABELS[lang][0]), '14:00')
             self.assertEqual(fact(hero, 'Ціна' if lang == 'uk' else 'Price'), '250 ₴')
 
     def assert_october_24(self, page, lang):
