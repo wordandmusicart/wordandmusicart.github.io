@@ -101,6 +101,8 @@ class November22Acceptance(unittest.TestCase):
                     self.assertEqual(fact_values[:2], ['22.11.2026', '14:00'])
                     self.assertIn(fact_values[2], {'250 ₴'} if lang == 'uk' else {'250 ₴', 'UAH 250'})
                     self.assertNotIn('16:00', hero.text())
+                    self.assertNotIn('Додаткова інформація', hero.text())
+                    self.assertNotIn('More information', hero.text())
                     self.assertIn('Будинок вчених' if lang == 'uk' else 'House of Scientists', hero.text())
                     self.assertIn('Володимирська' if lang == 'uk' else 'Volodymyrska', hero.text())
                     self.assertFalse(list(hero.find(cls='poster-placeholder')))
@@ -290,6 +292,21 @@ class November22Acceptance(unittest.TestCase):
                 self.assertNotIn('/' + prefix + SLUG, links(archive))
                 for previous in ('vivre-aimer-rever', 'on-the-wings-of-love', 'on-the-wings-of-love-24102026'):
                     self.assertIn('/' + prefix + 'concerts/' + previous + '.html', links(archive))
+
+    def test_vivre_hero_omits_uninvented_more_information_line(self):
+        for page in (
+            SLUG,
+            'concert.html',
+            'en/' + SLUG,
+            'en/concert.html',
+            'concerts/vivre-aimer-rever.html',
+            'en/concerts/vivre-aimer-rever.html',
+        ):
+            with self.subTest(page=page):
+                doc = Document(ROOT / page).root
+                hero_text = normalized(next(doc.find('section', 'c-hero')))
+                self.assertNotIn('Додаткова інформація', hero_text)
+                self.assertNotIn('More information', hero_text)
 
 
 if __name__ == '__main__':
