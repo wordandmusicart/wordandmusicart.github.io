@@ -1,22 +1,95 @@
 """Independent acceptance for owner-confirmed 22 November announcement.
 
-22.11.2026, 16:00, Будинок вчених / House of Scientists, 250 UAH. No end,
-ticket URL supplied; owner-approved November artwork was subsequently supplied. Source Word programme adds Ravel's Rigaudon.
+22.11.2026, 14:00, Будинок вчених / House of Scientists, 250 UAH. No end time or
+ticket URL supplied; programme features Bizet, Ravel (with Rigaudon) and Poulenc
+(without invented work titles), replacing Falla; canonical 7-paragraph #about.
 """
 import unittest
 from urllib.parse import urlsplit
 
-from .test_event_end_date import events
-from .structured_data import event
-from .test_landing_artists import Document, ROOT, ORIGIN, links
-from .test_october_rollover import facts, section, normalized
+if __package__:
+    from .test_event_end_date import events
+    from .structured_data import event
+    from .test_landing_artists import Document, ROOT, ORIGIN, links
+    from .test_october_rollover import facts, section, normalized
+else:
+    import sys
+    from pathlib import Path
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    from test_event_end_date import events
+    from structured_data import event
+    from test_landing_artists import Document, ROOT, ORIGIN, links
+    from test_october_rollover import facts, section, normalized
 
 SLUG = 'concerts/vivre-aimer-rever-22112026.html'
+
+UK_ABOUT_PARAGRAPHS = [
+    (
+        'Запрошуємо поринути у вишуканий світ французької музики, де елегантність '
+        'звучання поєднується з силою поетичного слова та неповторною чаруючою '
+        'атмосферою. Мелодії, у яких час завмирає, і почуття, що залишаються назавжди.'
+    ),
+    (
+        'Витончені французькі mélodies Жоржа Бізе, грецькі народні пісні та '
+        'пристрасна «Циганка» у художньому прочитанні Моріса Равеля, іронічний '
+        'шарм та ніжність музики Франсіса Пуленка.'
+    ),
+    (
+        'Віртуозна стихія скрипки та фортепіано переплітається з голосом і '
+        'поетичним словом. Музика і поезія складаються в єдину розповідь, що '
+        'відкривається кожному крізь призму власного світовідчуття.'
+    ),
+    (
+        'Історії кохання і мрій, ніжності й пристрасті, іронії та щирості — '
+        'у почуттях, над якими не владний час.'
+    ),
+    'Три композитори. Три художні світи. Одна музична подорож поза часом.',
+    'Вечір, у якому музика торкається серця, а кожна мить наповнюється сенсом.',
+    'Vivre, Aimer, rêver… Жити. Кохати. Мріяти.',
+]
+
+UK_BIZET_SONGS = (
+    'Квітнева пісня',
+    'Лагідне море',
+    'Пісня божевільного',
+    'Прощання арабської жінки',
+    'Я про це нічого не скажу',
+)
+
+UK_RAVEL_GREEK_SONGS = (
+    'Весільна пісня',
+    'Там, біля церкви',
+    'Який галант може зрівнятись зі мною?',
+    'Пісня збирачів мастики',
+    'Так весело!',
+)
+
+FORBIDDEN_FALLA_STRINGS = (
+    'Мануель де Фалья',
+    'Manuel de Falla',
+    'Фалья',
+    'Falla',
+    '7 іспанських',
+    'Seven Popular Spanish',
+    '7 Spanish',
+    'Мавританська шаль',
+    'Сегідилья',
+    'Астуріана',
+    'Хота',
+    'Колискова',
+    'Поло',
+    'Moorish',
+    'Seguidilla',
+    'Asturiana',
+    'Jota',
+    'Polo',
+)
 
 
 class November22Acceptance(unittest.TestCase):
     def test_paired_announcement_and_alias_use_only_confirmed_facts(self):
         for prefix, lang in (('', 'uk'), ('en/', 'en')):
+            poulenc = 'Франсіс Пуленк' if lang == 'uk' else 'Francis Poulenc'
             for route in (SLUG, 'concert.html'):
                 with self.subTest(page=prefix + route):
                     path = ROOT / prefix / route
@@ -24,7 +97,10 @@ class November22Acceptance(unittest.TestCase):
                     doc = Document(path).root
                     hero = next(doc.find('section', 'c-hero'))
                     self.assertEqual(normalized(next(doc.find('h1'))), 'Vivre, Aimer, Rêver…')
-                    self.assertEqual([v for _, v in facts(doc)][:3], ['22.11.2026', '16:00', '250 ₴'])
+                    fact_values = [v for _, v in facts(doc)]
+                    self.assertEqual(fact_values[:2], ['22.11.2026', '14:00'])
+                    self.assertIn(fact_values[2], {'250 ₴'} if lang == 'uk' else {'250 ₴', 'UAH 250'})
+                    self.assertNotIn('16:00', hero.text())
                     self.assertIn('Будинок вчених' if lang == 'uk' else 'House of Scientists', hero.text())
                     self.assertIn('Володимирська' if lang == 'uk' else 'Volodymyrska', hero.text())
                     self.assertFalse(list(hero.find(cls='poster-placeholder')))
@@ -32,6 +108,7 @@ class November22Acceptance(unittest.TestCase):
                     self.assertIn('/assets/img/vivre-aimer-rever-22112026-poster-night.jpg', poster.attrs.get('src', ''))
                     self.assertEqual(int(poster.attrs['width']) / int(poster.attrs['height']), 4 / 5)
                     self.assertTrue(poster.attrs.get('alt'))
+                    self.assertNotIn('16:00', poster.attrs.get('alt', ''))
                     sources = list(hero.find('source'))
                     self.assertEqual(len(sources), 1)
                     self.assertIn('vivre-aimer-rever-22112026-poster-light', sources[0].attrs.get('srcset', ''))
@@ -47,71 +124,172 @@ class November22Acceptance(unittest.TestCase):
                     status = list(doc.find(cls='status-pending'))
                     self.assertTrue(status, 'Announcement must show pending sale state')
                     self.assertNotIn('Продаж триває' if lang == 'uk' else 'On sale', status[0].text())
+
                     meta = {n.attrs.get('name', n.attrs.get('property')): n.attrs.get('content', '') for n in doc.find('meta')}
                     self.assertEqual(meta['og:url'], ORIGIN + '/' + prefix + SLUG)
                     self.assertIn('vivre-aimer-rever-22112026-banner-night.jpg', meta.get('og:image', ''))
+                    for meta_field in ('description', 'og:description'):
+                        desc = meta.get(meta_field, '')
+                        self.assertTrue(desc, f'Missing {meta_field}')
+                        self.assertIn('14:00', desc)
+                        self.assertIn(poulenc, desc)
+                        self.assertIn('250', desc)
+                        for forbidden in ('16:00', 'Фалья', 'Falla'):
+                            self.assertNotIn(forbidden, desc)
+
+                    subnav = next(doc.find('nav', 'subnav'))
+                    subnav_text = normalized(subnav)
+                    self.assertIn('14:00', subnav_text)
+                    for forbidden in ('16:00', 'Фалья', 'Falla'):
+                        self.assertNotIn(forbidden, subnav_text)
+
                     canonical = [n.attrs.get('href') for n in doc.find('link') if n.attrs.get('rel') == 'canonical']
                     self.assertEqual(canonical, [ORIGIN + '/' + prefix + SLUG])
-                    schema = events(path.read_text())
+                    schema = events(path.read_text(encoding='utf-8'))
                     self.assertEqual(len(schema), 1)
-                    self.assertEqual(schema[0]['startDate'], '2026-11-22T16:00:00+02:00')
+                    self.assertEqual(schema[0]['startDate'], '2026-11-22T14:00:00+02:00')
                     self.assertNotIn('endDate', schema[0], 'Never infer duration from October concert')
                     self.assertNotIn('offers', schema[0], 'Price alone does not create a ticket offer')
                     self.assertEqual(len(schema[0].get('performer', [])), 4)
+                    schema_desc = schema[0].get('description', '')
+                    self.assertIn('14:00', schema_desc)
+                    self.assertIn(poulenc, schema_desc)
+                    for forbidden in ('16:00', 'Фалья', 'Falla'):
+                        self.assertNotIn(forbidden, schema_desc)
 
     def test_start_only_generator_preserves_confirmed_clock_time_without_offer(self):
-        for lang, labels in (('uk', ('Дата', 'Час', 'Ціна')), ('en', ('Date', 'Time', 'Price'))):
+        for lang, labels, price in (
+            ('uk', ('Дата', 'Час', 'Ціна'), '250 ₴'),
+            ('en', ('Date', 'Time', 'Price'), 'UAH 250'),
+        ):
             source = '<section class="c-hero"><h1>Confirmed start only</h1><dl>'
             source += ''.join(f'<dt class="meta muted">{label}</dt><dd>{value}</dd>'
-                              for label, value in zip(labels, ('22.11.2026', '16:00', '250 ₴')))
+                              for label, value in zip(labels, ('22.11.2026', '14:00', price)))
             source += '</dl></section>'
             generated = event(source, lang, 'https://wordandmusic.art/concert.html')[0]
-            self.assertEqual(generated['startDate'], '2026-11-22T16:00:00+02:00')
+            self.assertEqual(generated['startDate'], '2026-11-22T14:00:00+02:00')
             self.assertNotIn('endDate', generated)
             self.assertNotIn('offers', generated)
 
-    def test_programme_preserves_all_source_cycles_and_adds_rigaudon(self):
+    def test_programme_replaces_falla_with_uninvented_poulenc_and_preserves_cycles(self):
         for prefix, lang in (('', 'uk'), ('en/', 'en')):
-            doc = Document(ROOT / prefix / SLUG).root
-            programme = section(doc, 'program').text()
-            for composer in (['Жорж Бізе', 'Моріс Равель', 'Мануель де Фалья'] if lang == 'uk'
-                             else ['Georges Bizet', 'Maurice Ravel', 'Manuel de Falla']):
-                self.assertIn(composer, programme)
-            self.assertRegex(programme, r'Ригодон|Rigaudon')
-            self.assertRegex(programme, r'Циганка|Tzigane')
-            self.assertRegex(programme, r'21')
-            if lang == 'uk':
-                for title in ('Квітнева пісня', 'Лагідне море', 'Пісня божевільного',
-                              'Прощання арабської жінки', 'Я про це нічого не скажу',
-                              'Весільна пісня', 'Там, біля церкви', 'Який галант може зрівнятись зі мною?',
-                              'Пісня збирачів мастики', 'Так весело!', 'Мавританська шаль',
-                              'Сегідилья', 'Астуріана', 'Хота', 'Колискова', 'Пісня', 'Поло'):
-                    self.assertIn(title, programme, 'Every supplied song remains visible')
-            self.assertFalse([n for n in section(doc, 'program').find(cls='n') if n.text().strip()],
-                             'No new numbered design labels')
-            names = [n.text().strip() for n in section(doc, 'artists').find('h3')]
-            self.assertEqual(names, ['Марія Попович', 'Микола Чикаренко', 'Дмитро Терентьєв', 'Геннадій Таранюк'] if lang == 'uk'
-                             else ['Mariia Popovych', 'Mykola Chykarenko', 'Dmytro Terentiev', 'Hennadii Taraniuk'])
+            expected_composers = (
+                ['Жорж Бізе', 'Моріс Равель', 'Франсіс Пуленк']
+                if lang == 'uk'
+                else ['Georges Bizet', 'Maurice Ravel', 'Francis Poulenc']
+            )
+            poulenc = expected_composers[-1]
+            for route in (SLUG, 'concert.html'):
+                with self.subTest(page=prefix + route):
+                    doc = Document(ROOT / prefix / route).root
+                    prog_sec = section(doc, 'program')
+                    programme = normalized(prog_sec)
+
+                    who_order = list(dict.fromkeys(normalized(w) for w in prog_sec.find(cls='who')))
+                    self.assertEqual(who_order, expected_composers)
+                    for composer in expected_composers:
+                        self.assertIn(composer, programme)
+
+                    for forbidden in FORBIDDEN_FALLA_STRINGS:
+                        self.assertNotIn(forbidden, programme)
+
+                    self.assertRegex(programme, r'op\.\s*21')
+                    self.assertIn('Ригодон' if lang == 'uk' else 'Rigaudon', programme)
+                    self.assertRegex(programme, r'грецьк' if lang == 'uk' else r'Greek')
+                    self.assertIn('Циганка' if lang == 'uk' else 'Tzigane', programme)
+                    if lang == 'uk':
+                        for title in (*UK_BIZET_SONGS, *UK_RAVEL_GREEK_SONGS):
+                            self.assertIn(title, programme, 'Every supplied Bizet and Ravel song remains visible')
+
+                    poulenc_rows = [li for li in prog_sec.find('li') if poulenc in normalized(li)]
+                    self.assertEqual(len(poulenc_rows), 1)
+                    self.assertEqual(
+                        [normalized(w) for w in poulenc_rows[0].find(cls='what') if normalized(w)],
+                        [],
+                        'Nothing is invented: Poulenc work titles are not specified in source',
+                    )
+                    self.assertEqual(normalized(poulenc_rows[0]), poulenc)
+
+                    self.assertFalse(
+                        [n for n in prog_sec.find(cls='n') if normalized(n)],
+                        'No numbered 01/02/03 design labels',
+                    )
+                    self.assertNotRegex(programme, r'\b0[1-9]\b')
+
+                    names = [normalized(n) for n in section(doc, 'artists').find('h3')]
+                    self.assertEqual(
+                        names,
+                        ['Марія Попович', 'Микола Чикаренко', 'Дмитро Терентьєв', 'Геннадій Таранюк']
+                        if lang == 'uk'
+                        else ['Mariia Popovych', 'Mykola Chykarenko', 'Dmytro Terentiev', 'Hennadii Taraniuk'],
+                    )
+
+            named = Document(ROOT / prefix / SLUG).root
             current = Document(ROOT / prefix / 'concert.html').root
             for identity in ('about', 'program', 'artists', 'venue'):
-                self.assertEqual(normalized(section(current, identity)), normalized(section(doc, identity)))
+                self.assertEqual(normalized(section(current, identity)), normalized(section(named, identity)))
+
+    def test_about_section_matches_canonical_seven_paragraphs(self):
+        for prefix, lang in (('', 'uk'), ('en/', 'en')):
+            for route in (SLUG, 'concert.html'):
+                with self.subTest(page=prefix + route):
+                    doc = Document(ROOT / prefix / route).root
+                    about = section(doc, 'about')
+                    paragraphs = [normalized(p) for p in about.find('p')]
+                    self.assertEqual(len(paragraphs), 7)
+                    about_text = ' '.join(paragraphs)
+                    if lang == 'uk':
+                        self.assertEqual(paragraphs, UK_ABOUT_PARAGRAPHS)
+                        for stale in (
+                            'Є музика, здатна зупинити мить',
+                            'Мануеля де Фальї',
+                            'Фалья',
+                            'свободи й самотності',
+                        ):
+                            self.assertNotIn(stale, about_text)
+                    else:
+                        self.assertIn('french music', about_text.lower())
+                        for required in (
+                            'Georges Bizet',
+                            'Maurice Ravel',
+                            'Tzigane',
+                            'Francis Poulenc',
+                            'Three composers. Three artistic worlds.',
+                            'Vivre, Aimer, rêver…',
+                        ):
+                            self.assertIn(required, about_text)
+                        for forbidden in ('Manuel de Falla', 'Falla', 'Spanish'):
+                            self.assertNotIn(forbidden, about_text)
 
     def test_home_and_upcoming_listing_link_new_event_without_ticket_actions(self):
         for prefix in ('', 'en/'):
-            home = Document(ROOT / prefix / 'index.html').root
-            aside = next(home.find('aside'))
-            self.assertIn('22.11', aside.text())
-            self.assertIn('Vivre, Aimer, Rêver', aside.text())
-            self.assertIn('/' + prefix + SLUG, links(aside))
-            listing = Document(ROOT / prefix / 'concerts.html').root
-            upcoming = list(listing.find('article', 'upc'))
-            self.assertEqual(len(upcoming), 1)
-            self.assertIn('22.11', upcoming[0].text())
-            self.assertIn('/' + prefix + SLUG, links(upcoming[0]))
-            archive = section(listing, 'archive')
-            self.assertNotIn('/' + prefix + SLUG, links(archive))
-            for previous in ('vivre-aimer-rever', 'on-the-wings-of-love', 'on-the-wings-of-love-24102026'):
-                self.assertIn('/' + prefix + 'concerts/' + previous + '.html', links(archive))
+            with self.subTest(prefix=prefix or 'uk'):
+                home = Document(ROOT / prefix / 'index.html').root
+                aside = next(home.find('aside'))
+                self.assertIn('22.11', aside.text())
+                self.assertIn('14:00', aside.text())
+                self.assertNotIn('16:00', aside.text())
+                for img in aside.find('img'):
+                    self.assertNotIn('16:00', img.attrs.get('alt', ''))
+                self.assertIn('Vivre, Aimer, Rêver', aside.text())
+                self.assertIn('/' + prefix + SLUG, links(aside))
+                self.assertFalse([h for h in links(aside) if urlsplit(h).hostname == 'eventmate.app'])
+
+                listing = Document(ROOT / prefix / 'concerts.html').root
+                upcoming = list(listing.find('article', 'upc'))
+                self.assertEqual(len(upcoming), 1)
+                self.assertIn('22.11', upcoming[0].text())
+                self.assertIn('14:00', upcoming[0].text())
+                self.assertNotIn('16:00', upcoming[0].text())
+                for img in upcoming[0].find('img'):
+                    self.assertNotIn('16:00', img.attrs.get('alt', ''))
+                self.assertIn('/' + prefix + SLUG, links(upcoming[0]))
+                self.assertFalse([h for h in links(upcoming[0]) if urlsplit(h).hostname == 'eventmate.app'])
+
+                archive = section(listing, 'archive')
+                self.assertNotIn('/' + prefix + SLUG, links(archive))
+                for previous in ('vivre-aimer-rever', 'on-the-wings-of-love', 'on-the-wings-of-love-24102026'):
+                    self.assertIn('/' + prefix + 'concerts/' + previous + '.html', links(archive))
 
 
 if __name__ == '__main__':
