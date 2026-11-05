@@ -58,13 +58,15 @@ def events(page):
 
 
 class EventSchemaTest(unittest.TestCase):
-    def test_current_alias_preserves_confirmed_november_22_start_without_offer_or_end(self):
+    def test_current_alias_preserves_confirmed_november_22_offer_and_start_without_end(self):
         for prefix, lang in (("", "uk"), ("en/", "en")):
             page = (ROOT / prefix / "concert.html").read_text(encoding="utf-8")
             event, = events(page)
             self.assertEqual(event['startDate'], '2026-11-22T14:00:00+02:00')
             self.assertNotIn('endDate', event)
-            self.assertNotIn('offers', event)
+            self.assertEqual(event['offers']['url'], 'https://eventmate.app/events/share/93e50cf4-75cd-4418-b20c-254c7db657b7?locale=' + lang)
+            self.assertEqual(event['offers']['price'], '250')
+            self.assertEqual(event['offers']['priceCurrency'], 'UAH')
             hero = re.search(r'<section class="c-hero.*?</section>', page, re.S).group(0)
             self.assertEqual(fact(hero, LABELS[lang][1]), '22.11.2026')
             self.assertEqual(fact(hero, LABELS[lang][0]), '14:00')
