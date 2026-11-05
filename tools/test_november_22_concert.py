@@ -261,7 +261,7 @@ class November22Acceptance(unittest.TestCase):
                         for forbidden in ('Manuel de Falla', 'Falla', 'Spanish'):
                             self.assertNotIn(forbidden, about_text)
 
-    def test_home_and_upcoming_listing_link_new_event_without_ticket_actions(self):
+    def test_home_has_confirmed_tickets_and_listing_links_new_event(self):
         for prefix in ('', 'en/'):
             with self.subTest(prefix=prefix or 'uk'):
                 home = Document(ROOT / prefix / 'index.html').root
@@ -273,7 +273,10 @@ class November22Acceptance(unittest.TestCase):
                     self.assertNotIn('16:00', img.attrs.get('alt', ''))
                 self.assertIn('Vivre, Aimer, Rêver', aside.text())
                 self.assertIn('/' + prefix + SLUG, links(aside))
-                self.assertFalse([h for h in links(aside) if urlsplit(h).hostname == 'eventmate.app'])
+                self.assertIn('https://eventmate.app/events/share/93e50cf4-75cd-4418-b20c-254c7db657b7?locale=' + ('en' if prefix else 'uk'), links(aside))
+                self.assertFalse(list(aside.find(cls='concert-announcement')))
+                self.assertNotIn('Квитки незабаром', aside.text())
+                self.assertNotIn('Tickets coming soon', aside.text())
 
                 listing = Document(ROOT / prefix / 'concerts.html').root
                 upcoming = list(listing.find('article', 'upc'))
