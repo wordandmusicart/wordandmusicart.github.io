@@ -1,7 +1,7 @@
 """Independent acceptance for owner-confirmed 22 November announcement.
 
-22.11.2026, 14:00, Будинок вчених / House of Scientists, 250 UAH. No end time or
-ticket URL supplied; programme features Bizet, Ravel (with Rigaudon) and Poulenc
+22.11.2026, 14:00, Будинок вчених / House of Scientists, 250 UAH. No end time
+supplied; confirmed ticket sales are available; programme features Bizet, Ravel (with Rigaudon) and Poulenc
 (without invented work titles), replacing Falla; canonical 7-paragraph #about.
 """
 import unittest
@@ -121,11 +121,9 @@ class November22Acceptance(unittest.TestCase):
                             asset = urlsplit(candidate.strip().split()[0]).path
                             self.assertTrue((ROOT / asset.lstrip('/')).is_file(), asset)
                     self.assertFalse(any('20261003' in value for node in hero.find() for value in node.attrs.values()))
-                    self.assertFalse([h for h in links(doc) if urlsplit(h).hostname == 'eventmate.app'])
+                    self.assertIn('https://eventmate.app/events/share/93e50cf4-75cd-4418-b20c-254c7db657b7?locale=' + lang, links(hero))
                     self.assertFalse(list(doc.find(cls='sticky-buy')))
-                    status = list(doc.find(cls='status-pending'))
-                    self.assertTrue(status, 'Announcement must show pending sale state')
-                    self.assertNotIn('Продаж триває' if lang == 'uk' else 'On sale', status[0].text())
+                    self.assertFalse(list(doc.find(cls='status-pending')))
 
                     meta = {n.attrs.get('name', n.attrs.get('property')): n.attrs.get('content', '') for n in doc.find('meta')}
                     self.assertEqual(meta['og:url'], ORIGIN + '/' + prefix + SLUG)
@@ -151,7 +149,7 @@ class November22Acceptance(unittest.TestCase):
                     self.assertEqual(len(schema), 1)
                     self.assertEqual(schema[0]['startDate'], '2026-11-22T14:00:00+02:00')
                     self.assertNotIn('endDate', schema[0], 'Never infer duration from October concert')
-                    self.assertNotIn('offers', schema[0], 'Price alone does not create a ticket offer')
+                    self.assertEqual(schema[0]['offers']['url'], 'https://eventmate.app/events/share/93e50cf4-75cd-4418-b20c-254c7db657b7?locale=' + lang)
                     self.assertEqual(len(schema[0].get('performer', [])), 4)
                     schema_desc = schema[0].get('description', '')
                     self.assertIn('14:00', schema_desc)

@@ -287,16 +287,14 @@ class LandingArtistsAcceptance(unittest.TestCase):
                 self.assertIn(f"/{prefix}photo.html", links(scenes["media"]))
                 self.assertIn(f"/{prefix}video.html", links(scenes["media"]))
 
-    def test_no_public_page_advertises_tickets_without_upcoming_concerts(self):
+    def test_public_ticket_links_use_confirmed_event(self):
         for path in public_pages():
             with self.subTest(page=str(path.relative_to(ROOT))):
                 doc = Document(path).root
-                self.assertFalse([href for href in links(doc) if urlsplit(href).hostname == "eventmate.app"],
-                                 "No ticket links may remain in a header, alias fallback, or concert body")
+                self.assertTrue(all(href.split("?")[0] == "https://eventmate.app/events/share/93e50cf4-75cd-4418-b20c-254c7db657b7" for href in links(doc) if urlsplit(href).hostname == "eventmate.app"))
                 self.assertFalse(list(doc.find(cls="sticky-buy")))
                 for status in doc.find(cls="status"):
-                    self.assertIn('status-pending', status.attrs.get('class', '').split(),
-                                  'Only an announced, not-yet-on-sale status is permitted')
+                    self.assertNotIn('status-pending', status.attrs.get('class', '').split())
 
     def test_every_public_header_has_ordered_navigation_and_controls(self):
         self.assertGreater(len(public_pages()), 2)
@@ -319,7 +317,7 @@ class LandingArtistsAcceptance(unittest.TestCase):
                 self.assertFalse(any(urlsplit(href).fragment == "repertoire" for href in links(header)))
                 self.assertTrue(list(header.find(cls="lang")), "Language choice must remain in header")
                 ticket_links = [href for href in links(header) if urlsplit(href).hostname == "eventmate.app"]
-                self.assertEqual(ticket_links, [], "No ticket controls without upcoming concerts")
+                self.assertEqual(ticket_links, ["https://eventmate.app/events/share/93e50cf4-75cd-4418-b20c-254c7db657b7?locale=" + ("en" if prefix else "uk")] * 2)
                 route = path.relative_to(ROOT).as_posix()
                 leaf = path.name
                 expected = leaf.removesuffix(".html") if leaf in {"artists.html", "concerts.html", "photo.html", "video.html"} else None

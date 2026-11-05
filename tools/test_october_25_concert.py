@@ -85,7 +85,7 @@ class October24ConcertAcceptance(unittest.TestCase):
         self.assertEqual(version, parse_qs(urlsplit(reference).query).get("v", []), "One version per poster family across every surface")
 
     def assert_archive_actions(self, doc, lang):
-        self.assertFalse(ticket_links(doc), "There are no upcoming concerts or ticket offers")
+        self.assertFalse(ticket_links(next(doc.find("main"))), "Archived concert body has no ticket offers")
         self.assertFalse(list(doc.find(cls="sticky-buy")))
         self.assertFalse(list(doc.find(cls="status")))
         subnav = next(doc.find("nav", cls="subnav"))
@@ -266,7 +266,7 @@ class October24ConcertAcceptance(unittest.TestCase):
                 self.assertEqual(statuses, [])
                 self.assert_fresh_themed_poster(next(doc.find("section", cls="c-hero")))
                 header = next(n for n in doc.find("header") if list(n.find("nav")))
-                self.assertEqual(ticket_links(header), [])
+                self.assertEqual(ticket_links(header), ["https://eventmate.app/events/share/93e50cf4-75cd-4418-b20c-254c7db657b7?locale=" + lang] * 2)
 
     def test_listing_has_october_24_first_in_archive_and_no_upcoming_sales(self):
         for prefix, lang, title, venue, _ in LANGUAGES:
@@ -282,9 +282,9 @@ class October24ConcertAcceptance(unittest.TestCase):
                 self.assertEqual(archive_links[0], route)
                 self.assertIn(title, text(archive))
                 self.assertIn("24.10", text(archive))
-                self.assertFalse(ticket_links(listing))
+                self.assertFalse(ticket_links(next(listing.find("main"))))
                 home = Document(ROOT / prefix / "index.html").root
-                self.assertFalse(ticket_links(home))
+                self.assertFalse(ticket_links(next(home.find("main"))))
 
     def test_performer_layouts_css_keeps_desktop_and_mobile_distinct(self):
         css_text = (ROOT / "assets" / "performer-layouts.css").read_text(encoding="utf-8")
