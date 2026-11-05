@@ -53,7 +53,7 @@ async function scroll(page, fraction) {
         await test(`${prefix + route} archived concert retains usable navigation without sale actions at ${width}px`, width, async page => {
           await open(page, '/' + prefix + route);
           assert.equal(await page.locator('.sticky-buy').count(), 0);
-          assert.equal(await page.locator('a[href*="eventmate.app"]').count(), 0);
+          assert.equal(await page.locator('main a[href*="eventmate.app"]').count(), 0);
           assert.equal(await page.locator('.status').count(), 0);
           for (const identity of ['program', 'artists', 'venue']) {
             const link = page.locator(`.subnav .links a[href="#${identity}"]`);
@@ -71,10 +71,13 @@ async function scroll(page, fraction) {
     }
     for (const prefix of ['', 'en/']) for (const route of ['concert.html', 'concerts/vivre-aimer-rever-22112026.html']) {
       for (const width of [320, 390, 1440]) {
-        await test(`${prefix + route} November announcement has usable content without ticket offer at ${width}px`, width, async page => {
+        await test(`${prefix + route} November concert has usable content and confirmed ticket offer at ${width}px`, width, async page => {
           await open(page, '/' + prefix + route);
-          assert.equal(await page.locator('.sticky-buy,a[href*="eventmate.app"]').count(), 0);
-          assert.equal(await page.locator('.status-pending').count(), 1);
+          const buy = page.locator('.c-hero .c-cta a[href*="eventmate.app"]');
+          assert.equal(await buy.count(), 1);
+          assert.equal(await buy.getAttribute('href'), 'https://eventmate.app/events/share/93e50cf4-75cd-4418-b20c-254c7db657b7?locale=' + (prefix ? 'en' : 'uk'));
+          assert.ok(await buy.isVisible());
+          assert.equal(await page.locator('.status-pending').count(), 0);
           assert.equal(await page.locator('.c-hero .poster-placeholder').count(), 0);
           assert.equal(await page.locator('.c-hero .poster img').count(), 1);
           const poster = await page.locator('.c-hero .poster img').boundingBox();

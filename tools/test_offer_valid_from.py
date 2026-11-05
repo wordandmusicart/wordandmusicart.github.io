@@ -27,7 +27,8 @@ class OfferOpeningDate(unittest.TestCase):
                     found = events(path.read_text())
                     if name == 'concert.html':
                         self.assertEqual(len(found), 1)
-                        self.assertNotIn('offers', found[0], 'No ticket URL has been supplied')
+                        self.assertIn('offers', found[0])
+                        self.assertNotIn('validFrom', found[0]['offers'], 'No opening date has been supplied')
                     else:
                         self.assertEqual(found, [], "Archived concert has no current ticket offer")
 

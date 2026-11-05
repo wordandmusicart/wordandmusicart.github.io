@@ -1,6 +1,6 @@
 /* Shared navigation: floating header, direction-aware visibility, accessible menu. */
 /* tickets:start (tools/tickets.py) */
-const TICKET_PROFILE = null;
+const TICKET_PROFILE = "https://eventmate.app/events/share/93e50cf4-75cd-4418-b20c-254c7db657b7";
 /* tickets:end */
 (() => {
   const header = document.querySelector('.hdr');
@@ -114,7 +114,7 @@ const TICKET_PROFILE = null;
   updateNavInert();
 })();
 
-/* No ticket controls when no upcoming concert is configured. */
+/* Keep restored ticket controls in the page language. */
 (() => {
   const locale = document.documentElement.lang === 'en' ? 'en' : 'uk';
   if (!TICKET_PROFILE) {
