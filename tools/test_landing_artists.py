@@ -282,7 +282,7 @@ class LandingArtistsAcceptance(unittest.TestCase):
                 self.assertIn("intro", scenes)
                 intro_links = links(scenes["intro"])
                 self.assertTrue(any(href in {f"/{prefix}concert.html", f"/{prefix}concerts/vivre-aimer-rever-22112026.html"} for href in intro_links))
-                self.assertFalse(any(urlsplit(href).hostname == "eventmate.app" for href in intro_links))
+                self.assertIn("https://eventmate.app/events/share/93e50cf4-75cd-4418-b20c-254c7db657b7?locale=" + ("en" if prefix else "uk"), intro_links)
                 self.assertIn("media", scenes)
                 self.assertIn(f"/{prefix}photo.html", links(scenes["media"]))
                 self.assertIn(f"/{prefix}video.html", links(scenes["media"]))

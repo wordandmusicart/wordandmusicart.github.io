@@ -44,13 +44,13 @@ def facts(doc):
 
 
 class OctoberRolloverAcceptance(unittest.TestCase):
-    def test_home_announces_november_22_without_sales_and_retains_latest_archive(self):
+    def test_home_announces_november_22_with_tickets_and_retains_latest_archive(self):
         for prefix, lang in (("", "uk"), ("en/", "en")):
             doc = Document(ROOT / prefix / "index.html").root
             announced = next(doc.find("aside"))
             self.assertIn('22.11', announced.text())
             self.assertIn('Vivre, Aimer, Rêver', announced.text())
-            self.assertFalse([href for href in links(announced) if urlsplit(href).hostname == 'eventmate.app'])
+            self.assertIn('https://eventmate.app/events/share/93e50cf4-75cd-4418-b20c-254c7db657b7?locale=' + lang, links(announced))
             self.assertIn('/' + prefix + NOVEMBER_22, links(announced))
             archive = section(doc, 'past-concerts')
             self.assertIn('/' + prefix + WINGS_OCTOBER_24, links(archive))
