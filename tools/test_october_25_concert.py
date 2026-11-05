@@ -284,7 +284,7 @@ class October24ConcertAcceptance(unittest.TestCase):
                 self.assertIn("24.10", text(archive))
                 self.assertFalse(ticket_links(next(listing.find("main"))))
                 home = Document(ROOT / prefix / "index.html").root
-                self.assertFalse(ticket_links(next(home.find("main"))))
+                self.assertEqual(ticket_links(next(home.find("main"))), ["https://eventmate.app/events/share/93e50cf4-75cd-4418-b20c-254c7db657b7?locale=" + lang])
 
     def test_performer_layouts_css_keeps_desktop_and_mobile_distinct(self):
         css_text = (ROOT / "assets" / "performer-layouts.css").read_text(encoding="utf-8")
