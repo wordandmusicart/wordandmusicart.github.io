@@ -273,7 +273,7 @@ class October24ConcertAcceptance(unittest.TestCase):
             with self.subTest(language=lang):
                 listing = Document(ROOT / prefix / "concerts.html").root
                 upcoming = list(listing.find('article', cls='upc'))
-                self.assertEqual(len(upcoming), 1)
+                self.assertEqual(len(upcoming), 3)
                 self.assertIn('/' + prefix + 'concerts/vivre-aimer-rever-22112026.html', links(upcoming[0]))
                 archive = section(listing, "archive")
                 route = f"/{prefix}{SLUG}"

@@ -280,7 +280,7 @@ class November22Acceptance(unittest.TestCase):
 
                 listing = Document(ROOT / prefix / 'concerts.html').root
                 upcoming = list(listing.find('article', 'upc'))
-                self.assertEqual(len(upcoming), 1)
+                self.assertEqual(len(upcoming), 3)
                 self.assertIn('22.11', upcoming[0].text())
                 self.assertIn('14:00', upcoming[0].text())
                 self.assertNotIn('16:00', upcoming[0].text())
