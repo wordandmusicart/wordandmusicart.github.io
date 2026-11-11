@@ -24,7 +24,12 @@ KNOWN_ARCHIVE_RANGES = {
     "on-the-wings-of-love": "18:00–19:30",
 }
 UNKNOWN_ARCHIVE_STARTS = {"amore-eterno", "christmas-kaleidoscope", "heartstrings"}
-ANNOUNCED_CONCERTS = {"on-the-wings-of-love-24102026", "vivre-aimer-rever-22112026"}
+ANNOUNCED_CONCERTS = {
+    "on-the-wings-of-love-24102026",
+    "vivre-aimer-rever-22112026",
+    "towards-the-stars-29112026",
+    "towards-the-stars-20122026",
+}
 CONCERT_ALIASES = {"on-the-wings-of-love-25102026"}
 OCTOBER_24_TICKET = "https://eventmate.app/events/share/na-krilah-kohanna-koncert-vokalnoi-muziki-v-budinku-vcenih"
 
