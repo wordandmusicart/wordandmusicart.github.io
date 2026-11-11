@@ -1,6 +1,6 @@
 /* Shared navigation: floating header, direction-aware visibility, accessible menu. */
 /* tickets:start (tools/tickets.py) */
-const TICKET_PROFILE = "https://eventmate.app/events/share/93e50cf4-75cd-4418-b20c-254c7db657b7";
+const TICKET_PROFILE = "https://eventmate.app/users/share/wordmusic";
 /* tickets:end */
 (() => {
   const header = document.querySelector('.hdr');

@@ -266,7 +266,7 @@ class October24ConcertAcceptance(unittest.TestCase):
                 self.assertEqual(statuses, [])
                 self.assert_fresh_themed_poster(next(doc.find("section", cls="c-hero")))
                 header = next(n for n in doc.find("header") if list(n.find("nav")))
-                self.assertEqual(ticket_links(header), ["https://eventmate.app/events/share/93e50cf4-75cd-4418-b20c-254c7db657b7?locale=" + lang] * 2)
+                self.assertEqual(ticket_links(header), ["https://eventmate.app/users/share/wordmusic?locale=" + lang] * 2)
 
     def test_listing_has_october_24_first_in_archive_and_no_upcoming_sales(self):
         for prefix, lang, title, venue, _ in LANGUAGES:

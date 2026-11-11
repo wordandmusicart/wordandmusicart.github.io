@@ -291,7 +291,7 @@ class LandingArtistsAcceptance(unittest.TestCase):
         for path in public_pages():
             with self.subTest(page=str(path.relative_to(ROOT))):
                 doc = Document(path).root
-                self.assertTrue(all(href.split("?")[0] == "https://eventmate.app/events/share/93e50cf4-75cd-4418-b20c-254c7db657b7" for href in links(doc) if urlsplit(href).hostname == "eventmate.app"))
+                self.assertTrue(all(href.split("?")[0] in {"https://eventmate.app/events/share/93e50cf4-75cd-4418-b20c-254c7db657b7", "https://eventmate.app/users/share/wordmusic"} for href in links(doc) if urlsplit(href).hostname == "eventmate.app"))
                 self.assertFalse(list(doc.find(cls="sticky-buy")))
                 for status in doc.find(cls="status"):
                     self.assertNotIn('status-pending', status.attrs.get('class', '').split())
@@ -317,7 +317,7 @@ class LandingArtistsAcceptance(unittest.TestCase):
                 self.assertFalse(any(urlsplit(href).fragment == "repertoire" for href in links(header)))
                 self.assertTrue(list(header.find(cls="lang")), "Language choice must remain in header")
                 ticket_links = [href for href in links(header) if urlsplit(href).hostname == "eventmate.app"]
-                self.assertEqual(ticket_links, ["https://eventmate.app/events/share/93e50cf4-75cd-4418-b20c-254c7db657b7?locale=" + ("en" if prefix else "uk")] * 2)
+                self.assertEqual(ticket_links, ["https://eventmate.app/users/share/wordmusic?locale=" + ("en" if prefix else "uk")] * 2)
                 route = path.relative_to(ROOT).as_posix()
                 leaf = path.name
                 expected = leaf.removesuffix(".html") if leaf in {"artists.html", "concerts.html", "photo.html", "video.html"} else None

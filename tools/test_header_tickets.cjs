@@ -26,7 +26,7 @@ const BASE = process.env.SITE_URL || 'http://127.0.0.1:4175';
         await page.goto(BASE + route, {waitUntil: 'domcontentloaded'});
         const hrefs = await page.$$eval('.hdr a.btn-acc', links => links.map(a => a.href));
         assert.equal(hrefs.length, 2);
-        assert.ok(hrefs.every(href => href === 'https://eventmate.app/events/share/93e50cf4-75cd-4418-b20c-254c7db657b7?locale=' + locale));
+        assert.ok(hrefs.every(href => href === 'https://eventmate.app/users/share/wordmusic?locale=' + locale));
         assert.equal(await page.locator('.hdr a[href*="eventmate.app"]').count(), 2);
         console.log('PASS', route, label, width, javaScriptEnabled ? 'JS' : 'no-JS');
       } catch (e) { failed++; console.log('FAIL', route, label, width, javaScriptEnabled ? 'JS' : 'no-JS', '\n', e.message); }
