@@ -388,6 +388,9 @@ body{padding-top:112px}
 .home .hero aside{align-self:center}
 .home .next-date .d{font-size:clamp(52px,5vw,72px)}
 .home .next-date .t{font-size:clamp(24px,2.5vw,36px)}
+.home .home-upcoming{display:flex;flex-direction:column;justify-content:center;padding-top:100px;padding-bottom:72px}
+.home .home-upcoming .sec-head{margin-bottom:32px}
+.home .home-upcoming .up2{margin-top:0}
 .home .about{display:flex;align-items:center;padding-block:100px}
 .home .about>.g12{width:100%;row-gap:44px}
 .home .about .lab{grid-column:1/-1}
@@ -464,6 +467,7 @@ body{padding-top:112px}
 @media (prefers-reduced-motion:reduce){.hdr.wrap{transition:none}}
 @media (max-width:900px){
  .home-scene{min-height:auto}
+ .home .home-upcoming{padding-block:52px 40px}
  .home .hero .cta2 .btn,.home .hero .cta2 .btn-o{padding-inline:16px;font-size:14px;gap:8px}
 }
 .hdr .mobile-ticket{display:none}

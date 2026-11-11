@@ -223,13 +223,13 @@ class LandingArtistsAcceptance(unittest.TestCase):
                                       normalized_name(Document(source_path).root.text()),
                                       f"{identity} must remain in {prefix}{source}")
 
-    def test_home_has_six_ordered_scenes_and_footer_in_contacts(self):
+    def test_home_has_seven_ordered_scenes_and_footer_in_contacts(self):
         for prefix in ("", "en/"):
             with self.subTest(language=prefix or "uk"):
                 doc = Document(ROOT / prefix / "index.html").root
                 scenes = list(doc.find(cls="home-scene"))
                 self.assertEqual([s.attrs.get("id") for s in scenes],
-                                 ["intro", "about", "past-concerts", "media", "locations", "contacts"])
+                                 ["intro", "upcoming", "about", "past-concerts", "media", "locations", "contacts"])
                 self.assertEqual(len(list(scenes[-1].find("footer"))), 1,
                                  "The footer must belong to the last scene")
                 self.assertFalse(any(n.attrs.get("id") == "repertoire" for n in doc.find()))
