@@ -71,6 +71,11 @@ change pass; if a test encodes an old owner decision, ask.
   profile (owner request, 11 Oct 2026); concert purchase actions retain their
   event-specific URLs.
   UA pages link Eventmate with `?locale=uk`, EN pages with `?locale=en`.
+- Mobile sticky ticket bar (`.sticky-buy`): every upcoming concert page with
+  active ticket sales (`eventmate.app/events/...` offer) MUST include the
+  fixed bottom `.sticky-buy` bar linking to that specific concert's Eventmate
+  URL (`?locale=uk` / `?locale=en`). Archived concerts and announced concerts
+  without a ticket link yet must NOT have `.sticky-buy`.
 - Header on desktop home stays pinned; elsewhere and on mobile it hides on
   scroll down and returns on scroll up. Home on desktop scrolls by screens.
 - Language on arrival (`assets/lang.js`, in the head of every page): at a

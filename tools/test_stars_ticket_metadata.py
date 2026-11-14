@@ -54,9 +54,13 @@ class StarsTicketMetadataAcceptance(unittest.TestCase):
                         self.assertEqual(offer['priceCurrency'], 'UAH')
                         self.assertEqual(offer['availability'], 'https://schema.org/InStock')
                         self.assertTrue(any(('Продаж триває' if lang == 'uk' else 'On sale') in n.text() for n in doc.find(cls='status')))
+                        sticky = list(doc.find(cls='sticky-buy'))
+                        self.assertEqual(len(sticky), 1, 'Ticketed concert must include mobile .sticky-buy')
+                        self.assertEqual(links(sticky[0]), [expected])
                     else:
                         self.assertNotIn('offers', event)
                         self.assertFalse(purchase_links, 'December has no confirmed event purchase URL')
+                        self.assertFalse(list(doc.find(cls='sticky-buy')))
 
     def test_listing_cards_link_to_the_correct_event_only(self):
         for prefix, lang in (('', 'uk'), ('en/', 'en')):

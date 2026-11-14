@@ -122,7 +122,9 @@ class November22Acceptance(unittest.TestCase):
                             self.assertTrue((ROOT / asset.lstrip('/')).is_file(), asset)
                     self.assertFalse(any('20261003' in value for node in hero.find() for value in node.attrs.values()))
                     self.assertIn('https://eventmate.app/events/share/93e50cf4-75cd-4418-b20c-254c7db657b7?locale=' + lang, links(hero))
-                    self.assertFalse(list(doc.find(cls='sticky-buy')))
+                    sticky = list(doc.find(cls='sticky-buy'))
+                    self.assertEqual(len(sticky), 1)
+                    self.assertEqual(links(sticky[0]), ['https://eventmate.app/events/share/93e50cf4-75cd-4418-b20c-254c7db657b7?locale=' + lang])
                     self.assertFalse(list(doc.find(cls='status-pending')))
 
                     meta = {n.attrs.get('name', n.attrs.get('property')): n.attrs.get('content', '') for n in doc.find('meta')}
