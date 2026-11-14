@@ -1125,5 +1125,21 @@
         "size": 2495
       }
     }
+  },
+  {
+    "id": "oleksandr-nikiforov",
+    "name": {
+      "uk": "Олександр Нікіфоров",
+      "en": "Oleksandr Nikiforov"
+    },
+    "role": {
+      "uk": "Соліст Національної опери України, заслужений артист України · Тенор",
+      "en": "Soloist of the National Opera of Ukraine, Honoured Artist of Ukraine · Tenor"
+    },
+    "group": "vocal",
+    "sources": [
+      "concerts/towards-the-stars-29112026.html#artists"
+    ],
+    "portrait": null
   }
 ]
