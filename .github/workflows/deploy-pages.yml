@@ -43,6 +43,7 @@ jobs:
           python3 tools/test_event_end_date.py
           python3 tools/test_offer_valid_from.py
           python3 tools/test_ticket_price_range.py
+          python3 tools/test_stars_ticket_metadata.py
           python3 tools/test_october_rollover.py
           python3 tools/test_home_archive_random.py
       - name: Check landing and artists acceptance
