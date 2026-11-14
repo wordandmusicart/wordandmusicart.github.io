@@ -1140,6 +1140,21 @@
     "sources": [
       "concerts/towards-the-stars-29112026.html#artists"
     ],
-    "portrait": null
+    "portrait": {
+      "src": "/assets/img/oleksandr-nikiforov.jpg",
+      "source": "Owner-supplied Desktop/nikiforovo_s Firefly Upscaler 2 4x scale.jpg, 14 November 2026. Original preserved on Desktop; source has limited space above the hair. Separate circular and full 4:5 programme views. Circle expanded from detector proposal 1125 to full available width 1200 after equal-size comparison with Ponomarenko: reduces whole-head scale, preserves hair and shoulders; no further top space exists in the supplied photograph.",
+      "width": 1200,
+      "height": 1500,
+      "crop": {
+        "x": 0,
+        "y": 0,
+        "size": 1200
+      },
+      "programme_crop": [
+        0,
+        0,
+        1200
+      ]
+    }
   }
 ]
