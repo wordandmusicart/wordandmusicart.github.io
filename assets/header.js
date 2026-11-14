@@ -12,6 +12,8 @@ const TICKET_PROFILE = "https://eventmate.app/users/share/wordmusic";
   const pinned = () => !mobile.matches && document.body.classList.contains('home');
   const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
   const subnav = document.querySelector('.subnav');
+  const stickyBuy = document.querySelector('.sticky-buy');
+  const heroCta = document.querySelector('.c-hero .c-cta');
   const sections = subnav ? [...subnav.querySelectorAll('.links a[href^="#"]')]
     .map(link => ({ link, section: document.getElementById(link.hash.slice(1)) }))
     .filter(item => item.section) : [];
@@ -41,6 +43,13 @@ const TICKET_PROFILE = "https://eventmate.app/users/share/wordmusic";
     if (linkRect.left < navRect.left + 12) scrollDelta = linkRect.left - navRect.left - 12;
     else if (linkRect.right > navRect.right - 12) scrollDelta = linkRect.right - navRect.right + 12;
     if (scrollDelta) subnav.scrollBy({ left: scrollDelta, behavior: reducedMotion.matches ? 'auto' : 'smooth' });
+  }
+
+  function updateStickyBuy() {
+    if (!stickyBuy) return;
+    const show = !heroCta || heroCta.getBoundingClientRect().bottom < 0;
+    stickyBuy.classList.toggle('is-visible', show);
+    stickyBuy.inert = !show;
   }
 
   function showHeader(show) {
@@ -75,6 +84,7 @@ const TICKET_PROFILE = "https://eventmate.app/users/share/wordmusic";
     if (y <= 220 || menuOpen) { direction = 0; travel = 0; }
     lastY = y;
     updateSubnav();
+    updateStickyBuy();
   }
   button?.addEventListener('click', () => setMenu(!menuOpen));
   nav?.addEventListener('click', e => {
@@ -106,11 +116,12 @@ const TICKET_PROFILE = "https://eventmate.app/users/share/wordmusic";
   });
   header.addEventListener('focusin', () => showHeader(true));
   window.addEventListener('scroll', () => { if (!frame) frame = requestAnimationFrame(update); }, { passive: true });
-  window.addEventListener('pageshow', () => { lastY = Math.max(0, scrollY); showHeader(true); updateSubnav(); });
-  window.addEventListener('resize', updateSubnav);
+  window.addEventListener('pageshow', () => { lastY = Math.max(0, scrollY); showHeader(true); updateSubnav(); updateStickyBuy(); });
+  window.addEventListener('resize', () => { updateSubnav(); updateStickyBuy(); });
   mobile.addEventListener('change', () => { setMenu(false); updateNavInert(); if (pinned()) showHeader(true); });
   showHeader(true);
   updateSubnav();
+  updateStickyBuy();
   updateNavInert();
 })();
 

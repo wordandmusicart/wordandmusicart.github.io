@@ -302,11 +302,14 @@ class LandingArtistsAcceptance(unittest.TestCase):
                 doc = Document(path).root
                 self.assertTrue(all(href.split("?")[0] in {"https://eventmate.app/events/share/93e50cf4-75cd-4418-b20c-254c7db657b7", "https://eventmate.app/users/share/wordmusic", "https://eventmate.app/events/share/koncert-zirkam-nazustric"} for href in links(doc) if urlsplit(href).hostname == "eventmate.app"))
                 sticky = list(doc.find(cls="sticky-buy"))
+                subnav_links = [href for nav in doc.find(cls="subnav") for r in nav.find(cls="r") for href in links(r)]
                 if rel in sticky_targets:
                     self.assertEqual(len(sticky), 1, f"{rel} must have .sticky-buy")
                     self.assertEqual(links(sticky[0]), [sticky_targets[rel]])
+                    self.assertEqual(subnav_links, [sticky_targets[rel]], f"{rel} must have .subnav .r ticket CTA")
                 else:
                     self.assertFalse(sticky, f"{rel} must not have .sticky-buy")
+                    self.assertFalse(subnav_links, f"{rel} must not have .subnav .r ticket CTA")
                 for status in doc.find(cls="status"):
                     self.assertNotIn('status-pending', status.attrs.get('class', '').split())
 
