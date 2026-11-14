@@ -214,7 +214,8 @@ body:has(.hdr.is-hidden) .subnav ~ section[id]{scroll-margin-top:92px}
  .artists{padding-block:44px}.people{grid-template-columns:1fr 1fr;gap:36px 12px}.people h3{font-size:20px}
  .rel{grid-template-columns:1fr}.rel a{grid-template-columns:80px 1fr}.rel .d{font-size:30px}.rel .t{font-size:22px}
  body:has(.sticky-buy) .ftr{padding-bottom:calc(112px + env(safe-area-inset-bottom))}
- .sticky-buy{display:flex;position:fixed;left:16px;right:16px;bottom:calc(24px + env(safe-area-inset-bottom));height:64px;padding:0 8px 0 24px;align-items:center;justify-content:space-between;background:var(--floating-bg);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);border:1px solid var(--floating-border);border-radius:999px;box-shadow:var(--floating-shadow);z-index:30;font-size:13px;line-height:1.3;transform:translate3d(0,0,0);will-change:transform;-webkit-backface-visibility:hidden;backface-visibility:hidden}
+ .sticky-buy{display:flex;position:fixed;left:16px;right:16px;bottom:calc(24px + env(safe-area-inset-bottom));height:64px;padding:0 8px 0 24px;align-items:center;justify-content:space-between;background:var(--floating-bg);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);border:1px solid var(--floating-border);border-radius:999px;box-shadow:var(--floating-shadow);z-index:30;font-size:13px;line-height:1.3;transform:translate3d(0,calc(100% + 48px),0);opacity:0;pointer-events:none;transition:transform var(--hover) var(--ease),opacity var(--hover) var(--ease);will-change:transform;-webkit-backface-visibility:hidden;backface-visibility:hidden}
+ .sticky-buy.is-visible{transform:translate3d(0,0,0);opacity:1;pointer-events:auto}
 }
 @media (max-width:360px){.sticky-buy{padding-left:20px;padding-right:6px}.sticky-buy>.btn{padding-inline:14px;gap:8px;font-size:13px;white-space:nowrap}.sticky-buy>span{white-space:nowrap;min-width:0}}
 .pad-sec{padding-block:104px 96px}
@@ -474,7 +475,7 @@ body{padding-top:112px}
 @media (max-width:1100px){.hdr nav>.mobile-ticket{display:flex;font-family:"Fixel Text",sans-serif;font-size:15px;line-height:1;border:0;min-height:48px;padding:0 24px;margin-top:24px;text-align:center;justify-content:center;background:var(--hot);color:var(--hot-ink);transform:translateY(-4px);opacity:0.6;transition:transform 280ms cubic-bezier(.22,1,.36,1),opacity 280ms cubic-bezier(.22,1,.36,1)}
 .hdr nav.open>.mobile-ticket{transform:translateY(0);opacity:1}}
 
-@media (prefers-reduced-motion:reduce){.hdr.wrap,.hdr.is-hidden{transition:none}.menu-btn .line,.hdr nav,.hdr nav>a,.hdr nav .mobile-lang,.hdr nav>.mobile-ticket{transition:none !important;transform:none !important}}
+@media (prefers-reduced-motion:reduce){.hdr.wrap,.hdr.is-hidden,.sticky-buy{transition:none}.menu-btn .line,.hdr nav,.hdr nav>a,.hdr nav .mobile-lang,.hdr nav>.mobile-ticket{transition:none !important;transform:none !important}}
 
 /* Auto / light / dark: the same quiet icon controls as rusanivsky.com. */
 .ftr nav{align-items:center;gap:20px}

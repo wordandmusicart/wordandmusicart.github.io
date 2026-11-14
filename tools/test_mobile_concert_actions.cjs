@@ -81,9 +81,14 @@ async function scroll(page, fraction) {
           assert.equal(await sticky.count(), 1);
           assert.equal(await sticky.locator('a').getAttribute('href'), 'https://eventmate.app/events/share/93e50cf4-75cd-4418-b20c-254c7db657b7?locale=' + (prefix ? 'en' : 'uk'));
           if (width <= 900) {
-            assert.ok(await sticky.isVisible(), 'Mobile sticky ticket bar must be visible');
+            assert.equal(await sticky.evaluate(n => getComputedStyle(n).opacity), '0', 'Mobile sticky bar starts hidden while hero CTA is visible');
+            await scroll(page, 0.5);
+            assert.ok(await sticky.isVisible(), 'Mobile sticky ticket bar must be visible after scrolling past hero CTA');
+            assert.equal(await sticky.evaluate(n => getComputedStyle(n).opacity), '1');
+            await scroll(page, 0);
           } else {
             assert.ok(!(await sticky.isVisible()), 'Desktop hides mobile sticky ticket bar');
+            assert.ok(await page.locator('.subnav .r a').isVisible(), 'Desktop subnav CTA must be visible');
           }
           assert.equal(await page.locator('.status-pending').count(), 0);
           assert.equal(await page.locator('.c-hero .poster-placeholder').count(), 0);
