@@ -77,6 +77,14 @@ async function scroll(page, fraction) {
           assert.equal(await buy.count(), 1);
           assert.equal(await buy.getAttribute('href'), 'https://eventmate.app/events/share/93e50cf4-75cd-4418-b20c-254c7db657b7?locale=' + (prefix ? 'en' : 'uk'));
           assert.ok(await buy.isVisible());
+          const sticky = page.locator('.sticky-buy');
+          assert.equal(await sticky.count(), 1);
+          assert.equal(await sticky.locator('a').getAttribute('href'), 'https://eventmate.app/events/share/93e50cf4-75cd-4418-b20c-254c7db657b7?locale=' + (prefix ? 'en' : 'uk'));
+          if (width <= 900) {
+            assert.ok(await sticky.isVisible(), 'Mobile sticky ticket bar must be visible');
+          } else {
+            assert.ok(!(await sticky.isVisible()), 'Desktop hides mobile sticky ticket bar');
+          }
           assert.equal(await page.locator('.status-pending').count(), 0);
           assert.equal(await page.locator('.c-hero .poster-placeholder').count(), 0);
           assert.equal(await page.locator('.c-hero .poster img').count(), 1);

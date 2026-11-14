@@ -288,11 +288,25 @@ class LandingArtistsAcceptance(unittest.TestCase):
                 self.assertIn(f"/{prefix}video.html", links(scenes["media"]))
 
     def test_public_ticket_links_use_confirmed_event(self):
+        sticky_targets = {
+            "concert.html": "https://eventmate.app/events/share/93e50cf4-75cd-4418-b20c-254c7db657b7?locale=uk",
+            "en/concert.html": "https://eventmate.app/events/share/93e50cf4-75cd-4418-b20c-254c7db657b7?locale=en",
+            "concerts/vivre-aimer-rever-22112026.html": "https://eventmate.app/events/share/93e50cf4-75cd-4418-b20c-254c7db657b7?locale=uk",
+            "en/concerts/vivre-aimer-rever-22112026.html": "https://eventmate.app/events/share/93e50cf4-75cd-4418-b20c-254c7db657b7?locale=en",
+            "concerts/towards-the-stars-29112026.html": "https://eventmate.app/events/share/koncert-zirkam-nazustric?locale=uk",
+            "en/concerts/towards-the-stars-29112026.html": "https://eventmate.app/events/share/koncert-zirkam-nazustric?locale=en",
+        }
         for path in public_pages():
-            with self.subTest(page=str(path.relative_to(ROOT))):
+            rel = path.relative_to(ROOT).as_posix()
+            with self.subTest(page=rel):
                 doc = Document(path).root
                 self.assertTrue(all(href.split("?")[0] in {"https://eventmate.app/events/share/93e50cf4-75cd-4418-b20c-254c7db657b7", "https://eventmate.app/users/share/wordmusic", "https://eventmate.app/events/share/koncert-zirkam-nazustric"} for href in links(doc) if urlsplit(href).hostname == "eventmate.app"))
-                self.assertFalse(list(doc.find(cls="sticky-buy")))
+                sticky = list(doc.find(cls="sticky-buy"))
+                if rel in sticky_targets:
+                    self.assertEqual(len(sticky), 1, f"{rel} must have .sticky-buy")
+                    self.assertEqual(links(sticky[0]), [sticky_targets[rel]])
+                else:
+                    self.assertFalse(sticky, f"{rel} must not have .sticky-buy")
                 for status in doc.find(cls="status"):
                     self.assertNotIn('status-pending', status.attrs.get('class', '').split())
 
