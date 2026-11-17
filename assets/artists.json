@@ -1171,6 +1171,21 @@
     "sources": [
       "concerts/towards-the-stars-29112026.html#artists"
     ],
-    "portrait": null
+    "portrait": {
+      "src": "/assets/img/yu-haonan.jpg",
+      "source": "Owner-supplied and identified Desktop/Formal Portrait in Ornate Room Firefly Upscaler 2 4x scale.jpg, 17 November 2026. Renamed to Юй Хаонань.jpg and preserved byte-for-byte in 03 Вебсайт/01 Оригінали медіа/Портрети. Circle computed per design-system §6; separate 4:5 programme framing.",
+      "width": 4344,
+      "height": 5792,
+      "crop": {
+        "x": 1113,
+        "y": 612,
+        "size": 2151
+      },
+      "programme_crop": [
+        0,
+        0,
+        4344
+      ]
+    }
   }
 ]
