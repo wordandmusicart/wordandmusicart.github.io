@@ -1173,12 +1173,12 @@
     ],
     "portrait": {
       "src": "/assets/img/yu-haonan.jpg",
-      "source": "Owner-supplied and identified Desktop/Formal Portrait in Ornate Room Firefly Upscaler 2 4x scale.jpg, 17 November 2026. Renamed to Юй Хаонань.jpg and preserved byte-for-byte in 03 Вебсайт/01 Оригінали медіа/Портрети. Circle computed per design-system §6; separate 4:5 programme framing.",
+      "source": "Owner-supplied and identified Desktop/Formal Portrait in Ornate Room Firefly Upscaler 2 4x scale.jpg, 17 November 2026. Renamed to Юй Хаонань.jpg and preserved byte-for-byte in 03 Вебсайт/01 Оригінали медіа/Портрети. Circle computed per design-system §6, then shifted down slightly for less headroom per owner request (17 Nov 2026); separate 4:5 programme framing.",
       "width": 4344,
       "height": 5792,
       "crop": {
         "x": 1113,
-        "y": 612,
+        "y": 725,
         "size": 2151
       },
       "programme_crop": [
