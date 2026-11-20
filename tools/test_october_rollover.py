@@ -94,7 +94,7 @@ class OctoberRolloverAcceptance(unittest.TestCase):
         for prefix in ("", "en/"):
             doc = Document(ROOT / prefix / "concerts.html").root
             upcoming = list(doc.find("article", "upc"))
-            self.assertEqual(len(upcoming), 3, 'Upcoming concerts include November 22, November 29, and December 20')
+            self.assertEqual(len(upcoming), 2, 'Upcoming concerts include November 22 and November 29')
             self.assertIn('/' + prefix + NOVEMBER_22, links(upcoming[0]))
             archive = section(doc, "archive")
             archive_routes = {urlsplit(href).path for href in links(archive)
@@ -106,7 +106,7 @@ class OctoberRolloverAcceptance(unittest.TestCase):
             self.assertIn("/" + prefix + VIVRE, archive_routes)
             self.assertIn("/" + prefix + WINGS, archive_routes)
             self.assertIn("/" + prefix + WINGS_OCTOBER_24, archive_routes)
-            self.assertEqual([list(n.find(cls='d'))[0].text().strip() for n in upcoming], ['22.11', '29.11', '20.12'])
+            self.assertEqual([list(n.find(cls='d'))[0].text().strip() for n in upcoming], ['22.11', '29.11'])
 
     def test_facts_have_one_time_range_and_no_separate_endpoint_cells(self):
         for prefix, lang in (("", "uk"), ("en/", "en")):

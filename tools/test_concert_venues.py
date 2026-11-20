@@ -23,7 +23,6 @@ ANNOUNCED_SLUGS = (
     "on-the-wings-of-love-24102026",
     "vivre-aimer-rever-22112026",
     "towards-the-stars-29112026",
-    "towards-the-stars-20122026",
 )
 
 CONCERT_ALIASES = ("on-the-wings-of-love-25102026",)

@@ -10,7 +10,7 @@ else:
     from test_landing_artists import Document, ROOT, ORIGIN, links
 
 TICKET = 'https://eventmate.app/events/share/koncert-zirkam-nazustric'
-DATES = {'29112026': '2026-11-29', '20122026': '2026-12-20'}
+DATES = {'29112026': '2026-11-29'}
 
 
 class StarsTicketMetadataAcceptance(unittest.TestCase):
