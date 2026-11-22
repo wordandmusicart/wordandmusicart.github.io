@@ -286,7 +286,6 @@ class October24ConcertAcceptance(unittest.TestCase):
                 home = Document(ROOT / prefix / "index.html").root
                 self.assertEqual(ticket_links(next(home.find("main"))), [
                     "https://eventmate.app/events/share/koncert-zirkam-nazustric?locale=" + lang,
-                    "https://eventmate.app/events/share/koncert-zirkam-nazustric?locale=" + lang,
                 ])
 
     def test_performer_layouts_css_keeps_desktop_and_mobile_distinct(self):
