@@ -35,6 +35,7 @@ class HomeArchiveRandomTest(unittest.TestCase):
         self.assertGreaterEqual(len(slugs), 10, "Expected at least 10 concerts in the archive pool")
         self.assertEqual(len(slugs), len(set(slugs)), "Slugs must be unique")
         self.assertIn("on-the-wings-of-love-24102026", slugs, "The completed October 24 concert belongs in the random archive pool")
+        self.assertIn("vivre-aimer-rever-22112026", slugs)
         for slug in slugs:
             ua_file = ROOT / "concerts" / f"{slug}.html"
             en_file = ROOT / "en/concerts" / f"{slug}.html"

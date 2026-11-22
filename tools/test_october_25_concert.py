@@ -266,26 +266,26 @@ class October24ConcertAcceptance(unittest.TestCase):
                 self.assertEqual(statuses, [])
                 self.assert_fresh_themed_poster(next(doc.find("section", cls="c-hero")))
                 header = next(n for n in doc.find("header") if list(n.find("nav")))
-                self.assertEqual(ticket_links(header), ["https://eventmate.app/users/share/wordmusic?locale=" + lang] * 2)
+                self.assertEqual([a.attrs["href"] for a in header.find("a", cls="btn-acc")], [f"/{prefix}concerts/towards-the-stars-29112026.html"] * 2)
 
-    def test_listing_has_october_24_first_in_archive_without_archived_sales(self):
+    def test_listing_retains_october_24_in_archive_without_archived_sales(self):
         for prefix, lang, title, venue, _ in LANGUAGES:
             with self.subTest(language=lang):
                 listing = Document(ROOT / prefix / "concerts.html").root
                 upcoming = list(listing.find('article', cls='upc'))
-                self.assertEqual(len(upcoming), 2)
-                self.assertIn('/' + prefix + 'concerts/vivre-aimer-rever-22112026.html', links(upcoming[0]))
+                self.assertEqual(len(upcoming), 1)
+                self.assertIn('/' + prefix + 'concerts/towards-the-stars-29112026.html', links(upcoming[0]))
                 archive = section(listing, "archive")
                 route = f"/{prefix}{SLUG}"
                 archive_links = [href for href in links(archive) if "/concerts/" in href]
                 self.assertTrue(archive_links)
-                self.assertEqual(archive_links[0], route)
+                self.assertIn(route, archive_links)
                 self.assertIn(title, text(archive))
                 self.assertIn("24.10", text(archive))
                 self.assertFalse(ticket_links(archive), "Archived concerts must not advertise ticket sales")
                 home = Document(ROOT / prefix / "index.html").root
                 self.assertEqual(ticket_links(next(home.find("main"))), [
-                    "https://eventmate.app/events/share/93e50cf4-75cd-4418-b20c-254c7db657b7?locale=" + lang,
+                    "https://eventmate.app/events/share/koncert-zirkam-nazustric?locale=" + lang,
                     "https://eventmate.app/events/share/koncert-zirkam-nazustric?locale=" + lang,
                 ])
 
