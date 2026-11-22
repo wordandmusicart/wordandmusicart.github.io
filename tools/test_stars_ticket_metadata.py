@@ -62,14 +62,14 @@ class StarsTicketMetadataAcceptance(unittest.TestCase):
                         self.assertFalse(purchase_links, 'December has no confirmed event purchase URL')
                         self.assertFalse(list(doc.find(cls='sticky-buy')))
 
-    def test_listing_cards_link_to_the_correct_event_only(self):
+    def test_home_feature_and_listing_link_to_the_correct_event_only(self):
         for prefix, lang in (('', 'uk'), ('en/', 'en')):
-            for listing in ('index.html', 'concerts.html'):
+            for listing, card_tag in (('index.html', 'aside'), ('concerts.html', 'article')):
                 doc = Document(ROOT / prefix / listing).root
                 for suffix in DATES:
                     with self.subTest(language=lang, listing=listing, date=suffix):
                         detail = f'/{prefix}concerts/towards-the-stars-{suffix}.html'
-                        cards = [card for card in doc.find('article') if detail in links(card)]
+                        cards = [card for card in doc.find(card_tag) if detail in links(card)]
                         self.assertEqual(len(cards), 1)
                         purchases = [href for href in links(cards[0]) if 'eventmate.app/events/' in href]
                         self.assertEqual(purchases, [TICKET + '?locale=' + lang] if suffix == '29112026' else [])
