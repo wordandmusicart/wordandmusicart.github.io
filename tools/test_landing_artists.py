@@ -14,7 +14,7 @@ from urllib.parse import urlsplit
 
 ROOT = Path(os.environ.get("SITE_ROOT", Path(__file__).resolve().parents[1]))
 ORIGIN = "https://wordandmusic.art"
-ANNOUNCED_CONCERTS = {"on-the-wings-of-love-24102026.html", "vivre-aimer-rever-22112026.html"}
+ANNOUNCED_CONCERTS = {"on-the-wings-of-love-24102026.html", "towards-the-stars-29112026.html"}
 CONCERT_ALIASES = {"on-the-wings-of-love-25102026.html"}
 CONCERT_ONLY_ARTISTS = {"miao-xinyue", "den-yatsziuen", "anna-bielanova", "taras-kapran", "nykyta-naumov"}
 DIRECTORY_GROUPS = (("vocal", "voices"), ("music", "musicians"), ("author", "author"))
@@ -281,18 +281,16 @@ class LandingArtistsAcceptance(unittest.TestCase):
                 scenes = {n.attrs.get("id"): n for n in doc.find(cls="home-scene")}
                 self.assertIn("intro", scenes)
                 intro_links = links(scenes["intro"])
-                self.assertTrue(any(href in {f"/{prefix}concert.html", f"/{prefix}concerts/vivre-aimer-rever-22112026.html"} for href in intro_links))
-                self.assertIn("https://eventmate.app/events/share/93e50cf4-75cd-4418-b20c-254c7db657b7?locale=" + ("en" if prefix else "uk"), intro_links)
+                self.assertTrue(any(href in {f"/{prefix}concert.html", f"/{prefix}concerts/towards-the-stars-29112026.html"} for href in intro_links))
+                self.assertIn("https://eventmate.app/events/share/koncert-zirkam-nazustric?locale=" + ("en" if prefix else "uk"), intro_links)
                 self.assertIn("media", scenes)
                 self.assertIn(f"/{prefix}photo.html", links(scenes["media"]))
                 self.assertIn(f"/{prefix}video.html", links(scenes["media"]))
 
     def test_public_ticket_links_use_confirmed_event(self):
         sticky_targets = {
-            "concert.html": "https://eventmate.app/events/share/93e50cf4-75cd-4418-b20c-254c7db657b7?locale=uk",
-            "en/concert.html": "https://eventmate.app/events/share/93e50cf4-75cd-4418-b20c-254c7db657b7?locale=en",
-            "concerts/vivre-aimer-rever-22112026.html": "https://eventmate.app/events/share/93e50cf4-75cd-4418-b20c-254c7db657b7?locale=uk",
-            "en/concerts/vivre-aimer-rever-22112026.html": "https://eventmate.app/events/share/93e50cf4-75cd-4418-b20c-254c7db657b7?locale=en",
+            "concert.html": "https://eventmate.app/events/share/koncert-zirkam-nazustric?locale=uk",
+            "en/concert.html": "https://eventmate.app/events/share/koncert-zirkam-nazustric?locale=en",
             "concerts/towards-the-stars-29112026.html": "https://eventmate.app/events/share/koncert-zirkam-nazustric?locale=uk",
             "en/concerts/towards-the-stars-29112026.html": "https://eventmate.app/events/share/koncert-zirkam-nazustric?locale=en",
         }
@@ -300,7 +298,7 @@ class LandingArtistsAcceptance(unittest.TestCase):
             rel = path.relative_to(ROOT).as_posix()
             with self.subTest(page=rel):
                 doc = Document(path).root
-                self.assertTrue(all(href.split("?")[0] in {"https://eventmate.app/events/share/93e50cf4-75cd-4418-b20c-254c7db657b7", "https://eventmate.app/users/share/wordmusic", "https://eventmate.app/events/share/koncert-zirkam-nazustric"} for href in links(doc) if urlsplit(href).hostname == "eventmate.app"))
+                self.assertTrue(all(href.split("?")[0] in {"https://eventmate.app/events/share/koncert-zirkam-nazustric"} for href in links(doc) if urlsplit(href).hostname == "eventmate.app"))
                 sticky = list(doc.find(cls="sticky-buy"))
                 subnav_links = [href for nav in doc.find(cls="subnav") for r in nav.find(cls="r") for href in links(r)]
                 if rel in sticky_targets:
@@ -333,8 +331,8 @@ class LandingArtistsAcceptance(unittest.TestCase):
                 self.assertEqual([urlsplit(href).fragment for href in hrefs[4:]], ["about", "contacts"])
                 self.assertFalse(any(urlsplit(href).fragment == "repertoire" for href in links(header)))
                 self.assertTrue(list(header.find(cls="lang")), "Language choice must remain in header")
-                ticket_links = [href for href in links(header) if urlsplit(href).hostname == "eventmate.app"]
-                self.assertEqual(ticket_links, ["https://eventmate.app/users/share/wordmusic?locale=" + ("en" if prefix else "uk")] * 2)
+                ticket_links = [a.attrs["href"] for a in header.find("a", cls="btn-acc")]
+                self.assertEqual(ticket_links, [f"/{prefix}concerts/towards-the-stars-29112026.html"] * 2)
                 route = path.relative_to(ROOT).as_posix()
                 leaf = path.name
                 expected = leaf.removesuffix(".html") if leaf in {"artists.html", "concerts.html", "photo.html", "video.html"} else None

@@ -48,7 +48,7 @@ async function scroll(page, fraction) {
     finally { await ctx.close(); }
   }
   try {
-    for (const prefix of ['', 'en/']) for (const route of [WINGS24]) {
+    for (const prefix of ['', 'en/']) for (const route of [WINGS24, 'concerts/vivre-aimer-rever-22112026.html']) {
       for (const width of [320, 390, 900, 1440]) {
         await test(`${prefix + route} archived concert retains usable navigation without sale actions at ${width}px`, width, async page => {
           await open(page, '/' + prefix + route);
@@ -69,17 +69,17 @@ async function scroll(page, fraction) {
         });
       }
     }
-    for (const prefix of ['', 'en/']) for (const route of ['concert.html', 'concerts/vivre-aimer-rever-22112026.html']) {
+    for (const prefix of ['', 'en/']) for (const route of ['concert.html', 'concerts/towards-the-stars-29112026.html']) {
       for (const width of [320, 390, 1440]) {
         await test(`${prefix + route} November concert has usable content and confirmed ticket offer at ${width}px`, width, async page => {
           await open(page, '/' + prefix + route);
           const buy = page.locator('.c-hero .c-cta a[href*="eventmate.app"]');
           assert.equal(await buy.count(), 1);
-          assert.equal(await buy.getAttribute('href'), 'https://eventmate.app/events/share/93e50cf4-75cd-4418-b20c-254c7db657b7?locale=' + (prefix ? 'en' : 'uk'));
+          assert.equal(await buy.getAttribute('href'), 'https://eventmate.app/events/share/koncert-zirkam-nazustric?locale=' + (prefix ? 'en' : 'uk'));
           assert.ok(await buy.isVisible());
           const sticky = page.locator('.sticky-buy');
           assert.equal(await sticky.count(), 1);
-          assert.equal(await sticky.locator('a').getAttribute('href'), 'https://eventmate.app/events/share/93e50cf4-75cd-4418-b20c-254c7db657b7?locale=' + (prefix ? 'en' : 'uk'));
+          assert.equal(await sticky.locator('a').getAttribute('href'), 'https://eventmate.app/events/share/koncert-zirkam-nazustric?locale=' + (prefix ? 'en' : 'uk'));
           if (width <= 900) {
             assert.equal(await sticky.evaluate(n => getComputedStyle(n).opacity), '0', 'Mobile sticky bar starts hidden while hero CTA is visible');
             await scroll(page, 0.5);

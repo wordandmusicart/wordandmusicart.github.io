@@ -26,9 +26,9 @@ KNOWN_ARCHIVE_RANGES = {
 UNKNOWN_ARCHIVE_STARTS = {"amore-eterno", "christmas-kaleidoscope", "heartstrings"}
 ANNOUNCED_CONCERTS = {
     "on-the-wings-of-love-24102026",
-    "vivre-aimer-rever-22112026",
     "towards-the-stars-29112026",
 }
+KNOWN_ARCHIVE_STARTS = {"vivre-aimer-rever-22112026": "14:00"}
 CONCERT_ALIASES = {"on-the-wings-of-love-25102026"}
 OCTOBER_24_TICKET = "https://eventmate.app/events/share/na-krilah-kohanna-koncert-vokalnoi-muziki-v-budinku-vcenih"
 
@@ -62,17 +62,17 @@ def events(page):
 
 
 class EventSchemaTest(unittest.TestCase):
-    def test_current_alias_preserves_confirmed_november_22_offer_and_start_without_end(self):
+    def test_current_alias_preserves_confirmed_november_29_offer_and_start_without_end(self):
         for prefix, lang in (("", "uk"), ("en/", "en")):
             page = (ROOT / prefix / "concert.html").read_text(encoding="utf-8")
             event, = events(page)
-            self.assertEqual(event['startDate'], '2026-11-22T14:00:00+02:00')
+            self.assertEqual(event['startDate'], '2026-11-29T14:00:00+02:00')
             self.assertNotIn('endDate', event)
-            self.assertEqual(event['offers']['url'], 'https://eventmate.app/events/share/93e50cf4-75cd-4418-b20c-254c7db657b7?locale=' + lang)
+            self.assertEqual(event['offers']['url'], 'https://eventmate.app/events/share/koncert-zirkam-nazustric?locale=' + lang)
             self.assertEqual(event['offers']['price'], '250')
             self.assertEqual(event['offers']['priceCurrency'], 'UAH')
             hero = re.search(r'<section class="c-hero.*?</section>', page, re.S).group(0)
-            self.assertEqual(fact(hero, LABELS[lang][1]), '22.11.2026')
+            self.assertEqual(fact(hero, LABELS[lang][1]), '29.11.2026')
             self.assertEqual(fact(hero, LABELS[lang][0]), '14:00')
             self.assertEqual(fact(hero, 'Ціна' if lang == 'uk' else 'Price'), '250 ₴')
 
@@ -94,7 +94,7 @@ class EventSchemaTest(unittest.TestCase):
         self.assertEqual([path.name for path in ua], [path.name for path in en])
         self.assertEqual(
             {path.stem for path in ua},
-            set(KNOWN_ARCHIVE_RANGES) | UNKNOWN_ARCHIVE_STARTS | ANNOUNCED_CONCERTS | CONCERT_ALIASES,
+            set(KNOWN_ARCHIVE_RANGES) | UNKNOWN_ARCHIVE_STARTS | set(KNOWN_ARCHIVE_STARTS) | ANNOUNCED_CONCERTS | CONCERT_ALIASES,
         )
         return [path for path in ua + en if path.stem not in ANNOUNCED_CONCERTS | CONCERT_ALIASES]
 
@@ -122,7 +122,7 @@ class EventSchemaTest(unittest.TestCase):
                 lang = "en" if "en" in path.relative_to(ROOT).parts else "uk"
                 time_label, _ = LABELS[lang]
                 visible_range = fact(hero.group(0), time_label)
-                expected_range = KNOWN_ARCHIVE_RANGES.get(path.stem)
+                expected_range = KNOWN_ARCHIVE_RANGES.get(path.stem, KNOWN_ARCHIVE_STARTS.get(path.stem))
                 self.assertEqual(visible_range.replace(" ", "") if visible_range else None,
                                  expected_range, "Unknown start must have no invented range")
                 for label in ("Початок", "Завершення", "Start", "End"):

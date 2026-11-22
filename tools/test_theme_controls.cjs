@@ -61,8 +61,8 @@ async function rendered(page, mode, {picture = true} = {}) {
     if (picture) {
       assert.ok(!result.placeholder, 'Owner supplied actual November artwork');
       assert.match(result.banner || '', mode === 'dark'
-        ? /vivre-aimer-rever-22112026-banner-light[-.]/
-        : /vivre-aimer-rever-22112026-banner-night[-.]/);
+        ? /towards-the-stars-29112026-banner-light[-.]/
+        : /towards-the-stars-29112026-banner-night[-.]/);
       assert.ok(result.bannerLoaded, 'The November banner must load in the chosen theme');
     }
   }, `Rendering must resolve to ${mode}`);
@@ -171,7 +171,8 @@ async function context(browser, colorScheme = 'light') {
                   source: node.currentSrc, loaded: node.complete && node.naturalWidth > 0,
                 }));
                 const family = route.includes('on-the-wings-of-love')
-                  ? 'on-the-wings-of-love-24102026' : 'vivre-aimer-rever-22112026';
+                  ? 'on-the-wings-of-love-24102026'
+                  : route.includes('vivre-aimer-rever-22112026') ? 'vivre-aimer-rever-22112026' : 'towards-the-stars-29112026';
                 assert.match(image.source, new RegExp(family + '-poster-' + (mode === 'dark' ? 'light' : 'night') + '[-.]'));
                 assert.ok(image.loaded, `${route}: the selected poster must load`);
               }, `${route}: poster must resolve to ${mode}`);

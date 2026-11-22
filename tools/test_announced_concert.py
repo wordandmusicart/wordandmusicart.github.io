@@ -2,7 +2,6 @@
 """Independent acceptance checks for the 15 October announcement (stdlib only)."""
 import unittest
 import xml.etree.ElementTree as ET
-from urllib.parse import urlsplit
 
 if __package__:
     from .test_event_end_date import events
@@ -32,11 +31,10 @@ class AnnouncedConcertAcceptance(unittest.TestCase):
     def test_confirmed_ticket_access_and_sales_status_on_detail_and_listing(self):
         for prefix, lang in (("", "uk"), ("en/", "en")):
             with self.subTest(language=lang):
-                expected = f"{TICKET_24}?locale={lang}"
                 doc = Document(ROOT / prefix / SLUG).root
                 header = next(n for n in doc.find("header") if list(n.find("nav")))
-                header_tickets = [href for href in links(header) if urlsplit(href).hostname == "eventmate.app"]
-                self.assertEqual(header_tickets, ["https://eventmate.app/users/share/wordmusic?locale=" + lang] * 2)
+                header_tickets = [a.attrs["href"] for a in header.find("a", cls="btn-acc")]
+                self.assertEqual(header_tickets, [f"/{prefix}concerts/towards-the-stars-29112026.html"] * 2)
                 old_ticket_links = [href for href in links(doc) if href.split('?')[0] == TICKET]
                 self.assertFalse(old_ticket_links, "Archived concert must not link to past ticket offer")
                 status = next(doc.find(cls="status"), None)

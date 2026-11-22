@@ -67,9 +67,9 @@ change pass; if a test encodes an old owner decision, ask.
 ## Header, tickets, language
 
 - Header «Квитки»/«Tickets» and all Eventmate links are not edited by hand:
-  `python3 tools/tickets.py` keeps header «Квитки»/«Tickets» on the organiser
-  profile (owner request, 11 Oct 2026); concert purchase actions retain their
-  event-specific URLs.
+  `python3 tools/tickets.py` points the header «Квитки»/«Tickets» to the
+  canonical current concert page in each language. Concert purchase actions
+  retain their event-specific URLs.
   UA pages link Eventmate with `?locale=uk`, EN pages with `?locale=en`.
 - Mobile sticky ticket bar (`.sticky-buy`) & desktop `.subnav .r`: every
   upcoming concert page with active ticket sales (`eventmate.app/events/...`

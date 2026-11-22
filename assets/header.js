@@ -1,7 +1,4 @@
 /* Shared navigation: floating header, direction-aware visibility, accessible menu. */
-/* tickets:start (tools/tickets.py) */
-const TICKET_PROFILE = "https://eventmate.app/users/share/wordmusic";
-/* tickets:end */
 (() => {
   const header = document.querySelector('.hdr');
   if (!header) return;
@@ -123,15 +120,4 @@ const TICKET_PROFILE = "https://eventmate.app/users/share/wordmusic";
   updateSubnav();
   updateStickyBuy();
   updateNavInert();
-})();
-
-/* Keep restored ticket controls in the page language. */
-(() => {
-  const locale = document.documentElement.lang === 'en' ? 'en' : 'uk';
-  if (!TICKET_PROFILE) {
-    document.querySelectorAll('.hdr a.btn-acc').forEach(link => link.remove());
-    return;
-  }
-  const href = `${TICKET_PROFILE}?locale=${locale}`;
-  for (const link of document.querySelectorAll('.hdr a.btn-acc')) link.href = href;
 })();
