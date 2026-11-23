@@ -77,12 +77,12 @@ def render(lang):
     # is composed below so a rebuild never inherits an incorrect active item.
     head=head.replace('wordandmusic.art/concerts.html','wordandmusic.art/artists.html').replace('wordandmusic.art/en/concerts.html','wordandmusic.art/en/artists.html')
     head=head.replace('href="/en/concerts.html" hreflang','href="/en/artists.html" hreflang').replace('href="/concerts.html" hreflang','href="/artists.html" hreflang')
-    nav=[('concerts.html','Концерти','Concerts'),('artists.html','Артисти','Artists'),('photo.html','Фото','Photo'),('video.html','Відео','Video'),('index.html#about','Про проєкт','About'),('index.html#contacts','Контакти','Contacts')]
+    nav=[('concerts.html','Концерти','Concerts'),('artists.html','Артисти','Artists'),('photo.html','Фото','Photo'),('video.html','Відео','Video'),('index.html#about','Про проєкт','About'),('team.html','Команда','Team'),('index.html#contacts','Контакти','Contacts')]
     links=''.join(f'<a href="{local(path,lang)}"'+(' aria-current="page"' if path=='artists.html' else '')+'>'+ (en if lang=='en' else uk)+'</a>' for path,uk,en in nav)
     nav_match = re.search(r'(<nav id="nav"[^>]*>)(.*?)(</nav>)', head, re.S)
     mobile = nav_match[2][nav_match[2].index('<div class="mobile-lang'): ] if '<div class="mobile-lang' in nav_match[2] else ''
     head = head[:nav_match.start()] + nav_match[1] + links + mobile + nav_match[3] + head[nav_match.end():]
-    head=head.replace('</head>','<link rel="stylesheet" href="/assets/artists.css?v=9">\n</head>')
+    head=head.replace('</head>','<link rel="stylesheet" href="/assets/artists.css?v=11">\n</head>')
     body=f'''<main class="artists-page">
 <div class="list-head artists-intro wrap"><div><div class="meta muted">{copy['label']}</div><h1 class="tem">{copy['heading']}</h1></div><div class="artists-intro-bottom"><p>{copy['intro']}</p><nav aria-label="{copy['nav_label']}"><a href="#voices">{copy['vocal']}</a><a href="#musicians">{copy['music']}</a><a href="#author">{copy['author']}</a></nav></div></div>
 '''

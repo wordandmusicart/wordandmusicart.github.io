@@ -223,13 +223,13 @@ class LandingArtistsAcceptance(unittest.TestCase):
                                       normalized_name(Document(source_path).root.text()),
                                       f"{identity} must remain in {prefix}{source}")
 
-    def test_home_has_seven_ordered_scenes_and_footer_in_contacts(self):
+    def test_home_has_six_ordered_scenes_and_footer_in_contacts(self):
         for prefix in ("", "en/"):
             with self.subTest(language=prefix or "uk"):
                 doc = Document(ROOT / prefix / "index.html").root
                 scenes = list(doc.find(cls="home-scene"))
                 self.assertEqual([s.attrs.get("id") for s in scenes],
-                                 ["intro", "about", "past-concerts", "media", "locations", "team", "contacts"])
+                                 ["intro", "about", "past-concerts", "media", "locations", "contacts"])
                 self.assertEqual(len(list(scenes[-1].find("footer"))), 1,
                                  "The footer must belong to the last scene")
                 self.assertFalse(any(n.attrs.get("id") == "repertoire" for n in doc.find()))
@@ -263,7 +263,7 @@ class LandingArtistsAcceptance(unittest.TestCase):
                 self.assertNotIn("Кирило Русанівський", location.text())
                 self.assertNotIn("Kyrylo Rusanivsky", location.text())
 
-    def test_home_team_lists_the_owner_approved_people(self):
+    def test_team_page_lists_the_owner_approved_people(self):
         artists = {record["id"]: record for record in json.loads((ROOT / "assets/artists.json").read_text())}
         expected = {
             "uk": [("Кирило Русанівський", "Арт-директор"), ("Альона Махіня", "Менеджер з партнерств")],
@@ -271,19 +271,21 @@ class LandingArtistsAcceptance(unittest.TestCase):
         }
         for lang, prefix, heading in (("uk", "", "Команда"), ("en", "en/", "Team")):
             with self.subTest(language=lang):
-                doc = Document(ROOT / prefix / "index.html").root
-                team = [node for node in doc.find("section") if node.attrs.get("id") == "team"]
-                self.assertEqual(len(team), 1)
-                self.assertEqual([node.text().strip() for node in team[0].find("h2")], [heading])
-                found = [(next(iter(li.find("h3"))).text().strip(), " ".join(next(iter(li.find("p"))).text().split()))
-                         for li in team[0].find("li")]
+                doc = Document(ROOT / prefix / "team.html").root
+                self.assertEqual([node.text().strip() for node in doc.find("h1")], [heading])
+                rows = list(doc.find(cls="artist-row"))
+                found = [(next(iter(row.find("h2"))).text().strip(), next(iter(row.find("p"))).text().strip())
+                         for row in rows]
                 performers = [(artists[i]["name"][lang], artists[i]["role"][lang])
                               for i in ("hennadii-taraniuk", "anzhelina-shvachka", "liliia-hrevtsova")]
                 self.assertEqual(found, performers + expected[lang])
-                images = list(team[0].find("img"))
+                images = [next(iter(row.find("img"))) for row in rows]
                 self.assertEqual([i.attrs.get("alt") for i in images], [name for name, _ in found])
                 for image in images:
                     self.assertTrue((ROOT / image.attrs["src"].lstrip("/")).is_file())
+                home = Document(ROOT / prefix / "index.html").root
+                self.assertFalse(any(n.attrs.get("id") == "team" for n in home.find()),
+                                 "The team lives on its own page, not on the home page")
 
     def test_existing_gallery_photographer_names_link_to_his_site(self):
         galleries = ("autumn-rendezvous", "roads-of-love", "stabat-mater", "winter-extravaganza")
@@ -350,14 +352,15 @@ class LandingArtistsAcceptance(unittest.TestCase):
                 navigation_links = primary_links(primary[0])
                 hrefs = [a.attrs.get("href", "") for a in navigation_links]
                 self.assertEqual(hrefs[:4], [f"/{prefix}{name}.html" for name in ("concerts", "artists", "photo", "video")])
-                self.assertEqual([urlsplit(href).fragment for href in hrefs[4:]], ["about", "contacts"])
+                self.assertEqual(hrefs[5], f"/{prefix}team.html")
+                self.assertEqual([urlsplit(href).fragment for href in (hrefs[4], *hrefs[6:])], ["about", "contacts"])
                 self.assertFalse(any(urlsplit(href).fragment == "repertoire" for href in links(header)))
                 self.assertTrue(list(header.find(cls="lang")), "Language choice must remain in header")
                 ticket_links = [a.attrs["href"] for a in header.find("a", cls="btn-acc")]
                 self.assertEqual(ticket_links, [f"/{prefix}concerts/towards-the-stars-29112026.html"] * 2)
                 route = path.relative_to(ROOT).as_posix()
                 leaf = path.name
-                expected = leaf.removesuffix(".html") if leaf in {"artists.html", "concerts.html", "photo.html", "video.html"} else None
+                expected = leaf.removesuffix(".html") if leaf in {"artists.html", "concerts.html", "photo.html", "video.html", "team.html"} else None
                 current = [a.attrs.get("href") for a in navigation_links if a.attrs.get("aria-current", "false") != "false"]
                 if expected:
                     self.assertEqual(current, [f"/{prefix}{expected}.html"])
