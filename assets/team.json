@@ -1,0 +1,29 @@
+[
+ {"artist": "hennadii-taraniuk"},
+ {"artist": "anzhelina-shvachka"},
+ {"artist": "liliia-hrevtsova"},
+ {
+  "id": "kyrylo-rusanivsky",
+  "name": {"uk": "Кирило Русанівський", "en": "Kyrylo Rusanivsky"},
+  "role": {"uk": "Арт-директор", "en": "Art Director"},
+  "portrait": {
+   "src": "/assets/img/kyrylo-rusanivsky-portrait.jpg",
+   "source": "Owner's own published portrait, rusanivsky.com/aboutme; media/portrait/photo.jpg from the site repository (commit 9437ccd3), byte-for-byte",
+   "width": 1280,
+   "height": 1600,
+   "crop": {"x": 274, "y": 194, "size": 759}
+  }
+ },
+ {
+  "id": "alona-makhinia",
+  "name": {"uk": "Альона Махіня", "en": "Alona Makhinia"},
+  "role": {"uk": "Менеджер з партнерств", "en": "Partnerships Manager"},
+  "portrait": {
+   "src": "/assets/img/alona-makhinia.jpg",
+   "source": "Owner-supplied portrait, 2026-11-23 (photo_2026-11-23_20-32-13.jpg), byte-for-byte; the photograph has no room above the head, so the circle uses its full height",
+   "width": 786,
+   "height": 619,
+   "crop": {"x": 56, "y": 0, "size": 619}
+  }
+ }
+]

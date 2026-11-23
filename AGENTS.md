@@ -43,6 +43,7 @@ python3 tools/fonts.py --check           # new glyphs → python3 tools/fonts.py
 python3 tools/check_seo.py && python3 tools/sitemap.py --check
 python3 tools/structured_data.py --check
 python3 tools/sync_programme_portraits.py --check
+python3 tools/build_team.py --check      # team scene; after editing team.json/artists.json run without --check
 python3 tools/tickets.py --check         # after adding/archiving a concert run without --check
 python3 tools/check_style.py             # tokens, inline styles, asset versions, UA/EN pairs
 python3 -m http.server 4175 &            # then each tools/test_*.cjs with

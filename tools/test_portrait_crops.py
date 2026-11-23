@@ -25,6 +25,7 @@ NO_FRONTAL_FACE = {
     'viktoriia-mramornova': 'profile at the piano',
 }
 ARTISTS = json.loads((ROOT / 'assets/artists.json').read_text())
+ARTISTS += [t for t in json.loads((ROOT / 'assets/team.json').read_text()) if 'id' in t]
 
 
 class PortraitCrops(unittest.TestCase):
