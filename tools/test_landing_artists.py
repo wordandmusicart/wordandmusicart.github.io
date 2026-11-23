@@ -223,13 +223,13 @@ class LandingArtistsAcceptance(unittest.TestCase):
                                       normalized_name(Document(source_path).root.text()),
                                       f"{identity} must remain in {prefix}{source}")
 
-    def test_home_has_six_ordered_scenes_and_footer_in_contacts(self):
+    def test_home_has_seven_ordered_scenes_and_footer_in_contacts(self):
         for prefix in ("", "en/"):
             with self.subTest(language=prefix or "uk"):
                 doc = Document(ROOT / prefix / "index.html").root
                 scenes = list(doc.find(cls="home-scene"))
                 self.assertEqual([s.attrs.get("id") for s in scenes],
-                                 ["intro", "about", "past-concerts", "media", "locations", "contacts"])
+                                 ["intro", "about", "past-concerts", "media", "locations", "team", "contacts"])
                 self.assertEqual(len(list(scenes[-1].find("footer"))), 1,
                                  "The footer must belong to the last scene")
                 self.assertFalse(any(n.attrs.get("id") == "repertoire" for n in doc.find()))
@@ -262,6 +262,28 @@ class LandingArtistsAcceptance(unittest.TestCase):
                     self.assertTrue((ROOT / src.lstrip("/")).is_file(), f"Missing venue mark: {src}")
                 self.assertNotIn("Кирило Русанівський", location.text())
                 self.assertNotIn("Kyrylo Rusanivsky", location.text())
+
+    def test_home_team_lists_the_owner_approved_people(self):
+        artists = {record["id"]: record for record in json.loads((ROOT / "assets/artists.json").read_text())}
+        expected = {
+            "uk": [("Кирило Русанівський", "Арт-директор"), ("Альона Махіня", "Менеджер з партнерств")],
+            "en": [("Kyrylo Rusanivsky", "Art Director"), ("Alona Makhinia", "Partnerships Manager")],
+        }
+        for lang, prefix, heading in (("uk", "", "Команда"), ("en", "en/", "Team")):
+            with self.subTest(language=lang):
+                doc = Document(ROOT / prefix / "index.html").root
+                team = [node for node in doc.find("section") if node.attrs.get("id") == "team"]
+                self.assertEqual(len(team), 1)
+                self.assertEqual([node.text().strip() for node in team[0].find("h2")], [heading])
+                found = [(next(iter(li.find("h3"))).text().strip(), " ".join(next(iter(li.find("p"))).text().split()))
+                         for li in team[0].find("li")]
+                performers = [(artists[i]["name"][lang], artists[i]["role"][lang])
+                              for i in ("hennadii-taraniuk", "anzhelina-shvachka", "liliia-hrevtsova")]
+                self.assertEqual(found, performers + expected[lang])
+                images = list(team[0].find("img"))
+                self.assertEqual([i.attrs.get("alt") for i in images], [name for name, _ in found])
+                for image in images:
+                    self.assertTrue((ROOT / image.attrs["src"].lstrip("/")).is_file())
 
     def test_existing_gallery_photographer_names_link_to_his_site(self):
         galleries = ("autumn-rendezvous", "roads-of-love", "stabat-mater", "winter-extravaganza")
