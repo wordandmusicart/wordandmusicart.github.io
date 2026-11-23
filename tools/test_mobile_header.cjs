@@ -63,6 +63,30 @@ async function settledVisibility(page, visible) {
         assert.ok(result.alternate.width >= 44 && result.alternate.height >= 44,
           `Language tap area ${result.alternate.width.toFixed(1)} × ${result.alternate.height.toFixed(1)} must be at least 44 × 44px`);
       });
+      await test(`${language}: the current menu row differs from the others by the accent colour only`, async page => {
+        for (const leaf of ['concerts', 'artists', 'photo', 'video', 'team']) {
+          await page.goto(BASE + route + leaf + '.html');
+          await page.locator('.menu-btn').click();
+          await page.waitForTimeout(400);
+          const menu = await page.evaluate(() => {
+            const probe = document.createElement('i'); document.body.append(probe);
+            const token = (property, value) => { probe.style[property] = value; return getComputedStyle(probe)[property]; };
+            const row = node => { const s = getComputedStyle(node);
+              return {current: node.hasAttribute('aria-current'), color: s.color, height: node.getBoundingClientRect().height,
+                line: s.textDecorationLine, border: s.borderBottomColor, box: s.boxShadow}; };
+            return {accent: token('color', 'var(--accent)'), shadow: token('boxShadow', 'var(--floating-shadow)'),
+              panel: getComputedStyle(document.getElementById('nav')).boxShadow,
+              rows: [...document.querySelectorAll('#nav > a:not(.btn)')].map(row)};
+          });
+          const current = menu.rows.filter(row => row.current), other = menu.rows.find(row => !row.current);
+          assert.equal(current.length, 1, `${leaf}: one current row`);
+          assert.equal(current[0].color, menu.accent, `${leaf}: the current row uses --accent`);
+          assert.notEqual(other.color, menu.accent);
+          for (const key of ['height', 'line', 'border', 'box'])
+            assert.equal(current[0][key], other[key], `${leaf}: ${key} must match the other rows`);
+          assert.equal(menu.panel, menu.shadow, `${leaf}: the menu panel uses --floating-shadow`);
+        }
+      });
       await test(`${language}: header ignores ±8px noise and returns after sustained 32px upward scroll`, async page => {
         await page.goto(BASE + route);
         await settleScroll(page, 600);
