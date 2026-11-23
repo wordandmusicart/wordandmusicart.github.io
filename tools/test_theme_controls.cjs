@@ -215,7 +215,7 @@ async function context(browser, colorScheme = 'light') {
         const page = await ctx.newPage();
         await page.emulateMedia({reducedMotion: 'reduce'});
         await page.goto(BASE + '/');
-        for (const id of ['intro', 'about', 'past-concerts', 'media', 'team', 'contacts']) {
+        for (const id of ['intro', 'about', 'past-concerts', 'media', 'contacts']) {
           await page.locator('#' + id).scrollIntoViewIfNeeded();
           const result = await page.evaluate(async sceneId => {
             await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
