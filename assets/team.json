@@ -5,7 +5,7 @@
  {
   "id": "kyrylo-rusanivsky",
   "name": {"uk": "Кирило Русанівський", "en": "Kyrylo Rusanivsky"},
-  "role": {"uk": "Арт-директор", "en": "Art Director"},
+  "role": {"uk": "Арт-директор · Фото та відео", "en": "Art Director · Photo and Video"},
   "portrait": {
    "src": "/assets/img/kyrylo-rusanivsky-portrait.jpg",
    "source": "Owner's own published portrait, rusanivsky.com/aboutme; media/portrait/photo.jpg from the site repository (commit 9437ccd3), byte-for-byte. Owner rejected the first circle (274,194,759: small head, camera cut by the edge) on 2026-11-23; tightened to Taraniuk's head scale without the camera. Owner, 2026-11-24: head higher by the eye line — eyes raised from 0.45 to the neighbours' line (about 0.40); the crown margin is 3% because a wider circle would show the cut camera.",

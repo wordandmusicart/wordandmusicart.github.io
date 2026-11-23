@@ -266,8 +266,8 @@ class LandingArtistsAcceptance(unittest.TestCase):
     def test_team_page_lists_the_owner_approved_people(self):
         artists = {record["id"]: record for record in json.loads((ROOT / "assets/artists.json").read_text())}
         expected = {
-            "uk": [("Кирило Русанівський", "Арт-директор"), ("Альона Махіня", "Менеджер з партнерств")],
-            "en": [("Kyrylo Rusanivsky", "Art Director"), ("Alona Makhinia", "Partnerships Manager")],
+            "uk": [("Кирило Русанівський", "Арт-директор · Фото та відео"), ("Альона Махіня", "Менеджер з партнерств")],
+            "en": [("Kyrylo Rusanivsky", "Art Director · Photo and Video"), ("Alona Makhinia", "Partnerships Manager")],
         }
         for lang, prefix, heading in (("uk", "", "Команда"), ("en", "en/", "Team")):
             with self.subTest(language=lang):
