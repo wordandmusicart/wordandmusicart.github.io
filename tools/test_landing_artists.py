@@ -277,7 +277,7 @@ class LandingArtistsAcceptance(unittest.TestCase):
                 found = [(next(iter(row.find("h2"))).text().strip(), next(iter(row.find("p"))).text().strip())
                          for row in rows]
                 performers = [(artists[i]["name"][lang], artists[i]["role"][lang])
-                              for i in ("hennadii-taraniuk", "anzhelina-shvachka", "liliia-hrevtsova")]
+                              for i in ("anzhelina-shvachka", "liliia-hrevtsova", "hennadii-taraniuk")]
                 self.assertEqual(found, performers + expected[lang])
                 images = [next(iter(row.find("img"))) for row in rows]
                 self.assertEqual([i.attrs.get("alt") for i in images], [name for name, _ in found])
