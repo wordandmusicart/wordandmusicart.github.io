@@ -25,7 +25,7 @@ class StarsTicketMetadataAcceptance(unittest.TestCase):
                     self.assertEqual(len(found), 1, 'Each announced concert needs one MusicEvent')
                     event = found[0]
                     self.assertEqual(event['startDate'], date + 'T14:00:00+02:00')
-                    self.assertNotIn('endDate', event, 'No confirmed end time is available')
+                    self.assertEqual(event['endDate'], date + 'T15:20:00+02:00')
                     canonical = next(n.attrs['href'] for n in doc.find('link') if n.attrs.get('rel') == 'canonical')
                     self.assertEqual(event['url'], canonical)
                     self.assertEqual(canonical, ORIGIN + '/' + relative)
